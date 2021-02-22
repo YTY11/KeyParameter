@@ -16,7 +16,7 @@
         <tr>
             <a href="#" style="">
                 <td class="topTitleDiv1">
-                    <img style="" th:src="@{/img/LeftAccessory.png}" src="../static/img/LeftAccessory.png">
+                    <img style="margin-left: 10%;" th:src="@{/img/LeftAccessory.png}" src="../static/img/LeftAccessory.png">
                 </td>
             </a>
             <td class="topTitleDiv2">
@@ -35,6 +35,8 @@
 
 
 <div class="content">
+
+<!--    搜索区域-->
     <div class="contentSeek">
         <div class="layui-form layui-form-item selectBox">
             <label class=" layui-form-label1">楼层:</label>
@@ -66,6 +68,18 @@
 
 
     </div>
+
+<!--    异常进度分析-->
+    <div style="width: 100%;height: 4%;display: flex">
+        <p style="color: black;font-size: 15px;font-weight: bold;align-self: center;margin-left: 2%;">异常进度分析</p>
+    </div>
+    <div class="contentErrorAnalyse">
+
+    </div>
+
+<!--    异常报警信息-->
+    <div class="contentErrorMsg"></div>
+
 </div>
 
 
