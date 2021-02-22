@@ -1,0 +1,88 @@
+# 项目名称、版本、版权年份
+furntempport:
+  # 名称
+  name: PackingSubPage
+  # 版本
+  version: 1.0.0
+  # 版权年份
+  copyrightYear: 2020
+  # 文件路径 示例（ Windows配置D:/hermes/profile，Linux配置 /home/hermes/uploadPath）
+  profile: C:/KeyParameter/profile
+  # 获取ip地址开关
+  addressEnabled: false
+
+# 开发环境配置
+server:
+  # 服务器的HTTP端口，默认为80
+  port: 9091
+  servlet:
+    # 应用的访问路径
+    context-path: /KeyParameter
+  tomcat:
+    # tomcat的URI编码
+    uri-encoding: UTF-8
+    # tomcat最大线程数，默认为200
+    max-threads: 800
+    # Tomcat启动初始化的线程数，默认值25
+    min-spare-threads: 30
+
+# 日志配置
+logging:
+  level:
+    com.furntempport: debug
+    org.springframework: warn
+# Spring配置
+spring:
+  # 模板引擎
+  thymeleaf:
+    mode: HTML
+    encoding: utf-8
+    # 禁用缓存
+    cache: false
+  # 资源信息
+  messages:
+    # 国际化资源文件路径
+    basename: static/i18n/messages
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+  profiles:
+    active: druid
+  # 文件上传
+  servlet:
+    multipart:
+      # 单个文件大小
+      max-file-size:  10MB
+      # 设置总上传的文件大小
+      max-request-size:  20MB
+  jmx:
+    #多個項目設置為false 為true時會報druid 端口衝突、占用等
+    enabled: false
+  # 服务模块
+  devtools:
+    restart:
+      # 热部署开关
+      enabled: true
+
+  http:
+    encoding.charset: UTF-8
+    encoding.force: true
+    encoding.enabled: true
+
+# MyBatis
+mybatis:
+  # 搜索指定包别名
+  typeAliasesPackage: com.fox.*.mapper.*
+  # 加载全局的配置文件
+  configLocation: classpath:mybatis/mybatis-config.xml
+# 防止XSS攻击
+#xss:
+#  # 过滤开关
+#  enabled: true
+#  # 排除链接（多个用逗号分隔）
+#  excludes: /system/notice/*
+#  # 匹配链接
+#  urlPatterns: /system/*,/monitor/*,/tool/*
+
+
+

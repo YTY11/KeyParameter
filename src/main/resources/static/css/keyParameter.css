@@ -1,0 +1,127 @@
+a, body, button, div, dl, dt, h1, h2, h3, h4, h5, h6, input, li, p, select, textarea, ul {
+    margin: 0;
+    padding: 0;
+    outline: none;
+}
+
+
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    background-image: url("../img/backgroundImg.png");
+    background-size: 100%;
+    background-repeat: repeat-y;
+}
+
+/*@media screen and (max-width: 768px) {*/
+/*    html {*/
+/*        width: 768px;*/
+/*    }*/
+
+/*    body {*/
+/*        width: 768px;*/
+/*    }*/
+/*}*/
+
+
+/*头部*/
+.topTitle{
+    background-color: #FFFFFF;
+    /*display: flex;*/
+    height: 6.5%;
+}
+.topTitleDiv1{
+    width: 25%;
+    white-space:nowrap;overflow: hidden;text-overflow:ellipsis
+}
+.topTitleDiv2{
+    width: 50%;
+    text-align: center;
+
+}
+.topTitleDiv3{
+    width: 25%;
+    align-self: flex-end;
+    white-space:nowrap;text-overflow:ellipsis
+}
+
+
+
+/*主体内容*/
+.content{
+    background-color: #E6E6E6;
+    margin: 4% 2% 4% 2%;
+    width:96%;
+    height: 86.5%;
+    border-radius: 24px;
+
+}
+
+/*搜索*/
+.contentSeek{
+    display: flex;
+    background-color: #FFFFFF;
+    width: 100%;
+    height: 9%;
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+    border-bottom:1px solid #1343A0;
+
+}
+
+.selectBox{
+    width: 30%;
+    align-self: center;
+
+}
+.layui-form-label1 {
+    float: left;
+    display: block;
+    padding: 4% 7%;
+    width: 27%;
+    font-size: 15px;
+    align-self: center;
+    white-space:nowrap;text-overflow:ellipsis
+
+
+}
+.layui-input-block1 {
+    width: 77%;
+    align-self: center;
+
+}
+.layui-form-item {
+    display: flex;
+    clear: both;
+    *zoom: 1;
+    align-self: center;
+    margin-bottom: 0px;
+}
+
+
+
+/*下拉框边框颜色*/
+.layui-form-select .layui-input{
+    border: 1px solid black;
+    border-radius: 6px;
+}
+
+
+
+
+/*button颜色 阴影效果*/
+.layui-btn-warm {
+    background-color: #FFB800;
+    box-shadow: 1px 2px 2px 1px #A2A2A2;
+    border-radius: 8px;
+    width: 20%;
+    font-size: 15px;
+    margin-right: 10%;
+    margin-left: 10%;
+    align-self: center;
+}

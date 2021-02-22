@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关键参数</title>
+    <link th:href="@{/layui/css/layui.css}" href="../static/layui/css/layui.css" rel="stylesheet" />
+    <link th:href="@{/css/keyParameter.css}" href="../static/css/keyParameter.css" rel="stylesheet" />
+
+</head>
+<body>
+
+<!--头部-->
+<div class="topTitle">
+    <table width="100%;" height="100%">
+        <tr>
+            <a href="#" style="">
+                <td class="topTitleDiv1">
+                    <img style="" th:src="@{/img/LeftAccessory.png}" src="../static/img/LeftAccessory.png">
+                </td>
+            </a>
+            <td class="topTitleDiv2">
+
+                <img style="text-align: center" th:src="@{/img/errorImg.png}" src="../static/img/errorImg.png">
+                <span style="color: #31A6FF;font-size: 17px">报警系统</span>
+
+            </td>
+            <td class="topTitleDiv3">
+                <img style="text-align: right" th:src="@{/img/adminImg.png}" src="../static/img/adminImg.png">
+                <span style="color: black;font-size: 12px">张三 H2400000</span>
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+<div class="content">
+    <div class="contentSeek">
+        <div class="layui-form layui-form-item selectBox">
+            <label class=" layui-form-label1">楼层:</label>
+            <div class="layui-input-block1">
+                <select  name="errorDispoes" lay-verify="required">
+                    <option placeholder="請選擇" value="0"></option>
+                    <option value="未处理">未處理</option>
+                    <option value="忽略">忽略</option>
+                    <option value="处理中">處理中</option>
+                    <option value="已处理">已處理</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-form layui-form-item selectBox" >
+            <label class=" layui-form-label1">线体:</label>
+            <div class=" layui-input-block1">
+                <select name="errorDispoes" lay-verify="required">
+                    <option placeholder="請選擇" value="0"></option>
+                    <option value="未处理">未處理</option>
+                    <option value="忽略">忽略</option>
+                    <option value="处理中">處理中</option>
+                    <option value="已处理">已處理</option>
+                </select>
+            </div>
+        </div>
+
+        <button type="button" class="layui-btn layui-btn-warm ">查询</button>
+
+
+    </div>
+</div>
+
+
+<script th:src="@{/js/jquery-3.5.1.min.js}" src="../static/js/jquery-3.5.1.min.js"></script>
+<script th:src="@{/layui/layui.js}" src="../static/layui/layui.js"></script>
+<script th:src="@{/js/keyParameter.js}" src="../static/js/keyParameter.js"></script>
+<script>
+    layui.use('form', function(){
+       var form = layui.form
+    });
+</script>
+</body>
+
+</html>
