@@ -39,8 +39,8 @@
 <!--    搜索区域-->
     <div class="contentSeek">
         <div class="layui-form layui-form-item selectBox">
-            <label class=" layui-form-label1">楼层:</label>
             <div class="layui-input-block1">
+                <span style="display: flex"><span style="align-self: center;font-size: 15px">楼层:</span></span>
                 <select  name="errorDispoes" lay-verify="required">
                     <option placeholder="請選擇" value="0"></option>
                     <option value="未处理">未處理</option>
@@ -52,8 +52,9 @@
         </div>
 
         <div class="layui-form layui-form-item selectBox" >
-            <label class=" layui-form-label1">线体:</label>
             <div class=" layui-input-block1">
+                <span style="display: flex"><span style="align-self: center;font-size: 15px">楼层:</span></span>
+
                 <select name="errorDispoes" lay-verify="required">
                     <option placeholder="請選擇" value="0"></option>
                     <option value="未处理">未處理</option>
@@ -64,85 +65,536 @@
             </div>
         </div>
 
-        <button type="button" class="layui-btn layui-btn-warm ">查询</button>
+        <button type="button" class="layui-btn layui-btn-warm "><span style="width: 100%;align-self: center;">查询</span></button>
 
 
     </div>
 
 <!--    异常进度分析-->
-    <div style="width: 100%;height: 4%;display: flex">
-        <p style="color: black;font-size: 15px;font-weight: bold;align-self: center;margin-left: 2%;">异常进度分析</p>
-    </div>
-    <div class="contentErrorAnalyse">
-        <table class="layui-table table1">
-            <thead>
-            <tr>
-                <th rowspan="2">机故类型</th>
-                <th colspan="3">维修进度</th>
-                <th colspan="3">优先级</th>
-                <th rowspan="2">ALL</th>
-            </tr>
-            <tr>
-                <th>带派工
-                </th>
-                <th>维修中</th>
-                <th>已维修</th>
-                <th>H</th>
-                <th>M</th>
-                <th>L</th>
-            </tr>
-            </thead>
-            <tbody class="errorNum">
-                <tr>
-                    <td>Robot</td>
-                    <td>9</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>9</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>9</td>
-                </tr>
 
-                <tr>
-                    <td>治具</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>0</td>
-                </tr>
-                <tr>
-                    <td>工站连接</td>
-                    <td>2</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>2</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>2</td>
-                </tr>
-                <tr>
-                    <td>All</td>
-                    <td>11</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>11</td>
-                    <td>0</td>
-                    <td>0</td>
-                    <td>11</td>
-                </tr>
-            </tbody>
-        </table>
+    <div style="height: 30%;width: 100%">
+        <div style="width: 100%;height: 16%;display: flex">
+            <p style="color: black;font-size: 15px;font-weight: bold;align-self: center;margin-left: 2%;">异常进度分析</p>
+        </div>
+        <div class="contentErrorAnalyse">
+            <div class="contentErrorAnalyseNei">
+                <table class="table1">
+                    <thead>
+                    <tr>
+                        <th rowspan="2">机故类型</th>
+                        <th colspan="3">维修进度</th>
+                        <th colspan="3">优先级</th>
+                        <th rowspan="2">ALL</th>
+                    </tr>
+                    <tr>
+                        <th>带派工
+                        </th>
+                        <th>维修中</th>
+                        <th>已维修</th>
+                        <th>H</th>
+                        <th>M</th>
+                        <th>L</th>
+                    </tr>
+                    </thead>
+                    <tbody class="errorNum">
+                    <tr>
+                        <td>Robot</td>
+                        <td>9</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>9</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>9</td>
+                    </tr>
+
+                    <tr>
+                        <td>治具</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>工站连接</td>
+                        <td>2</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>2</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>All</td>
+                        <td>11</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>11</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>11</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
     </div>
 
 <!--    异常报警信息-->
-    <div style="width: 100%;height: 4%;display: flex">
-        <p style="color: black;font-size: 15px;font-weight: bold;align-self: center;margin-left: 2%;">异常报警信息</p>
-    </div>
-    <div class="contentErrorMsg">
+
+    <div style="height: 59%;width: 100%">
+        <div style="width: 100%;height: 8%;display: flex">
+            <p style="color: black;font-size: 15px;font-weight: bold;align-self: center;margin-left: 2%;">异常报警信息</p>
+        </div>
+        <div class="contentErrorMsg">
+            <div class="contentErrorMsgNei">
+                <table class="table1 table2">
+                    <thead>
+                    <tr>
+                        <td>楼层</td>
+                        <td>线体</td>
+                        <td>设备号</td>
+                        <td>机故类型</td>
+                        <td>异常描述</td>
+                        <td>维修建议</td>
+                        <td>优先级</td>
+                        <td>开始时间</td>
+                        <td>结束时间</td>
+                        <td>时常</td>
+                        <td>单位</td>
+                        <td>维修内容</td>
+                        <td>状态</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>D061F</td>
+                        <td>ARF01-C</td>
+                        <td>RF Cell02</td>
+                        <td>Robot</td>
+                        <td>上位机异常(无数据上传)</td>
+                        <td>1.确认上位机有无打开
+                            2.有无连接上IPD DB</td>
+                        <td>H</td>
+                        <td>14:17:24</td>
+                        <td></td>
+                        <td>1Min</td>
+                        <td>TE</td>
+                        <td></td>
+                        <td>待派工</td>
+                    </tr>
+                    <tr>
+                        <td>D061F</td>
+                        <td>ARF01</td>
+                        <td>PD模组</td>
+                        <td>工站连接</td>
+                        <td>5->执行KS-1动作</td>
+                        <td>检查KS1气缸及感应器</td>
+                        <td>H</td>
+                        <td>14:17:24</td>
+                        <td></td>
+                        <td>1Min</td>
+                        <td>TE</td>
+                        <td></td>
+                        <td>待派工</td>
+                    </tr>
+                    <tr>
+                        <td>D061F</td>
+                        <td>ARF01-F</td>
+                        <td>RF Cell05</td>
+                        <td>Robot</td>
+                        <td>上位机异常(无数据上传)</td>
+                        <td>1.确认上位机有无打开
+                            2.有无连接上IPD DB</td>
+                        <td>H</td>
+                        <td>14:17:24</td>
+                        <td></td>
+                        <td>1Min</td>
+                        <td>TE</td>
+                        <td></td>
+                        <td>待派工</td>
+                    </tr>
+                    <tr>
+                        <td>D061F</td>
+                        <td>ARF01</td>
+                        <td>CCD分板模组</td>
+                        <td>工站连接</td>
+                        <td>中控异常(无数据上传)</td>
+                        <td>1.确认上位机有无打开
+                            2.有无连接上IPD DB</td>
+                        <td>H</td>
+                        <td>14:17:24</td>
+                        <td></td>
+                        <td>1Min</td>
+                        <td>TE</td>
+                        <td></td>
+                        <td>待派工</td>
+                    </tr>
+                    <tr>
+                        <td>D061F</td>
+                        <td>ARF01-G</td>
+                        <td>RF Cell06</td>
+                        <td>Robot</td>
+                        <td>Robot异常停止</td>
+                        <td>1.确认上位机有无打开
+                            2.有无连接上IPD DB</td>
+                        <td>H</td>
+                        <td>14:17:24</td>
+                        <td></td>
+                        <td>1Min</td>
+                        <td>TE</td>
+                        <td></td>
+                        <td>待派工</td>
+                    </tr>
+                    <tr>
+                        <td>D061F</td>
+                        <td>ARF01-C</td>
+                        <td>RF Cell02</td>
+                        <td>Robot</td>
+                        <td>Robot异常停止</td>
+                        <td>1.确认上位机有无打开
+                            2.有无连接上IPD DB</td>
+                        <td>H</td>
+                        <td>14:17:24</td>
+                        <td></td>
+                        <td>1Min</td>
+                        <td>TE</td>
+                        <td></td>
+                        <td>待派工</td>
+                    </tr>
+                    <tr>
+                        <td>D061F</td>
+                        <td>ARF01-E</td>
+                        <td>RF Cell04</td>
+                        <td>Robot</td>
+                        <td>Robot异常停止</td>
+                        <td>1.确认上位机有无打开
+                            2.有无连接上IPD DB</td>
+                        <td>H</td>
+                        <td>14:17:24</td>
+                        <td></td>
+                        <td>1Min</td>
+                        <td>TE</td>
+                        <td></td>
+                        <td>待派工</td>
+                    </tr>
+                    <tr>
+                        <td>D061F</td>
+                        <td>ARF01-B</td>
+                        <td>RF Cell01</td>
+                        <td>Robot</td>
+                        <td>Robot异常停止</td>
+                        <td>1.确认上位机有无打开
+                            2.有无连接上IPD DB</td>
+                        <td>H</td>
+                        <td>14:17:24</td>
+                        <td></td>
+                        <td>1Min</td>
+                        <td>TE</td>
+                        <td></td>
+                        <td>待派工</td>
+                    </tr>
+
+
+                    <tr>
+                        <td>D061F</td>
+                        <td>ARF01-E</td>
+                        <td>RF Cell04</td>
+                        <td>Robot</td>
+                        <td>Robot异常停止</td>
+                        <td>1.确认上位机有无打开
+                            2.有无连接上IPD DB</td>
+                        <td>H</td>
+                        <td>14:17:24</td>
+                        <td></td>
+                        <td>1Min</td>
+                        <td>TE</td>
+                        <td></td>
+                        <td>待派工</td>
+                    </tr>
+                    <tr>
+                        <td>D061F</td>
+                        <td>ARF01-B</td>
+                        <td>RF Cell01</td>
+                        <td>Robot</td>
+                        <td>Robot异常停止</td>
+                        <td>1.确认上位机有无打开
+                            2.有无连接上IPD DB</td>
+                        <td>H</td>
+                        <td>14:17:24</td>
+                        <td></td>
+                        <td>1Min</td>
+                        <td>TE</td>
+                        <td></td>
+                        <td>待派工</td>
+                    </tr>
+                    <tr>
+                        <td>D061F</td>
+                        <td>ARF01-E</td>
+                        <td>RF Cell04</td>
+                        <td>Robot</td>
+                        <td>Robot异常停止</td>
+                        <td>1.确认上位机有无打开
+                            2.有无连接上IPD DB</td>
+                        <td>H</td>
+                        <td>14:17:24</td>
+                        <td></td>
+                        <td>1Min</td>
+                        <td>TE</td>
+                        <td></td>
+                        <td>待派工</td>
+                    </tr>
+                    <tr>
+                        <td>D061F</td>
+                        <td>ARF01-B</td>
+                        <td>RF Cell01</td>
+                        <td>Robot</td>
+                        <td>Robot异常停止</td>
+                        <td>1.确认上位机有无打开
+                            2.有无连接上IPD DB</td>
+                        <td>H</td>
+                        <td>14:17:24</td>
+                        <td></td>
+                        <td>1Min</td>
+                        <td>TE</td>
+                        <td></td>
+                        <td>待派工</td>
+                    </tr>
+                    <tr>
+                        <td>D061F</td>
+                        <td>ARF01-E</td>
+                        <td>RF Cell04</td>
+                        <td>Robot</td>
+                        <td>Robot异常停止</td>
+                        <td>1.确认上位机有无打开
+                            2.有无连接上IPD DB</td>
+                        <td>H</td>
+                        <td>14:17:24</td>
+                        <td></td>
+                        <td>1Min</td>
+                        <td>TE</td>
+                        <td></td>
+                        <td>待派工</td>
+                    </tr>
+                    <tr>
+                        <td>D061F</td>
+                        <td>ARF01-B</td>
+                        <td>RF Cell01</td>
+                        <td>Robot</td>
+                        <td>Robot异常停止</td>
+                        <td>1.确认上位机有无打开
+                            2.有无连接上IPD DB</td>
+                        <td>H</td>
+                        <td>14:17:24</td>
+                        <td></td>
+                        <td>1Min</td>
+                        <td>TE</td>
+                        <td></td>
+                        <td>待派工</td>
+                    </tr>
+                    <tr>
+                        <td>D061F</td>
+                        <td>ARF01-E</td>
+                        <td>RF Cell04</td>
+                        <td>Robot</td>
+                        <td>Robot异常停止</td>
+                        <td>1.确认上位机有无打开
+                            2.有无连接上IPD DB</td>
+                        <td>H</td>
+                        <td>14:17:24</td>
+                        <td></td>
+                        <td>1Min</td>
+                        <td>TE</td>
+                        <td></td>
+                        <td>待派工</td>
+                    </tr>
+                    <tr>
+                        <td>D061F</td>
+                        <td>ARF01-B</td>
+                        <td>RF Cell01</td>
+                        <td>Robot</td>
+                        <td>Robot异常停止</td>
+                        <td>1.确认上位机有无打开
+                            2.有无连接上IPD DB</td>
+                        <td>H</td>
+                        <td>14:17:24</td>
+                        <td></td>
+                        <td>1Min</td>
+                        <td>TE</td>
+                        <td></td>
+                        <td>待派工</td>
+                    </tr>
+                    <tr>
+                        <td>D061F</td>
+                        <td>ARF01-E</td>
+                        <td>RF Cell04</td>
+                        <td>Robot</td>
+                        <td>Robot异常停止</td>
+                        <td>1.确认上位机有无打开
+                            2.有无连接上IPD DB</td>
+                        <td>H</td>
+                        <td>14:17:24</td>
+                        <td></td>
+                        <td>1Min</td>
+                        <td>TE</td>
+                        <td></td>
+                        <td>待派工</td>
+                    </tr>
+                    <tr>
+                        <td>D061F</td>
+                        <td>ARF01-B</td>
+                        <td>RF Cell01</td>
+                        <td>Robot</td>
+                        <td>Robot异常停止</td>
+                        <td>1.确认上位机有无打开
+                            2.有无连接上IPD DB</td>
+                        <td>H</td>
+                        <td>14:17:24</td>
+                        <td></td>
+                        <td>1Min</td>
+                        <td>TE</td>
+                        <td></td>
+                        <td>待派工</td>
+                    </tr>
+                    <tr>
+                        <td>D061F</td>
+                        <td>ARF01-E</td>
+                        <td>RF Cell04</td>
+                        <td>Robot</td>
+                        <td>Robot异常停止</td>
+                        <td>1.确认上位机有无打开
+                            2.有无连接上IPD DB</td>
+                        <td>H</td>
+                        <td>14:17:24</td>
+                        <td></td>
+                        <td>1Min</td>
+                        <td>TE</td>
+                        <td></td>
+                        <td>待派工</td>
+                    </tr>
+                    <tr>
+                        <td>D061F</td>
+                        <td>ARF01-B</td>
+                        <td>RF Cell01</td>
+                        <td>Robot</td>
+                        <td>Robot异常停止</td>
+                        <td>1.确认上位机有无打开
+                            2.有无连接上IPD DB</td>
+                        <td>H</td>
+                        <td>14:17:24</td>
+                        <td></td>
+                        <td>1Min</td>
+                        <td>TE</td>
+                        <td></td>
+                        <td>待派工</td>
+                    </tr>
+                    <tr>
+                        <td>D061F</td>
+                        <td>ARF01-E</td>
+                        <td>RF Cell04</td>
+                        <td>Robot</td>
+                        <td>Robot异常停止</td>
+                        <td>1.确认上位机有无打开
+                            2.有无连接上IPD DB</td>
+                        <td>H</td>
+                        <td>14:17:24</td>
+                        <td></td>
+                        <td>1Min</td>
+                        <td>TE</td>
+                        <td></td>
+                        <td>待派工</td>
+                    </tr>
+                    <tr>
+                        <td>D061F</td>
+                        <td>ARF01-B</td>
+                        <td>RF Cell01</td>
+                        <td>Robot</td>
+                        <td>Robot异常停止</td>
+                        <td>1.确认上位机有无打开
+                            2.有无连接上IPD DB</td>
+                        <td>H</td>
+                        <td>14:17:24</td>
+                        <td></td>
+                        <td>1Min</td>
+                        <td>TE</td>
+                        <td></td>
+                        <td>待派工</td>
+                    </tr>
+                    <tr>
+                        <td>D061F</td>
+                        <td>ARF01-E</td>
+                        <td>RF Cell04</td>
+                        <td>Robot</td>
+                        <td>Robot异常停止</td>
+                        <td>1.确认上位机有无打开
+                            2.有无连接上IPD DB</td>
+                        <td>H</td>
+                        <td>14:17:24</td>
+                        <td></td>
+                        <td>1Min</td>
+                        <td>TE</td>
+                        <td></td>
+                        <td>待派工</td>
+                    </tr>
+                    <tr>
+                        <td>D061F</td>
+                        <td>ARF01-B</td>
+                        <td>RF Cell01</td>
+                        <td>Robot</td>
+                        <td>Robot异常停止</td>
+                        <td>1.确认上位机有无打开
+                            2.有无连接上IPD DB</td>
+                        <td>H</td>
+                        <td>14:17:24</td>
+                        <td></td>
+                        <td>1Min</td>
+                        <td>TE</td>
+                        <td></td>
+                        <td>待派工</td>
+                    </tr>
+                    <tr>
+                        <td>D061F</td>
+                        <td>ARF01-E</td>
+                        <td>RF Cell04</td>
+                        <td>Robot</td>
+                        <td>Robot异常停止</td>
+                        <td>1.确认上位机有无打开
+                            2.有无连接上IPD DB</td>
+                        <td>H</td>
+                        <td>14:17:24</td>
+                        <td></td>
+                        <td>1Min</td>
+                        <td>TE</td>
+                        <td></td>
+                        <td>待派工</td>
+                    </tr>
+                    <tr>
+                        <td>D061F</td>
+                        <td>ARF01-B</td>
+                        <td>RF Cell01</td>
+                        <td>Robot</td>
+                        <td>Robot异常停止</td>
+                        <td>1.确认上位机有无打开
+                            2.有无连接上IPD DB</td>
+                        <td>H</td>
+                        <td>14:17:24</td>
+                        <td></td>
+                        <td>1Min</td>
+                        <td>TE</td>
+                        <td></td>
+                        <td>待派工</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
 
     </div>
 
