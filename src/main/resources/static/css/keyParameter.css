@@ -32,22 +32,38 @@ body {
 /*头部*/
 .topTitle{
     background-color: #FFFFFF;
-    /*display: flex;*/
+    display: flex;
     height: 6.5%;
 }
 .topTitleDiv1{
-    width: 25%;
-    white-space:nowrap;overflow: hidden;text-overflow:ellipsis
+    align-self: center;
+    width: 27.5%;
+    white-space:nowrap;
+    text-overflow:ellipsis;
 }
 .topTitleDiv2{
-    width: 50%;
     text-align: center;
+    height: 80%;
+    width: 45%;
+    align-self: center;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    color: #31A6FF;
+    font-size: 3vh;
 
 }
+
 .topTitleDiv3{
-    width: 25%;
-    align-self: flex-end;
-    white-space:nowrap;text-overflow:ellipsis
+    width: 26.5%;
+    height: 80%;
+    text-align: left;
+    margin-right: 1%;
+    align-self: center;
+    white-space:nowrap;
+    text-overflow:ellipsis;/** 多出的内容...显示  **/
+    font-size: 2vh;
+    color: black;
+    overflow: hidden;/** 溢出时出现滚动条 **/
 }
 
 
@@ -211,6 +227,7 @@ body {
 .table1,.table1 tr th ,.table1 tr td {
     text-align: center;
     border: 1px solid white;
+
 }
 
 .table2,.table2 tr th ,.table2 tr td {
