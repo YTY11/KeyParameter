@@ -11,17 +11,16 @@ import org.springframework.context.annotation.ComponentScan;
 @ServletComponentScan
 @ComponentScan(basePackages = {"com.fox.*"})
 @MapperScan("com.fox.*")
-public class AppApplication extends SpringBootServletInitializer {
+public class Application extends SpringBootServletInitializer {
 
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-        return builder.sources(AppApplication.class);
+        return builder.sources(Application.class);
     }
 
 
     public static void main(String[] args) {
-        SpringApplication.run(AppApplication.class, args);
+        SpringApplication.run(Application.class, args);
         System.out.println("   項目啓動！！！ "  );
     }
 }
-

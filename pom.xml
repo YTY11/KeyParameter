@@ -9,8 +9,8 @@
         <version>2.1.17.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.packing.agv</groupId>
-    <artifactId>agv</artifactId>
+    <groupId>com.fox.keyParameter</groupId>
+    <artifactId>keyParameter</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>KeyParameter</name>
     <description>keyParameter</description>

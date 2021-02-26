@@ -18,7 +18,7 @@ import javax.sql.DataSource;
  * @create 2020-05-11 9:10
  */
 @Configuration
-@MapperScan(basePackages = {"com.packing.agv.mapper"}, sqlSessionFactoryRef = "db2SqlSessionFactory")
+@MapperScan(basePackages = {"com.fox.keyParameter.mapper"}, sqlSessionFactoryRef = "db2SqlSessionFactory")
 public class DataSourceConfig2 {
     @Bean(name = "db2DataSource")
     @ConfigurationProperties(prefix = "spring.main.datasource.db2")

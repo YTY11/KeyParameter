@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fox.keyParameter.mapper.AutofloorTargetMapper" >
+  <resultMap id="BaseResultMap" type="com.fox.keyParameter.entity.AutofloorTarget" >
+    <result column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="TARGET_DATE" property="targetDate" jdbcType="TIMESTAMP" />
+    <result column="T_CLASS" property="tClass" jdbcType="VARCHAR" />
+    <result column="T_FLOOR" property="tFloor" jdbcType="VARCHAR" />
+    <result column="LINE_NAME" property="lineName" jdbcType="VARCHAR" />
+    <result column="T_PRODUCT" property="tProduct" jdbcType="VARCHAR" />
+    <result column="INPUT_TIME" property="inputTime" jdbcType="TIMESTAMP" />
+    <result column="D_TARGET" property="dTarget" jdbcType="DECIMAL" />
+    <result column="WORKING_HOURS" property="workingHours" jdbcType="DECIMAL" />
+    <result column="H_TARGET" property="hTarget" jdbcType="DECIMAL" />
+    <result column="TYPE_TARGET" property="typeTarget" jdbcType="VARCHAR" />
+    <result column="T_AREA" property="tArea" jdbcType="VARCHAR" />
+    <result column="P1" property="p1" jdbcType="VARCHAR" />
+    <result column="P2" property="p2" jdbcType="VARCHAR" />
+    <result column="P3" property="p3" jdbcType="VARCHAR" />
+    <result column="P4" property="p4" jdbcType="VARCHAR" />
+    <result column="P5" property="p5" jdbcType="VARCHAR" />
+    <result column="P6" property="p6" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="getAllFloorAndLine" resultMap="BaseResultMap">
+    SELECT T_AREA,T_floor,LINE_NAME,T_PRODUCT FROM AUTOFLOOR_TARGET
+        WHERE LINE_NAME!='TTL'
+        and <![CDATA[ TARGET_date >= to_date('2020/10/20 00:00:00','YYYY-MM-DD HH24:MI:SS')]]>
+        GROUP BY T_AREA,T_floor,LINE_NAME,T_PRODUCT
+        ORDER BY T_floor asc ,LINE_NAME asc,T_PRODUCT asc
+  </select>
+</mapper>
