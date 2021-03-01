@@ -21,6 +21,8 @@
     <result column="P5" property="p5" jdbcType="VARCHAR" />
     <result column="P6" property="p6" jdbcType="VARCHAR" />
   </resultMap>
+
+<!--  获取所有楼层和腺体-->
   <select id="getAllFloorAndLine" resultMap="BaseResultMap">
     SELECT T_AREA,T_floor,LINE_NAME,T_PRODUCT FROM AUTOFLOOR_TARGET
         WHERE LINE_NAME!='TTL'
@@ -28,4 +30,11 @@
         GROUP BY T_AREA,T_floor,LINE_NAME,T_PRODUCT
         ORDER BY T_floor asc ,LINE_NAME asc,T_PRODUCT asc
   </select>
+
+
+<!--  获取系统时间-->
+  <select id="getSqlDate" resultType="String" >
+    SELECT to_char(SYSDATE,'yyyy-mm-dd HH24:mi:ss') FROM dual
+  </select>
+
 </mapper>

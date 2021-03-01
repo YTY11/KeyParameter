@@ -228,6 +228,7 @@ body {
     text-align: center;
     border: 1px solid white;
 
+
 }
 
 .table2,.table2 tr th ,.table2 tr td {
@@ -255,3 +256,34 @@ body {
 .layui-form-select dl dd{
     line-height: 28px;
 }
+
+.errorNum tr td:hover{
+    cursor: pointer;
+}
+
+
+.upErrorClass{
+    margin-top: 2vh;
+    height:5vh;
+}
+
+
+
+/*.btnClass .layui-layer-title{*/
+/*    height: 5vh;*/
+/*    line-height: 5vh;*/
+
+/*}*/
+
+/*.btnClass .layui-layer-setwin a{*/
+/*    top: -3vh;*/
+
+/*}*/
+
+/*.btnClass .layui-layer-setwin{*/
+/*    top: 4.5vh;*/
+/*}*/
+
+/*.btnClass .layui-layer-content{*/
+/*    height: 10vh;*/
+/*}*/

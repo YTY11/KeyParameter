@@ -46,7 +46,7 @@
 <!--        <table tableName="AGV_EXCEPTION_COST_COUNT" domainObjectName="AgvExceptionCostCount" enableCountByExample="false"-->
 <!--               enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
 <!--               selectByExampleQueryId="false"></table>-->
-        <table tableName="AUTOFLOOR_TARGET" domainObjectName="AutofloorTarget" enableCountByExample="false"
+        <table tableName="AUTOFLOOR_KEY_CHECKUP_HIS" domainObjectName="AutofloorKeyCheckupHis" enableCountByExample="false"
                enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false"></table>
     </context>

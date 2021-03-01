@@ -24,4 +24,9 @@ public class AutofloorTargetServiceImpl implements AutofloorTargetService {
     public List<AutofloorTarget> getAllFloorAndLine() {
         return autofloorTargetMapper.getAllFloorAndLine();
     }
+
+    @Override
+    public String getSqlDate() {
+        return autofloorTargetMapper.getSqlDate();
+    }
 }
