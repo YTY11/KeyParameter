@@ -189,7 +189,15 @@ public class keyParameterController {
                 //异常时长
                 if (testDate!=null){
                     long StartTime=testDate.getTime();
-                    double Dispose =(double)(date.getTime()-StartTime)/1000;
+                    double Dispose = 0.0;
+                    if(errorEndTime!="" && errorEndTime != null){
+                        Date date1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(errorEndTime);
+                         Dispose =(double)(date1.getTime()-StartTime)/1000;
+
+                    }
+                    else{
+                         Dispose =(double)(date.getTime()-StartTime)/1000;
+                    }
                     BigDecimal DisposeBig=new BigDecimal(Dispose/60); //异常时间取分钟数
                     int DisposeTime = DisposeBig.setScale(0,BigDecimal.ROUND_HALF_UP).intValue(); //四舍五入方法取值
                     if (DisposeTime<0){DisposeTime=0;}
