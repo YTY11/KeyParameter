@@ -28,7 +28,7 @@
 				$(this).css({
 					'position': 'absolute',
 					'left': '50%',
-					'margin-left': -_self.turn.width / 2 + _self.zturnPy * rt * i + "px",
+					'margin-left': -_self.turn.width / 10 + _self.zturnPy * rt * i + "px",
 					'z-index': _self.num_li - i,
 					'opacity': Math.pow(_self.turn.opacity, i),
 					'transform': 'scale(' + Math.pow(_self.turn.scale, i) + ') rotate(-90deg) rotate(-90deg)',
