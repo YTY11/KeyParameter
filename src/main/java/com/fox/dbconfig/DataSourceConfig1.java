@@ -1,4 +1,4 @@
-package com.fox.keyParameter.dbconfig;
+package com.fox.dbconfig;
 
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;

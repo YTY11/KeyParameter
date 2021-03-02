@@ -4,7 +4,8 @@ $(".selectNum").click(function () {
 
     let floor = $(".selectFloor").val();
     let lineName = $(".selsetLine").val();
-
+// console.log(floor)
+// console.log(lineName)
     if(floor == 0 || lineName == 0){
         layui.use('layer', function(){
             layer.msg('请选择楼层！！！', {
@@ -56,7 +57,7 @@ $(".selectNum").click(function () {
 
                 html2+=`<tr>
                         <td>All</td>
-                        <td class="errorNum1" onclick="getKeyData(0)">`+ data.integers[0] +`</td>
+                        <td class="errorNum1" style="color: red" onclick="getKeyData(0)">`+ data.integers[0] +`</td>
                         <td class="errorNum2" onclick="getKeyData(2)">`+ data.integers[1] +`</td>
                         <td class="errorNum3" onclick="getKeyData(1)">`+ data.integers[2] +`</td>
                         <td class="errorNum4" onclick="getKeyData('null')"> `+ data.integers[3] +`</td>
@@ -84,15 +85,6 @@ $(".selectNum").click(function () {
         let lineName = $(".selsetLine").val();
 
         if(floor == 0 || lineName == 0){
-            layui.use('layer', function(){
-                layer.msg('请选择楼层！！！', {
-                    offset: '20px',
-                    anim: 6,
-                    area:'300px',
-                    icon: 5,
-                    time: '2000',
-                });
-            });
         }
         else{
             $.ajax({
@@ -134,7 +126,7 @@ $(".selectNum").click(function () {
 
                     html2+=`<tr>
                         <td>All</td>
-                        <td class="errorNum1" onclick="getKeyData(0)">`+ data.integers[0] +`</td>
+                        <td class="errorNum1" style="color: red" onclick="getKeyData(0)">`+ data.integers[0] +`</td>
                         <td class="errorNum2" onclick="getKeyData(2)">`+ data.integers[1] +`</td>
                         <td class="errorNum3" onclick="getKeyData(1)">`+ data.integers[2] +`</td>
                         <td class="errorNum4" onclick="getKeyData('null')"> `+ data.integers[3] +`</td>
@@ -208,7 +200,7 @@ function getKeyData(msg){
 
                 html2+=`<tr>
                         <td>All</td>
-                        <td class="errorNum1" onclick="getKeyData(0)">`+ data.integers[0] +`</td>
+                        <td class="errorNum1" style="color: red" onclick="getKeyData(0)">`+ data.integers[0] +`</td>
                         <td class="errorNum2" onclick="getKeyData(2)">`+ data.integers[1] +`</td>
                         <td class="errorNum3" onclick="getKeyData(1)">`+ data.integers[2] +`</td>
                         <td class="errorNum4" onclick="getKeyData('null')"> `+ data.integers[3] +`</td>
@@ -279,7 +271,7 @@ function getKeyData(msg){
 
                     html2+=`<tr>
                         <td>All</td>
-                        <td class="errorNum1" onclick="getKeyData(0)">`+ data.integers[0] +`</td>
+                        <td class="errorNum1" style="color: red" onclick="getKeyData(0)">`+ data.integers[0] +`</td>
                         <td class="errorNum2" onclick="getKeyData(2)">`+ data.integers[1] +`</td>
                         <td class="errorNum3" onclick="getKeyData(1)">`+ data.integers[2] +`</td>
                         <td class="errorNum4" onclick="getKeyData('null')"> `+ data.integers[3] +`</td>
@@ -334,13 +326,13 @@ function upError(data) {
 
                                         <select name="errorDispoes" lay-verify="required" class="selectStart">
                                             <option placeholder="请选择" value="0"></option>
-                                            <option value="1">已完成</option>
+                                            <option value="1">已维修</option>
                                             <option value="2">维修中</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div style="margin-top: 2vh"> 
-                                    <span style="font-size: 2vh;margin-left: 2vw">维修建议：</span><br/><br/>
+                                    <span style="font-size: 2vh;margin-left: 2vw">维修内容：</span><br/><br/>
                                     <textarea style="width: 30vw;margin-left: 2vw;padding: 1vw" class="limit-textarea textareaValue" ></textarea>
                                 </div>
                             </div>
@@ -428,7 +420,7 @@ function upError(data) {
 
                                                     html2+=`<tr>
                         <td>All</td>
-                        <td class="errorNum1" onclick="getKeyData(0)">`+ data.integers[0] +`</td>
+                        <td class="errorNum1" style="color: red" onclick="getKeyData(0)">`+ data.integers[0] +`</td>
                         <td class="errorNum2" onclick="getKeyData(2)">`+ data.integers[1] +`</td>
                         <td class="errorNum3" onclick="getKeyData(1)">`+ data.integers[2] +`</td>
                         <td class="errorNum4" onclick="getKeyData('null')"> `+ data.integers[3] +`</td>

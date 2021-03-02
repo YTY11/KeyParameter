@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>SKAS/FAS</title>
+    <link th:href="@{/layui/css/layui.mobile.css}" href="../static/layui/css/layui.mobile.css" rel="stylesheet" />
+    <link th:href="@{/css/SkasAfs.css}" href="../static/css/SkasAfs.css" rel="stylesheet" />
+    <link th:href="@{/css/public.css}" href="../static/css/public.css" rel="stylesheet" />
+    <link th:href="@{/css/index.css}" href="../static/css/index.css" rel="stylesheet" />
+
+</head>
+<body>
+<div class="content">
+<!--    头部-->
+    <div class="titleTop">
+        <div class="aDiv">
+            <a class="a1">电子看板</a>
+            <a class="a2">设备健康管理</a>
+        </div>
+    </div>
+
+<!--    top主体内容-->
+    <div class="topContent">
+        <div class="topContentL">
+            <div style="display: flex;width: 100%;height: 18%">
+                <div class="topContentLNei">
+
+                    <img style="height: 100%;" th:src="@{/img/startMsg.png}" src="../static/img/startMsg.png"/>
+                    <span style="height: 100%;text-align: center;align-self: center">设备状态信息</span>
+                </div>
+            </div>
+
+
+            <div class="topContentLBottom">
+                <div class="topContentLBottomL">
+                    <div class="topContentLBottomLNei" >
+                        <div style="align-self: center;text-align: center;width: 100%;height: 90%;" id="doughnut"></div>
+                    </div>
+                    <p>18</p>
+                </div>
+
+                <div class="topContentLBottomR">
+                    <div class="jianKang">
+                        <div class="greenBackground">
+                            <div class="greenBackgroundL">
+                                健康
+                            </div>
+                            <div class="greenBackgroundR">
+                                <span style="margin-right: 6%">9</span>
+                            </div>
+                        </div>
+                        <div class="yellowBackground">
+                            <div class="yellowBackgroundL">
+                                预警
+                            </div>
+                            <div class="yellowBackgroundR">
+                                <span style="margin-right: 6%">0</span>
+                            </div>
+                        </div>
+                        <div class="redBackground">
+                            <div class="redBackgroundL">
+                                维护
+                            </div>
+                            <div class="redBackgroundR">
+                                <span style="margin-right: 6%">0</span>
+                            </div>
+                        </div>
+
+                        <div class="grayBackground">
+                            <div class="grayBackgroundL">
+                                离线
+                            </div>
+                            <div class="grayBackgroundR">
+                                <span style="margin-right: 6%">9</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="topContentR">
+            <div style="display: flex;width: 100%;height: 18%">
+                <div class="topContentLNei">
+                    <img style="height: 100%;" th:src="@{/img/errorMsg.png}" src="../static/img/errorMsg.png"/>
+                    <span style="height: 100%;text-align: center;align-self: center">异常信息</span>
+                </div>
+            </div>
+
+
+            <div style="display: flex;width: 100%;height: 82%;background-color: rgba(255,255,255,0.75);border-radius: 20px;">
+                <div class="lb_gl">
+                    <div class="container">
+                        <div class="pictureSlider poster-main">
+                            <ul id="zturn" class="poster-list">
+                                <li class="poster-item  zturn-item">
+                                    <p class="xxgy">我是滚动1</p>
+                                    <p class="say">明月几时有</p>
+                                    <div class="for_btn">
+                                    </div>
+
+
+                                </li>
+
+                                <li class="poster-item zturn-item">
+                                    <p class="xxgy">我是滚动2</p>
+                                    <p class="say">明月几时有</p>
+                                    <div class="for_btn">
+                                    </div>
+
+                                </li>
+
+                                <li class="poster-item zturn-item">
+                                    <p class="xxgy">我是滚动3</p>
+                                    <p class="say">明月几时有</p>
+                                    <div class="for_btn">
+                                    </div>
+
+                                </li>
+
+
+
+                            </ul>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--    center主体内容-->
+    <div class="centerContent">
+        <div style="display: flex;width: 100%;height: 18%">
+            <div class="topContentLNei">
+                <img style="height: 100%;" th:src="@{/img/UPH.png}" src="../static/img/UPH.png"/>
+                <span style="height: 100%;text-align: center;align-self: center">设备关键指标</span>
+            </div>
+        </div>
+
+        <div class="topContentLBottom">
+
+
+        </div>
+    </div>
+
+    <!--    bottom主体内容-->
+    <div class="bottomContent">
+        <div style="display: flex;width: 100%;height: 18%">
+            <div class="topContentLNei">
+
+                <img style="height: 100%;" th:src="@{/img/jiGu.png}" src="../static/img/jiGu.png"/>
+                <span style="height: 100%;text-align: center;align-self: center">机故率</span>
+            </div>
+        </div>
+
+        <div class="topContentLBottom">
+
+
+        </div>
+    </div>
+</div>
+
+
+<script th:src="@{/js/jquery-3.5.1.min.js}" src="../static/js/jquery-3.5.1.min.js"></script>
+<script th:src="@{/layui/layui.js}" src="../static/layui/layui.js"></script>
+<script th:src="@{/js/echarts.js}" src="../static/js/echarts.js"></script>
+<script th:src="@{/js/SkasAfs.js}" src="../static/js/SkasAfs.js"></script>
+<script th:src="@{/js/zturn.js}" src="../static/js/zturn.js"></script>
+
+
+<script type="text/javascript">
+    var aa = new zturn({
+        id: "zturn",
+        opacity: 0.9,
+        width: 200,
+        Awidth: 300,
+        scale: 0.9,
+        auto: true,//是否轮播 默认5000
+        turning: 4000//轮播时长
+    })
+
+</script>
+</body>
+</html>

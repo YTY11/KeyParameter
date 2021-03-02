@@ -29,77 +29,84 @@ body {
 /*}*/
 
 
-/*头部*/
-.topTitle{
-    background-color: #FFFFFF;
-    display: flex;
-    height: 6.5%;
-}
-.topTitleDiv1{
-    align-self: center;
-    width: 27.5%;
-    white-space:nowrap;
-    text-overflow:ellipsis;
-}
-.topTitleDiv2{
-    text-align: center;
-    height: 80%;
-    width: 45%;
-    align-self: center;
-    white-space:nowrap;
-    text-overflow:ellipsis;
-    color: #179BFF;
-    font-size: 3vh;
+/*!*头部*!*/
+/*.topTitle{*/
+/*    background-color: #FFFFFF;*/
+/*    display: flex;*/
+/*    height: 6.5%;*/
+/*}*/
+/*.topTitleDiv1{*/
+/*    align-self: center;*/
+/*    width: 27.5%;*/
+/*    white-space:nowrap;*/
+/*    text-overflow:ellipsis;*/
+/*}*/
+/*.topTitleDiv2{*/
+/*    text-align: center;*/
+/*    height: 80%;*/
+/*    width: 45%;*/
+/*    align-self: center;*/
+/*    white-space:nowrap;*/
+/*    text-overflow:ellipsis;*/
+/*    color: #179BFF;*/
+/*    font-size: 3vh;*/
 
-}
+/*}*/
 
-.topTitleDiv3{
-    width: 26.5%;
-    height: 80%;
-    text-align: left;
-    margin-right: 1%;
-    align-self: center;
-    white-space:nowrap;
-    text-overflow:ellipsis;/** 多出的内容...显示  **/
-    font-size: 2vh;
-    color: black;
-    overflow: hidden;/** 溢出时出现滚动条 **/
-}
+/*.topTitleDiv3{*/
+/*    width: 26.5%;*/
+/*    height: 80%;*/
+/*    text-align: left;*/
+/*    margin-right: 1%;*/
+/*    align-self: center;*/
+/*    white-space:nowrap;*/
+/*    text-overflow:ellipsis;!** 多出的内容...显示  **!*/
+/*    font-size: 2vh;*/
+/*    color: black;*/
+/*    overflow: hidden;!** 溢出时出现滚动条 **!*/
+/*}*/
 
 
 
 /*主体内容*/
 .content{
     position: absolute;
-    top: 10.5%;
+    top: 4%;
     left: 2%;
     background-color: #E6E6E6;
     /*margin: 4% 2% 4% 2%;*/
     /*margin: 2%;*/
     /*margin-top: 4%;*/
     width:96%;
-    height: calc(93.5% - 8%);
-    border-radius: 24px;
+    height: calc(100% - 8%);
+    border-radius: 16px;
 
 }
 
 /*搜索*/
 .contentSeek{
     display: flex;
-    background-color: #FFFFFF;
+    /*background-color: #FFFFFF;*/
     width: 100%;
     height: 9%;
-    border-top-left-radius: 24px;
-    border-top-right-radius: 24px;
     border-bottom:1px solid #1343A0;
+    background: #FFFFFF;
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.50);
+    border-radius: 16px 16px 0px 0px;
 
 }
 
-.selectBox{
+.selectBox1{
     width: 30%;
     align-self: center;
     white-space:nowrap;text-overflow:ellipsis;
     margin-left: 2%;
+
+}
+.selectBox2{
+    width: 30%;
+    align-self: center;
+    white-space:nowrap;text-overflow:ellipsis;
 
 }
 /*.layui-form-label1 {*/
@@ -122,7 +129,7 @@ body {
 
 }
 .layui-form-item {
-    height: 55%;
+    height: 40.12%;
     display: flex;
     clear: both;
     *zoom: 1;
@@ -135,6 +142,7 @@ body {
 /*下拉框边框颜色*/
 .layui-form-select{
     margin-left: 4%;
+    width: 62.4%;
 }
 .layui-form-select .layui-input{
     border: 1px solid black;
@@ -150,14 +158,16 @@ body {
 /*button颜色 阴影效果*/
 .layui-btn-warm {
     display: flex;
-    background-color: #FFB800;
+    background-color: #F7B500;
     box-shadow: 1px 2px 2px 1px #A2A2A2;
     border-radius: 8px;
-    width: 20%;
-    font-size: 15px;
-    height: 55%;
+    width: 13.57%;
+    font-family: PingFangSC-Regular;
+    font-size: 16px;
+    color: #FAFAFA;
+    height: 40.1%;
     margin-right: 10%;
-    margin-left: 10%;
+    /*margin-left: 10%;*/
     align-self: center;
 }
 
@@ -221,30 +231,45 @@ body {
 .table1{
     /*align-self: center;*/
     margin: auto;
-    height: 100%;
+    /*height: 100%;*/
     width: 100%;
+    font-family: PingFangSC-Regular;
 }
 .table1,.table1 tr th ,.table1 tr td {
+
     text-align: center;
     border: 1px solid white;
-
+    font-family: PingFangSC-Regular;
+    padding: 8px;
 
 }
-
-.table2,.table2 tr th ,.table2 tr td {
-    padding: 10px;
-}
-
 .table1 thead tr {
     width: 100%;
-    background-color: #0091FF;
-    color: white;
+    background: #0091FF;
+    font-family: PingFangSC-Regular;
+    font-size: 16px;
+    color: #F0F0F0;
 }
 
 .table1 tbody tr {
+    font-size: 14px;
     background-color: #EAF0FD;
     color: black;
+    font-family: PingFangSC-Regular;
 }
+
+
+.table2{
+    width: 200%;
+}
+
+/*.table2,.table2 tr th ,.table2 tr td {*/
+/*    font-size: 16px;*/
+/*    padding: 10px;*/
+/*    font-family: PingFangSC-Regular;*/
+/*}*/
+
+
 
 
 
