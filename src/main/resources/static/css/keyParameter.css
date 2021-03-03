@@ -342,28 +342,40 @@ input::-webkit-input-placeholder{
 }
 .layui-form-select .layui-edge {
 
-    display: inline-block;
-    width: .1rem;
-    height: .1rem;
-    border-top: .02rem solid #000;
-    border-left: .02rem solid #000;
-    opacity: .8;
-    position: absolute;
-    margin-top: .09rem;
-    right: .195313rem;
-    transform: rotate(-135deg);
-    z-index: 99;
+    border-style:none;
 }
 .layui-edge{
+
+}
+
+.sanJiao1{
     display: inline-block;
-    width: .1rem;
-    height: .1rem;
-    border-top: .02rem solid #000;
-    border-left: .02rem solid #000;
-    opacity: .8;
     position: absolute;
-    margin-top: .09rem;
-    right: .195313rem;
-    transform: rotate(-135deg);
+    width: 0.7vh;
+    height: 0.7vh;
+    background-color: rgba(255,255,255,.7);
     z-index: 99;
+    top: 3.5vh;
+    left: 23vw;
+    border-top: 1px solid;
+    border-right: 1px solid;
+    transform: rotate(135deg);
+}
+
+.sanJiao2{
+    display: inline-block;
+    position: absolute;
+    width: 0.7vh;
+    height: 0.7vh;
+    background-color: rgba(255,255,255,.7);
+    z-index: 99;
+    top: 3.5vh;
+    left: 52vw;
+    border-top: 1px solid;
+    border-right: 1px solid;
+    transform: rotate(135deg);
+}
+
+.layui-form-selectup dl {
+    bottom: auto;
 }
