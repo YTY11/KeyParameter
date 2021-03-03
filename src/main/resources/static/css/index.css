@@ -3,6 +3,9 @@
     height: 100%;
     width: 100%;
     align-self: center;
+    /*white-space:nowrap;*/
+    /*overflow:scroll;*/
+    /*text-overflow:ellipsis;*/
 }
 
 .container {
@@ -12,7 +15,7 @@
 
 .pictureSlider {
     height: 100%;
-    transform: rotate(90deg) translateY(25%) translateX(-35%);
+    transform: rotate(90deg) translateY(21%) translateX(20vh);
 }
 
 /*.poster-list{*/
@@ -21,7 +24,7 @@
 /*}*/
 .poster-item {
     background: #fff;
-    height: 40%;
+    height: 59%;
     width: 80%;
     border-radius: 10px;
     /*padding:45px 23px 20px 23px;*/
@@ -34,9 +37,12 @@
     /*-o-transition: all 0.5s;*/
     /*cursor: default;*/
     transform: rotate(-90deg);
-    overflow: hidden;
+    overflow: scroll;
 }
+.zturn-item{
 
+    display: flex;
+}
 .turn_3d {
     text-align: center;
     color: #fff;
@@ -80,10 +86,28 @@
 }
 
 .for_btn {
+    height: 100%;
+    width: 80%;
     position: relative;
-    overflow: hidden
+    overflow: scroll;
+    background-color: #DF7178;
+    font-family: PingFangSC-Medium;
+    font-size: 12px;
+    color: #F0F0F0;
+    letter-spacing: 0.43px;
 }
-
+.liName{
+    display: flex;
+    height: 100%;
+    width: 20%;
+    position: relative;
+    overflow: scroll;
+    background-color: #E02020;
+    font-family: PingFangSC-Bold;
+    font-size: 18px;
+    color: #F0F0F0;
+    letter-spacing: 0.64px;
+}
 .in_page {
     position: absolute;
     left: 50%;
@@ -109,3 +133,7 @@
     display: block;
 }
 
+.poster-list{
+    width: 100%;
+    height: 100%;
+}

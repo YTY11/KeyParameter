@@ -25,10 +25,11 @@
 				var i = Math.abs(index - _self.X);//取绝对值
 				if (i > _self.num_li / 2) { i = parseInt(_self.X) + parseInt(_self.num_li) - index; }//i:是左或者右的第几个
 				if ((index - _self.X) < (-_self.num_li / 2)) { i = _self.num_li + index - _self.X }
+
 				$(this).css({
 					'position': 'absolute',
-					'left': '50%',
-					'margin-left': -_self.turn.width / 10 + _self.zturnPy * rt * i + "px",
+					'left': '10%',
+					'margin-left': -_self.turn.width / 10 + _self.zturnPy * rt * i + "vh",
 					'z-index': _self.num_li - i,
 					'opacity': Math.pow(_self.turn.opacity, i),
 					'transform': 'scale(' + Math.pow(_self.turn.scale, i) + ') rotate(-90deg) rotate(-90deg)',
@@ -54,7 +55,7 @@
 				pageY = e.touches[0].pageY;
 			},false);
 			document.addEventListener("touchend",function(e){
-				
+
 				endY = e.changedTouches[0].pageY;
 				let y = endY-pageY;
 				console.log(y);

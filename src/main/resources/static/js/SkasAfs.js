@@ -9,6 +9,8 @@ $(document).ready(function () {
 })
 
 $(".a1").click(function(){
+    $(".content2").hide();
+    $(".content1").show();
     $(".a2").css("color","rgba(50,197,255,0.50)");
     $(".a2").css("border-bottom","");
 
@@ -17,6 +19,8 @@ $(".a1").click(function(){
 })
 
 $(".a2").click(function(){
+    $(".content1").hide();
+    $(".content2").show();
     $(".a1").css("color","rgba(50,197,255,0.50)");
     $(".a1").css("border-bottom","");
 
@@ -109,12 +113,17 @@ var myChart2 = echarts.init(chartDom2);
 var option2 = {
     legend: {
 
-        // left: 'right',
+
         right:'50',
         itemWidth:50,
 
         itemHeight:20,
         itemGap:50,
+        textStyle:{
+            fontFamily: 'PingFangSC-Regular',
+            fontSize: 14,
+            color: 'rgba(0,0,0,0.85)',
+        },
     },
     tooltip: {},
     dataset: {
@@ -130,8 +139,28 @@ var option2 = {
         type: 'category',
         axisTick: {
             show: false
-        }},
+        },
+        axisLabel:{
+            textStylee:{
+                fontFamily: 'PingFangSC-Regular',
+                fontSize: 14,
+                color: 'rgba(0,0,0,0.85)',
+                letterSpacing: -0.04,
+            },
+        },
+
+    },
     yAxis: {
+        axisLabel:{
+            textStyle:{
+                fontFamily: 'PingFangSC-Regular',
+                fontSize: 14,
+                color: '#000000',
+                letterSpacing: -1.48,
+                lineHeight: 20,
+            },
+        },
+
         type: 'value',
         axisTick: {
             show: false
@@ -221,13 +250,23 @@ var option3 = {
 
         axisTick: {
             show: false
-        }
+        },
+        axisLabel:{
+            textStyle:{
+                fontFamily: 'PingFangSC-Regular',
+                fontSize: 14,
+                color: 'rgba(0,0,0,0.85)',
+                letterSpacing: 0.08,
+            },
+        },
+
     },
     yAxis: [
 
 
         {
             type: 'value',
+
             axisTick: {
                 show: false
             },
@@ -237,7 +276,13 @@ var option3 = {
             axisLabel: {
                 show: true,
                 interval: 'auto',
-                formatter: '{value} %'
+                formatter: '{value} %',
+                textStyle:{
+                    fontFamily: 'PingFangSC-Regular',
+                    fontSize: 14,
+                    color: 'rgba(0,0,0,0.85)',
+                    letterSpacing: 0.08,
+                },
             },
             show: true
         }
@@ -245,19 +290,37 @@ var option3 = {
     series: [{
         data: [2.06, 1.39, 0.71, 0.19, 0, 0, 0],
         smooth: true,
-        symbol:'',
-        color:'#0AA200',
+
+        symbol: 'circle', //折线点设置为实心点
+        // symbolSize: 6, //折线点的大小
         type: 'line',
 
         itemStyle: {
+
             normal: {
                 label : {
                     show: true,
 
-                    formatter: '{c}%'
+                    formatter: '{c}%',
+                    textStyle: {
+                        fontFamily: 'PingFangSC-Regular',
+                        fontSize: 12,
+                        color: 'rgba(0,0,0,0.85)',
+                        letterSpacing: 0.06,
+                    }
                 },
-                lineStyle:{color:'#0AA200'}
+                color:'#0AA200',
+                lineStyle:{
+                    color:'#0AA200',
+                },
+
             },
+        },
+        textStyle:{
+            fontFamily: 'PingFangSC-Regular',
+            fontSize: 12,
+            color: 'rgba(0,0,0,0.85)',
+            letterSpacing: 0.06,
         },
     }]
 }

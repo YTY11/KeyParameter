@@ -276,10 +276,11 @@ body {
 /*选择框*/
 .layui-form-select dl{
     top: 110%;
-    max-height: 200px;
+    max-height: 153px;
+    padding: 0;
 }
 .layui-form-select dl dd{
-    line-height: 28px;
+    line-height: 30px;
 }
 
 .errorNum tr td:hover{
@@ -312,3 +313,57 @@ body {
 /*.btnClass .layui-layer-content{*/
 /*    height: 10vh;*/
 /*}*/
+
+.layui-form-select dl dd{
+    border-bottom: 1px solid #808080;
+    letter-spacing: 0.12rem;
+}
+
+input::-webkit-input-placeholder{
+    color:#000000;
+}
+
+.layui-form-select dl dd.layui-this {
+     background-color: #fff;
+    color: #000000;
+}
+
+.option1{
+    border: white;
+}
+
+
+.layui-form-selected .layui-edge {
+    margin-top: -3px;
+    -webkit-transform: rotate(0deg);
+
+
+
+}
+.layui-form-select .layui-edge {
+
+    display: inline-block;
+    width: .1rem;
+    height: .1rem;
+    border-top: .02rem solid #000;
+    border-left: .02rem solid #000;
+    opacity: .8;
+    position: absolute;
+    margin-top: .09rem;
+    right: .195313rem;
+    transform: rotate(-135deg);
+    z-index: 99;
+}
+.layui-edge{
+    display: inline-block;
+    width: .1rem;
+    height: .1rem;
+    border-top: .02rem solid #000;
+    border-left: .02rem solid #000;
+    opacity: .8;
+    position: absolute;
+    margin-top: .09rem;
+    right: .195313rem;
+    transform: rotate(-135deg);
+    z-index: 99;
+}

@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
     <title>关键参数</title>
     <link th:href="@{/layui/css/layui.css}" href="../static/layui/css/layui.css" rel="stylesheet" />
     <link th:href="@{/css/keyParameter.css}" href="../static/css/keyParameter.css" rel="stylesheet" />
@@ -10,47 +9,6 @@
 </head>
 <body>
 
-<!--头部-->
-<!--<div class="topTitle">-->
-<!--    <div class="topTitleDiv1">-->
-<!--        <a style="font-size: 2vh;color:#31A6FF; " href="#">-->
-<!--            <img style="margin-left: 10%;" th:src="@{/img/LeftAccessory.png}" src="../static/img/LeftAccessory.png">-->
-
-<!--        </a>-->
-<!--    </div>-->
-
-
-<!--    <div class="topTitleDiv2">-->
-<!--        <img style="height: 100%" th:src="@{/img/errorImg.png}" src="../static/img/errorImg.png">-->
-<!--        报警系统-->
-<!--    </div>-->
-
-
-<!--    <div class="topTitleDiv3">-->
-<!--        <img style="height: 100%" th:src="@{/img/adminImg.png}" src="../static/img/adminImg.png">-->
-<!--        <span>张三 H2400000</span>-->
-<!--    </div>-->
-
-<!--&lt;!&ndash;    <table width="100%;" height="100%">&ndash;&gt;-->
-<!--&lt;!&ndash;        <tr>&ndash;&gt;-->
-<!--&lt;!&ndash;            <a href="#" style="">&ndash;&gt;-->
-<!--&lt;!&ndash;                <td class="topTitleDiv1">&ndash;&gt;-->
-<!--&lt;!&ndash;                    <img style="margin-left: 10%;" th:src="@{/img/LeftAccessory.png}" src="../static/img/LeftAccessory.png">&ndash;&gt;-->
-<!--&lt;!&ndash;                </td>&ndash;&gt;-->
-<!--&lt;!&ndash;            </a>&ndash;&gt;-->
-<!--&lt;!&ndash;            <td class="topTitleDiv2">&ndash;&gt;-->
-
-<!--&lt;!&ndash;                <img style="text-align: center" th:src="@{/img/errorImg.png}" src="../static/img/errorImg.png">&ndash;&gt;-->
-<!--&lt;!&ndash;                <span style="color: #31A6FF;font-size: 17px">报警系统</span>&ndash;&gt;-->
-
-<!--&lt;!&ndash;            </td>&ndash;&gt;-->
-<!--&lt;!&ndash;            <td class="topTitleDiv3">&ndash;&gt;-->
-<!--&lt;!&ndash;                <img style="text-align: right" th:src="@{/img/adminImg.png}" src="../static/img/adminImg.png">&ndash;&gt;-->
-<!--&lt;!&ndash;                <span style="color: black;font-size: 12px">张三 H2400000</span>&ndash;&gt;-->
-<!--&lt;!&ndash;            </td>&ndash;&gt;-->
-<!--&lt;!&ndash;        </tr>&ndash;&gt;-->
-<!--&lt;!&ndash;    </table>&ndash;&gt;-->
-<!--</div>-->
 
 
 <div class="content">
@@ -63,7 +21,7 @@
                 <select lay-filter="brickType"  name="errorDispoes1" lay-verify="required" class="selectFloor">
 <!--                    <option style="display: none" selected>默认选择</option>-->
 
-                    <option placeholder="请选择" value="0" >请选择</option>
+                    <option placeholder="请选择" value="0" class="option1"></option>
 
                 </select>
             </div>
@@ -72,9 +30,9 @@
         <div class="layui-form layui-form-item selectBox2" >
             <div class=" layui-input-block1">
                 <span style="display: flex"><span style="font-family: PingFangSC-Regular;align-self: center;font-size: 16px">线体:</span></span>
-
+<!--                <img style="position: absolute;top:3.8vh;left: 22.5vw;" th:src="@{/img/xiaLa1.png}" src="../static/img/xiaLa1.png"/>-->
                 <select name="errorDispoes" lay-verify="required" class="selsetLine">
-                    <option placeholder="请选择" value="0">请选择</option>
+                    <option placeholder="请选择" value="0"></option>
 
                 </select>
             </div>
@@ -186,12 +144,12 @@
         var form=layui.form;
         form.on('select(brickType)', function(data){
             var val=data.value;
-            if(val == 0){
-                $(".selsetLine").text("");
-                $(".selsetLine").append("<option placeholder='请选择' value='0'>请选择</option>");
-                layui.form.render("select");
-
-            }
+            // if(val == 0){
+            //     $(".selsetLine").text("");
+            //     $(".selsetLine").append("<option placeholder='请选择' value='0'></option>");
+            //     layui.form.render("select");
+            //
+            // }
                  if(val != "请选择" && val != "" && val != 0){
                      $(".selsetLine").text("");
 

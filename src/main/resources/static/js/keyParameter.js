@@ -7,15 +7,15 @@ $(".selectNum").click(function () {
 // console.log(floor)
 // console.log(lineName)
     if(floor == 0 || lineName == 0){
-        layui.use('layer', function(){
-            layer.msg('请选择楼层！！！', {
-                offset: '20px',
-                anim: 6,
-                area:'300px',
-                icon: 5,
-                time: '2000',
-            });
-        });
+        // layui.use('layer', function(){
+        //     layer.msg('请选择楼层！！！', {
+        //         offset: '20px',
+        //         anim: 6,
+        //         area:'300px',
+        //         icon: 5,
+        //         time: '2000',
+        //     });
+        // });
     }
     else{
         $.ajax({
