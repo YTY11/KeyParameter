@@ -15,7 +15,7 @@
 
 .pictureSlider {
     height: 100%;
-    transform: rotate(90deg) translateY(21%) translateX(20vh);
+    transform: rotate(90deg) translateY(24%) translateX(19.9vh);
 }
 
 /*.poster-list{*/
@@ -24,8 +24,8 @@
 /*}*/
 .poster-item {
     background: #fff;
-    height: 59%;
-    width: 80%;
+    height: 52.82%;
+    width: 80.9%;
     border-radius: 10px;
     /*padding:45px 23px 20px 23px;*/
     transition: all 0.5s;
@@ -87,7 +87,7 @@
 
 .for_btn {
     height: 100%;
-    width: 80%;
+    width: calc( 100% - 11.81%);
     position: relative;
     overflow: scroll;
     background-color: #DF7178;
@@ -99,7 +99,7 @@
 .liName{
     display: flex;
     height: 100%;
-    width: 20%;
+    width: 11.81%;
     position: relative;
     overflow: scroll;
     background-color: #E02020;

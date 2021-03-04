@@ -16,6 +16,8 @@ $(".a1").click(function(){
 
     $(".a1").css("color","#44D7B6");
     $(".a1").css("border-bottom","1px solid #44D7B6");
+    $(".topHtml").css("height","calc( 100% - 80px)");
+    $(".content").css("height","calc(100% - 88px - 6.512vw)");
 })
 
 $(".a2").click(function(){
@@ -26,6 +28,11 @@ $(".a2").click(function(){
 
     $(".a2").css("color","#44D7B6");
     $(".a2").css("border-bottom","1px solid #44D7B6");
+
+    $(".topHtml").css("height","calc( 2054px - 80px)");
+    $(".content").css("height","calc( 2054px - 80px - 6.512vw)");
+    // $(".content").css("heigth","calc( 2054px - 80px)")
+
 })
 
 
@@ -61,7 +68,7 @@ var option = {
         center: ['50%', '50%'],
         name:'',
         type:'pie',
-        radius: ['65%', '85%'],
+        radius: ['70%', '85%'],
         avoidLabelOverlap: true,
         hoverAnimation:false,
 
@@ -111,13 +118,20 @@ var chartDom2 = document.getElementById('keyData');
 var myChart2 = echarts.init(chartDom2);
 
 var option2 = {
+    grid:{
+        top:'20%',//距上边距
+        left:'2%',//距离左边距
+        right:'2%',//距离右边距
+        bottom:'5%',//距离下边距
+        containLabel:true
+    },
     legend: {
 
 
-        right:'50',
-        itemWidth:50,
+        right:'10',
+        itemWidth:35,
 
-        itemHeight:20,
+        itemHeight:13,
         itemGap:50,
         textStyle:{
             fontFamily: 'PingFangSC-Regular',
@@ -159,6 +173,7 @@ var option2 = {
                 letterSpacing: -1.48,
                 lineHeight: 20,
             },
+            interval:0,
         },
 
         type: 'value',
@@ -168,9 +183,8 @@ var option2 = {
         axisLine: {
             show: false
         },
-        textStyle:{
 
-        },
+
 
     },
 
@@ -244,6 +258,13 @@ myChart2.setOption(option2,true);
 var chartDom3 = document.getElementById('jiGu');
 var myChart3 = echarts.init(chartDom3);
 var option3 = {
+    grid:{
+        top:'20%',//距上边距
+        left:'2%',//距离左边距
+        right:'2%',//距离右边距
+        bottom:'5%',//距离下边距
+        containLabel:true
+    },
     xAxis: {
         type: 'category',
         data: ['8:30', '10:30', '12:30', '14:30', '16:30', '18:30', '20:30'],

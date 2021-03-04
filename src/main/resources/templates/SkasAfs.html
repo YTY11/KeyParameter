@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html class="topHtml" lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
 
@@ -12,230 +12,288 @@
 
 </head>
 <body>
-<div class="content">
-<!--    头部-->
+<div class="app">
+    <!--    头部-->
     <div class="titleTop">
         <div class="aDiv">
             <a class="a1">电子看板</a>
             <a class="a2">设备健康管理</a>
         </div>
     </div>
-<div class="content1">
-    <!--    top主体内容-->
-    <div class="topContent">
-        <div class="topContentL">
-            <div style="display: flex;width: 100%;height: 18%">
-                <div class="topContentLNei">
+    <div class="content">
 
-                    <img style="height: 100%;" th:src="@{/img/startMsg.png}" src="../static/img/startMsg.png"/>
-                    <span style="height: 100%;text-align: center;align-self: center">设备状态信息</span>
-                </div>
-            </div>
+        <div class="content1">
+            <!--    top主体内容-->
+            <div class="topContent">
+                <div class="topContentL">
+                    <div style="display: flex;width: 100%;height: 20.89%;">
+                        <div class="topContentLNei">
 
-
-            <div class="topContentLBottom">
-                <div class="topContentLBottomL">
-                    <div class="topContentLBottomLNei" >
-                        <div style="align-self: center;text-align: center;width: 100%;height: 90%;" id="doughnut"></div>
-                    </div>
-                    <p>18</p>
-                </div>
-
-                <div class="topContentLBottomR">
-                    <div class="jianKang">
-                        <div class="greenBackground">
-                            <div class="greenBackgroundL">
-                                健康
-                            </div>
-                            <div class="greenBackgroundR">
-                                <span style="margin-right: 6%">9</span>
-                            </div>
-                        </div>
-                        <div class="yellowBackground">
-                            <div class="yellowBackgroundL">
-                                预警
-                            </div>
-                            <div class="yellowBackgroundR">
-                                <span style="margin-right: 6%">0</span>
-                            </div>
-                        </div>
-                        <div class="redBackground">
-                            <div class="redBackgroundL">
-                                维护
-                            </div>
-                            <div class="redBackgroundR">
-                                <span style="margin-right: 6%">0</span>
-                            </div>
-                        </div>
-
-                        <div class="grayBackground">
-                            <div class="grayBackgroundL">
-                                离线
-                            </div>
-                            <div class="grayBackgroundR">
-                                <span style="margin-right: 6%">9</span>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-
-            </div>
-        </div>
-        <div class="topContentR">
-            <div style="display: flex;width: 100%;height: 18%">
-                <div class="topContentLNei">
-                    <img style="height: 100%;" th:src="@{/img/errorMsg.png}" src="../static/img/errorMsg.png"/>
-                    <span style="height: 100%;text-align: center;align-self: center">异常信息</span>
-                </div>
-            </div>
-
-
-            <div style="display: flex;width: 100%;height: 82%;background-color: rgba(255,255,255,0.75);border-radius: 20px;">
-                <div class="lb_gl">
-                    <div class="container">
-                        <div class="pictureSlider poster-main">
-                            <ul id="zturn" class="poster-list">
-                                <li class="poster-item  zturn-item">
-                                    <div class="liName">
-                                        <span>故障</span>
-                                    </div>
-                                    <div class="for_btn">
-                                        <ul>
-                                            <li>异常车号：KT-AFS a009</li>
-                                            <li>异常类型：脱轨</li>
-                                            <li>异常时间：2021-02-22 15:08:53</li>
-                                        </ul>
-                                    </div>
-
-
-                                </li>
-
-                                <li class="poster-item zturn-item">
-                                    <div class="liName">
-                                        <span>故障</span>
-                                    </div>
-                                    <div class="for_btn">
-                                        <ul>
-                                            <li>异常车号：KT-AFS a009</li>
-                                            <li>异常类型：脱轨</li>
-                                            <li>异常时间：2021-02-22 15:08:53</li>
-                                        </ul>
-                                    </div>
-
-                                </li>
-
-                                <li class="poster-item zturn-item">
-                                    <div class="liName">
-                                        <span>故障</span>
-                                    </div>
-                                    <div class="for_btn">
-                                        <ul>
-                                            <li>异常车号：KT-AFS a009</li>
-                                            <li>异常类型：脱轨</li>
-                                            <li>异常时间：2021-02-22 15:08:53</li>
-                                        </ul>
-                                    </div>
-                                </li>
-
-                            </ul>
-
+                            <img style="height: 100%;" th:src="@{/img/startMsg.png}" src="../static/img/startMsg.png"/>
+                            <span style="height: 100%;text-align: center;align-self: center">设备状态信息</span>
                         </div>
                     </div>
 
+
+                    <div class="topContentLBottom1">
+                        <div class="topContentLBottomL">
+                            <div class="topContentLBottomLNei" >
+                                <div style="align-self: center;text-align: center;width: 100%;height: 90%;" id="doughnut"></div>
+                            </div>
+                            <p>18</p>
+                        </div>
+
+                        <div class="topContentLBottomR">
+                            <div class="jianKang">
+                                <div class="greenBackground">
+                                    <div class="greenBackgroundL">
+                                        健康
+                                    </div>
+                                    <div class="greenBackgroundR">
+                                        <span style="margin-right: 6%">9</span>
+                                    </div>
+                                </div>
+                                <div class="yellowBackground">
+                                    <div class="yellowBackgroundL">
+                                        预警
+                                    </div>
+                                    <div class="yellowBackgroundR">
+                                        <span style="margin-right: 6%">0</span>
+                                    </div>
+                                </div>
+                                <div class="redBackground">
+                                    <div class="redBackgroundL">
+                                        维护
+                                    </div>
+                                    <div class="redBackgroundR">
+                                        <span style="margin-right: 6%">0</span>
+                                    </div>
+                                </div>
+
+                                <div class="grayBackground">
+                                    <div class="grayBackgroundL">
+                                        离线
+                                    </div>
+                                    <div class="grayBackgroundR">
+                                        <span style="margin-right: 6%">9</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="topContentR">
+                    <div style="display: flex;width: 100%;height: 20.89%">
+                        <div class="topContentLNei">
+                            <img style="height: 100%;" th:src="@{/img/errorMsg.png}" src="../static/img/errorMsg.png"/>
+                            <span style="height: 100%;text-align: center;align-self: center">异常信息</span>
+                        </div>
+                    </div>
+
+
+                    <div style="display: flex;width: 100%;height: calc(100% - 20.89%);background-color: rgba(255,255,255,0.75);border-radius: 20px;">
+                        <div class="lb_gl">
+                            <div class="container">
+                                <div class="pictureSlider poster-main">
+                                    <ul id="zturn" class="poster-list">
+                                        <li class="poster-item  zturn-item">
+                                            <div class="liName">
+                                                <span>故障</span>
+                                            </div>
+                                            <div class="for_btn">
+                                                <ul>
+                                                    <li>异常车号：KT-AFS a009</li>
+                                                    <li>异常类型：脱轨</li>
+                                                    <li>异常时间：2021-02-22 15:08:53</li>
+                                                </ul>
+                                            </div>
+
+
+                                        </li>
+
+                                        <li class="poster-item zturn-item">
+                                            <div class="liName">
+                                                <span>故障</span>
+                                            </div>
+                                            <div class="for_btn">
+                                                <ul>
+                                                    <li>异常车号：KT-AFS a009</li>
+                                                    <li>异常类型：脱轨</li>
+                                                    <li>异常时间：2021-02-22 15:08:53</li>
+                                                </ul>
+                                            </div>
+
+                                        </li>
+
+                                        <li class="poster-item zturn-item">
+                                            <div class="liName">
+                                                <span>故障</span>
+                                            </div>
+                                            <div class="for_btn">
+                                                <ul>
+                                                    <li>异常车号：KT-AFS a009</li>
+                                                    <li>异常类型：脱轨</li>
+                                                    <li>异常时间：2021-02-22 15:08:53</li>
+                                                </ul>
+                                            </div>
+                                        </li>
+
+                                    </ul>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--    center主体内容-->
+            <div class="centerContent">
+                <div style="display: flex;width: 100%;height: 15.777%;">
+                    <div class="topContentLNei">
+                        <img style="height: 100%;" th:src="@{/img/UPH.png}" src="../static/img/UPH.png"/>
+                        <span style="height: 100%;text-align: center;align-self: center">设备关键指标</span>
+                    </div>
+                </div>
+
+                <div class="topContentLBottom">
+                    <div style="width: 100%;height: 100%;text-align: center;align-self: center" id="keyData"></div>
+
+                </div>
+            </div>
+
+            <!--    bottom主体内容-->
+            <div class="bottomContent">
+                <div style="display: flex;width: 100%;height: 15.777%;">
+                    <div class="topContentLNei">
+
+                        <img style="height: 100%;" th:src="@{/img/jiGu.png}" src="../static/img/jiGu.png"/>
+                        <span style="height: 100%;text-align: center;align-self: center">机故率</span>
+                    </div>
+                </div>
+
+                <div class="topContentLBottom">
+
+                    <div style="width: 100%;height: 100%;text-align: center;align-self: center" id="jiGu"></div>
+
                 </div>
             </div>
         </div>
-    </div>
 
-    <!--    center主体内容-->
-    <div class="centerContent">
-        <div style="display: flex;width: 100%;height: 18%">
-            <div class="topContentLNei">
-                <img style="height: 100%;" th:src="@{/img/UPH.png}" src="../static/img/UPH.png"/>
-                <span style="height: 100%;text-align: center;align-self: center">设备关键指标</span>
+        <div class="content2" style="display: none">
+            <div style="width: 100%;height: 100%;">
+
+                <div class="topContent2">
+                    <div style="display: flex;width: 100%;height: 8.132%;">
+                        <div class="topContentTitle2">
+                            <span style="height: 100%;text-align: center;align-self: center">RGV</span>
+                        </div>
+                    </div>
+
+                    <div class="topContentC2">
+                        <table class="table1">
+                            <thead>
+                            <tr>
+                                <td rowspan="2" style="width: 12.9%;">机故类型</td>
+                                <td colspan="3" style="width: 37.5%;">维修进度</td>
+                                <td colspan="3" style="width: 37.55%;">优先级</td>
+                                <td rowspan="2" >ALL</td>
+                            </tr>
+                            <tr>
+                                <td>待派工
+                                </td>
+                                <td>维修中</td>
+                                <td>已维修</td>
+                                <td>H</td>
+                                <td>M</td>
+                                <td>L</td>
+                            </tr>
+                            </thead>
+                            <tbody class="errorNum">
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="topContentB2">
+                        <div class="topContentB21">
+
+                        </div>
+                        <div class="topContentB22">
+
+                        </div>
+                        <div class="topContentB23">
+
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 0.76vh" class="topContent2">
+                    <div style="display: flex;width: 100%;height: 8.132%;">
+                        <div class="topContentTitle2">
+                            <span style="height: 100%;text-align: center;align-self: center">AGV</span>
+                        </div>
+                    </div>
+
+                    <div class="topContentC2">
+
+                    </div>
+
+                    <div class="topContentB2">
+                        <div class="topContentB21">
+
+                        </div>
+                        <div class="topContentB22">
+
+                        </div>
+                        <div class="topContentB23">
+
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 0.76vh" class="bottomContent2">
+                    <div style="display: flex;width: 100%;height: 5.165%;">
+                        <div class="bottomContentTitle2">
+                            <span style="height: 100%;text-align: center;align-self: center">暂存仓</span>
+                        </div>
+                    </div>
+
+                    <div class="bottomContentC2">
+
+                    </div>
+
+                    <div class="bottomContentB2">
+
+                    </div>
+                </div>
+
+                <div style="margin-top: 0.76vh" class="bottomContent2">
+                    <div style="display: flex;width: 100%;height: 5.165%;">
+                        <div class="bottomContentTitle2">
+                            <span style="height: 100%;text-align: center;align-self: center">AFS</span>
+                        </div>
+                    </div>
+
+                    <div class="bottomContentC2">
+
+                    </div>
+
+                    <div class="bottomContentB2">
+
+                    </div>
+                </div>
+
             </div>
         </div>
 
-        <div class="topContentLBottom">
-            <div style="width: 100%;height: 100%;text-align: center;align-self: center" id="keyData"></div>
-
-        </div>
-    </div>
-
-    <!--    bottom主体内容-->
-    <div class="bottomContent">
-        <div style="display: flex;width: 100%;height: 18%">
-            <div class="topContentLNei">
-
-                <img style="height: 100%;" th:src="@{/img/jiGu.png}" src="../static/img/jiGu.png"/>
-                <span style="height: 100%;text-align: center;align-self: center">机故率</span>
-            </div>
-        </div>
-
-        <div class="topContentLBottom">
-
-            <div style="width: 100%;height: 100%;text-align: center;align-self: center" id="jiGu"></div>
-
-        </div>
     </div>
 </div>
 
-    <div class="content2" style="display: none">
-        <div style="width: 100%;height: 100%;">
-
-            <div class="topContent2">
-                <div style="display: flex;width: 100%;height: 8%">
-                    <div class="topContentTitle2">
-                        <span style="height: 100%;text-align: center;align-self: center">RGV</span>
-                    </div>
-                </div>
-
-                <div class="topContentC2">
-
-                </div>
-
-                <div class="topContentB2">
-                    <div class="topContentB21">
-
-                    </div>
-                    <div class="topContentB22">
-
-                    </div>
-                    <div class="topContentB23">
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="topContent2" style="margin-top: 1vh">
-                <div style="display: flex;width: 100%;height: 8%">
-                    <div class="topContentTitle2">
-                        <span style="height: 100%;text-align: center;align-self: center">RGV</span>
-                    </div>
-                </div>
-
-                <div class="topContentC2">
-
-                </div>
-
-                <div class="topContentB2">
-
-                </div>
-            </div>
-
-            <div class="aa">
-
-            </div>
-            <div class="aa">
-
-            </div>
-
-        </div>
-    </div>
-
-</div>
 
 
 
@@ -254,7 +312,7 @@
         Awidth: 7,
         scale: 0.9,
         auto: true,//是否轮播 默认5000
-        turning: 4000//轮播时长
+        turning: 2000//轮播时长
     })
 
 </script>

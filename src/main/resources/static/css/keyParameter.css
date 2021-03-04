@@ -7,78 +7,37 @@ a, body, button, div, dl, dt, h1, h2, h3, h4, h5, h6, input, li, p, select, text
 
 html {
     width: 100%;
-    height: 100%;
+    height: calc( 100% - 60px);
 }
 
 body {
     width: 100%;
     height: 100%;
-    background-image: url("../img/backgroundImg.png");
-    background-size: 100%;
-    background-repeat: repeat-y;
+
 }
+.app{
+    width: 100%;
+    height: 100%;
+    background-image: url("../img/backgroundImg.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50%
 
-/*@media screen and (max-width: 768px) {*/
-/*    html {*/
-/*        width: 768px;*/
-/*    }*/
-
-/*    body {*/
-/*        width: 768px;*/
-/*    }*/
-/*}*/
-
-
-/*!*头部*!*/
-/*.topTitle{*/
-/*    background-color: #FFFFFF;*/
-/*    display: flex;*/
-/*    height: 6.5%;*/
-/*}*/
-/*.topTitleDiv1{*/
-/*    align-self: center;*/
-/*    width: 27.5%;*/
-/*    white-space:nowrap;*/
-/*    text-overflow:ellipsis;*/
-/*}*/
-/*.topTitleDiv2{*/
-/*    text-align: center;*/
-/*    height: 80%;*/
-/*    width: 45%;*/
-/*    align-self: center;*/
-/*    white-space:nowrap;*/
-/*    text-overflow:ellipsis;*/
-/*    color: #179BFF;*/
-/*    font-size: 3vh;*/
-
-/*}*/
-
-/*.topTitleDiv3{*/
-/*    width: 26.5%;*/
-/*    height: 80%;*/
-/*    text-align: left;*/
-/*    margin-right: 1%;*/
-/*    align-self: center;*/
-/*    white-space:nowrap;*/
-/*    text-overflow:ellipsis;!** 多出的内容...显示  **!*/
-/*    font-size: 2vh;*/
-/*    color: black;*/
-/*    overflow: hidden;!** 溢出时出现滚动条 **!*/
-/*}*/
+}
 
 
 
 /*主体内容*/
 .content{
     position: absolute;
-    top: 4%;
-    left: 2%;
+    top: 3.1%;
+    left: 3.1%;
     background-color: #E6E6E6;
     /*margin: 4% 2% 4% 2%;*/
     /*margin: 2%;*/
     /*margin-top: 4%;*/
-    width:96%;
-    height: calc(100% - 8%);
+    width:93.8%;
+    height: calc( 100% - 60px - 6.2%);
     border-radius: 16px;
 
 }
@@ -145,10 +104,14 @@ body {
     width: 62.4%;
 }
 .layui-form-select .layui-input{
-    border: 1px solid black;
+    border: 1px solid grey;
     border-radius: 6px;
     height: 100%;
 }
+.layui-input:hover{
+    border-color: grey;
+}
+
 .layui-unselect,.layui-select-title{
     height: 100%;
 }
@@ -275,9 +238,18 @@ body {
 
 /*选择框*/
 .layui-form-select dl{
+    /*border-left: 1px solid #808080;*/
+    /*border-rigth: 1px solid #808080!important;*/
     top: 110%;
     max-height: 153px;
     padding: 0;
+}
+.layui-form-select dl{
+    border: 1px solid #808080;
+    border-top: 0px solid #808080;
+    border-left: 1px solid #808080;
+    border-rigth: 1px solid #808080;
+    border-bottom: 0px solid #808080;
 }
 .layui-form-select dl dd{
     line-height: 30px;
@@ -295,24 +267,6 @@ body {
 
 
 
-/*.btnClass .layui-layer-title{*/
-/*    height: 5vh;*/
-/*    line-height: 5vh;*/
-
-/*}*/
-
-/*.btnClass .layui-layer-setwin a{*/
-/*    top: -3vh;*/
-
-/*}*/
-
-/*.btnClass .layui-layer-setwin{*/
-/*    top: 4.5vh;*/
-/*}*/
-
-/*.btnClass .layui-layer-content{*/
-/*    height: 10vh;*/
-/*}*/
 
 .layui-form-select dl dd{
     border-bottom: 1px solid #808080;
@@ -329,7 +283,7 @@ input::-webkit-input-placeholder{
 }
 
 .option1{
-    border: white;
+    border: none;
 }
 
 
@@ -351,31 +305,48 @@ input::-webkit-input-placeholder{
 .sanJiao1{
     display: inline-block;
     position: absolute;
-    width: 0.7vh;
-    height: 0.7vh;
+    width: 0.98vh;
+    height: 0.98vh;
     background-color: rgba(255,255,255,.7);
     z-index: 99;
-    top: 3.5vh;
-    left: 23vw;
-    border-top: 1px solid;
-    border-right: 1px solid;
+    top: 3.02vh;
+    left: 21.5vw;
+    border-top: 2px solid;
+    border-right: 2px solid;
     transform: rotate(135deg);
 }
 
 .sanJiao2{
     display: inline-block;
     position: absolute;
-    width: 0.7vh;
-    height: 0.7vh;
+    width: 0.98vh;
+    height: 0.98vh;
     background-color: rgba(255,255,255,.7);
     z-index: 99;
-    top: 3.5vh;
-    left: 52vw;
-    border-top: 1px solid;
-    border-right: 1px solid;
+    top: 3.02vh;
+    left: 46vw;
+    border-top: 2px solid;
+    border-right: 2px solid;
     transform: rotate(135deg);
 }
 
 .layui-form-selectup dl {
     bottom: auto;
+}
+
+
+.layui-input:hover, .layui-textarea:hover {
+    border-color: grey!important;
+}
+.layui-btn:active{
+    background-color: #F77800;
+}
+.layui-btn{
+    background-color: #F7B500;
+}
+
+
+.layui-anim-upbit {
+    -webkit-animation-name: auto;
+    animation-name: auto;
 }
