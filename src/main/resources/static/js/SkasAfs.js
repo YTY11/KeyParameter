@@ -351,3 +351,58 @@ window.addEventListener("resize",function () {
 });
 myChart3.clear();
 myChart3.setOption(option3,true);
+
+
+
+
+
+
+
+
+
+
+
+
+var chartDom21 = document.getElementById('faLiaoLiang');
+var myChart21 = echarts.init(chartDom21);
+
+var option21 = {
+    grid:{
+        top:'20%',//距上边距
+        left:'2%',//距离左边距
+        right:'2%',//距离右边距
+        bottom:'5%',//距离下边距
+        containLabel:true
+    },
+    xAxis: {
+        type: 'category',
+        data: ['投入', '产出']
+    },
+    yAxis: {
+        type: 'value'
+    },
+
+    series: [{
+
+        type: 'bar',
+        itemStyle: {
+            normal: {
+                //通过数组下标选择颜色
+                color: function(params) {
+                    var colorList = [
+                        '#53DDC1','#77A3F9'
+                    ];
+                    return colorList[params.dataIndex]
+                },
+            }
+        },
+        data: [345, 305]
+
+    }]
+};
+myChart21.setOption(option21,true);
+window.addEventListener("resize",function () {
+    myChart21.resize();
+});
+myChart21.clear();
+myChart21.setOption(option21,true);
