@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fox.testsys.mapper.Warubg_List_SlotMapper">
+  <resultMap id="BaseResultMap" type="com.fox.testsys.entity.Warubg_List_Slot">
+    <id column="ID" jdbcType="DECIMAL" property="id" />
+    <result column="PRODUCT" jdbcType="VARCHAR" property="product" />
+    <result column="LINE" jdbcType="VARCHAR" property="line" />
+    <result column="STATION" jdbcType="VARCHAR" property="station" />
+    <result column="STATION_NO" jdbcType="VARCHAR" property="stationNo" />
+    <result column="SLOT" jdbcType="DECIMAL" property="slot" />
+    <result column="WARNING_CASE" jdbcType="VARCHAR" property="warningCase" />
+    <result column="WARNING_DETAIL" jdbcType="VARCHAR" property="warningDetail" />
+    <result column="ADD_TIME" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="CLOSE_TIME" jdbcType="TIMESTAMP" property="closeTime" />
+    <result column="QUIT_FLAG" jdbcType="DECIMAL" property="quitFlag" />
+    <result column="URL_OK" jdbcType="DECIMAL" property="urlOk" />
+    <result column="URL_MSG" jdbcType="VARCHAR" property="urlMsg" />
+  </resultMap>
+
+  <select id="WipasNum" resultMap="BaseResultMap">
+ <![CDATA[
+    SELECT line,count(ErrorNum) as ErrorNum  from(
+    select SUBSTR(SUBSTR(LINE,0,12),-2,3) as LINE,count(*) as ErrorNum from te_warning_list_slot t where close_time is null
+    and PRODUCT=#{product}
+    AND LINE LIKE '%${floorname}%'
+    and ADD_TIME >= TO_DATE('${StartDate}','YYYY/MM/DD HH24:MI:SS')
+    AND CLOSE_TIME < TO_DATE('${EndDate}','YYYY/MM/DD HH24:MI:SS')
+    and warning_case='SW ERROR'
+    group by LINE)
+    GROUP BY line
+    ]]>
+  </select>
+
+  <select id="PathlossNum" resultMap="BaseResultMap">
+  <![CDATA[
+    SELECT line,count(ErrorNum) as ErrorNum  from(
+    select SUBSTR(SUBSTR(LINE,0,12),-2,3) as LINE,count(*) as ErrorNum from te_warning_list_slot t where close_time is null
+    and PRODUCT=#{product}
+    AND LINE LIKE '%${floorname}%'
+    and ADD_TIME >= TO_DATE('${StartDate}','YYYY/MM/DD HH24:MI:SS')
+    AND CLOSE_TIME < TO_DATE('${EndDate}','YYYY/MM/DD HH24:MI:SS')
+    and warning_case='Pathloss ERROR'
+    group by LINE)
+    GROUP BY line
+    ]]>
+  </select>
+
+    <select id="KeyParameterAll" resultMap="BaseResultMap">
+  <![CDATA[
+        SELECT SUBSTR(A.SLINE, 10, 2) AS LINE,
+        COUNT(A.ID) AS TTL,
+        COUNT(A.ID) - COUNT(B.line) AS SW_OK,
+        COUNT(A.ID) - COUNT(C.line) AS LOSS_OK
+        FROM TE_BASE_STATION A
+        LEFT JOIN (select distinct t.product, t.line, t.station, t.station_no
+        from TE_WARNING_LIST_SLOT t
+        where CLOSE_TIME IS NULL
+        AND WARNING_CASE = 'SW ERROR') B
+        ON A.LINE = B.LINE
+        AND A.STATION = B.STATION
+        AND A.STATION_NO = B.STATION_NO
+        LEFT JOIN (select distinct tt.product, tt.line, tt.station, tt.station_no
+        from TE_WARNING_LIST_SLOT tt
+        where CLOSE_TIME IS NULL
+        AND WARNING_CASE = 'Pathloss ERROR') C
+        ON A.LINE = C.LINE
+        AND A.STATION = C.STATION
+        AND A.STATION_NO = C.STATION_NO
+        WHERE A.SLINE LIKE #{Line}||'%'
+        and a.status = 1
+        GROUP BY SUBSTR(A.SLINE, 10, 2)
+        ORDER BY SUBSTR(A.SLINE, 10, 2)
+    ]]>
+  </select>
+
+</mapper>

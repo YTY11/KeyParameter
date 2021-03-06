@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fox.alarmsys.mapper.AutoFloor_Key_CheckUP_HISMapper" >
+  <resultMap id="BaseResultMap" type="com.fox.alarmsys.entity.AutoFloor_Key_CheckUP_HIS" >
+    <result column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="PRODUCT" property="product" jdbcType="VARCHAR" />
+    <result column="FLOOR" property="floor" jdbcType="VARCHAR" />
+    <result column="LINENAME" property="linename" jdbcType="VARCHAR" />
+    <result column="WORKSTATION" property="workstation" jdbcType="VARCHAR" />
+    <result column="MACHINETYPE" property="machinetype" jdbcType="VARCHAR" />
+    <result column="KEY_PMS_EN" property="keyPmsEn" jdbcType="VARCHAR" />
+    <result column="KEY_PMS_CH" property="keyPmsCh" jdbcType="VARCHAR" />
+    <result column="SPEC" property="spec" jdbcType="VARCHAR" />
+    <result column="SPEC_MIN" property="specMin" jdbcType="VARCHAR" />
+    <result column="SPEC_MAX" property="specMax" jdbcType="VARCHAR" />
+    <result column="KEY_VAL" property="keyVal" jdbcType="VARCHAR" />
+    <result column="CHECK_RESULT" property="checkResult" jdbcType="VARCHAR" />
+    <result column="TESTTIME" property="testtime" jdbcType="VARCHAR" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="COMPONENTTYPE" property="componenttype" jdbcType="VARCHAR" />
+    <result column="FLAG" property="flag" jdbcType="DECIMAL" />
+    <result column="REPAIR_CONTENT" property="repairContent" jdbcType="VARCHAR" />
+    <result column="REPAIR_END_TIME" property="repairEndTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <select  id="selectUpHisData" resultMap="BaseResultMap">
+    <![CDATA[
+    SELECT * FROM AUTOFLOOR_KEY_CHECKUP_HIS
+    WHERE TO_DATE (TESTTIME,'yyyy/MM/dd hh24:mi:ss')>=TO_DATE ('${StartTime}','yyyy/MM/dd hh24:mi:ss')
+    AND  TO_DATE (TESTTIME,'yyyy/MM/dd hh24:mi:ss')<TO_DATE ('${EndTime}','yyyy/MM/dd hh24:mi:ss')
+     ]]>
+     <if test="Product!=null and Product!=''">
+    AND product=#{Product}
+     </if>
+    AND MACHINETYPE !='VISRDO'
+    AND LINENAME=#{LineName}
+    ORDER BY TESTTIME DESC
+
+  </select>
+
+  <insert id="insert" parameterType="com.fox.alarmsys.entity.AutoFloor_Key_CheckUP_HIS" >
+    insert into AUTOFLOOR_KEY_CHECKUP_HIS (ID, PRODUCT, FLOOR, 
+      LINENAME, WORKSTATION, MACHINETYPE, 
+      KEY_PMS_EN, KEY_PMS_CH, SPEC, 
+      SPEC_MIN, SPEC_MAX, KEY_VAL, 
+      CHECK_RESULT, TESTTIME, UPDATE_TIME, 
+      COMPONENTTYPE, FLAG, REPAIR_CONTENT, 
+      REPAIR_END_TIME)
+    values (#{id,jdbcType=DECIMAL}, #{product,jdbcType=VARCHAR}, #{floor,jdbcType=VARCHAR}, 
+      #{linename,jdbcType=VARCHAR}, #{workstation,jdbcType=VARCHAR}, #{machinetype,jdbcType=VARCHAR}, 
+      #{keyPmsEn,jdbcType=VARCHAR}, #{keyPmsCh,jdbcType=VARCHAR}, #{spec,jdbcType=VARCHAR}, 
+      #{specMin,jdbcType=VARCHAR}, #{specMax,jdbcType=VARCHAR}, #{keyVal,jdbcType=VARCHAR}, 
+      #{checkResult,jdbcType=VARCHAR}, #{testtime,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{componenttype,jdbcType=VARCHAR}, #{flag,jdbcType=DECIMAL}, #{repairContent,jdbcType=VARCHAR}, 
+      #{repairEndTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fox.alarmsys.entity.AutoFloor_Key_CheckUP_HIS" >
+    insert into AUTOFLOOR_KEY_CHECKUP_HIS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="product != null" >
+        PRODUCT,
+      </if>
+      <if test="floor != null" >
+        FLOOR,
+      </if>
+      <if test="linename != null" >
+        LINENAME,
+      </if>
+      <if test="workstation != null" >
+        WORKSTATION,
+      </if>
+      <if test="machinetype != null" >
+        MACHINETYPE,
+      </if>
+      <if test="keyPmsEn != null" >
+        KEY_PMS_EN,
+      </if>
+      <if test="keyPmsCh != null" >
+        KEY_PMS_CH,
+      </if>
+      <if test="spec != null" >
+        SPEC,
+      </if>
+      <if test="specMin != null" >
+        SPEC_MIN,
+      </if>
+      <if test="specMax != null" >
+        SPEC_MAX,
+      </if>
+      <if test="keyVal != null" >
+        KEY_VAL,
+      </if>
+      <if test="checkResult != null" >
+        CHECK_RESULT,
+      </if>
+      <if test="testtime != null" >
+        TESTTIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="componenttype != null" >
+        COMPONENTTYPE,
+      </if>
+      <if test="flag != null" >
+        FLAG,
+      </if>
+      <if test="repairContent != null" >
+        REPAIR_CONTENT,
+      </if>
+      <if test="repairEndTime != null" >
+        REPAIR_END_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="product != null" >
+        #{product,jdbcType=VARCHAR},
+      </if>
+      <if test="floor != null" >
+        #{floor,jdbcType=VARCHAR},
+      </if>
+      <if test="linename != null" >
+        #{linename,jdbcType=VARCHAR},
+      </if>
+      <if test="workstation != null" >
+        #{workstation,jdbcType=VARCHAR},
+      </if>
+      <if test="machinetype != null" >
+        #{machinetype,jdbcType=VARCHAR},
+      </if>
+      <if test="keyPmsEn != null" >
+        #{keyPmsEn,jdbcType=VARCHAR},
+      </if>
+      <if test="keyPmsCh != null" >
+        #{keyPmsCh,jdbcType=VARCHAR},
+      </if>
+      <if test="spec != null" >
+        #{spec,jdbcType=VARCHAR},
+      </if>
+      <if test="specMin != null" >
+        #{specMin,jdbcType=VARCHAR},
+      </if>
+      <if test="specMax != null" >
+        #{specMax,jdbcType=VARCHAR},
+      </if>
+      <if test="keyVal != null" >
+        #{keyVal,jdbcType=VARCHAR},
+      </if>
+      <if test="checkResult != null" >
+        #{checkResult,jdbcType=VARCHAR},
+      </if>
+      <if test="testtime != null" >
+        #{testtime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="componenttype != null" >
+        #{componenttype,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=DECIMAL},
+      </if>
+      <if test="repairContent != null" >
+        #{repairContent,jdbcType=VARCHAR},
+      </if>
+      <if test="repairEndTime != null" >
+        #{repairEndTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>

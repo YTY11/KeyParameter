@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fox.qualitysys.mapper.Warning_List_SlotMapper">
+  <resultMap id="BaseResultMap" type="com.fox.qualitysys.entity.Warning_List_Slot">
+    <id column="ID" jdbcType="DECIMAL" property="id" />
+    <result column="PRODUCT" jdbcType="VARCHAR" property="product" />
+    <result column="LINE" jdbcType="VARCHAR" property="line" />
+    <result column="STATION" jdbcType="VARCHAR" property="station" />
+    <result column="STATION_NO" jdbcType="VARCHAR" property="stationNo" />
+    <result column="SLOT" jdbcType="DECIMAL" property="slot" />
+    <result column="WARNING_CASE" jdbcType="VARCHAR" property="warningCase" />
+    <result column="WARNING_DETAIL" jdbcType="VARCHAR" property="warningDetail" />
+    <result column="ADD_TIME" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="CLOSE_TIME" jdbcType="TIMESTAMP" property="closeTime" />
+    <result column="QUIT_FLAG" jdbcType="DECIMAL" property="quitFlag" />
+    <result column="URL_OK" jdbcType="DECIMAL" property="urlOk" />
+    <result column="URL_MSG" jdbcType="VARCHAR" property="urlMsg" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, PRODUCT, LINE, STATION, STATION_NO, SLOT, WARNING_CASE, WARNING_DETAIL, ADD_TIME, 
+    CLOSE_TIME, QUIT_FLAG, URL_OK, URL_MSG
+  </sql>
+  <select id="TestUNStation" resultMap="BaseResultMap">
+    SELECT A.SLINE AS SLINE,A.LINE AS LINE,A.STATION AS station,A.STATION_NO AS STATION_NO,B.WARNING_DETAIL AS WARNING_DETAIL
+        FROM TE_BASE_STATION A
+        LEFT JOIN (SELECT station,LINE,STATION_NO,WARNING_DETAIL FROM  TE_WARNING_LIST_SLOT
+        WHERE CLOSE_TIME IS NULL
+        AND  WARNING_CASE=#{Warning_Case})B
+        ON A.LINE=B.LINE
+        AND A.STATION = B.STATION
+        AND A.STATION_NO = B.STATION_NO
+        WHERE A.SLINE=#{LineName}
+        AND B.WARNING_DETAIL IS NOT NULL
+  </select>
+
+  <select id="TestALLUNStation" resultMap="BaseResultMap">
+    SELECT A.SLINE AS SLINE,A.LINE AS LINE,A.STATION AS station,A.STATION_NO AS STATION_NO,B.WARNING_DETAIL AS WARNING_DETAIL
+        FROM TE_BASE_STATION A
+        LEFT JOIN (SELECT station,LINE,STATION_NO,WARNING_DETAIL FROM  TE_WARNING_LIST_SLOT
+        WHERE CLOSE_TIME IS NULL
+        AND  WARNING_CASE='Pathloss ERROR' or
+        CLOSE_TIME IS NULL
+        AND  WARNING_CASE='SW ERROR')B
+        ON A.LINE=B.LINE
+        AND A.STATION = B.STATION
+        AND A.STATION_NO = B.STATION_NO
+        WHERE A.SLINE like #{floorName}||'%'
+        AND B.WARNING_DETAIL IS NOT NULL
+  </select>
+
+  <select id="TestUNTime" resultMap="BaseResultMap">
+    <![CDATA[
+    SELECT LINe,STATION,ADD_TIME,CLOSE_TIME FROM TE_WARNING_LIST_SLOT t
+      WHERE ADD_TIME>=TO_DATE('${StartDate}','YYYY/MM/DD HH24:MI:SS')
+      and CLOSE_TIME<TO_DATE('${EndDate}','YYYY/MM/DD HH24:MI:SS')
+      and line LIKE #{LineName}||'%'
+      AND WARNING_CASE!='NeedAudit ERROR'
+      AND WARNING_CASE!='NoWifiAsso ERROR'
+      AND QUIT_FLAG=1
+      GROUP BY LINe,STATION,ADD_TIME,CLOSE_TIME
+      ORDER BY ADD_TIME asc
+    ]]>
+  </select>
+
+  <select id="TestUNStationSum" resultType="int">
+    <![CDATA[
+    SELECT count(*) FROM(
+      SELECT LINe,STATION,STATION_NO FROM TE_WARNING_LIST_SLOT t
+      WHERE CLOSE_TIME>=TO_DATE('${StartDate}','YYYY/MM/DD HH24:MI:SS')
+      and CLOSE_TIME<TO_DATE('${EndDate}','YYYY/MM/DD HH24:MI:SS')
+      and line LIKE #{LineName}||'%'
+      AND WARNING_CASE!='NeedAudit ERROR'
+      AND WARNING_CASE!='NoWifiAsso ERROR'
+      AND QUIT_FLAG=1
+      GROUP BY LINe,STATION,STATION_NO)
+    ]]>
+  </select>
+
+
+
+  <select id="TestCellUNStationSum" resultMap="BaseResultMap">
+    <![CDATA[
+      SELECT LINE,COUNT(*) as MachineSum FROM(
+       SELECT LINe,STATION,STATION_NO FROM TE_WARNING_LIST_SLOT t
+       WHERE CLOSE_TIME>=TO_DATE('${StartDate}','YYYY/MM/DD HH24:MI:SS')
+       and CLOSE_TIME<TO_DATE('${EndDate}','YYYY/MM/DD HH24:MI:SS')
+       and line LIKE #{LineName}||'%'
+       GROUP BY LINe,STATION,STATION_NO)
+       GROUP BY LINE
+    ]]>
+  </select>
+
+
+
+
+
+  <select id="TestUNMessage" resultMap="BaseResultMap">
+    <![CDATA[
+    SELECT * FROM TE_WARNING_LIST_SLOT t
+      WHERE ADD_TIME>=TO_DATE('${StartDate}','YYYY/MM/DD HH24:MI:SS')
+      and CLOSE_TIME<TO_DATE('${EndDate}','YYYY/MM/DD HH24:MI:SS')
+      and line = #{LineName}
+      ORDER BY ADD_TIME asc
+    ]]>
+  </select>
+
+  <select id="TestUNASCMessage" resultMap="BaseResultMap">
+    <![CDATA[
+     SELECT * FROM (
+      SELECT station,station_no,slot FROM TE_WARNING_LIST_SLOT t
+      WHERE ADD_TIME>=TO_DATE('${StartDate}','YYYY/MM/DD HH24:MI:SS')
+      and CLOSE_TIME<TO_DATE('${EndDate}','YYYY/MM/DD HH24:MI:SS')
+      and line = #{LineName}
+      ORDER BY ADD_TIME asc,CLOSE_TIME desc)
+			WHERE rownum=1
+    ]]>
+  </select>
+
+
+</mapper>

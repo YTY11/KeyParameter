@@ -17,16 +17,16 @@
     <div class="titleTop">
         <div class="aDiv">
             <a class="a1">电子看板</a>
-            <a class="a2">设备健康管理</a>
+            <a class="a2" th:href="@{saksafssyshomecont}" href="SkasAfs2.html">设备健康管理</a>
         </div>
     </div>
-    <div class="content">
-
-        <div class="content1">
+    <div class="content1" >
+        <div style="width: 100%;height: 100%" th:fragment="tabData" id="content_demo">
+            <!--        <div class="content1">-->
             <!--    top主体内容-->
             <div class="topContent">
                 <div class="topContentL">
-                    <div style="display: flex;width: 100%;height: 20.89%;">
+                    <div style="display: flex;width: 100%;height: 18.435%;">
                         <div class="topContentLNei">
 
                             <img style="height: 100%;" th:src="@{/img/startMsg.png}" src="../static/img/startMsg.png"/>
@@ -40,17 +40,17 @@
                             <div class="topContentLBottomLNei" >
                                 <div style="align-self: center;text-align: center;width: 100%;height: 90%;" id="doughnut"></div>
                             </div>
-                            <p>18</p>
+                            <p class="startAllNum" th:text="${AGV_AFSState.getMachineSum()}">0</p>
                         </div>
 
                         <div class="topContentLBottomR">
                             <div class="jianKang">
                                 <div class="greenBackground">
-                                    <div class="greenBackgroundL">
+                                    <div class="greenBackgroundL" >
                                         健康
                                     </div>
                                     <div class="greenBackgroundR">
-                                        <span style="margin-right: 6%">9</span>
+                                        <span class="startJKNum" style="margin-right: 6%" th:text="${AGV_AFSState.getMachineHealth()}">0</span>
                                     </div>
                                 </div>
                                 <div class="yellowBackground">
@@ -58,7 +58,7 @@
                                         预警
                                     </div>
                                     <div class="yellowBackgroundR">
-                                        <span style="margin-right: 6%">0</span>
+                                        <span class="startYJNum" style="margin-right: 6%" th:text="${AGV_AFSState.getMachineWarning()}">0</span>
                                     </div>
                                 </div>
                                 <div class="redBackground">
@@ -66,7 +66,7 @@
                                         维护
                                     </div>
                                     <div class="redBackgroundR">
-                                        <span style="margin-right: 6%">0</span>
+                                        <span class="startWHNum" style="margin-right: 6%" th:text="${AGV_AFSState.getMachineUnusual()}">0</span>
                                     </div>
                                 </div>
 
@@ -75,7 +75,7 @@
                                         离线
                                     </div>
                                     <div class="grayBackgroundR">
-                                        <span style="margin-right: 6%">9</span>
+                                        <span class="startLXNum" style="margin-right: 6%" th:text="${AGV_AFSState.getMachineLostConnection()}">0</span>
                                     </div>
                                 </div>
 
@@ -86,7 +86,7 @@
                     </div>
                 </div>
                 <div class="topContentR">
-                    <div style="display: flex;width: 100%;height: 20.89%">
+                    <div style="display: flex;width: 100%;height: 18.435%">
                         <div class="topContentLNei">
                             <img style="height: 100%;" th:src="@{/img/errorMsg.png}" src="../static/img/errorMsg.png"/>
                             <span style="height: 100%;text-align: center;align-self: center">异常信息</span>
@@ -94,51 +94,24 @@
                     </div>
 
 
-                    <div style="display: flex;width: 100%;height: calc(100% - 20.89%);background-color: rgba(255,255,255,0.75);border-radius: 20px;">
+                    <div style="display: flex;width: 100%;height: calc(100% - 18.435%);background-color: rgba(255,255,255,0.75);border-radius: 20px;">
                         <div class="lb_gl">
                             <div class="container">
-                                <div class="pictureSlider poster-main">
-                                    <ul id="zturn" class="poster-list">
-                                        <li class="poster-item  zturn-item">
+                                <div class="pictureSlider poster-main" >
+                                    <ul id="zturn" class="poster-list ulData" >
+                                        <li  class="poster-item  zturn-item"  th:each="Exceptions : ${ExceptionDescribe}">
                                             <div class="liName">
                                                 <span>故障</span>
                                             </div>
                                             <div class="for_btn">
                                                 <ul>
-                                                    <li>异常车号：KT-AFS a009</li>
-                                                    <li>异常类型：脱轨</li>
-                                                    <li>异常时间：2021-02-22 15:08:53</li>
+                                                    <li th:text="${'异常车号:'+Exceptions.getWorkstation()+' '+Exceptions.getDevice()} "></li>
+                                                    <li th:text="${'异常类型:'+Exceptions.getError()}"></li>
+                                                    <li th:text="${'异常时间:'+Exceptions.getDateTime()} "></li>
                                                 </ul>
                                             </div>
 
 
-                                        </li>
-
-                                        <li class="poster-item zturn-item">
-                                            <div class="liName">
-                                                <span>故障</span>
-                                            </div>
-                                            <div class="for_btn">
-                                                <ul>
-                                                    <li>异常车号：KT-AFS a009</li>
-                                                    <li>异常类型：脱轨</li>
-                                                    <li>异常时间：2021-02-22 15:08:53</li>
-                                                </ul>
-                                            </div>
-
-                                        </li>
-
-                                        <li class="poster-item zturn-item">
-                                            <div class="liName">
-                                                <span>故障</span>
-                                            </div>
-                                            <div class="for_btn">
-                                                <ul>
-                                                    <li>异常车号：KT-AFS a009</li>
-                                                    <li>异常类型：脱轨</li>
-                                                    <li>异常时间：2021-02-22 15:08:53</li>
-                                                </ul>
-                                            </div>
                                         </li>
 
                                     </ul>
@@ -182,153 +155,813 @@
 
                 </div>
             </div>
-        </div>
+            <!--        </div>-->
 
-        <div class="content2" style="display: none">
-            <div style="width: 100%;height: 100%;">
 
-                <div class="topContent2">
-                    <div style="display: flex;width: 100%;height: 8.132%;">
-                        <div class="topContentTitle2">
-                            <span style="height: 100%;text-align: center;align-self: center">RGV</span>
-                        </div>
-                    </div>
 
-                    <div class="topContentC2">
-                        <table class="table1">
-                            <thead>
-                            <tr>
-                                <td rowspan="2" style="width: 12.5%;">机种</td>
-                                <td rowspan="2" style="width: 12.8%">线别</td>
-                                <td colspan="2" style="width: 23.6%">发料量（盘）</td>
-                                <td colspan="2" style="width: 23.6%">达成率</td>
-                                <td colspan="2" style="width: 23.6%">机故率</td>
-                            </tr>
-                            <tr>
-                                <td>投入</td>
-                                <td>产出</td>
-                                <td>目标</td>
-                                <td>实际</td>
-                                <td>目标</td>
-                                <td>实际</td>
-                            </tr>
-                            </thead>
-                            <tbody class="errorNum">
-                            <tr>
-                                <td>D54</td>
-                                <td>RGV</td>
-                                <td>354</td>
-                                <td style="background-color: yellow">305</td>
-                                <td>95%</td>
-                                <td style="background-color: yellow">88.41%</td>
-                                <td>5%</td>
-                                <td>0.0%</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
+            <script th:src="@{/js/zturn.js}" src="../static/js/zturn.js"></script>
 
-                    <div class="topContentB2">
-                        <div class="topContentB21">
-                            <div class="divP">
-                                <p style="text-align: center;align-self: center;width: 100%">发料量</p>
-                            </div>
-                            <div style="width: 100%;height:80%;display: flex">
-                                <p style="text-align: center;align-self: center;width: 100%;height: 100%" id="faLiaoLiang"></p>
-                            </div>
-                        </div>
-                        <div class="topContentB22">
+            <script th:src="@{/js/jquery-3.5.1.min.js}" src="../static/js/jquery-3.5.1.min.js"></script>
+            <script th:src="@{/layui/layui.js}" src="../static/layui/layui.js"></script>
+            <script th:src="@{/js/echarts.js}" src="../static/js/echarts.js"></script>
+            <script th:src="@{/js/SkasAfs.js}" src="../static/js/SkasAfs.js"></script>
+            <script type="text/javascript" class="ajaxJs">
+                var aa = new zturn({
+                    id: "zturn",
+                    opacity: 0.5,
+                    width: 200,
+                    Awidth: 9,
+                    scale: 0.9,
+                    auto: true,//是否轮播 默认5000
+                    turning: 2000//轮播时长
+                })
 
-                        </div>
-                        <div class="topContentB23">
+            </script>
+            <script type="text/javascript" th:inline="javascript" >
+                (function () {
+                    sysbar();
+                    syspie();
+                    sysline();
+                })();
+                function sysbar() {
+                    var skas_afsDataJson=[[${skas_afsDataJson}]];
+                    var  sysbarData= JSON.parse(skas_afsDataJson);
+                    var sysbarxList=[];
+                    var sysbarTarList=[];
+                    var sysbarActionList=[];
+                    for (let i = 0; i < sysbarData.length; i++) {
+                        sysbarxList.push(sysbarData[i].proudct);
+                        sysbarTarList.push(sysbarData[i].storeIssueTarget);
+                        sysbarActionList.push(sysbarData[i].storeIssueAction);
+                    }
+                    var chartDom2 = document.getElementById('keyData');
+                    var myChart2 = echarts.init(chartDom2);
 
-                        </div>
-                    </div>
-                </div>
+                    var option2 = {
+                        grid:{
+                            top:'20%',//距上边距
+                            left:'2%',//距离左边距
+                            right:'2%',//距离右边距
+                            bottom:'5%',//距离下边距
+                            containLabel:true
+                        },
+                        legend: {
 
-                <div style="margin-top: 0.76vh" class="topContent2">
-                    <div style="display: flex;width: 100%;height: 8.132%;">
-                        <div class="topContentTitle2">
-                            <span style="height: 100%;text-align: center;align-self: center">AGV</span>
-                        </div>
-                    </div>
 
-                    <div class="topContentC2">
+                            right:'10',
+                            itemWidth:35,
 
-                    </div>
+                            itemHeight:13,
+                            itemGap:50,
+                            textStyle:{
+                                fontFamily: 'PingFangSC-Regular',
+                                fontSize: 14,
+                                color: 'rgba(0,0,0,0.85)',
+                            },
+                        },
+                        tooltip: {},
+                        // dataset: {
+                        //     dimensions: ['product', '计划', '实际'],
+                        //     source: [
+                        //         {product: 'RGV', '计划': 370, '实际': 325 },
+                        //         {product: 'AGV', '计划': 21, '实际': 20,},
+                        //         {product: '暂存仓', '计划': 20, '实际': 18},
+                        //         {product: 'FAS', '计划': 325, '实际': 258}
+                        //     ]
+                        // },
+                        xAxis: {
+                            type: 'category',
+                            data:sysbarxList,
+                            axisTick: {
+                                show: false
+                            },
+                            axisLabel:{
+                                textStylee:{
+                                    fontFamily: 'PingFangSC-Regular',
+                                    fontSize: 14,
+                                    color: 'rgba(0,0,0,0.85)',
+                                    letterSpacing: -0.04,
+                                },
+                            },
 
-                    <div class="topContentB2">
-                        <div class="topContentB21">
+                        },
+                        yAxis: {
+                            axisLabel:{
+                                textStyle:{
+                                    fontFamily: 'PingFangSC-Regular',
+                                    fontSize: 14,
+                                    color: '#000000',
+                                    letterSpacing: -1.48,
+                                    lineHeight: 20,
+                                },
+                                interval:0,
+                            },
 
-                        </div>
-                        <div class="topContentB22">
+                            type: 'value',
+                            axisTick: {
+                                show: false
+                            },
+                            axisLine: {
+                                show: false
+                            },
 
-                        </div>
-                        <div class="topContentB23">
 
-                        </div>
-                    </div>
-                </div>
 
-                <div style="margin-top: 0.76vh" class="bottomContent2">
-                    <div style="display: flex;width: 100%;height: 5.165%;">
-                        <div class="bottomContentTitle2">
-                            <span style="height: 100%;text-align: center;align-self: center">暂存仓</span>
-                        </div>
-                    </div>
+                        },
 
-                    <div class="bottomContentC2">
+                        series: [
+                            {
+                                name:'计划',
+                                type: 'bar',
+                                data:sysbarTarList,
+                                itemStyle: {
 
-                    </div>
+                                    normal:{
+                                        color: new echarts.graphic.LinearGradient(
+                                            0, 0, 0, 1,
+                                            [
+                                                {offset: 0, color: '#06B5FA'},
+                                                {offset: 0.5, color: '#6DCEF4'},
+                                                {offset: 1, color: '#CEEEF3'}
+                                            ]
+                                        ),
+                                        label:{
+                                            show:true,
+                                            position: 'top',
+                                            textStyle:{
+                                                fontFamily: 'PingFangSC-Regular',
+                                                fontSize: 12,
+                                                letterSpacing: 0,
+                                            }
+                                        }
+                                    }
 
-                    <div class="bottomContentB2">
 
-                    </div>
-                </div>
+                                },
+                            },
+                            {
+                                name:'实际',
+                                type: 'bar',
+                                data:sysbarActionList,
+                                itemStyle: {
 
-                <div style="margin-top: 0.76vh" class="bottomContent2">
-                    <div style="display: flex;width: 100%;height: 5.165%;">
-                        <div class="bottomContentTitle2">
-                            <span style="height: 100%;text-align: center;align-self: center">AFS</span>
-                        </div>
-                    </div>
+                                    normal:{
+                                        color: new echarts.graphic.LinearGradient(
+                                            0, 0, 0, 1,
+                                            [
+                                                {offset: 0, color: '#03E22C'},
+                                                {offset: 0.5, color: '#5CE876'},
+                                                {offset: 1, color: '#A9F2AC'}
+                                            ]
+                                        ),
+                                        label:{
+                                            show:true,
+                                            position: 'top',
+                                            textStyle:{
+                                                fontFamily: 'PingFangSC-Regular',
+                                                fontSize: 12,
+                                                letterSpacing: 0,
+                                            }
+                                        }
+                                    }
 
-                    <div class="bottomContentC2">
+                                },
+                            },
 
-                    </div>
+                        ]
+                    };
+                    myChart2.setOption(option2,true);
+                    window.addEventListener("resize",function () {
+                        myChart2.resize();
+                    });
+                    myChart2.clear();
+                    myChart2.setOption(option2,true);
 
-                    <div class="bottomContentB2">
+                }
 
-                    </div>
-                </div>
+                function syspie() {
+                    var aGV_AFSPieStateData=[[${aGV_AFSPieStateJson}]];
+                    var syspieData= JSON.parse(aGV_AFSPieStateData);
+                    var chartDom = document.getElementById('doughnut');
+                    var myChart = echarts.init(chartDom);
+                    var option = {
+                        title:{
+                            show:true,
+                            text:syspieData.machineRate+'%',
+                            x:'center',
+                            y:'center',
+                            textStyle: {
+                                fontSize: '20',
+                                fontFamily:'topContentLBottomR',
+                                letterSpacing: '0.71',
+                                color:'#5FB900',
+                                fontWeight: 'normal'
+                            }
+                        },
+                        tooltip: {
+                            trigger: 'item',
+                            formatter: "{d}%",
+                            show:false
+                        },
+                        legend: {
+                            orient: 'vertical',
+                            x: 'left',
+                            show:false
+                        },
+                        series: [ {
+                            center: ['50%', '50%'],
+                            name:'',
+                            type:'pie',
+                            radius: ['70%', '85%'],
+                            avoidLabelOverlap: true,
+                            hoverAnimation:false,
 
-            </div>
+                            label: {
+                                normal: {
+                                    show: false,
+                                    position: 'center'
+                                },
+                                emphasis: {
+                                    show: false
+                                }
+                            },
+                            labelLine: {
+                                normal: {
+                                    show: false
+                                }
+                            },
+                            data: [ {
+                                value:(syspieData.machineWarning+syspieData.machineHealth),
+                                name:'',
+                                itemStyle: {
+                                    normal: {
+                                        color: "#5FB900",
+                                    }
+                                }
+                            },{
+                                value:(syspieData.machineSum-syspieData.machineLostConnection)-(syspieData.machineWarning+syspieData.machineHealth),
+                                name:'',
+                                itemStyle: {
+                                    normal: {
+                                        color: "#708FBB7a",
+                                    }
+                                }
+                            }]
+                        }]
+                    };
+
+                    myChart.setOption(option,true);
+                    window.addEventListener("resize",function () {
+                        myChart.resize();
+                    });
+                    myChart.clear();
+                    myChart.setOption(option,true);
+                }
+
+                function sysline() {
+                    var saksafssyslineData=[[${afsLineDataJson}]]
+
+                    var syslineData=JSON.parse(saksafssyslineData);
+                    var syslinedateTime=[];
+                    var syslinemachineRate=[];
+                    for (let i = 0; i < syslineData.length; i++) {
+                        syslinedateTime.push(syslineData[i].dateTime);
+                        syslinemachineRate.push(syslineData[i].machineRate);
+                    }
+
+                    var chartDom3 = document.getElementById('jiGu');
+                    var myChart3 = echarts.init(chartDom3);
+                    var option3 = {
+                        grid:{
+                            top:'20%',//距上边距
+                            left:'2%',//距离左边距
+                            right:'2%',//距离右边距
+                            bottom:'5%',//距离下边距
+                            containLabel:true
+                        },
+                        xAxis: {
+                            type: 'category',
+                            data: syslinedateTime,
+
+                            axisTick: {
+                                show: false
+                            },
+                            axisLabel:{
+                                textStyle:{
+                                    fontFamily: 'PingFangSC-Regular',
+                                    fontSize: 14,
+                                    color: 'rgba(0,0,0,0.85)',
+                                    letterSpacing: 0.08,
+                                },
+                            },
+
+                        },
+                        yAxis: [
+
+
+                            {
+                                type: 'value',
+
+                                axisTick: {
+                                    show: false
+                                },
+                                axisLine: {
+                                    show: false
+                                },
+                                axisLabel: {
+                                    show: true,
+                                    interval: 'auto',
+                                    formatter: '{value} %',
+                                    textStyle:{
+                                        fontFamily: 'PingFangSC-Regular',
+                                        fontSize: 14,
+                                        color: 'rgba(0,0,0,0.85)',
+                                        letterSpacing: 0.08,
+                                    },
+                                },
+                                show: true
+                            }
+                        ],
+                        series: [{
+                            data: syslinemachineRate,
+                            smooth: true,
+
+                            symbol: 'circle', //折线点设置为实心点
+                            // symbolSize: 6, //折线点的大小
+                            type: 'line',
+
+                            itemStyle: {
+
+                                normal: {
+                                    label : {
+                                        show: true,
+
+                                        formatter: '{c}%',
+                                        textStyle: {
+                                            fontFamily: 'PingFangSC-Regular',
+                                            fontSize: 12,
+                                            color: 'rgba(0,0,0,0.85)',
+                                            letterSpacing: 0.06,
+                                        }
+                                    },
+                                    color:'#0AA200',
+                                    lineStyle:{
+                                        color:'#0AA200',
+                                    },
+
+                                },
+                            },
+                            textStyle:{
+                                fontFamily: 'PingFangSC-Regular',
+                                fontSize: 12,
+                                color: 'rgba(0,0,0,0.85)',
+                                letterSpacing: 0.06,
+                            },
+                        }]
+                    }
+                    myChart3.setOption(option3,true);
+                    window.addEventListener("resize",function () {
+                        myChart3.resize();
+                    });
+                    myChart3.clear();
+                    myChart3.setOption(option3,true);
+
+
+                }
+            </script>
         </div>
 
     </div>
+
 </div>
 
 
 
 
+
+<!--<script th:inline="javascript">-->
+
+<!--    //設備狀態信息-->
+<!--    var data = [[${AGV_AFSState}]];-->
+<!--    //異常信息-->
+<!--    var errorMsg = [[${ExceptionDescribe}]];-->
+<!--    //設備關鍵指標-->
+<!--    var zhiBiao = [[${skas_afsDataJson}]];-->
+<!--    //機故率-->
+<!--    var jiGu = [[${afsLineDataJson}]];-->
+
+<!--    function getMachineRate(){-->
+
+<!--        return data.machineRate;-->
+<!--    }-->
+
+<!--    function getZhiBiaoData(){-->
+
+<!--        return zhiBiao;-->
+<!--    }-->
+
+<!--    function getJiGuData(){-->
+
+<!--        return jiGu;-->
+<!--    }-->
+
+
+
+<!--</script>-->
+<script th:src="@{/js/zturn.js}" src="../static/js/zturn.js"></script>
+
 <script th:src="@{/js/jquery-3.5.1.min.js}" src="../static/js/jquery-3.5.1.min.js"></script>
 <script th:src="@{/layui/layui.js}" src="../static/layui/layui.js"></script>
 <script th:src="@{/js/echarts.js}" src="../static/js/echarts.js"></script>
 <script th:src="@{/js/SkasAfs.js}" src="../static/js/SkasAfs.js"></script>
-<script th:src="@{/js/zturn.js}" src="../static/js/zturn.js"></script>
-
-
-<script type="text/javascript">
+<script type="text/javascript" class="ajaxJs">
     var aa = new zturn({
         id: "zturn",
         opacity: 0.5,
         width: 200,
-        Awidth: 7,
+        Awidth: 9,
         scale: 0.9,
         auto: true,//是否轮播 默认5000
         turning: 2000//轮播时长
     })
 
 </script>
+
 </body>
+
+<!--<script type="text/javascript" th:inline="javascript" >-->
+<!--    (function () {-->
+<!--        sysbar();-->
+<!--        syspie();-->
+<!--        sysline();-->
+<!--    })();-->
+<!--    function sysbar() {-->
+<!--        var skas_afsDataJson=[[${skas_afsDataJson}]];-->
+<!--        var  sysbarData= JSON.parse(skas_afsDataJson);-->
+<!--        var sysbarxList=[];-->
+<!--        var sysbarTarList=[];-->
+<!--        var sysbarActionList=[];-->
+<!--        for (let i = 0; i < sysbarData.length; i++) {-->
+<!--            sysbarxList.push(sysbarData[i].proudct);-->
+<!--            sysbarTarList.push(sysbarData[i].storeIssueTarget);-->
+<!--            sysbarActionList.push(sysbarData[i].storeIssueAction);-->
+<!--        }-->
+<!--        var chartDom2 = document.getElementById('keyData');-->
+<!--        var myChart2 = echarts.init(chartDom2);-->
+
+<!--        var option2 = {-->
+<!--            grid:{-->
+<!--                top:'20%',//距上边距-->
+<!--                left:'2%',//距离左边距-->
+<!--                right:'2%',//距离右边距-->
+<!--                bottom:'5%',//距离下边距-->
+<!--                containLabel:true-->
+<!--            },-->
+<!--            legend: {-->
+
+
+<!--                right:'10',-->
+<!--                itemWidth:35,-->
+
+<!--                itemHeight:13,-->
+<!--                itemGap:50,-->
+<!--                textStyle:{-->
+<!--                    fontFamily: 'PingFangSC-Regular',-->
+<!--                    fontSize: 14,-->
+<!--                    color: 'rgba(0,0,0,0.85)',-->
+<!--                },-->
+<!--            },-->
+<!--            tooltip: {},-->
+<!--            // dataset: {-->
+<!--            //     dimensions: ['product', '计划', '实际'],-->
+<!--            //     source: [-->
+<!--            //         {product: 'RGV', '计划': 370, '实际': 325 },-->
+<!--            //         {product: 'AGV', '计划': 21, '实际': 20,},-->
+<!--            //         {product: '暂存仓', '计划': 20, '实际': 18},-->
+<!--            //         {product: 'FAS', '计划': 325, '实际': 258}-->
+<!--            //     ]-->
+<!--            // },-->
+<!--            xAxis: {-->
+<!--                type: 'category',-->
+<!--                data:sysbarxList,-->
+<!--                axisTick: {-->
+<!--                    show: false-->
+<!--                },-->
+<!--                axisLabel:{-->
+<!--                    textStylee:{-->
+<!--                        fontFamily: 'PingFangSC-Regular',-->
+<!--                        fontSize: 14,-->
+<!--                        color: 'rgba(0,0,0,0.85)',-->
+<!--                        letterSpacing: -0.04,-->
+<!--                    },-->
+<!--                },-->
+
+<!--            },-->
+<!--            yAxis: {-->
+<!--                axisLabel:{-->
+<!--                    textStyle:{-->
+<!--                        fontFamily: 'PingFangSC-Regular',-->
+<!--                        fontSize: 14,-->
+<!--                        color: '#000000',-->
+<!--                        letterSpacing: -1.48,-->
+<!--                        lineHeight: 20,-->
+<!--                    },-->
+<!--                    interval:0,-->
+<!--                },-->
+
+<!--                type: 'value',-->
+<!--                axisTick: {-->
+<!--                    show: false-->
+<!--                },-->
+<!--                axisLine: {-->
+<!--                    show: false-->
+<!--                },-->
+
+
+
+<!--            },-->
+
+<!--            series: [-->
+<!--                {-->
+<!--                    name:'计划',-->
+<!--                    type: 'bar',-->
+<!--                    data:sysbarTarList,-->
+<!--                    itemStyle: {-->
+
+<!--                        normal:{-->
+<!--                            color: new echarts.graphic.LinearGradient(-->
+<!--                                0, 0, 0, 1,-->
+<!--                                [-->
+<!--                                    {offset: 0, color: '#06B5FA'},-->
+<!--                                    {offset: 0.5, color: '#6DCEF4'},-->
+<!--                                    {offset: 1, color: '#CEEEF3'}-->
+<!--                                ]-->
+<!--                            ),-->
+<!--                            label:{-->
+<!--                                show:true,-->
+<!--                                position: 'top',-->
+<!--                                textStyle:{-->
+<!--                                    fontFamily: 'PingFangSC-Regular',-->
+<!--                                    fontSize: 12,-->
+<!--                                    letterSpacing: 0,-->
+<!--                                }-->
+<!--                            }-->
+<!--                        }-->
+
+
+<!--                    },-->
+<!--                },-->
+<!--                {-->
+<!--                    name:'实际',-->
+<!--                    type: 'bar',-->
+<!--                    data:sysbarActionList,-->
+<!--                    itemStyle: {-->
+
+<!--                        normal:{-->
+<!--                            color: new echarts.graphic.LinearGradient(-->
+<!--                                0, 0, 0, 1,-->
+<!--                                [-->
+<!--                                    {offset: 0, color: '#03E22C'},-->
+<!--                                    {offset: 0.5, color: '#5CE876'},-->
+<!--                                    {offset: 1, color: '#A9F2AC'}-->
+<!--                                ]-->
+<!--                            ),-->
+<!--                            label:{-->
+<!--                                show:true,-->
+<!--                                position: 'top',-->
+<!--                                textStyle:{-->
+<!--                                    fontFamily: 'PingFangSC-Regular',-->
+<!--                                    fontSize: 12,-->
+<!--                                    letterSpacing: 0,-->
+<!--                                }-->
+<!--                            }-->
+<!--                        }-->
+
+<!--                    },-->
+<!--                },-->
+
+<!--            ]-->
+<!--        };-->
+<!--        myChart2.setOption(option2,true);-->
+<!--        window.addEventListener("resize",function () {-->
+<!--            myChart2.resize();-->
+<!--        });-->
+<!--        myChart2.clear();-->
+<!--        myChart2.setOption(option2,true);-->
+
+<!--    }-->
+
+<!--    function syspie() {-->
+<!--        var aGV_AFSPieStateData=[[${aGV_AFSPieStateJson}]];-->
+<!--        var syspieData= JSON.parse(aGV_AFSPieStateData);-->
+<!--        var chartDom = document.getElementById('doughnut');-->
+<!--        var myChart = echarts.init(chartDom);-->
+<!--        var option = {-->
+<!--            title:{-->
+<!--                show:true,-->
+<!--                text:syspieData.machineRate+'%',-->
+<!--                x:'center',-->
+<!--                y:'center',-->
+<!--                textStyle: {-->
+<!--                    fontSize: '20',-->
+<!--                    fontFamily:'topContentLBottomR',-->
+<!--                    letterSpacing: '0.71',-->
+<!--                    color:'#5FB900',-->
+<!--                    fontWeight: 'normal'-->
+<!--                }-->
+<!--            },-->
+<!--            tooltip: {-->
+<!--                trigger: 'item',-->
+<!--                formatter: "{d}%",-->
+<!--                show:false-->
+<!--            },-->
+<!--            legend: {-->
+<!--                orient: 'vertical',-->
+<!--                x: 'left',-->
+<!--                show:false-->
+<!--            },-->
+<!--            series: [ {-->
+<!--                center: ['50%', '50%'],-->
+<!--                name:'',-->
+<!--                type:'pie',-->
+<!--                radius: ['70%', '85%'],-->
+<!--                avoidLabelOverlap: true,-->
+<!--                hoverAnimation:false,-->
+
+<!--                label: {-->
+<!--                    normal: {-->
+<!--                        show: false,-->
+<!--                        position: 'center'-->
+<!--                    },-->
+<!--                    emphasis: {-->
+<!--                        show: false-->
+<!--                    }-->
+<!--                },-->
+<!--                labelLine: {-->
+<!--                    normal: {-->
+<!--                        show: false-->
+<!--                    }-->
+<!--                },-->
+<!--                data: [ {-->
+<!--                    value:(syspieData.machineWarning+syspieData.machineHealth),-->
+<!--                    name:'',-->
+<!--                    itemStyle: {-->
+<!--                        normal: {-->
+<!--                            color: "#5FB900",-->
+<!--                        }-->
+<!--                    }-->
+<!--                },{-->
+<!--                    value:(syspieData.machineSum-syspieData.machineLostConnection)-(syspieData.machineWarning+syspieData.machineHealth),-->
+<!--                    name:'',-->
+<!--                    itemStyle: {-->
+<!--                        normal: {-->
+<!--                            color: "#708FBB7a",-->
+<!--                        }-->
+<!--                    }-->
+<!--                }]-->
+<!--            }]-->
+<!--        };-->
+
+<!--        myChart.setOption(option,true);-->
+<!--        window.addEventListener("resize",function () {-->
+<!--            myChart.resize();-->
+<!--        });-->
+<!--        myChart.clear();-->
+<!--        myChart.setOption(option,true);-->
+<!--    }-->
+
+<!--    function sysline() {-->
+<!--        var saksafssyslineData=[[${afsLineDataJson}]]-->
+
+<!--        var syslineData=JSON.parse(saksafssyslineData);-->
+<!--        var syslinedateTime=[];-->
+<!--        var syslinemachineRate=[];-->
+<!--        for (let i = 0; i < syslineData.length; i++) {-->
+<!--            syslinedateTime.push(syslineData[i].dateTime);-->
+<!--            syslinemachineRate.push(syslineData[i].machineRate);-->
+<!--        }-->
+
+<!--        var chartDom3 = document.getElementById('jiGu');-->
+<!--        var myChart3 = echarts.init(chartDom3);-->
+<!--        var option3 = {-->
+<!--            grid:{-->
+<!--                top:'20%',//距上边距-->
+<!--                left:'2%',//距离左边距-->
+<!--                right:'2%',//距离右边距-->
+<!--                bottom:'5%',//距离下边距-->
+<!--                containLabel:true-->
+<!--            },-->
+<!--            xAxis: {-->
+<!--                type: 'category',-->
+<!--                data: syslinedateTime,-->
+
+<!--                axisTick: {-->
+<!--                    show: false-->
+<!--                },-->
+<!--                axisLabel:{-->
+<!--                    textStyle:{-->
+<!--                        fontFamily: 'PingFangSC-Regular',-->
+<!--                        fontSize: 14,-->
+<!--                        color: 'rgba(0,0,0,0.85)',-->
+<!--                        letterSpacing: 0.08,-->
+<!--                    },-->
+<!--                },-->
+
+<!--            },-->
+<!--            yAxis: [-->
+
+
+<!--                {-->
+<!--                    type: 'value',-->
+
+<!--                    axisTick: {-->
+<!--                        show: false-->
+<!--                    },-->
+<!--                    axisLine: {-->
+<!--                        show: false-->
+<!--                    },-->
+<!--                    axisLabel: {-->
+<!--                        show: true,-->
+<!--                        interval: 'auto',-->
+<!--                        formatter: '{value} %',-->
+<!--                        textStyle:{-->
+<!--                            fontFamily: 'PingFangSC-Regular',-->
+<!--                            fontSize: 14,-->
+<!--                            color: 'rgba(0,0,0,0.85)',-->
+<!--                            letterSpacing: 0.08,-->
+<!--                        },-->
+<!--                    },-->
+<!--                    show: true-->
+<!--                }-->
+<!--            ],-->
+<!--            series: [{-->
+<!--                data: syslinemachineRate,-->
+<!--                smooth: true,-->
+
+<!--                symbol: 'circle', //折线点设置为实心点-->
+<!--                // symbolSize: 6, //折线点的大小-->
+<!--                type: 'line',-->
+
+<!--                itemStyle: {-->
+
+<!--                    normal: {-->
+<!--                        label : {-->
+<!--                            show: true,-->
+
+<!--                            formatter: '{c}%',-->
+<!--                            textStyle: {-->
+<!--                                fontFamily: 'PingFangSC-Regular',-->
+<!--                                fontSize: 12,-->
+<!--                                color: 'rgba(0,0,0,0.85)',-->
+<!--                                letterSpacing: 0.06,-->
+<!--                            }-->
+<!--                        },-->
+<!--                        color:'#0AA200',-->
+<!--                        lineStyle:{-->
+<!--                            color:'#0AA200',-->
+<!--                        },-->
+
+<!--                    },-->
+<!--                },-->
+<!--                textStyle:{-->
+<!--                    fontFamily: 'PingFangSC-Regular',-->
+<!--                    fontSize: 12,-->
+<!--                    color: 'rgba(0,0,0,0.85)',-->
+<!--                    letterSpacing: 0.06,-->
+<!--                },-->
+<!--            }]-->
+<!--        }-->
+<!--        myChart3.setOption(option3,true);-->
+<!--        window.addEventListener("resize",function () {-->
+<!--            myChart3.resize();-->
+<!--        });-->
+<!--        myChart3.clear();-->
+<!--        myChart3.setOption(option3,true);-->
+
+
+<!--    }-->
+<!--</script>-->
+
+<!--<script type="text/javascript" class="ajaxJs">-->
+<!--    var aa = new zturn({-->
+<!--        id: "zturn",-->
+<!--        opacity: 0.5,-->
+<!--        width: 200,-->
+<!--        Awidth: 9,-->
+<!--        scale: 0.9,-->
+<!--        auto: true,//是否轮播 默认5000-->
+<!--        turning: 2000//轮播时长-->
+<!--    })-->
+
+<!--</script>-->
+<script type="text/javascript" th:inline="javascript">
+
+    setInterval(function () {
+
+        // 装载局部刷新返回的页面
+        $('#content_demo').load('saksafsSystabData');
+
+
+    },30*1000);
+</script>
 </html>

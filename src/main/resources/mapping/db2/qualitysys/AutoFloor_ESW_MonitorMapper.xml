@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fox.qualitysys.mapper.AutoFloor_ESW_MonitorMapper" >
+  <resultMap id="BaseResultMap" type="com.fox.qualitysys.entity.AutoFloor_ESW_Monitor" >
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="AREA" property="area" jdbcType="VARCHAR" />
+    <result column="FLOOR" property="floor" jdbcType="VARCHAR" />
+    <result column="PRODUCT" property="product" jdbcType="VARCHAR" />
+    <result column="LINENAME" property="linename" jdbcType="VARCHAR" />
+    <result column="WORKSTATION" property="workstation" jdbcType="VARCHAR" />
+    <result column="MACHINETYPE" property="machinetype" jdbcType="VARCHAR" />
+    <result column="INPUTTIME" property="inputtime" jdbcType="TIMESTAMP" />
+    <result column="UPDATETIME" property="updatetime" jdbcType="TIMESTAMP" />
+    <result column="P1" property="p1" jdbcType="VARCHAR" />
+    <result column="P2" property="p2" jdbcType="VARCHAR" />
+    <result column="P3" property="p3" jdbcType="VARCHAR" />
+    <result column="P4" property="p4" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, AREA, FLOOR, PRODUCT, LINENAME, WORKSTATION, MACHINETYPE, INPUTTIME, UPDATETIME, 
+    P1, P2, P3, P4
+  </sql>
+  <select id="selectESWMonitor" resultMap="BaseResultMap" >
+    <![CDATA[
+            SELECT LINENAME,WORKSTATION,MACHINETYPE,UPDATETIME ,sysdate FROM AUTOFLOOR_ESW_MONITOR
+            WHERE FLOOR=#{floorname}
+            and UPDATETIME >= sysdate-3/24/60
+            and LINENAME like #{linename}||'%'
+    ]]>
+  </select>
+
+  <select id="selectUNESWMonitor" resultMap="BaseResultMap" >
+    <![CDATA[
+            SELECT LINENAME,WORKSTATION,MACHINETYPE,UPDATETIME ,sysdate FROM AUTOFLOOR_ESW_MONITOR
+            WHERE FLOOR=#{floorname}
+            and UPDATETIME < sysdate-3/24/60
+            and LINENAME like #{linename}||'%'
+     ]]>
+  </select>
+</mapper>

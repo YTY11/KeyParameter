@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fox.skasafs_sys.mapper.AGV_StateMapper" >
+  <resultMap id="BaseResultMap" type="com.fox.skasafs_sys.entity.AGV_State" >
+    <result column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="AGV" property="agv" jdbcType="VARCHAR" />
+    <result column="RFID" property="rfid" jdbcType="VARCHAR" />
+    <result column="TASK" property="task" jdbcType="VARCHAR" />
+    <result column="RUNSTATE" property="runstate" jdbcType="VARCHAR" />
+    <result column="SPEED" property="speed" jdbcType="VARCHAR" />
+    <result column="ABNORMAL" property="abnormal" jdbcType="VARCHAR" />
+    <result column="BATTERYSTATE" property="batterystate" jdbcType="VARCHAR" />
+    <result column="STATE" property="state" jdbcType="VARCHAR" />
+    <result column="NETWORK" property="network" jdbcType="VARCHAR" />
+    <result column="WORKSTATION" property="workstation" jdbcType="VARCHAR" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="FLOOR" property="floor" jdbcType="VARCHAR" />
+  </resultMap>
+   <select id="selectAGVState" resultMap="BaseResultMap">
+    <![CDATA[
+     SELECT * FROM( SELECT * FROM AGV_STATE
+     WHERE WORKSTATION='KT-AFS'
+     AND UPDATE_TIME>= TO_DATE('${StartDate}','YYYY-MM-DD HH24:MI:SS')
+     AND UPDATE_TIME< TO_DATE('${EndDate}','YYYY-MM-DD HH24:MI:SS'))
+        WHERE rownum=1
+     ]]>
+   </select>
+</mapper>

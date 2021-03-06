@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fox.testsys.mapper.AutoFloor_CCDDataMapper" >
+  <resultMap id="BaseResultMap" type="com.fox.testsys.entity.AutoFloor_CCDData" >
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="AREA" property="area" jdbcType="VARCHAR" />
+    <result column="FLOOR" property="floor" jdbcType="VARCHAR" />
+    <result column="PRODUCT" property="product" jdbcType="VARCHAR" />
+    <result column="LINENAME" property="linename" jdbcType="VARCHAR" />
+    <result column="EQUIPMENTID" property="equipmentid" jdbcType="VARCHAR" />
+    <result column="RUNSTATE" property="runstate" jdbcType="VARCHAR" />
+    <result column="MODULEACTION" property="moduleaction" jdbcType="VARCHAR" />
+    <result column="SN" property="sn" jdbcType="VARCHAR" />
+    <result column="TESTRESULT" property="testresult" jdbcType="VARCHAR" />
+    <result column="SCANRESULT" property="scanresult" jdbcType="VARCHAR" />
+    <result column="ERRORCODE" property="errorcode" jdbcType="VARCHAR" />
+    <result column="ERRORDESC" property="errordesc" jdbcType="VARCHAR" />
+    <result column="SENSORSTATE" property="sensorstate" jdbcType="VARCHAR" />
+    <result column="INPUT_TIME" property="inputTime" jdbcType="TIMESTAMP" />
+    <result column="ERRORSTARTTIME" property="errorstarttime" jdbcType="TIMESTAMP" />
+    <result column="ERRORENDTIME" property="errorendtime" jdbcType="TIMESTAMP" />
+    <result column="P3" property="p3" jdbcType="VARCHAR" />
+    <result column="P4" property="p4" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, AREA, FLOOR, PRODUCT, LINENAME, EQUIPMENTID, RUNSTATE, MODULEACTION, SN, TESTRESULT, 
+    SCANRESULT, ERRORCODE, ERRORDESC, SENSORSTATE, INPUT_TIME, ERRORSTARTTIME, ERRORENDTIME, 
+    P3, P4
+  </sql>
+  <select id="selectCCDDATATime" resultMap="BaseResultMap" >
+    <![CDATA[
+    SELECT* FROM AUTOFLOOR_CCDDATA
+    WHERE ERRORSTARTTIME>=TO_DATE('${StartDate}','YYYY/MM/DD HH24:MI:SS')
+    and ERRORENDTIME<TO_DATE('${EndDate}','YYYY/MM/DD HH24:MI:SS')
+    and LINENAME LIKE #{LineName}||'%'
+    AND ERRORENDTIME-ERRORSTARTTIME<1
+    and ERRORCode !='None'
+    ]]>
+  </select>
+
+  <select id="selectCCDDATAUnMessage" resultMap="BaseResultMap" >
+    <![CDATA[
+      SELECT * FROM(
+      SELECT * FROM AUTOFLOOR_CCDDATA
+      WHERE ERRORSTARTTIME>=TO_DATE('${StartDate}','YYYY/MM/DD HH24:MI:SS')
+      and ERRORENDTIME<TO_DATE('${EndDate}','YYYY/MM/DD HH24:MI:SS')
+      and LINENAME LIKE #{LineName}||'%'
+      and ERRORCode!= 'None'
+      AND ERRORENDTIME-ERRORSTARTTIME<1
+      ORDER BY ERRORSTARTTIME asc,ERRORENDTIME desc)
+      WHERE rownum=1
+
+    ]]>
+  </select>
+
+
+
+</mapper>

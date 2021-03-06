@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fox.qualitysys.mapper.AutoFloor_Key_CheCkUpMapper" >
+  <resultMap id="BaseResultMap" type="com.fox.qualitysys.entity.AutoFloor_Key_CheCkUp" >
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="PRODUCT" property="product" jdbcType="VARCHAR" />
+    <result column="FLOOR" property="floor" jdbcType="VARCHAR" />
+    <result column="LINENAME" property="linename" jdbcType="VARCHAR" />
+    <result column="WORKSTATION" property="workstation" jdbcType="VARCHAR" />
+    <result column="MACHINETYPE" property="machinetype" jdbcType="VARCHAR" />
+    <result column="KEY_PMS_EN" property="keyPmsEn" jdbcType="VARCHAR" />
+    <result column="KEY_PMS_CH" property="keyPmsCh" jdbcType="VARCHAR" />
+    <result column="SPEC" property="spec" jdbcType="VARCHAR" />
+    <result column="SPEC_MIN" property="specMin" jdbcType="VARCHAR" />
+    <result column="SPEC_MAX" property="specMax" jdbcType="VARCHAR" />
+    <result column="KEY_VAL" property="keyVal" jdbcType="VARCHAR" />
+    <result column="CHECK_RESULT" property="checkResult" jdbcType="VARCHAR" />
+    <result column="TESTTIME" property="testtime" jdbcType="VARCHAR" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="COMPONENTTYPE" property="comPonentType" jdbcType="VARCHAR" />
+    <result column="REPAIR_END_TIME" property="RepairEndTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, PRODUCT, FLOOR, LINENAME, WORKSTATION, MACHINETYPE, KEY_PMS_EN, KEY_PMS_CH, SPEC, 
+    SPEC_MIN, SPEC_MAX, KEY_VAL, CHECK_RESULT, TESTTIME, UPDATE_TIME
+  </sql>
+  <select id="selectUNKeyMessage" resultMap="BaseResultMap"  >
+    <![CDATA[
+      SELECT * FROM AUTOFLOOR_KEY_CHECKUP
+      WHERE  TO_DATE (TESTTIME, 'yyyy/MM/dd hh24:mi:ss') >=TO_DATE ('${startdate}', 'yyyy/MM/dd hh24:mi:ss')
+      and TO_DATE (TESTTIME, 'yyyy/MM/dd hh24:mi:ss') < TO_DATE ('${enddate}', 'yyyy/MM/dd hh24:mi:ss')
+      and floor=#{floor}
+      AND MACHINETYPE !='VISRDO'
+
+    ]]>
+  </select>
+
+  <select id="selectUNQuality" resultMap="BaseResultMap"  >
+    <![CDATA[
+      SELECT LineName,WORKSTATION,Check_Result FROM AUTOFLOOR_KEY_CHECKUP
+      WHERE  TO_DATE (TESTTIME, 'yyyy/MM/dd hh24:mi:ss') >=TO_DATE ('${startdate}', 'yyyy/MM/dd hh24:mi:ss')
+      and TO_DATE (TESTTIME, 'yyyy/MM/dd hh24:mi:ss') < TO_DATE ('${enddate}', 'yyyy/MM/dd hh24:mi:ss')
+      and floor=#{floor}
+      AND MACHINETYPE !='VISRDO'
+      GROUP BY LineName,WORKSTATION,Check_Result
+      ORDER BY LineName Asc,check_result desc
+    ]]>
+  </select>
+  <select id="selectWorkStationMessage" resultMap="BaseResultMap"  >
+    <![CDATA[
+      SELECT * FROM AUTOFLOOR_KEY_CHECKUP
+      WHERE WORKSTATION=#{workstation}
+      AND  lineName=#{linename}
+      AND MACHINETYPE !='VISRDO'
+      and TO_DATE (TESTTIME, 'yyyy/MM/dd hh24:mi:ss') >=TO_DATE ('${startdate}', 'yyyy/MM/dd hh24:mi:ss')
+      and TO_DATE (TESTTIME, 'yyyy/MM/dd hh24:mi:ss') < TO_DATE ('${enddate}', 'yyyy/MM/dd hh24:mi:ss')
+      ORDER BY MACHINETYPE asc,KEY_PMS_en asc,COMPONENTTYPE asc
+    ]]>
+  </select>
+
+  <select id="selectFloorNGNum" resultType="int">
+    <![CDATA[
+     SELECT count(*) FROM AUTOFLOOR_KEY_CHECKUP
+      WHERE  TO_DATE (TESTTIME, 'yyyy/MM/dd hh24:mi:ss')>=TO_DATE ('${startdate}', 'yyyy/MM/dd hh24:mi:ss')
+      and TO_DATE (TESTTIME, 'yyyy/MM/dd hh24:mi:ss') < TO_DATE ('${enddate}', 'yyyy/MM/dd hh24:mi:ss')
+      and floor=#{floorname}
+      AND MACHINETYPE !='VISRDO'
+      and check_result=#{checkresult}
+    ]]>
+  </select>
+
+  <select id="selectNGMessage" resultMap="BaseResultMap" >
+    <![CDATA[
+        SELECT * FROM AUTOFLOOR_KEY_CHECKUP
+        WHERE  TO_DATE (TESTTIME, 'yyyy/MM/dd hh24:mi:ss') >=TO_DATE ('${startdate}', 'yyyy/MM/dd hh24:mi:ss')
+        and TO_DATE (TESTTIME, 'yyyy/MM/dd hh24:mi:ss') < TO_DATE ('${enddate}', 'yyyy/MM/dd hh24:mi:ss')
+        ]]>
+        <if test="floor!='ALL' and floor!=null ">
+        and floor=#{floor}
+        </if>
+        AND MACHINETYPE !='VISRDO'
+        and Check_Result='NG'
+        ORDER BY WORKSTATION ASC,MACHINETYPE DESC,KEY_PMS_EN DESC,KEY_PMS_CH DESC
+
+  </select>
+  <update id="updateAlarmType" >
+        update AUTOFLOOR_KEY_CHECKUP
+        set   FLAG=#{Flag},
+              REPAIR_END_TIME= TO_DATE('${UpDateTime}', 'yyyy/MM/dd hh24:mi:ss')
+            <if test="MaintainText!=null and MaintainText!=''">
+              , REPAIR_CONTENT=#{MaintainText}
+            </if>
+        WHERE ID=#{Id}
+       AND MACHINETYPE !='VISRDO'
+  </update>
+
+  <select id="SelectId_CHECKUP" resultMap="BaseResultMap">
+    select  * from  AUTOFLOOR_KEY_CHECKUP
+    where  id=#{Id}
+    AND MACHINETYPE !='VISRDO'
+  </select>
+
+</mapper>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fox.testsys.mapper.AutoFloor_WIPMapper" >
+  <resultMap id="BaseResultMap" type="com.fox.testsys.entity.AutoFloor_WIP" >
+    <result column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="FLOOR" property="floor" jdbcType="VARCHAR" />
+    <result column="LINE_NAME" property="lineName" jdbcType="VARCHAR" />
+    <result column="PRODUCT" property="product" jdbcType="VARCHAR" />
+    <result column="SN" property="sn" jdbcType="VARCHAR" />
+    <result column="STATION_NAME" property="stationName" jdbcType="VARCHAR" />
+    <result column="TEST_RESULT" property="testResult" jdbcType="DECIMAL" />
+    <result column="FAIL_ITEM" property="failItem" jdbcType="VARCHAR" />
+    <result column="MACHINE_NO" property="machineNo" jdbcType="VARCHAR" />
+    <result column="OUT_STATION_TIME" property="outStationTime" jdbcType="TIMESTAMP" />
+    <result column="EMP_NO" property="empNo" jdbcType="VARCHAR" />
+    <result column="BEGIN_TIME" property="beginTime" jdbcType="TIMESTAMP" />
+    <result column="END_TIME" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="P3" property="p3" jdbcType="VARCHAR" />
+    <result column="P4" property="p4" jdbcType="VARCHAR" />
+    <result column="P5" property="p5" jdbcType="VARCHAR" />
+    <result column="P6" property="p6" jdbcType="VARCHAR" />
+    <result column="P7" property="p7" jdbcType="VARCHAR" />
+    <result column="P8" property="p8" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="lineActualPut"  resultType="int">
+  <![CDATA[
+    select count (*) as PutSum from AUTOFLOOR_WIP
+    where OUT_STATION_TIME >= to_date('${startdate}','YYYY/MM/DD HH24:MI:SS')
+    and OUT_STATION_TIME < to_date('${enddate}','YYYY/MM/DD HH24:MI:SS')
+    and  floor LIKE #{floorname}||'%'
+    and LINE_NAME  LIKE #{linename}||'%'
+    and STATION_NAME='DFU'
+  ]]>
+</select>
+
+  <select id="MidetectFail" resultType="com.fox.testsys.entity.AutoFloor_Rate">
+  <![CDATA[
+     select * from
+    (select fail_item,count(*)as fail_qty from
+    (select t.out_station_time,t.sn,t.fail_item
+    from (select a.*,row_number() over(partition by a.sn order by a.out_station_time desc) rw
+    from autofloor_wip  a
+    where
+    out_station_time >= to_date('${startdate}','YYYY/MM/DD HH24:MI:SS')
+    and out_station_time < to_date('${enddate}','YYYY/MM/DD HH24:MI:SS')
+    and LINE_NAME like #{linename}||'%'
+    and test_result =1 ) t
+    where t.rw=1 )m  group by fail_item order by fail_qty desc )
+    where rownum<4
+  ]]>
+</select>
+
+</mapper>

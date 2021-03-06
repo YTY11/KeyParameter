@@ -88,7 +88,7 @@ body {
 
 }
 .layui-form-item {
-    height: 40.12%;
+    height: 44.44%;
     display: flex;
     clear: both;
     *zoom: 1;
@@ -101,7 +101,7 @@ body {
 /*下拉框边框颜色*/
 .layui-form-select{
     margin-left: 4%;
-    width: 62.4%;
+    width: 64.785%;
 }
 .layui-form-select .layui-input{
     border: 1px solid grey;
@@ -116,7 +116,18 @@ body {
     height: 100%;
 }
 
-
+.selectFloor,option{
+    font-family: PingFangSC-Regular;
+    font-size: 16px !important;
+    color: rgba(0,0,0,0.50);
+    line-height: 21px;
+}
+.selsetLine, option{
+    font-family: PingFangSC-Regular;
+    font-size: 16px !important;
+    color: rgba(0,0,0,0.50);
+    line-height: 21px;
+}
 
 /*button颜色 阴影效果*/
 .layui-btn-warm {
@@ -124,11 +135,11 @@ body {
     background-color: #F7B500;
     box-shadow: 1px 2px 2px 1px #A2A2A2;
     border-radius: 8px;
-    width: 13.57%;
+    width: 14%;
     font-family: PingFangSC-Regular;
     font-size: 16px;
     color: #FAFAFA;
-    height: 40.1%;
+    height: 44.39%;
     margin-right: 10%;
     /*margin-left: 10%;*/
     align-self: center;

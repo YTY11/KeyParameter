@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fox.testsys.mapper.AUTOFLOOR_Robot_Comm_TimesMapper">
+  <resultMap id="BaseResultMap" type="com.fox.testsys.entity.AUTOFLOOR_Robot_Comm_Times">
+    <result column="ID" jdbcType="DECIMAL" property="id" />
+    <result column="FLOOR" jdbcType="VARCHAR" property="floor" />
+    <result column="PRODUCT" jdbcType="VARCHAR" property="product" />
+    <result column="LINE_NAME" jdbcType="VARCHAR" property="lineName" />
+    <result column="TIMES" jdbcType="DECIMAL" property="times" />
+    <result column="START_TIME" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="END_TIME" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="TIME_SLOT" jdbcType="VARCHAR" property="timeSlot" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <select id="ROBOTRunTime" resultMap="BaseResultMap">
+  <![CDATA[
+    SELECT SUBSTR(LINE_NAME,0,10) as LINE_NAME,SUM(TIMES) as TIMES FROM AUTOFLOOR_ROBOT_COMM_TIMES
+    where START_TIME >=to_date('${startdate}','YYYY/MM/DD HH24:MI:SS')
+    and END_TIME<to_date('${enddate}','YYYY/MM/DD HH24:MI:SS')
+    and FLOOR = #{floorname}
+    GROUP BY Line_Name
+     ]]>
+  </select>
+
+  <select id="ROBOTCellRunTime" resultMap="BaseResultMap">
+  <![CDATA[
+    SELECT LINE_NAME,SUM(TIMES) as TIMES FROM AUTOFLOOR_ROBOT_COMM_TIMES
+    where START_TIME >=to_date('${startdate}','YYYY/MM/DD HH24:MI:SS')
+    and END_TIME<to_date('${enddate}','YYYY/MM/DD HH24:MI:SS')
+    and LINE_NAME like #{floorname}||'%'
+    GROUP BY Line_Name
+     ]]>
+  </select>
+  <select id="ROBOTRunNum" resultMap="BaseResultMap">
+  <![CDATA[
+     SELECT SUBSTR(Line_Name,0,10) as LINE_NAME from AUTOFLOOR_ROBOT_COMM_TIMES
+      where UPDATE_TIME>=sysdate-30/24/60
+      and FLOOR=#{floorname}
+      GROUP BY Line_Name
+     ]]>
+  </select>
+
+  <select id="ROBOTNum" resultType="int">
+  <![CDATA[
+     select count(*) from(
+      select SUBSTR(LINE_NAME,0,11) FROM AUTOFLOOR_MACHINE_DETAIL
+      WHERE LINE_NAME like #{linename}||'%'
+      and LENGTH(SUBSTR(LINE_NAME,0,11))=11
+      GROUP BY LINE_NAME)
+     ]]>
+  </select>
+
+
+
+
+
+</mapper>

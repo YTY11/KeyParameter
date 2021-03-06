@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fox.avisys.mapper.AutoFloor_AVI_VersionMapper" >
+  <resultMap id="BaseResultMap" type="com.fox.avisys.entity.AutoFloor_AVI_Version" >
+    <result column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="AREA" property="area" jdbcType="VARCHAR" />
+    <result column="FLOOR" property="floor" jdbcType="VARCHAR" />
+    <result column="PRODUCT" property="product" jdbcType="VARCHAR" />
+    <result column="LINENAME" property="linename" jdbcType="VARCHAR" />
+    <result column="WORKSTATION" property="workstation" jdbcType="VARCHAR" />
+    <result column="MACHINETYPE" property="machinetype" jdbcType="VARCHAR" />
+    <result column="KEY_PMS_EN" property="keyPmsEn" jdbcType="VARCHAR" />
+    <result column="KEY_PMS_CH" property="keyPmsCh" jdbcType="VARCHAR" />
+    <result column="SPEC" property="spec" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="selectAVI_Version" resultMap="BaseResultMap">
+     select * from AUTOFLOOR_AVI_VERSION
+  </select>
+</mapper>

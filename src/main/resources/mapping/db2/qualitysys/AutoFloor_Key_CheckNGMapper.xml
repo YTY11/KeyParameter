@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fox.qualitysys.mapper.AutoFloor_Key_CheckNGMapper" >
+  <resultMap id="BaseResultMap" type="com.fox.qualitysys.entity.AutoFloor_Key_CheckNG" >
+    <result column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="PRODUCT" property="product" jdbcType="VARCHAR" />
+    <result column="FLOOR" property="floor" jdbcType="VARCHAR" />
+    <result column="LINENAME" property="linename" jdbcType="VARCHAR" />
+    <result column="WORKSTATION" property="workstation" jdbcType="VARCHAR" />
+    <result column="MACHINETYPE" property="machinetype" jdbcType="VARCHAR" />
+    <result column="KEY_PMS_EN" property="keyPmsEn" jdbcType="VARCHAR" />
+    <result column="KEY_PMS_CH" property="keyPmsCh" jdbcType="VARCHAR" />
+    <result column="SPEC" property="spec" jdbcType="VARCHAR" />
+    <result column="SPEC_MIN" property="specMin" jdbcType="VARCHAR" />
+    <result column="SPEC_MAX" property="specMax" jdbcType="VARCHAR" />
+    <result column="KEY_VAL" property="keyVal" jdbcType="VARCHAR" />
+    <result column="CHECK_RESULT" property="checkResult" jdbcType="VARCHAR" />
+    <result column="TESTTIME" property="testtime" jdbcType="VARCHAR" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <select id="selectNGFloor" resultMap="BaseResultMap">
+      <![CDATA[
+          SELECT Floor,count(*)as NGSum FROM AUTOFLOOR_KEY_CHECKNG
+          WHERE UPDATE_TIME>=SYSDATE-2/24/60
+          GROUP BY FLOOR
+          ORDER BY FLOOR desc
+      ]]>
+  </select>
+  <select id="selectNGMessage" resultMap="BaseResultMap">
+    <![CDATA[
+       SELECT D.*,(SELECT KEY_VAL FROM F3102565.AUTOFLOOR_KEY_CHECKNG WHERE ID=D.ID) KEY_VAL,
+    (SELECT TESTTIME FROM F3102565.AUTOFLOOR_KEY_CHECKNG WHERE ID=D.ID) TESTTIME,
+    (SELECT TO_CHAR (TO_DATE(TESTTIME,'yyyy/MM/dd hh24:mi:ss'), 'MM/dd')  FROM F3102565.AUTOFLOOR_KEY_CHECKNG
+    WHERE ID=D.ID) DATES, (SELECT TO_CHAR (TO_DATE(TESTTIME,'yyyy/MM/dd hh24:mi:ss'), 'hh24:mi')  FROM F3102565.AUTOFLOOR_KEY_CHECKNG
+    WHERE ID=D.ID) TIME FROM (SELECT S.*,(SELECT MAX(ID) FROM F3102565.AUTOFLOOR_KEY_CHECKNG
+    WHERE LINENAME = S.LINENAME
+    AND MACHINETYPE = S.MACHINETYPE
+    AND KEY_PMS_EN=S.KEY_PMS_EN
+    AND TO_DATE (TESTTIME, 'yyyy/MM/dd hh24:mi:ss') >=TO_DATE ('${startdate}', 'yyyy/MM/dd hh24:mi:ss')
+    AND TO_DATE (TESTTIME, 'yyyy/MM/dd hh24:mi:ss') <TO_DATE ('${enddate}', 'yyyy/MM/dd hh24:mi:ss')
+    AND CHECK_RESULT = 'NG') ID FROM (SELECT DISTINCT PRODUCT,FLOOR,LINENAME,
+    CASE WORKSTATION
+    WHEN 'REFLOW' THEN '回焊爐'
+    WHEN 'PRINTER' THEN '錫膏印刷'
+    WHEN 'MOUNTER' THEN '貼片機'
+    WHEN 'ROUTER' THEN 'Router'
+    WHEN 'AP_UF_OVEN' THEN 'UF烘烤(AP)'
+    WHEN 'RF_UF_OVEN' THEN 'UF烘烤(RF)'
+    WHEN 'FLUX' THEN '點助焊劑'
+    WHEN 'TIM' THEN '點導熱膠'
+    WHEN '38H' THEN '點38H膠'
+    WHEN 'PRE-AOI' THEN 'Pre-AOI'
+    WHEN 'POST-AOI' THEN 'Post-AOI'
+    ELSE WORKSTATION END WORKSTATION,MACHINETYPE, KEY_PMS_EN,KEY_PMS_CH,SPEC,CHECK_RESULT FROM F3102565.AUTOFLOOR_KEY_CHECKNG
+    WHERE FLOOR = #{floorname}
+    AND TO_DATE (TESTTIME, 'yyyy/MM/dd hh24:mi:ss') >=TO_DATE ('${startdate}','yyyy/MM/dd hh24:mi:ss')
+    AND TO_DATE (TESTTIME, 'yyyy/MM/dd hh24:mi:ss') <TO_DATE ('${enddate}','yyyy/MM/dd hh24:mi:ss')
+    AND CHECK_RESULT = 'NG') S) D
+    ORDER BY D.LINENAME,TESTTIME,D.MACHINETYPE
+    ]]>
+  </select>
+
+
+
+  <select id="SearchNGMessage" resultMap="BaseResultMap">
+    <![CDATA[
+        SELECT D.*,(SELECT KEY_VAL FROM F3102565.AUTOFLOOR_KEY_CHECKNG WHERE ID=D.ID) KEY_VAL,
+    (SELECT TESTTIME FROM F3102565.AUTOFLOOR_KEY_CHECKNG WHERE ID=D.ID) TESTTIME,
+    (SELECT TO_CHAR (TO_DATE(TESTTIME,'yyyy/MM/dd hh24:mi:ss'), 'MM/dd')  FROM F3102565.AUTOFLOOR_KEY_CHECKNG
+    WHERE ID=D.ID) DATES, (SELECT TO_CHAR (TO_DATE(TESTTIME,'yyyy/MM/dd hh24:mi:ss'), 'hh24:mi')  FROM F3102565.AUTOFLOOR_KEY_CHECKNG
+    WHERE ID=D.ID) TIME FROM (SELECT S.*,(SELECT MAX(ID) FROM F3102565.AUTOFLOOR_KEY_CHECKNG
+    WHERE LINENAME = S.LINENAME
+    AND MACHINETYPE = S.MACHINETYPE
+    AND KEY_PMS_EN=S.KEY_PMS_EN
+    AND TO_DATE (TESTTIME, 'yyyy/MM/dd hh24:mi:ss') >=TO_DATE ('${startDate}', 'yyyy/MM/dd hh24:mi:ss')
+    AND TO_DATE (TESTTIME, 'yyyy/MM/dd hh24:mi:ss') <TO_DATE ('${endDate}', 'yyyy/MM/dd hh24:mi:ss')
+    AND CHECK_RESULT = 'NG') ID FROM (SELECT DISTINCT PRODUCT,FLOOR,LINENAME,
+    CASE WORKSTATION
+    WHEN 'REFLOW' THEN '回焊爐'
+    WHEN 'PRINTER' THEN '錫膏印刷'
+    WHEN 'MOUNTER' THEN '貼片機'
+    WHEN 'ROUTER' THEN 'Router'
+    WHEN 'AP_UF_OVEN' THEN 'UF烘烤(AP)'
+    WHEN 'RF_UF_OVEN' THEN 'UF烘烤(RF)'
+    WHEN 'FLUX' THEN '點助焊劑'
+    WHEN 'TIM' THEN '點導熱膠'
+    WHEN '38H' THEN '點38H膠'
+    WHEN 'PRE-AOI' THEN 'Pre-AOI'
+    WHEN 'POST-AOI' THEN 'Post-AOI'
+    ELSE WORKSTATION END WORKSTATION,MACHINETYPE, KEY_PMS_EN,KEY_PMS_CH,SPEC,CHECK_RESULT FROM F3102565.AUTOFLOOR_KEY_CHECKNG
+    WHERE TO_DATE (TESTTIME, 'yyyy/MM/dd hh24:mi:ss') >=TO_DATE ('${startDate}','yyyy/MM/dd hh24:mi:ss')
+    AND TO_DATE (TESTTIME, 'yyyy/MM/dd hh24:mi:ss') <TO_DATE ('${endDate}','yyyy/MM/dd hh24:mi:ss')
+     ]]>
+     <if test="floorName!=null and floorName!='ALL'">
+    AND FLOOR = #{floorName}
+     </if>
+    AND CHECK_RESULT = 'NG'
+    <if test="lineName!=null and lineName!='ALL'">
+	AND LineName=#{lineName}
+    </if>
+    <if test="productName!=null and productName!='ALL'">
+	AND product =#{productName}
+    </if>
+	) S) D
+    ORDER BY D.LINENAME,TESTTIME,D.MACHINETYPE
+
+
+
+  </select>
+
+
+</mapper>

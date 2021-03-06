@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fox.skasafs_sys.mapper.AGV_AFS_StateMapper" >
+  <resultMap id="BaseResultMap" type="com.fox.skasafs_sys.entity.AGV_AFS_State" >
+    <result column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="FLOOR" property="floor" jdbcType="VARCHAR" />
+    <result column="WORKSTATION" property="workstation" jdbcType="VARCHAR" />
+    <result column="DEVICENAME" property="devicename" jdbcType="VARCHAR" />
+    <result column="STATE" property="state" jdbcType="VARCHAR" />
+    <result column="ABNORMAL" property="abnormal" jdbcType="VARCHAR" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <select id="selectCarState" resultMap="BaseResultMap">
+    <![CDATA[
+    SELECT * FROM AGV_AFS_STATE
+    WHERE  FLOOR =#{FloorName}
+    and UPDATE_TIME >=to_date('${StartDate}','YYYY-MM-DD HH24:MI:SS')
+    and UPDATE_TIME< to_date('${EndDate}','YYYY-MM-DD HH24:MI:SS')
+    ]]>
+  </select>
+</mapper>

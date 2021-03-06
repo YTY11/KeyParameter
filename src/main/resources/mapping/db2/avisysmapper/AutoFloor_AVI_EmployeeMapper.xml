@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fox.avisys.mapper.AutoFloor_AVI_EmployeeMapper" >
+  <resultMap id="BaseResultMap" type="com.fox.avisys.entity.AutoFloor_AVI_Employee" >
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="EMPLOYEE_NUMBER" property="employeeNumber" jdbcType="VARCHAR" />
+    <result column="EMPLOYEE_NAME" property="employeeName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, EMPLOYEE_NUMBER, EMPLOYEE_NAME
+  </sql>
+  <select id="selectALLEmployee" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
+    select  <include refid="Base_Column_List" /> from AUTOFLOOR_AVI_EMPLOYEE
+  </select>
+
+  <select id="selectBYEmployeeNum" resultType="string" >
+    select  EMPLOYEE_NAME from AUTOFLOOR_AVI_EMPLOYEE
+    WHERE EMPLOYEE_NUMBER = #{employeeNum}
+    and rownum=1
+  </select>
+
+</mapper>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fox.testsys.mapper.Base_StationMapper">
+  <resultMap id="BaseResultMap" type="com.fox.testsys.entity.Base_Station">
+    <id column="ID" jdbcType="DECIMAL" property="id" />
+    <result column="STATUS" jdbcType="DECIMAL" property="status" />
+    <result column="PRODUCT" jdbcType="VARCHAR" property="product" />
+    <result column="LINE" jdbcType="VARCHAR" property="line" />
+    <result column="STATION" jdbcType="VARCHAR" property="station" />
+    <result column="STATIONNO" jdbcType="VARCHAR" property="stationno" />
+    <result column="STATIONIP" jdbcType="VARCHAR" property="stationip" />
+    <result column="STATUS_TYPE" jdbcType="VARCHAR" property="statustype" />
+    <result column="ADD_TIME" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="EQUIPMENT" jdbcType="VARCHAR" property="equipment" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, STATUS, PRODUCT, LINE, STATION, STATIONNO, STATIONIP, STATUSTYPE, ADD_TIME, EQUIPMENT
+  </sql>
+  <select id="TestEquipmentNums" resultMap="BaseResultMap">
+    select substr(line, 1, 6) floor,substr(line, 10, 2) line,nvl(warnings, 0) + nvl(debugs, 0) + nvl(offlines, 0) + onlines ttl,
+        onlines,round(onlines / (nvl(warnings, 0) + nvl(debugs, 0) +nvl(offlines, 0) + onlines) * 100,
+        2) as normals,nvl(warnings, 0) warnings,nvl(debugs, 0) debugs,nvl(offlines, 0) offlines
+        from (select sline line, STATUS_TYPE, count(1) js
+        from te_base_station a
+        where A.LINE LIKE #{linename}||'%'
+        and a.status = 1
+        GROUP BY sline, STATUS_TYPE)
+        pivot(max(js)
+        for STATUS_TYPE in('Run' as onlines,
+        'Warning' as warnings,
+        'Repair' as debugs,
+        'Off_Line' as offlines))
+        order by line
+  </select>
+  <select id="selectEquipmentMachineSum" resultMap="BaseResultMap">
+    SELECT  LINE,COUNT(*) as LineStatusNum FROM TE_BASE_STATION
+    WHERE  PRODUCT=#{product}
+    AND LINE LIKE '${linename}%'
+    GROUP BY line
+  </select>
+
+  <select id="selectDBDate" resultMap="BaseResultMap">
+    select sysdate as ADD_TIME   from  TE_BASE_STATION
+    WHERE rownum=1
+  </select>
+
+    <select id="TestEquipmentRoBotNums" resultMap="BaseResultMap">
+    select substr(line, 1, 6) floor,substr(line, 10, 2) line,nvl(warnings, 0) + nvl(debugs, 0) + nvl(offlines, 0) + onlines ttl,
+      onlines,round(onlines / (nvl(warnings, 0) + nvl(debugs, 0) +nvl(offlines, 0) + onlines) * 100,2) as normals,
+      nvl(warnings, 0) warnings,nvl(debugs, 0) debugs,nvl(offlines, 0) offlines
+      from (select sline line, STATUS_TYPE, count(1) js
+      from te_auto_base_station a
+      where A.LINE LIKE #{linename}||'%'
+      and a.status = 1 and a.station = 'ROBOT'
+      GROUP BY sline, STATUS_TYPE)
+      pivot(max(js)
+      for STATUS_TYPE in('Run' as onlines,
+      'Warning' as warnings,
+      'Repair' as debugs,
+      'Off_Line' as offlines))
+      order by line
+
+  </select>
+
+    <select id="TestEquipmentWipasStation" resultMap="BaseResultMap">
+        SELECT SUBSTR(A.sLINE, 7, 5) AS LINE,
+        A.STATION,
+        CASE
+        WHEN LENGTH(A.LINE) > 12 THEN
+        A.STATION_NO || SUBSTR(A.LINE, 13)
+        ELSE
+        A.STATION_NO
+        END AS STATION_NO,
+        CASE
+        WHEN B.ID IS NULL THEN
+        'pass'
+        ELSE
+        'fail'
+        END AS RESULT
+        FROM TE_BASE_STATION A
+        LEFT JOIN TE_WARNING_LIST_SLOT B
+        ON A.PRODUCT = B.PRODUCT
+        AND A.LINE = B.LINE
+        AND A.STATION = B.STATION
+        AND A.STATION_NO = B.STATION_NO
+        AND B.WARNING_CASE = 'TOPX ERROR'
+        AND B.CLOSE_TIME IS NULL
+        WHERE A.SLINE LIKE #{LineName}||'%'
+        ORDER BY A.LINE, A.STATION, LPAD(A.STATION_NO, 2, 0)asc
+    </select>
+
+    <select id="selectBySLineEquipmentLine" resultType="java.lang.String">
+        SELECT LINE FROM TE_BASE_STATION
+        WHERE SLINE=#{sLineName}
+        GROUP BY LINE
+        ORDER BY LINE
+    </select>
+
+</mapper>

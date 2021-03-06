@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fox.testsys.mapper.AutoFloor_TargetMapper" >
+  <resultMap id="BaseResultMap" type="com.fox.testsys.entity.AutoFloor_Target" >
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="TARGET_DATE" property="targetDate" jdbcType="TIMESTAMP" />
+    <result column="T_CLASS" property="tClass" jdbcType="VARCHAR" />
+    <result column="T_FLOOR" property="tFloor" jdbcType="VARCHAR" />
+    <result column="LINE_NAME" property="lineName" jdbcType="VARCHAR" />
+    <result column="T_PRODUCT" property="tProduct" jdbcType="VARCHAR" />
+    <result column="INPUT_TIME" property="inputTime" jdbcType="TIMESTAMP" />
+    <result column="D_TARGET" property="dTarget" jdbcType="DECIMAL" />
+    <result column="WORKING_HOURS" property="workingHours" jdbcType="DECIMAL" />
+    <result column="H_TARGET" property="hTarget" jdbcType="DECIMAL" />
+    <result column="TYPE_TARGET" property="typeTarget" jdbcType="VARCHAR" />
+    <result column="T_AREA" property="tArea" jdbcType="VARCHAR" />
+    <result column="P1" property="p1" jdbcType="VARCHAR" />
+    <result column="P2" property="p2" jdbcType="VARCHAR" />
+    <result column="P3" property="p3" jdbcType="VARCHAR" />
+    <result column="P4" property="p4" jdbcType="VARCHAR" />
+    <result column="P5" property="p5" jdbcType="VARCHAR" />
+    <result column="P6" property="p6" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, TARGET_DATE, T_CLASS, T_FLOOR, LINE_NAME, T_PRODUCT, INPUT_TIME, D_TARGET, WORKING_HOURS, 
+    H_TARGET, TYPE_TARGET, T_AREA, P1, P2, P3, P4, P5, P6
+  </sql>
+  <!-- 每條線的目标 名称  D073F  Lotus  （變量：時間）-->
+  <select id="outPutTarGet"   resultMap="BaseResultMap">
+     <![CDATA[
+      SELECT  T_FLOOR,T_PRODUCT,LINE_NAME,sum(D_TARGET) as D_TARGET ,sum(WORKING_HOURS)as WORKING_HOURS,sum(H_TARGET) as H_TARGET FROM AUTOFLOOR_TARGET
+       where TARGET_date >= to_date('${startdate} 00:00:00','YYYY-MM-DD HH24:MI:SS')
+        and TARGET_date <= to_date('${enddate} 00:00:00','YYYY-MM-DD HH24:MI:SS')
+         and T_FLOOR Like #{floorname}||'%'
+        and T_PRODUCT =#{product}
+        and T_CLASS=#{tClass}
+        and LINE_NAME  LIKE #{linename}||'%'
+        group by LINE_NAME,T_FLOOR,T_PRODUCT
+        order by LINE_NAME
+      ]]>
+</select>
+  <!-- 昨天條線的名称获取所有目标  D073F  Lotus  （變量：時間）-->
+  <select id="YesterDayLinenameTarGet"   resultMap="BaseResultMap">
+    <![CDATA[
+       SELECT  T_FLOOR,LINE_NAME,sum(D_TARGET) as D_TARGET ,sum(WORKING_HOURS)as WORKING_HOURS,sum(H_TARGET) as H_TARGET FROM AUTOFLOOR_TARGET
+       where TARGET_date >= to_date('${startdate} 00:00:00','YYYY-MM-DD HH24:MI:SS')
+        and TARGET_date <= to_date('${enddate} 00:00:00','YYYY-MM-DD HH24:MI:SS')
+        and T_FLOOR Like #{floorname}||'%'
+        and T_PRODUCT =#{Productname}
+        and LINE_NAME  LIKE #{linename}||'%'
+        group by LINE_NAME,T_FLOOR
+        order by LINE_NAME
+       ]]>
+</select>
+
+  <select id="SelectLinenameTarGet"   resultMap="BaseResultMap">
+<![CDATA[
+   SELECT  T_FLOOR,LINE_NAME,sum(D_TARGET) as D_TARGET ,sum(WORKING_HOURS)as WORKING_HOURS,sum(H_TARGET) as H_TARGET FROM AUTOFLOOR_TARGET
+   where TARGET_date >= to_date('${startdate}','YYYY-MM-DD HH24:MI:SS')
+    AND TARGET_date < to_date('${enddate}','YYYY-MM-DD HH24:MI:SS')
+    and T_FLOOR Like #{floorname}||'%'
+    and T_PRODUCT =#{Productname}
+    and LINE_NAME  LIKE #{linename}||'%'
+    group by LINE_NAME,T_FLOOR
+    order by LINE_NAME
+    ]]>
+</select>
+
+    <!-- 每條線的目标 名称  D073F  Lotus  （變量：時間）-->
+    <select id="RobotLineWorkingHours"   resultMap="BaseResultMap">
+   <![CDATA[
+      SELECT T_FLOOR,LINE_NAME,sum(WORKING_HOURS) as WORKING_HOURS FROM AUTOFLOOR_TARGET where
+      TARGET_date >= to_date('${startdate}','YYYY-MM-DD HH24:MI:SS')
+      and TARGET_date  <=to_date('${enddate}','YYYY-MM-DD HH24:MI:SS')
+      and T_CLASS = #{tClass}
+      and LINE_NAME  LIKE #{linename}||'%'
+      group by LINE_NAME,T_FLOOR,D_TARGET
+      order by LINE_NAME ASC
+        ]]>
+</select>
+    <!-- 每條線的目标 名称  D073F  Lotus  （變量：時間）-->
+    <select id="AloneLine"   resultMap="BaseResultMap">
+        <![CDATA[
+            SELECT T_FLOOR,LINE_NAME,T_PRODUCT,sum(D_TARGET) as D_TARGET,sum (H_TARGET) as H_TARGET,sum(WORKING_HOURS) as WORKING_HOURS FROM AUTOFLOOR_TARGET where
+            TARGET_date >= to_date('${startdate} 00:00:00','YYYY-MM-DD HH24:MI:SS')
+            and TARGET_date  <= to_date('${enddate} 00:00:00','YYYY-MM-DD HH24:MI:SS')
+          ]]>
+          <if test="tClass != null and tClass != 'ALL'">
+              and T_CLASS = #{tClass}
+          </if>
+        and LINE_NAME  LIKE #{linename}||'%'
+        group by LINE_NAME,T_FLOOR,T_PRODUCT,D_TARGET,H_TARGET
+        order by LINE_NAME ASC
+
+</select>
+
+    <!-- 每條線的目标 名称  D073F  Lotus  （變量：時間）-->
+    <select id="ALLFloorLine"   resultMap="BaseResultMap">
+        SELECT T_AREA,T_floor,LINE_NAME,T_PRODUCT FROM AUTOFLOOR_TARGET t
+        WHERE LINE_NAME!='TTL'
+        and TARGET_date >= to_date('2020/10/20 00:00:00','YYYY-MM-DD HH24:MI:SS')
+        GROUP BY T_AREA,T_floor,LINE_NAME,T_PRODUCT
+        ORDER BY T_floor asc ,LINE_NAME asc,T_PRODUCT asc
+    </select>
+
+    <select id="TTLLineList" resultMap="BaseResultMap">
+    <![CDATA[
+        SELECT T_FLOOR,LINE_NAME,T_PRODUCT FROM AUTOFLOOR_TARGET
+        WHERE T_FLOOR Like #{floorName}||'%'
+        and TARGET_date >= to_date('${startDate} 00:00:00','YYYY-MM-DD HH24:MI:SS')
+        and TARGET_date <= to_date('${endDate} 00:00:00','YYYY-MM-DD HH24:MI:SS')
+        AND LINE_NAME='TTL'
+        GROUP BY T_FLOOR,LINE_NAME,T_PRODUCT
+        ORDER BY T_PRODUCT ASC
+        ]]>
+    </select>
+</mapper>

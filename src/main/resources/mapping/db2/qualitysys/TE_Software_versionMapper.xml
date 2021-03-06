@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fox.qualitysys.mapper.TE_Software_versionMapper" >
+  <resultMap id="BaseResultMap" type="com.fox.qualitysys.entity.TE_Software_version" >
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="STATUS" property="status" jdbcType="DECIMAL" />
+    <result column="PRODUCT" property="product" jdbcType="VARCHAR" />
+    <result column="STATION" property="station" jdbcType="VARCHAR" />
+    <result column="STATION_OVERLAY" property="stationOverlay" jdbcType="VARCHAR" />
+    <result column="PROGRAM_MASTER" property="programMaster" jdbcType="VARCHAR" />
+    <result column="PROGRAM_ASSISTANT" property="programAssistant" jdbcType="VARCHAR" />
+    <result column="VERSION" property="version" jdbcType="VARCHAR" />
+    <result column="SCRIPT_NAME" property="scriptName" jdbcType="VARCHAR" />
+    <result column="SCRIPT_M_DATE" property="scriptMDate" jdbcType="VARCHAR" />
+    <result column="ADD_TIME" property="addTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, STATUS, PRODUCT, STATION, STATION_OVERLAY, PROGRAM_MASTER, PROGRAM_ASSISTANT, 
+    VERSION, SCRIPT_NAME, SCRIPT_M_DATE, ADD_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
+    select 
+    <include refid="Base_Column_List" />
+    from TE_SOFTWARE_VERSION
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+
+  <select id="selectSoftwareVersion" resultMap="BaseResultMap">
+    select station,station_overlay FROM TE_SOFTWARE_VERSION
+    WHERE PRODUCT=#{product}
+    GROUP BY station,station_overlay
+  </select>
+
+
+</mapper>

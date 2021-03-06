@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fox.testsys.mapper.AutoFloor_Fail_RETestMapper" >
+  <resultMap id="BaseResultMap" type="com.fox.testsys.entity.AutoFloor_Fail_RETest" >
+    <result column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="FLOOR" property="floor" jdbcType="VARCHAR" />
+    <result column="PRODUCT" property="product" jdbcType="VARCHAR" />
+    <result column="LINE_NAME" property="lineName" jdbcType="VARCHAR" />
+    <result column="SN" property="sn" jdbcType="VARCHAR" />
+    <result column="STATION_NAME" property="stationName" jdbcType="VARCHAR" />
+    <result column="FIRST_FAIL_TIME" property="firstFailTime" jdbcType="TIMESTAMP" />
+    <result column="SECOND_TEST_TIME" property="secondTestTime" jdbcType="TIMESTAMP" />
+    <result column="SECOND_TEST_RESULT" property="secondTestResult" jdbcType="DECIMAL" />
+    <result column="THIRD_TEST_TIME" property="thirdTestTime" jdbcType="TIMESTAMP" />
+    <result column="THIRD_TEST_RESULT" property="thirdTestResult" jdbcType="DECIMAL" />
+    <result column="RETEST_FINISH" property="retestFinish" jdbcType="VARCHAR" />
+    <result column="RETEST_FINISH_TIME" property="retestFinishTime" jdbcType="TIMESTAMP" />
+    <result column="RETEST_TIME_OUT" property="retestTimeOut" jdbcType="VARCHAR" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="FAIL_ITEM" property="Fail_item" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <select id="FAILRETEST" resultMap="BaseResultMap">
+  <![CDATA[
+    SELECT FLOOR,PRODUCT,SUBSTR(LINE_NAME,0,10) as LINE_NAME,SN,STATION_NAME,FIRST_FAIL_TIME,
+    SECOND_TEST_TIME,SECOND_TEST_TIME,SECOND_TEST_RESULT,THIRD_TEST_TIME,THIRD_TEST_RESULT,
+    RETEST_FINISH,RETEST_FINISH_TIME,RETEST_TIME_OUT,UPDATE_TIME,FAIL_ITEM FROM AUTOFLOOR_FAIL_RETEST
+    where UPDATE_TIME >= to_date('${startdate}','YYYY/MM/DD HH24:MI:SS')
+      and UPDATE_TIME < to_date('${enddate}','YYYY/MM/DD HH24:MI:SS')
+      and FLOOR=#{floorname}
+     ]]>
+  </select>
+
+
+
+</mapper>

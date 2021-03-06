@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fox.qualitysys.mapper.TE_Base_StationMapper">
+  <resultMap id="BaseResultMap" type="com.fox.qualitysys.entity.TE_Base_Station">
+    <id column="ID" jdbcType="DECIMAL" property="id" />
+    <result column="STATUS" jdbcType="DECIMAL" property="status" />
+    <result column="PRODUCT" jdbcType="VARCHAR" property="product" />
+    <result column="LINE" jdbcType="VARCHAR" property="line" />
+    <result column="STATION" jdbcType="VARCHAR" property="station" />
+    <result column="STATION_NO" jdbcType="VARCHAR" property="stationNo" />
+    <result column="STATION_IP" jdbcType="VARCHAR" property="stationIp" />
+    <result column="STATUS_TYPE" jdbcType="VARCHAR" property="statusType" />
+    <result column="ADD_TIME" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="EQUIPMENT" jdbcType="VARCHAR" property="equipment" />
+    <result column="FIX_FLAG" jdbcType="DECIMAL" property="fixFlag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, STATUS, PRODUCT, LINE, STATION, STATION_NO, STATION_IP, STATUS_TYPE, ADD_TIME, 
+    EQUIPMENT, FIX_FLAG
+  </sql>
+  <select id="getALLBaseStation" resultMap="BaseResultMap">
+    SELECT line,STATION,STATION_NO FROM TE_BASE_STATION
+       WHERE SLINE LIKE #{linename}||'%'
+       AND  STATION=#{stationname}
+       ORDER BY line asc,(STATION_NO-0)asc
+  </select>
+
+
+  <select id="selectByFloorALLBaseStation" resultMap="BaseResultMap">
+    SELECT sline,line,STATION,STATION_NO FROM TE_BASE_STATION
+       WHERE SLINE LIKE #{floorNameTE}||'%'
+       ORDER BY line asc,(STATION_NO-0)asc
+  </select>
+</mapper>

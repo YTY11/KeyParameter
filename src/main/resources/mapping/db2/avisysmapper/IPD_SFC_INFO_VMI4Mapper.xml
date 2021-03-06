@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fox.avisys.mapper.IPD_SFC_INFO_VMI4Mapper" >
+  <resultMap id="BaseResultMap" type="com.fox.avisys.entity.IPD_SFC_INFO_VMI4" >
+    <result column="SERIAL_NUMBER" property="serialNumber" jdbcType="VARCHAR" />
+    <result column="GROUP_NAME" property="groupName" jdbcType="VARCHAR" />
+    <result column="IN_STATION_TIME" property="inStationTime" jdbcType="VARCHAR" />
+    <result column="MO_NUMBER" property="moNumber" jdbcType="VARCHAR" />
+    <result column="MODEL_NAME" property="modelName" jdbcType="VARCHAR" />
+    <result column="LINE_NAME" property="lineName" jdbcType="VARCHAR" />
+    <result column="ERROR_FALG" property="errorFalg" jdbcType="VARCHAR" />
+    <result column="FRESH" property="fresh" jdbcType="VARCHAR" />
+    <result column="DAY" property="day" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="selectINFO_VMI4Data" resultMap="BaseResultMap">
+        <![CDATA[
+        SELECT SERIAL_NUMBER,GROUP_NAME,SUBSTR(IN_STATION_TIME,12,2) as IN_STATION_TIME,LINE_NAME,ERROR_FALG FROM IPD_SFC_INFO_VMI4
+        WHERE LINE_NAME LIKE #{FloorName}||'%'
+      ]]>
+  </select>
+</mapper>

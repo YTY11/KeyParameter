@@ -1,0 +1,2107 @@
+<!DOCTYPE html>
+<html class="topHtml" lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+
+
+    <title>SKAS/FAS</title>
+    <link th:href="@{/layui/css/layui.mobile.css}" href="../static/layui/css/layui.mobile.css" rel="stylesheet" />
+    <link th:href="@{/css/SkasAfs2.css}" href="../static/css/SkasAfs2.css" rel="stylesheet" />
+
+</head>
+<body>
+<div class="app">
+    <!--    头部-->
+    <div class="titleTop">
+        <div class="aDiv">
+            <a class="a1" th:href="@{saksafssyscont}" href="SkasAfs.html">电子看板</a>
+            <a class="a2">设备健康管理</a>
+        </div>
+    </div>
+    <div style="height: calc(100% - 6.512vw);width: 100%;overflow-y: scroll">
+        <div class="content2" style="">
+            <div style="width: 100%;height: 100%;">
+
+                <div class="topContent2">
+                    <div style="display: flex;width: 100%;height: 8.132%;">
+                        <div class="topContentTitle2">
+                            <span style="height: 100%;text-align: center;align-self: center">RGV</span>
+                        </div>
+                    </div>
+
+                    <div class="topContentC2">
+                        <div style="width: 100%;height: 100%;overflow-y: scroll;">
+                            <table class="table1" style="margin-top: 0.7vh;margin-left: 0.5%">
+                                <thead>
+                                <tr>
+                                    <td rowspan="2" style="width: 12.5%;">机种</td>
+                                    <td rowspan="2" style="width: 12.8%">线别</td>
+                                    <td colspan="2" style="width: 23.6%">发料量（盘）</td>
+                                    <td colspan="2" style="width: 23.6%">达成率</td>
+                                    <td colspan="2" style="width: 23.6%">机故率</td>
+                                </tr>
+                                <tr>
+                                    <td>投入</td>
+                                    <td>产出</td>
+                                    <td>目标</td>
+                                    <td>实际</td>
+                                    <td>目标</td>
+                                    <td>实际</td>
+                                </tr>
+                                </thead>
+                                <tbody class="errorNum">
+                                <tr>
+                                    <td th:text="${RGVTabData.getProudct()}">D54</td>
+                                    <td th:text="${RGVTabData.getLineName()}">RGV</td>
+                                    <td th:text="${RGVTabData.getStoreIssueTarget()}">354</td>
+                                    <td class="td1">
+                                        <a th:class="${RGVTabData.getStoreIssueAction() < RGVTabData.getStoreIssueTarget()-(RGVTabData.getStoreIssueTarget()*0.25) &&
+                                        RGVTabData.getStoreIssueAction()!=0 ? 'unusual-color':'none'}"
+
+                                           th:text="${RGVTabData.getStoreIssueAction()}">80</a>
+                                        <a th:class="${RGVTabData.getStoreIssueAction()>=RGVTabData.getStoreIssueTarget()-(RGVTabData.getStoreIssueTarget()*0.25) &&
+                         RGVTabData.getStoreIssueAction()<RGVTabData.getStoreIssueTarget()-(RGVTabData.getStoreIssueTarget()*0.05) ? 'warning-color':'none'}"
+
+                                           th:text="${RGVTabData.getStoreIssueAction()}">80</a>
+                                        <a th:class="${RGVTabData.getStoreIssueAction()!=0  &&
+                        RGVTabData.getStoreIssueAction()>=RGVTabData.getStoreIssueTarget()-(RGVTabData.getStoreIssueTarget()*0.05) ? '':'none'}"
+
+                                           th:text="${RGVTabData.getStoreIssueAction()}">80</a>
+                                        <a th:class="${RGVTabData.getStoreIssueAction()==0 ? 'offline-color':'none'}"
+                                           th:text="${RGVTabData.getStoreIssueAction()}">80</a>
+                                    </td>
+                                    <td>95%</td>
+                                    <td class="td2">
+                                        <a th:class="${RGVTabData.getAchievingRateAction() >0 && RGVTabData.getAchievingRateAction() < 75  ? 'unusual-color':'none'}"
+
+                                           th:text="${RGVTabData.getAchievingRateAction()}+'%'">80%</a>
+                                        <a th:class="${RGVTabData.getAchievingRateAction() >= 75 && RGVTabData.getAchievingRateAction() <95 ? 'warning-color':'none'}"
+
+                                           th:text="${RGVTabData.getAchievingRateAction()}+'%'">80%</a>
+                                        <a th:class="${RGVTabData.getAchievingRateAction() >= 95 ? '':'none'}"
+
+                                           th:text="${RGVTabData.getAchievingRateAction()}+'%'">80%</a>
+                                        <a th:class="${RGVTabData.getAchievingRateAction() == 0 ? 'offline-color':'none'}"
+
+                                           th:text="${RGVTabData.getAchievingRateAction()}+'%'">80%</a>
+                                    </td>
+                                    <td>5%</td>
+                                    <td class="td3">
+                                        <a th:class="${RGVTabData.getMachineRateAction()>5 ? 'unusual-color':''}"
+
+                                           th:text="${RGVTabData.getMachineRateAction()}+'%'">3%</a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+                    <div class="topContentB2">
+                        <div class="topContentB21">
+                            <div class="divP">
+                                <p style="text-align: center;align-self: center;width: 100%">发料量</p>
+                            </div>
+                            <div style="width: 100%;height:80%;display: flex">
+                                <p style="text-align: center;align-self: center;width: 100%;height: 100%" id="faLiaoLiang"></p>
+                            </div>
+                        </div>
+                        <div class="topContentB22">
+                            <div class="divP">
+                                <p style="text-align: center;align-self: center;width: 100%">达成率</p>
+                            </div>
+                            <div style="width: 100%;height:80%;display: flex">
+                                <p style="text-align: center;align-self: center;width: 100%;height: 100%" id="daCheng"></p>
+                            </div>
+                        </div>
+                        <div class="topContentB23">
+                            <div class="divP">
+                                <p style="text-align: center;align-self: center;width: 100%">机故率</p>
+                            </div>
+                            <div style="width: 100%;height:80%;display: flex">
+                                <p style="text-align: center;align-self: center;width: 100%;height: 100%" id="jiGu"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 0.76vh" class="topContent2">
+                    <div style="display: flex;width: 100%;height: 8.132%;">
+                        <div class="topContentTitle2">
+                            <span style="height: 100%;text-align: center;align-self: center">AGV</span>
+                        </div>
+
+                    </div>
+
+                    <div class="topContentC2">
+                        <div style="width: 100%;height: 100%;overflow-y: scroll">
+                            <table class="table1" style="margin-top: 0.7vh;margin-left: 0.5%">
+                                <thead>
+                                <tr>
+                                    <td rowspan="2" style="width: 12.5%;">机种</td>
+                                    <td rowspan="2" style="width: 12.8%">线别</td>
+                                    <td colspan="2" style="width: 23.6%">交换次数</td>
+                                    <td colspan="2" style="width: 23.6%">达成率</td>
+                                    <td colspan="2" style="width: 23.6%">机故率</td>
+                                </tr>
+                                <tr>
+                                    <td>目标</td>
+                                    <td>实际</td>
+                                    <td>目标</td>
+                                    <td>实际</td>
+                                    <td>目标</td>
+                                    <td>实际</td>
+                                </tr>
+                                </thead>
+                                <tbody class="errorNum">
+                                <tr>
+                                    <td th:text="${AGVTabData.getProudct()}">D54</td>
+                                    <td th:text="${AGVTabData.getLineName()}">AGV</td>
+                                    <td th:text="${AGVTabData.getStoreIssueTarget()}">20</td>
+                                    <td class="td4">
+                                        <a th:class="${AGVTabData.getStoreIssueAction()!=0 &&
+                                        AGVTabData.getStoreIssueAction()<AGVTabData.getStoreIssueTarget()-(AGVTabData.getStoreIssueTarget()*0.25) ? 'unusual-color':'none'}"
+                                           th:text="${AGVTabData.getStoreIssueAction()}"
+                                           >80</a>
+                                        <a th:class="${AGVTabData.getStoreIssueAction()>=AGVTabData.getStoreIssueTarget()-(AGVTabData.getStoreIssueTarget()*0.25) &&
+                                       AGVTabData.getStoreIssueAction()< AGVTabData.getStoreIssueTarget()-(AGVTabData.getStoreIssueTarget()*0.05)  ? 'warning-color':'none'}"
+                                           th:text="${AGVTabData.getStoreIssueAction()}"
+                                           >80</a>
+                                        <a th:class="${AGVTabData.getStoreIssueAction()!=0 &&
+                        AGVTabData.getStoreIssueAction()>=AGVTabData.getStoreIssueTarget()-(AGVTabData.getStoreIssueTarget()*0.05) ? '':'none'}"
+                                           th:text="${AGVTabData.getStoreIssueAction()}"
+                                           >80</a>
+                                        <a th:class="${AGVTabData.getStoreIssueAction()==0 ? 'offline-color':'none'}"
+                                           th:text="${AGVTabData.getStoreIssueAction()}"
+                                           >80</a>
+                                    </td>
+                                    <td>100%</td>
+                                    <td class="td5">
+                                        <a th:class="${AGVTabData.getAchievingRateAction() >0 && AGVTabData.getAchievingRateAction() < 80 ?  'unusual-color':'none'}"
+                                           th:text="${AGVTabData.getAchievingRateAction()}+'%'">80%</a>
+                                        <a th:class="${AGVTabData.getAchievingRateAction() >= 80 && AGVTabData.getAchievingRateAction() < 100? 'warning-color':'none'}"
+                                           th:text="${AGVTabData.getAchievingRateAction()}+'%'">80%</a>
+                                        <a th:class="${AGVTabData.getAchievingRateAction() >= 100 ? '':'none'}"
+                                           th:text="${AGVTabData.getAchievingRateAction()}+'%'">80%</a>
+                                        <a th:class="${AGVTabData.getAchievingRateAction() == 0 ? 'offline-color':'none'}"
+                                           th:text="${AGVTabData.getAchievingRateAction()}+'%'">80%</a>
+                                    </td>
+                                    <td>5%</td>
+                                    <td class="td6">
+                                        <a  th:class="${AGVTabData.getMachineRateAction()>5 ? 'unusual-color':''}"
+                                            th:text="${AGVTabData.getMachineRateAction()}+'%'"
+                                           ></a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="topContentB2">
+                        <div class="topContentB21">
+                            <div class="divP">
+                                <p style="text-align: center;align-self: center;width: 100%">交换次数</p>
+                            </div>
+                            <div style="width: 100%;height:80%;display: flex">
+                                <p style="text-align: center;align-self: center;width: 100%;height: 100%" id="jiaoHuan"></p>
+                            </div>
+                        </div>
+                        <div class="topContentB22">
+                            <div class="divP">
+                                <p style="text-align: center;align-self: center;width: 100%">达成率</p>
+                            </div>
+                            <div style="width: 100%;height:80%;display: flex">
+                                <p style="text-align: center;align-self: center;width: 100%;height: 100%" id="daCheng2"></p>
+                            </div>
+                        </div>
+                        <div class="topContentB23">
+                            <div class="divP">
+                                <p style="text-align: center;align-self: center;width: 100%">机故率</p>
+                            </div>
+                            <div style="width: 100%;height:80%;display: flex">
+                                <p style="text-align: center;align-self: center;width: 100%;height: 100%" id="jiGu2"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 0.76vh" class="bottomContent2">
+                    <div style="display: flex;width: 100%;height: 5.165%;">
+                        <div class="bottomContentTitle2">
+                            <span style="height: 100%;text-align: center;align-self: center">暂存仓</span>
+                        </div>
+                    </div>
+
+                    <div class="bottomContentC2">
+                        <div style="width: 100%;height: 100%;overflow-y: scroll">
+                            <table class="table1 table2" style="margin-top: 0.7vh;margin-left: 0.5%">
+                                <thead>
+                                <tr>
+                                    <td rowspan="2" style="width: 6.8%;">机种</td>
+                                    <td rowspan="2" style="width: 9.6%">线别</td>
+                                    <td rowspan="2" style="width: 9.2%">仓号</td>
+                                    <td colspan="2" style="width: 23.6%">交换次数</td>
+                                    <td colspan="2" style="width: 23.6%">直通率</td>
+                                    <td colspan="2" style="width: 23.6%">机故率</td>
+                                </tr>
+                                <tr>
+                                    <td>目标</td>
+                                    <td>实际</td>
+                                    <td>目标</td>
+                                    <td>实际</td>
+                                    <td>目标</td>
+                                    <td>实际</td>
+                                </tr>
+                                </thead>
+                                <tbody class="errorNum">
+                                    <tr>
+                                        <td rowspan="8" style="border-bottom-left-radius: 16px" th:text="${Proudct}">D54</td>
+                                        <td rowspan="2">M01线</td>
+                                        <td th:text="${BUFFERTabData.get(0).getLineName()}">B001</td>
+                                        <td th:text="${BUFFERTabData.get(0).getStoreIssueTarget()}">0</td>
+                                        <td class="td7">
+                                            <a th:class="${BUFFERTabData.get(0).getStoreIssueAction()!=0 &&
+                        BUFFERTabData.get(0).getStoreIssueAction()<BUFFERTabData.get(0).getStoreIssueTarget()-(BUFFERTabData.get(0).getStoreIssueTarget()*0.25) ? 'unusual-color':'none'}"
+                                               th:text="${BUFFERTabData.get(0).getStoreIssueAction()}">90</a>
+                                            <a th:class="${BUFFERTabData.get(0).getStoreIssueAction()>=BUFFERTabData.get(0).getStoreIssueTarget()-(BUFFERTabData.get(0).getStoreIssueTarget()*0.25) &&
+                                        BUFFERTabData.get(0).getStoreIssueAction()<BUFFERTabData.get(0).getStoreIssueTarget()-(BUFFERTabData.get(0).getStoreIssueTarget()*0.05) ? 'warning-color':'none'}"
+                                               th:text="${BUFFERTabData.get(0).getStoreIssueAction()}">90</a>
+                                            <a th:class="${BUFFERTabData.get(0).getStoreIssueAction()!=0 &&
+                        BUFFERTabData.get(0).getStoreIssueAction()>=BUFFERTabData.get(0).getStoreIssueTarget()-(BUFFERTabData.get(0).getStoreIssueTarget()*0.05) ? '':'none'}"
+                                               th:text="${BUFFERTabData.get(0).getStoreIssueAction()}">90</a>
+                                            <a th:class="${BUFFERTabData.get(0).getStoreIssueAction()==0 ? 'offline-color':'none'}"
+                                               th:text="${BUFFERTabData.get(0).getStoreIssueAction()}">90</a>
+                                        </td>
+                                        <td>95%</td>
+                                        <td class="td8">
+                                            <a th:class="${ BUFFERTabData.get(0).getAchievingRateAction()>0 && BUFFERTabData.get(0).getAchievingRateAction()<75 ? 'unusual-color':'none'}"
+                                               th:text="${BUFFERTabData.get(0).getAchievingRateAction()}+'%'"
+                                               >90%</a>
+
+                                            <a th:class="${BUFFERTabData.get(0).getAchievingRateAction()>=75 && BUFFERTabData.get(0).getAchievingRateAction()<95? 'warning-color':'none'}"
+                                               th:text="${BUFFERTabData.get(0).getAchievingRateAction()}+'%'"
+                                               >90%</a>
+                                            <a th:class="${BUFFERTabData.get(0).getAchievingRateAction()>=95 ? '':'none'}"
+                                               th:text="${BUFFERTabData.get(0).getAchievingRateAction()}+'%'"
+                                               >90%</a>
+                                            <a th:class="${BUFFERTabData.get(0).getAchievingRateAction()==0 ? 'offline-color':'none'}"
+                                               th:text="${BUFFERTabData.get(0).getAchievingRateAction()}+'%'"
+                                               >90%</a>
+                                        </td>
+                                        <td>5%</td>
+                                        <td class="td9">
+                                            <a th:class="${BUFFERTabData.get(0).getMachineRateAction()>5 ? 'unusual-color':''}"
+                                               th:text="${BUFFERTabData.get(0).getMachineRateAction()}+'%'">3%</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td th:text="${BUFFERTabData.get(1).getLineName()}">B002</td>
+                                        <td th:text="${BUFFERTabData.get(1).getStoreIssueTarget()}">0</td>
+                                        <td class="td10">
+                                            <a th:class="${BUFFERTabData.get(1).getStoreIssueAction()!=0 &&
+                        BUFFERTabData.get(1).getStoreIssueAction()<BUFFERTabData.get(1).getStoreIssueTarget()-(BUFFERTabData.get(1).getStoreIssueTarget()*0.25) ? 'unusual-color':'none'}"
+                                               th:text="${BUFFERTabData.get(1).getStoreIssueAction()}">90</a>
+                                            <a th:class="${BUFFERTabData.get(1).getStoreIssueAction()>=BUFFERTabData.get(1).getStoreIssueTarget()-(BUFFERTabData.get(1).getStoreIssueTarget()*0.25) &&
+                                        BUFFERTabData.get(1).getStoreIssueAction()<BUFFERTabData.get(1).getStoreIssueTarget()-(BUFFERTabData.get(1).getStoreIssueTarget()*0.05) ? 'warning-color':'none'}"
+                                               th:text="${BUFFERTabData.get(1).getStoreIssueAction()}">90</a>
+                                            <a th:class="${BUFFERTabData.get(1).getStoreIssueAction()!=0 &&
+                        BUFFERTabData.get(1).getStoreIssueAction()>=BUFFERTabData.get(1).getStoreIssueTarget()-(BUFFERTabData.get(1).getStoreIssueTarget()*0.05) ? '':'none'}"
+                                               th:text="${BUFFERTabData.get(1).getStoreIssueAction()}">90</a>
+                                            <a th:class="${BUFFERTabData.get(1).getStoreIssueAction()==0 ? 'offline-color':'none'}"
+                                               th:text="${BUFFERTabData.get(1).getStoreIssueAction()}">90</a>
+                                        </td>
+                                        <td>95%</td>
+                                        <td class="td11">
+                                            <a th:class="${ BUFFERTabData.get(1).getAchievingRateAction()>0 &&BUFFERTabData.get(1).getAchievingRateAction()<75 ? 'unusual-color':'none'}"
+                                               th:text="${BUFFERTabData.get(1).getAchievingRateAction()}+'%'"
+                                               >90%</a>
+
+                                            <a th:class="${BUFFERTabData.get(1).getAchievingRateAction()>=75 && BUFFERTabData.get(1).getAchievingRateAction()<95? 'warning-color':'none'}"
+                                               th:text="${BUFFERTabData.get(1).getAchievingRateAction()}+'%'"
+                                               >90%</a>
+                                            <a th:class="${BUFFERTabData.get(1).getAchievingRateAction()>=95 ? '':'none'}"
+                                               th:text="${BUFFERTabData.get(1).getAchievingRateAction()}+'%'"
+                                               >90%</a>
+                                            <a th:class="${BUFFERTabData.get(1).getAchievingRateAction()==0 ? 'offline-color':'none'}"
+                                               th:text="${BUFFERTabData.get(1).getAchievingRateAction()}+'%'"
+                                               >90%</a>
+                                        </td>
+                                        <td>5%</td>
+                                        <td class="td12">
+                                            <a th:class="${BUFFERTabData.get(1).getMachineRateAction()>5 ? 'unusual-color':''}"
+                                               th:text="${BUFFERTabData.get(1).getMachineRateAction()}+'%'">3%</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td rowspan="2">M02线</td>
+                                        <td th:text="${BUFFERTabData.get(2).getLineName()}">B003</td>
+                                        <td th:text="${BUFFERTabData.get(2).getStoreIssueTarget()}">0</td>
+                                        <td class="td13">
+                                            <a th:class="${BUFFERTabData.get(2).getStoreIssueAction()!=0 &&
+                                        BUFFERTabData.get(2).getStoreIssueAction()<BUFFERTabData.get(2).getStoreIssueTarget()-(BUFFERTabData.get(2).getStoreIssueTarget()*0.25) ? 'unusual-color':'none'}"
+
+                                               th:text="${BUFFERTabData.get(2).getStoreIssueAction()}">90</a>
+                                            <a th:class="${BUFFERTabData.get(2).getStoreIssueAction()>=BUFFERTabData.get(2).getStoreIssueTarget()-(BUFFERTabData.get(2).getStoreIssueTarget()*0.25) &&
+                                        BUFFERTabData.get(2).getStoreIssueAction()<BUFFERTabData.get(2).getStoreIssueTarget()-(BUFFERTabData.get(2).getStoreIssueTarget()*0.05) ? 'warning-color':'none'}"
+                                               th:text="${BUFFERTabData.get(2).getStoreIssueAction()}">90</a>
+                                            <a th:class="${BUFFERTabData.get(2).getStoreIssueAction()!=0 &&
+                        BUFFERTabData.get(2).getStoreIssueAction()>=BUFFERTabData.get(2).getStoreIssueTarget()-(BUFFERTabData.get(2).getStoreIssueTarget()*0.05) ? '':'none'}"
+                                               th:text="${BUFFERTabData.get(2).getStoreIssueAction()}">90</a>
+                                            <a th:class="${BUFFERTabData.get(2).getStoreIssueAction()==0 ? 'offline-color':'none'}"
+                                               th:text="${BUFFERTabData.get(2).getStoreIssueAction()}">90</a>
+                                        </td>
+                                        <td>95%</td>
+                                        <td class="td14">
+                                            <a th:class="${ BUFFERTabData.get(2).getAchievingRateAction()>0 && BUFFERTabData.get(2).getAchievingRateAction()<75 ? 'unusual-color':'none'}"
+                                               th:text="${BUFFERTabData.get(2).getAchievingRateAction()}+'%'"
+                                               >90%</a>
+
+                                            <a th:class="${BUFFERTabData.get(2).getAchievingRateAction()>=75 && BUFFERTabData.get(2).getAchievingRateAction()<95? 'warning-color':'none'}"
+                                               th:text="${BUFFERTabData.get(2).getAchievingRateAction()}+'%'"
+                                               >90%</a>
+                                            <a th:class="${BUFFERTabData.get(2).getAchievingRateAction()>=95 ? '':'none'}"
+                                               th:text="${BUFFERTabData.get(2).getAchievingRateAction()}+'%'"
+                                               >90%</a>
+                                            <a th:class="${BUFFERTabData.get(2).getAchievingRateAction()==0 ? 'offline-color':'none'}"
+                                               th:text="${BUFFERTabData.get(2).getAchievingRateAction()}+'%'"
+                                               >90%</a>
+                                        </td>
+                                        <td>5%</td>
+                                        <td class="td15">
+                                            <a th:class="${BUFFERTabData.get(2).getMachineRateAction()>5 ? 'unusual-color':''}"
+                                               th:text="${BUFFERTabData.get(2).getMachineRateAction()}+'%'">3%</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td th:text="${BUFFERTabData.get(3).getLineName()}">B004</td>
+                                        <td th:text="${BUFFERTabData.get(3).getStoreIssueTarget()}">0</td>
+                                        <td class="td16">
+                                            <a th:class="${BUFFERTabData.get(3).getStoreIssueAction()!=0 &&
+                        BUFFERTabData.get(3).getStoreIssueAction()<BUFFERTabData.get(3).getStoreIssueTarget()-(BUFFERTabData.get(3).getStoreIssueTarget()*0.25) ? 'unusual-color':'none'}"
+                                               th:text="${BUFFERTabData.get(3).getStoreIssueAction()}">90</a>
+                                            <a th:class="${BUFFERTabData.get(3).getStoreIssueAction()>=BUFFERTabData.get(3).getStoreIssueTarget()-(BUFFERTabData.get(3).getStoreIssueTarget()*0.25) &&
+                                        BUFFERTabData.get(3).getStoreIssueAction()<BUFFERTabData.get(3).getStoreIssueTarget()-(BUFFERTabData.get(3).getStoreIssueTarget()*0.05) ? 'warning-color':'none'}"
+                                               th:text="${BUFFERTabData.get(3).getStoreIssueAction()}">90</a>
+                                            <a th:class="${BUFFERTabData.get(3).getStoreIssueAction()!=0 &&
+                        BUFFERTabData.get(3).getStoreIssueAction()>=BUFFERTabData.get(3).getStoreIssueTarget()-(BUFFERTabData.get(3).getStoreIssueTarget()*0.05) ? '':'none'}"
+                                               th:text="${BUFFERTabData.get(3).getStoreIssueAction()}">90</a>
+                                            <a th:class="${BUFFERTabData.get(3).getStoreIssueAction()==0 ? 'offline-color':'none'}"
+                                               th:text="${BUFFERTabData.get(3).getStoreIssueAction()}">90</a>
+                                        </td>
+                                        <td>95%</td>
+                                        <td class="td17">
+                                            <a th:class="${ BUFFERTabData.get(3).getAchievingRateAction()>0 && BUFFERTabData.get(3).getAchievingRateAction()<75 ? 'unusual-color':'none'}"
+                                               th:text="${BUFFERTabData.get(3).getAchievingRateAction()}+'%'"
+                                               >90%</a>
+
+                                            <a th:class="${BUFFERTabData.get(3).getAchievingRateAction()>=75 && BUFFERTabData.get(3).getAchievingRateAction()<95? 'warning-color':'none'}"
+                                               th:text="${BUFFERTabData.get(3).getAchievingRateAction()}+'%'"
+                                               >90%</a>
+                                            <a th:class="${BUFFERTabData.get(3).getAchievingRateAction()>=95 ? '':'none'}"
+                                               th:text="${BUFFERTabData.get(3).getAchievingRateAction()}+'%'"
+                                               >90%</a>
+                                            <a th:class="${BUFFERTabData.get(3).getAchievingRateAction()==0 ? 'offline-color':'none'}"
+                                               th:text="${BUFFERTabData.get(3).getAchievingRateAction()}+'%'"
+                                               >90%</a>
+                                        </td>
+                                        <td>5%</td>
+                                        <td class="td18">
+                                            <a th:class="${BUFFERTabData.get(3).getMachineRateAction()>5 ? 'unusual-color':''}"
+
+                                               th:text="${BUFFERTabData.get(3).getMachineRateAction()}+'%'">3%</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td rowspan="2">M03线</td>
+                                        <td th:text="${BUFFERTabData.get(4).getLineName()}">B005</td>
+                                        <td th:text="${BUFFERTabData.get(4).getStoreIssueTarget()}">4</td>
+                                        <td class="td19">
+                                            <a th:class="${BUFFERTabData.get(4).getStoreIssueAction()!=0 &&
+                        BUFFERTabData.get(4).getStoreIssueAction()<BUFFERTabData.get(4).getStoreIssueTarget()-(BUFFERTabData.get(4).getStoreIssueTarget()*0.25) ? 'unusual-color':'none'}"
+                                               th:text="${BUFFERTabData.get(4).getStoreIssueAction()}">90</a>
+                                            <a th:class="${BUFFERTabData.get(4).getStoreIssueAction()>=BUFFERTabData.get(4).getStoreIssueTarget()-(BUFFERTabData.get(4).getStoreIssueTarget()*0.25) &&
+                                        BUFFERTabData.get(4).getStoreIssueAction()<BUFFERTabData.get(4).getStoreIssueTarget()-(BUFFERTabData.get(4).getStoreIssueTarget()*0.05) ? 'warning-color':'none'}"
+                                               th:text="${BUFFERTabData.get(4).getStoreIssueAction()}">90</a>
+                                            <a th:class="${BUFFERTabData.get(4).getStoreIssueAction()!=0 &&
+                        BUFFERTabData.get(4).getStoreIssueAction()>=BUFFERTabData.get(4).getStoreIssueTarget()-(BUFFERTabData.get(4).getStoreIssueTarget()*0.05) ? '':'none'}"
+                                               th:text="${BUFFERTabData.get(4).getStoreIssueAction()}">90</a>
+                                            <a th:class="${BUFFERTabData.get(4).getStoreIssueAction()==0 ? 'offline-color':'none'}"
+                                               th:text="${BUFFERTabData.get(4).getStoreIssueAction()}">90</a>
+                                        </td>
+                                        <td>95%</td>
+                                        <td class="td20">
+                                            <a th:class="${ BUFFERTabData.get(4).getAchievingRateAction()>0 && BUFFERTabData.get(4).getAchievingRateAction()<75 ? 'unusual-color':'none'}"
+                                               th:text="${BUFFERTabData.get(4).getAchievingRateAction()}+'%'"
+                                               >90%</a>
+
+                                            <a th:class="${BUFFERTabData.get(4).getAchievingRateAction()>=75 && BUFFERTabData.get(4).getAchievingRateAction()<95? 'warning-color':'none'}"
+                                               th:text="${BUFFERTabData.get(4).getAchievingRateAction()}+'%'"
+                                               >90%</a>
+                                            <a th:class="${BUFFERTabData.get(4).getAchievingRateAction()>=95 ? '':'none'}"
+                                               th:text="${BUFFERTabData.get(4).getAchievingRateAction()}+'%'"
+                                               >90%</a>
+                                            <a th:class="${BUFFERTabData.get(4).getAchievingRateAction()==0 ? 'offline-color':'none'}"
+                                               th:text="${BUFFERTabData.get(4).getAchievingRateAction()}+'%'"
+                                               >90%</a>
+                                        </td>
+                                        <td>5%</td>
+                                        <td class="td21">
+                                            <a th:class="${BUFFERTabData.get(4).getMachineRateAction()>5 ? 'unusual-color':''}"
+
+                                               th:text="${BUFFERTabData.get(4).getMachineRateAction()}+'%'">3%</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td th:text="${BUFFERTabData.get(5).getLineName()}">B006</td>
+                                        <td th:text="${BUFFERTabData.get(5).getStoreIssueTarget()}">6</td>
+                                        <td class="td22">
+                                            <a th:class="${BUFFERTabData.get(5).getStoreIssueAction()!=0 &&
+                        BUFFERTabData.get(5).getStoreIssueAction()<BUFFERTabData.get(5).getStoreIssueTarget()-(BUFFERTabData.get(5).getStoreIssueTarget()*0.25) ? 'unusual-color':'none'}"
+                                               th:text="${BUFFERTabData.get(5).getStoreIssueAction()}">90</a>
+                                            <a th:class="${BUFFERTabData.get(5).getStoreIssueAction()>=BUFFERTabData.get(5).getStoreIssueTarget()-(BUFFERTabData.get(5).getStoreIssueTarget()*0.25) &&
+                                        BUFFERTabData.get(5).getStoreIssueAction()<BUFFERTabData.get(5).getStoreIssueTarget()-(BUFFERTabData.get(5).getStoreIssueTarget()*0.05) ? 'warning-color':'none'}"
+                                               th:text="${BUFFERTabData.get(5).getStoreIssueAction()}">90</a>
+                                            <a th:class="${BUFFERTabData.get(5).getStoreIssueAction()!=0 &&
+                        BUFFERTabData.get(5).getStoreIssueAction()>=BUFFERTabData.get(5).getStoreIssueTarget()-(BUFFERTabData.get(5).getStoreIssueTarget()*0.05) ? '':'none'}"
+                                               th:text="${BUFFERTabData.get(5).getStoreIssueAction()}">90</a>
+                                            <a th:class="${BUFFERTabData.get(5).getStoreIssueAction()==0 ? 'offline-color':'none'}"
+                                               th:text="${BUFFERTabData.get(5).getStoreIssueAction()}">90</a>
+                                        </td>
+                                        <td>95%</td>
+                                        <td class="td23">
+                                            <a th:class="${ BUFFERTabData.get(5).getAchievingRateAction()>0 && BUFFERTabData.get(5).getAchievingRateAction()<75 ? 'unusual-color':'none'}"
+                                               th:text="${BUFFERTabData.get(5).getAchievingRateAction()}+'%'"
+                                               >90%</a>
+
+                                            <a th:class="${BUFFERTabData.get(5).getAchievingRateAction()>=75 && BUFFERTabData.get(5).getAchievingRateAction()<95? 'warning-color':'none'}"
+                                               th:text="${BUFFERTabData.get(5).getAchievingRateAction()}+'%'"
+                                               >90%</a>
+                                            <a th:class="${BUFFERTabData.get(5).getAchievingRateAction()>=95 ? '':'none'}"
+                                               th:text="${BUFFERTabData.get(5).getAchievingRateAction()}+'%'"
+                                               >90%</a>
+                                            <a th:class="${BUFFERTabData.get(5).getAchievingRateAction()==0 ? 'offline-color':'none'}"
+                                               th:text="${BUFFERTabData.get(5).getAchievingRateAction()}+'%'"
+                                               >90%</a>
+                                        </td>
+                                        <td>5%</td>
+                                        <td class="td24">
+                                            <a th:class="${BUFFERTabData.get(5).getMachineRateAction()>5 ? 'unusual-color':''}"
+
+                                               th:text="${BUFFERTabData.get(5).getMachineRateAction()}+'%'">3%</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td rowspan="2">M04线</td>
+                                        <td th:text="${BUFFERTabData.get(6).getLineName()}">B007</td>
+                                        <td th:text="${BUFFERTabData.get(6).getStoreIssueTarget()}">3</td>
+                                        <td class="td25">
+                                            <a th:class="${BUFFERTabData.get(6).getStoreIssueAction()!=0 &&
+                        BUFFERTabData.get(6).getStoreIssueAction()<BUFFERTabData.get(6).getStoreIssueTarget()-(BUFFERTabData.get(6).getStoreIssueTarget()*0.25) ? 'unusual-color':'none'}"
+                                               th:text="${BUFFERTabData.get(6).getStoreIssueAction()}">90</a>
+                                            <a th:class="${BUFFERTabData.get(6).getStoreIssueAction()>=BUFFERTabData.get(6).getStoreIssueTarget()-(BUFFERTabData.get(6).getStoreIssueTarget()*0.25) &&
+                                        BUFFERTabData.get(6).getStoreIssueAction()<BUFFERTabData.get(6).getStoreIssueTarget()-(BUFFERTabData.get(6).getStoreIssueTarget()*0.05) ? 'warning-color':'none'}"
+                                               th:text="${BUFFERTabData.get(6).getStoreIssueAction()}">90</a>
+                                            <a th:class="${BUFFERTabData.get(6).getStoreIssueAction()!=0 &&
+                        BUFFERTabData.get(6).getStoreIssueAction()>=BUFFERTabData.get(6).getStoreIssueTarget()-(BUFFERTabData.get(6).getStoreIssueTarget()*0.05) ? '':'none'}"
+                                               th:text="${BUFFERTabData.get(6).getStoreIssueAction()}">90</a>
+                                            <a th:class="${BUFFERTabData.get(6).getStoreIssueAction()==0 ? 'offline-color':'none'}"
+                                               th:text="${BUFFERTabData.get(6).getStoreIssueAction()}">90</a>
+                                        </td>
+                                        <td>95%</td>
+                                        <td class="td26">
+                                            <a th:class="${ BUFFERTabData.get(6).getAchievingRateAction()>0 && BUFFERTabData.get(6).getAchievingRateAction()<75 ? 'unusual-color':'none'}"
+                                               th:text="${BUFFERTabData.get(6).getAchievingRateAction()}+'%'"
+                                               >90%</a>
+
+                                            <a th:class="${BUFFERTabData.get(6).getAchievingRateAction()>=75 && BUFFERTabData.get(6).getAchievingRateAction()<95? 'warning-color':'none'}"
+                                               th:text="${BUFFERTabData.get(6).getAchievingRateAction()}+'%'"
+                                               >90%</a>
+                                            <a th:class="${BUFFERTabData.get(6).getAchievingRateAction()>=95 ? '':'none'}"
+                                               th:text="${BUFFERTabData.get(6).getAchievingRateAction()}+'%'"
+                                              >90%</a>
+                                            <a th:class="${BUFFERTabData.get(6).getAchievingRateAction()==0 ? 'offline-color':'none'}"
+                                               th:text="${BUFFERTabData.get(6).getAchievingRateAction()}+'%'"
+                                              >90%</a>
+                                        </td>
+                                        <td>5%</td>
+                                        <td class="td27">
+                                            <a th:class="${BUFFERTabData.get(6).getMachineRateAction()>5 ? 'unusual-color':''}"
+
+                                               th:text="${BUFFERTabData.get(6).getMachineRateAction()}+'%'">3%</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td th:text="${BUFFERTabData.get(7).getLineName()}">B008</td>
+                                        <td th:text="${BUFFERTabData.get(7).getStoreIssueTarget()}">7</td>
+                                        <td class="td28">
+                                            <a th:class="${BUFFERTabData.get(7).getStoreIssueAction()!=0 &&
+                        BUFFERTabData.get(7).getStoreIssueAction()<BUFFERTabData.get(7).getStoreIssueTarget()-(BUFFERTabData.get(7).getStoreIssueTarget()*0.25) ? 'unusual-color':'none'}"
+                                               th:text="${BUFFERTabData.get(7).getStoreIssueAction()}">90</a>
+                                            <a th:class="${BUFFERTabData.get(7).getStoreIssueAction()>=BUFFERTabData.get(7).getStoreIssueTarget()-(BUFFERTabData.get(7).getStoreIssueTarget()*0.25) &&
+                                        BUFFERTabData.get(7).getStoreIssueAction()<BUFFERTabData.get(7).getStoreIssueTarget()-(BUFFERTabData.get(7).getStoreIssueTarget()*0.05) ? 'warning-color':'none'}"
+                                               th:text="${BUFFERTabData.get(7).getStoreIssueAction()}">90</a>
+                                            <a th:class="${BUFFERTabData.get(7).getStoreIssueAction()!=0 &&
+                        BUFFERTabData.get(7).getStoreIssueAction()>=BUFFERTabData.get(7).getStoreIssueTarget()-(BUFFERTabData.get(7).getStoreIssueTarget()*0.05) ? '':'none'}"
+                                               th:text="${BUFFERTabData.get(7).getStoreIssueAction()}">90</a>
+                                            <a th:class="${BUFFERTabData.get(7).getStoreIssueAction()==0 ? 'offline-color':'none'}"
+                                               th:text="${BUFFERTabData.get(7).getStoreIssueAction()}">90</a>
+                                        </td>
+                                        <td>95%</td>
+                                        <td class="td29">
+                                            <a th:class="${ BUFFERTabData.get(7).getAchievingRateAction()>0 && BUFFERTabData.get(7).getAchievingRateAction()<75 ? 'unusual-color':'none'}"
+                                               th:text="${BUFFERTabData.get(7).getAchievingRateAction()}+'%'"
+                                               >90%</a>
+
+                                            <a th:class="${BUFFERTabData.get(7).getAchievingRateAction()>=75 && BUFFERTabData.get(7).getAchievingRateAction()<95 ? 'warning-color':'none'}"
+                                               th:text="${BUFFERTabData.get(7).getAchievingRateAction()}+'%'"
+                                               >90%</a>
+                                            <a th:class="${BUFFERTabData.get(7).getAchievingRateAction()>=95 ? '':'none'}"
+                                               th:text="${BUFFERTabData.get(7).getAchievingRateAction()}+'%'"
+                                               >90%</a>
+                                            <a th:class="${BUFFERTabData.get(7).getAchievingRateAction()==0 ? 'offline-color':'none'}"
+                                               th:text="${BUFFERTabData.get(7).getAchievingRateAction()}+'%'"
+                                               >90%</a>
+                                        </td>
+                                        <td class="td30">5%</td>
+                                        <td>
+                                            <a th:class="${BUFFERTabData.get(7).getMachineRateAction()>5 ? 'unusual-color':''}"
+                                               th:text="${BUFFERTabData.get(7).getMachineRateAction()}+'%'">3%</a>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+                    <div class="bottomContentB2">
+                        <div class="topContentB212">
+                            <div style="text-align: center;align-self: center;width: 100%;height: 100%" id="zanCun">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 0.76vh" class="bottomContent2">
+                    <div style="display: flex;width: 100%;height: 5.165%;">
+                        <div class="bottomContentTitle2">
+                            <span style="height: 100%;text-align: center;align-self: center">AFS</span>
+                        </div>
+                    </div>
+
+                    <div class="bottomContentC2">
+                        <div style="width: 100%;height: 100%;overflow-y: scroll">
+                            <table class="table1 table2" style="margin-top: 0.7vh;margin-left: 0.5%">
+                                <thead>
+                                <tr>
+                                    <td rowspan="2" style="width: 6.8%;">机种</td>
+                                    <td rowspan="2" style="width: 9.6%">线别</td>
+                                    <td rowspan="2" style="width: 9.2%">仓号</td>
+                                    <td colspan="2" style="width: 23.6%">交换次数</td>
+                                    <td colspan="2" style="width: 23.6%">直通率</td>
+                                    <td colspan="2" style="width: 23.6%">机故率</td>
+                                </tr>
+                                <tr>
+                                    <td>目标</td>
+                                    <td>实际</td>
+                                    <td>目标</td>
+                                    <td>实际</td>
+                                    <td>目标</td>
+                                    <td>实际</td>
+                                </tr>
+                                </thead>
+                                <tbody class="errorNum">
+                                <tr>
+                                    <td rowspan="8" style="border-bottom-left-radius: 16px" th:text="${Proudct}">D54</td>
+                                    <td rowspan="2" >M01线</td>
+                                    <td th:text="${AFSTabData.get(0).getLineName()}">S001</td>
+                                    <td th:text="${AFSTabData.get(0).getStoreIssueTarget()}">
+
+                                    </td>
+                                    <td class="td31">
+                                        <a th:class="${AFSTabData.get(0).getStoreIssueAction()!=0 &&
+                        AFSTabData.get(0).getStoreIssueAction()<AFSTabData.get(0).getStoreIssueTarget()-(AFSTabData.get(0).getStoreIssueTarget()*0.25) ? 'unusual-color':'none'}"
+                                           th:text="${AFSTabData.get(0).getStoreIssueAction()}">90</a>
+                                        <a th:class="${AFSTabData.get(0).getStoreIssueAction()>=AFSTabData.get(0).getStoreIssueTarget()-(AFSTabData.get(0).getStoreIssueTarget()*0.25) &&
+                                        AFSTabData.get(0).getStoreIssueAction()<AFSTabData.get(0).getStoreIssueTarget()-(AFSTabData.get(0).getStoreIssueTarget()*0.05) ? 'warning-color':'none'}"
+                                           th:text="${AFSTabData.get(0).getStoreIssueAction()}">90</a>
+                                        <a th:class="${AFSTabData.get(0).getStoreIssueAction()!=0 &&
+                        AFSTabData.get(0).getStoreIssueAction()>=AFSTabData.get(0).getStoreIssueTarget()-(AFSTabData.get(0).getStoreIssueTarget()*0.05) ? '':'none'}"
+                                           th:text="${AFSTabData.get(0).getStoreIssueAction()}">90</a>
+                                        <a th:class="${AFSTabData.get(0).getStoreIssueAction()==0 ? 'offline-color':'none'}"
+                                           th:text="${AFSTabData.get(0).getStoreIssueAction()}">90</a>
+                                    </td>
+                                    <td>95%</td>
+                                    <td class="td32">
+                                        <a th:class="${AFSTabData.get(0).getAchievingRateAction()>0  && AFSTabData.get(0).getAchievingRateAction()<75 ? 'unusual-color':'none'}"
+                                           th:text="${AFSTabData.get(0).getAchievingRateAction()}+'%'"
+                                           >90%</a>
+                                        <a th:class="${AFSTabData.get(0).getAchievingRateAction()>=75 && AFSTabData.get(0).getAchievingRateAction()<95 ? 'warning-color':'none'}"
+                                           th:text="${AFSTabData.get(0).getAchievingRateAction()}+'%'"
+                                           >90%</a>
+                                        <a th:class="${AFSTabData.get(0).getAchievingRateAction()>=95 ? '':'none'}"
+                                           th:text="${AFSTabData.get(0).getAchievingRateAction()}+'%'"
+                                           >90%</a>
+                                        <a th:class="${AFSTabData.get(0).getAchievingRateAction()==0 ? 'offline-color':'none'}"
+                                           th:text="${AFSTabData.get(0).getAchievingRateAction()}+'%'"
+                                           >90%</a>
+                                    </td>
+                                    <td>5%</td>
+                                    <td class="td33">
+                                        <a th:class="${AFSTabData.get(0).getMachineRateAction()>5 ? 'unusual-color':''}"
+                                           th:text="${AFSTabData.get(0).getMachineRateAction()}+'%'">3%</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td th:text="${AFSTabData.get(1).getLineName()}">S002</td>
+                                    <td th:text="${AFSTabData.get(1).getStoreIssueTarget()}">0</td>
+                                    <td class="td34">
+                                        <a th:class="${AFSTabData.get(1).getStoreIssueAction()!=0 &&
+                        AFSTabData.get(1).getStoreIssueAction()<AFSTabData.get(1).getStoreIssueTarget()-(AFSTabData.get(1).getStoreIssueTarget()*0.25) ? 'unusual-color':'none'}"
+                                           th:text="${AFSTabData.get(1).getStoreIssueAction()}">90</a>
+                                        <a th:class="${AFSTabData.get(1).getStoreIssueAction()>=AFSTabData.get(1).getStoreIssueTarget()-(AFSTabData.get(1).getStoreIssueTarget()*0.25) &&
+                                        AFSTabData.get(1).getStoreIssueAction()<AFSTabData.get(1).getStoreIssueTarget()-(AFSTabData.get(1).getStoreIssueTarget()*0.05) ? 'warning-color':'none'}"
+                                           th:text="${AFSTabData.get(1).getStoreIssueAction()}">90</a>
+                                        <a th:class="${AFSTabData.get(1).getStoreIssueAction()!=0 &&
+                        AFSTabData.get(1).getStoreIssueAction()>=AFSTabData.get(1).getStoreIssueTarget()-(AFSTabData.get(1).getStoreIssueTarget()*0.05) ? '':'none'}"
+                                           th:text="${AFSTabData.get(1).getStoreIssueAction()}">90</a>
+                                        <a th:class="${AFSTabData.get(1).getStoreIssueAction()==0 ? 'offline-color':'none'}"
+                                           th:text="${AFSTabData.get(1).getStoreIssueAction()}">90</a>
+                                    </td>
+                                    <td>95%</td>
+                                    <td class="td35">
+                                        <a th:class="${AFSTabData.get(1).getAchievingRateAction()>0  && AFSTabData.get(1).getAchievingRateAction()<75 ? 'unusual-color':'none'}"
+                                           th:text="${AFSTabData.get(1).getAchievingRateAction()}+'%'"
+                                           >90%</a>
+                                        <a th:class="${AFSTabData.get(1).getAchievingRateAction()>=75 && AFSTabData.get(1).getAchievingRateAction()<95 ? 'warning-color':'none'}"
+                                           th:text="${AFSTabData.get(1).getAchievingRateAction()}+'%'"
+                                           >90%</a>
+                                        <a th:class="${AFSTabData.get(1).getAchievingRateAction()>=95 ? '':'none'}"
+                                           th:text="${AFSTabData.get(1).getAchievingRateAction()}+'%'"
+                                           >90%</a>
+                                        <a th:class="${AFSTabData.get(1).getAchievingRateAction()==0 ? 'offline-color':'none'}"
+                                           th:text="${AFSTabData.get(1).getAchievingRateAction()}+'%'"
+                                           >90%</a>
+                                    </td>
+                                    <td>5%</td>
+                                    <td class="td36">
+                                        <a th:class="${AFSTabData.get(1).getMachineRateAction()>5 ? 'unusual-color':''}"
+                                           th:text="${AFSTabData.get(1).getMachineRateAction()}+'%'">3%</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="2">M02线</td>
+                                    <td th:text="${AFSTabData.get(2).getLineName()}">S003</td>
+                                    <td th:text="${AFSTabData.get(2).getStoreIssueTarget()}">0</td>
+                                    <td class="td37">
+                                        <a th:class="${AFSTabData.get(2).getStoreIssueAction()!=0 &&
+                        AFSTabData.get(2).getStoreIssueAction()<AFSTabData.get(2).getStoreIssueTarget()-(AFSTabData.get(2).getStoreIssueTarget()*0.25) ? 'unusual-color':'none'}"
+                                           th:text="${AFSTabData.get(2).getStoreIssueAction()}">90</a>
+                                        <a th:class="${AFSTabData.get(2).getStoreIssueAction()>=AFSTabData.get(2).getStoreIssueTarget()-(AFSTabData.get(2).getStoreIssueTarget()*0.25) &&
+                                        AFSTabData.get(2).getStoreIssueAction()<AFSTabData.get(2).getStoreIssueTarget()-(AFSTabData.get(2).getStoreIssueTarget()*0.05) ? 'warning-color':'none'}"
+                                           th:text="${AFSTabData.get(2).getStoreIssueAction()}">90</a>
+                                        <a th:class="${AFSTabData.get(2).getStoreIssueAction()!=0 &&
+                        AFSTabData.get(2).getStoreIssueAction()>=AFSTabData.get(2).getStoreIssueTarget()-(AFSTabData.get(2).getStoreIssueTarget()*0.05) ? '':'none'}"
+                                           th:text="${AFSTabData.get(2).getStoreIssueAction()}">90</a>
+                                        <a th:class="${AFSTabData.get(2).getStoreIssueAction()==0 ? 'offline-color':'none'}"
+                                           th:text="${AFSTabData.get(2).getStoreIssueAction()}">90</a>
+                                    </td>
+                                    <td>95%</td>
+                                    <td class="td38">
+                                        <a th:class="${AFSTabData.get(2).getAchievingRateAction()>0  && AFSTabData.get(2).getAchievingRateAction()<75 ? 'unusual-color':'none'}"
+                                           th:text="${AFSTabData.get(2).getAchievingRateAction()}+'%'"
+                                           >90%</a>
+                                        <a th:class="${AFSTabData.get(2).getAchievingRateAction()>=75 && AFSTabData.get(2).getAchievingRateAction()<95 ? 'warning-color':'none'}"
+                                           th:text="${AFSTabData.get(2).getAchievingRateAction()}+'%'"
+                                           >90%</a>
+                                        <a th:class="${AFSTabData.get(2).getAchievingRateAction()>=95 ? '':'none'}"
+                                           th:text="${AFSTabData.get(2).getAchievingRateAction()}+'%'"
+                                           >90%</a>
+                                        <a th:class="${AFSTabData.get(2).getAchievingRateAction()==0 ? 'offline-color':'none'}"
+                                           th:text="${AFSTabData.get(2).getAchievingRateAction()}+'%'"
+                                           >90%</a>
+                                    </td>
+                                    <td>5%</td>
+                                    <td class="td39">
+                                        <a th:class="${AFSTabData.get(2).getMachineRateAction()>5 ? 'unusual-color':''}"
+                                           th:text="${AFSTabData.get(2).getMachineRateAction()}+'%'">3%</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td th:text="${AFSTabData.get(3).getLineName()}">S004</td>
+                                    <td th:text="${AFSTabData.get(3).getStoreIssueTarget()}">0</td>
+                                    <td class="td40">
+                                        <a th:class="${AFSTabData.get(3).getStoreIssueAction()!=0 &&
+                        AFSTabData.get(3).getStoreIssueAction()<AFSTabData.get(3).getStoreIssueTarget()-(AFSTabData.get(3).getStoreIssueTarget()*0.25) ? 'unusual-color':'none'}"
+                                           th:text="${AFSTabData.get(3).getStoreIssueAction()}">90</a>
+                                        <a th:class="${AFSTabData.get(3).getStoreIssueAction()>=AFSTabData.get(3).getStoreIssueTarget()-(AFSTabData.get(3).getStoreIssueTarget()*0.25) &&
+                                        AFSTabData.get(3).getStoreIssueAction()<AFSTabData.get(3).getStoreIssueTarget()-(AFSTabData.get(3).getStoreIssueTarget()*0.05) ? 'warning-color':'none'}"
+                                           th:text="${AFSTabData.get(3).getStoreIssueAction()}">90</a>
+                                        <a th:class="${AFSTabData.get(3).getStoreIssueAction()!=0 &&
+                        AFSTabData.get(3).getStoreIssueAction()>=AFSTabData.get(3).getStoreIssueTarget()-(AFSTabData.get(3).getStoreIssueTarget()*0.05) ? '':'none'}"
+                                           th:text="${AFSTabData.get(3).getStoreIssueAction()}">90</a>
+                                        <a th:class="${AFSTabData.get(3).getStoreIssueAction()==0 ? 'offline-color':'none'}"
+                                           th:text="${AFSTabData.get(3).getStoreIssueAction()}">90</a>
+                                    </td>
+                                    <td>95%</td>
+                                    <td class="td41">
+                                        <a th:class="${AFSTabData.get(3).getAchievingRateAction()>0  && AFSTabData.get(3).getAchievingRateAction()<75 ? 'unusual-color':'none'}"
+                                           th:text="${AFSTabData.get(3).getAchievingRateAction()}+'%'"
+                                           >90%</a>
+                                        <a th:class="${AFSTabData.get(3).getAchievingRateAction()>=75 && AFSTabData.get(3).getAchievingRateAction()<95 ? 'warning-color':'none'}"
+                                           th:text="${AFSTabData.get(3).getAchievingRateAction()}+'%'"
+                                           >90%</a>
+                                        <a th:class="${AFSTabData.get(3).getAchievingRateAction()>=95 ? '':'none'}"
+                                           th:text="${AFSTabData.get(3).getAchievingRateAction()}+'%'"
+                                           >90%</a>
+                                        <a th:class="${AFSTabData.get(3).getAchievingRateAction()==0 ? 'offline-color':'none'}"
+                                           th:text="${AFSTabData.get(3).getAchievingRateAction()}+'%'"
+                                           >90%</a>
+                                    </td>
+                                    <td>5%</td>
+                                    <td class="td42">
+                                        <a th:class="${AFSTabData.get(3).getMachineRateAction()>5 ? 'unusual-color':''}"
+                                           th:text="${AFSTabData.get(3).getMachineRateAction()}+'%'">3%</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="2">M03线</td>
+                                    <td th:text="${AFSTabData.get(4).getLineName()}">S005</td>
+                                    <td th:text="${AFSTabData.get(4).getStoreIssueTarget()}">4</td>
+                                    <td class="td43">
+                                        <a th:class="${AFSTabData.get(4).getStoreIssueAction()!=0 &&
+                        AFSTabData.get(4).getStoreIssueAction()<AFSTabData.get(4).getStoreIssueTarget()-(AFSTabData.get(4).getStoreIssueTarget()*0.25) ? 'unusual-color':'none'}"
+                                           th:text="${AFSTabData.get(4).getStoreIssueAction()}">90</a>
+                                        <a th:class="${AFSTabData.get(4).getStoreIssueAction()>=AFSTabData.get(4).getStoreIssueTarget()-(AFSTabData.get(4).getStoreIssueTarget()*0.25) &&
+                                        AFSTabData.get(4).getStoreIssueAction()<AFSTabData.get(4).getStoreIssueTarget()-(AFSTabData.get(4).getStoreIssueTarget()*0.05) ? 'warning-color':'none'}"
+                                           th:text="${AFSTabData.get(4).getStoreIssueAction()}">90</a>
+                                        <a th:class="${AFSTabData.get(4).getStoreIssueAction()!=0 &&
+                        AFSTabData.get(4).getStoreIssueAction()>=AFSTabData.get(4).getStoreIssueTarget()-(AFSTabData.get(4).getStoreIssueTarget()*0.05) ? '':'none'}"
+                                           th:text="${AFSTabData.get(4).getStoreIssueAction()}">90</a>
+                                        <a th:class="${AFSTabData.get(4).getStoreIssueAction()==0 ? 'offline-color':'none'}"
+                                           th:text="${AFSTabData.get(4).getStoreIssueAction()}">90</a>
+                                    </td>
+                                    <td>95%</td>
+                                    <td class="td44">
+                                        <a th:class="${AFSTabData.get(4).getAchievingRateAction()>0  && AFSTabData.get(4).getAchievingRateAction()<75 ? 'unusual-color':'none'}"
+                                           th:text="${AFSTabData.get(4).getAchievingRateAction()}+'%'"
+                                           >90%</a>
+                                        <a th:class="${AFSTabData.get(4).getAchievingRateAction()>=75 && AFSTabData.get(4).getAchievingRateAction()<95 ? 'warning-color':'none'}"
+                                           th:text="${AFSTabData.get(4).getAchievingRateAction()}+'%'"
+                                           >90%</a>
+                                        <a th:class="${AFSTabData.get(4).getAchievingRateAction()>=95 ? '':'none'}"
+                                           th:text="${AFSTabData.get(4).getAchievingRateAction()}+'%'"
+                                           >90%</a>
+                                        <a th:class="${AFSTabData.get(4).getAchievingRateAction()==0 ? 'offline-color':'none'}"
+                                           th:text="${AFSTabData.get(4).getAchievingRateAction()}+'%'"
+                                           >90%</a>
+                                    </td>
+                                    <td>5%</td>
+                                    <td class="td45">
+                                        <a th:class="${AFSTabData.get(4).getMachineRateAction()>5 ? 'unusual-color':''}"
+                                           th:text="${AFSTabData.get(4).getMachineRateAction()}+'%'">3%</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td th:text="${AFSTabData.get(5).getLineName()}">S006</td>
+                                    <td th:text="${AFSTabData.get(5).getStoreIssueTarget()}">6</td>
+                                    <td class="td46">
+                                        <a th:class="${AFSTabData.get(5).getStoreIssueAction()!=0 &&
+                        AFSTabData.get(5).getStoreIssueAction()<AFSTabData.get(5).getStoreIssueTarget()-(AFSTabData.get(5).getStoreIssueTarget()*0.25) ? 'unusual-color':'none'}"
+                                           th:text="${AFSTabData.get(5).getStoreIssueAction()}">90</a>
+                                        <a th:class="${AFSTabData.get(5).getStoreIssueAction()>=AFSTabData.get(5).getStoreIssueTarget()-(AFSTabData.get(5).getStoreIssueTarget()*0.25) &&
+                                        AFSTabData.get(5).getStoreIssueAction()<AFSTabData.get(5).getStoreIssueTarget()-(AFSTabData.get(5).getStoreIssueTarget()*0.05) ? 'warning-color':'none'}"
+                                           th:text="${AFSTabData.get(5).getStoreIssueAction()}">90</a>
+                                        <a th:class="${AFSTabData.get(5).getStoreIssueAction()!=0 &&
+                        AFSTabData.get(5).getStoreIssueAction()>=AFSTabData.get(5).getStoreIssueTarget()-(AFSTabData.get(5).getStoreIssueTarget()*0.05) ? '':'none'}"
+                                           th:text="${AFSTabData.get(5).getStoreIssueAction()}">90</a>
+                                        <a th:class="${AFSTabData.get(5).getStoreIssueAction()==0 ? 'offline-color':'none'}"
+                                           th:text="${AFSTabData.get(5).getStoreIssueAction()}">90</a>
+                                    </td>
+                                    <td>95%</td>
+                                    <td class="td47">
+                                        <a th:class="${AFSTabData.get(5).getAchievingRateAction()>0  && AFSTabData.get(5).getAchievingRateAction()<75 ? 'unusual-color':'none'}"
+                                           th:text="${AFSTabData.get(5).getAchievingRateAction()}+'%'"
+                                           >90%</a>
+                                        <a th:class="${AFSTabData.get(5).getAchievingRateAction()>=75 && AFSTabData.get(5).getAchievingRateAction()<95 ? 'warning-color':'none'}"
+                                           th:text="${AFSTabData.get(5).getAchievingRateAction()}+'%'"
+                                           >90%</a>
+                                        <a th:class="${AFSTabData.get(5).getAchievingRateAction()>=95 ? '':'none'}"
+                                           th:text="${AFSTabData.get(5).getAchievingRateAction()}+'%'"
+                                           >90%</a>
+                                        <a th:class="${AFSTabData.get(5).getAchievingRateAction()==0 ? 'offline-color':'none'}"
+                                           th:text="${AFSTabData.get(5).getAchievingRateAction()}+'%'"
+                                           >90%</a>
+                                    </td>
+                                    <td>5%</td>
+                                    <td class="td48">
+                                        <a th:class="${AFSTabData.get(5).getMachineRateAction()>5 ? 'unusual-color':''}"
+                                           th:text="${AFSTabData.get(5).getMachineRateAction()}+'%'">3%</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="2">M04线</td>
+                                    <td th:text="${AFSTabData.get(6).getLineName()}">S007</td>
+                                    <td th:text="${AFSTabData.get(6).getStoreIssueTarget()}">3</td>
+                                    <td class="td49">
+                                        <a th:class="${AFSTabData.get(6).getStoreIssueAction()!=0 &&
+                        AFSTabData.get(6).getStoreIssueAction()<AFSTabData.get(6).getStoreIssueTarget()-(AFSTabData.get(6).getStoreIssueTarget()*0.25) ? 'unusual-color':'none'}"
+                                           th:text="${AFSTabData.get(6).getStoreIssueAction()}">90</a>
+                                        <a th:class="${AFSTabData.get(6).getStoreIssueAction()>=AFSTabData.get(6).getStoreIssueTarget()-(AFSTabData.get(6).getStoreIssueTarget()*0.25) &&
+                                        AFSTabData.get(6).getStoreIssueAction()<AFSTabData.get(6).getStoreIssueTarget()-(AFSTabData.get(6).getStoreIssueTarget()*0.05) ? 'warning-color':'none'}"
+                                           th:text="${AFSTabData.get(6).getStoreIssueAction()}">90</a>
+                                        <a th:class="${AFSTabData.get(6).getStoreIssueAction()!=0 &&
+                        AFSTabData.get(6).getStoreIssueAction()>=AFSTabData.get(6).getStoreIssueTarget()-(AFSTabData.get(6).getStoreIssueTarget()*0.05) ? '':'none'}"
+                                           th:text="${AFSTabData.get(6).getStoreIssueAction()}">90</a>
+                                        <a th:class="${AFSTabData.get(6).getStoreIssueAction()==0 ? 'offline-color':'none'}"
+                                           th:text="${AFSTabData.get(6).getStoreIssueAction()}">90</a>
+                                    </td>
+                                    <td>95%</td>
+                                    <td class="td50">
+                                        <a th:class="${AFSTabData.get(6).getAchievingRateAction()>0  && AFSTabData.get(6).getAchievingRateAction()<75 ? 'unusual-color':'none'}"
+                                           th:text="${AFSTabData.get(6).getAchievingRateAction()}+'%'"
+                                           >90%</a>
+                                        <a th:class="${AFSTabData.get(6).getAchievingRateAction()>=75 && AFSTabData.get(6).getAchievingRateAction()<95 ? 'warning-color':'none'}"
+                                           th:text="${AFSTabData.get(6).getAchievingRateAction()}+'%'"
+                                           >90%</a>
+                                        <a th:class="${AFSTabData.get(6).getAchievingRateAction()>=95 ? '':'none'}"
+                                           th:text="${AFSTabData.get(6).getAchievingRateAction()}+'%'"
+                                           >90%</a>
+                                        <a th:class="${AFSTabData.get(6).getAchievingRateAction()==0 ? 'offline-color':'none'}"
+                                           th:text="${AFSTabData.get(6).getAchievingRateAction()}+'%'"
+                                           >90%</a>
+                                    </td>
+                                    <td>5%</td>
+                                    <td class="td51">
+                                        <a th:class="${AFSTabData.get(6).getMachineRateAction()>5 ? 'unusual-color':''}"
+                                           th:text="${AFSTabData.get(6).getMachineRateAction()}+'%'">3%</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td th:text="${AFSTabData.get(7).getLineName()}">S008</td>
+                                    <td th:text="${AFSTabData.get(7).getStoreIssueTarget()}">7</td>
+                                    <td class="td52">
+                                        <a th:class="${AFSTabData.get(7).getStoreIssueAction()!=0 &&
+                        AFSTabData.get(7).getStoreIssueAction()<AFSTabData.get(7).getStoreIssueTarget()-(AFSTabData.get(7).getStoreIssueTarget()*0.25) ? 'unusual-color':'none'}"
+                                           th:text="${AFSTabData.get(7).getStoreIssueAction()}">90</a>
+                                        <a th:class="${AFSTabData.get(7).getStoreIssueAction()>=AFSTabData.get(7).getStoreIssueTarget()-(AFSTabData.get(7).getStoreIssueTarget()*0.25) &&
+                                        AFSTabData.get(7).getStoreIssueAction()<AFSTabData.get(7).getStoreIssueTarget()-(AFSTabData.get(7).getStoreIssueTarget()*0.05) ? 'warning-color':'none'}"
+                                           th:text="${AFSTabData.get(7).getStoreIssueAction()}">90</a>
+                                        <a th:class="${AFSTabData.get(7).getStoreIssueAction()!=0 &&
+                        AFSTabData.get(7).getStoreIssueAction()>=AFSTabData.get(7).getStoreIssueTarget()-(AFSTabData.get(7).getStoreIssueTarget()*0.05) ? '':'none'}"
+                                           th:text="${AFSTabData.get(7).getStoreIssueAction()}">90</a>
+                                        <a th:class="${AFSTabData.get(7).getStoreIssueAction()==0 ? 'offline-color':'none'}"
+                                           th:text="${AFSTabData.get(7).getStoreIssueAction()}">90</a>
+                                    </td>
+                                    <td>95%</td>
+                                    <td class="td53">
+                                        <a th:class="${AFSTabData.get(7).getAchievingRateAction()>0  && AFSTabData.get(7).getAchievingRateAction()<75 ? 'unusual-color':'none'}"
+                                           th:text="${AFSTabData.get(7).getAchievingRateAction()}+'%'"
+                                           >90%</a>
+                                        <a th:class="${AFSTabData.get(7).getAchievingRateAction()>=75 && AFSTabData.get(7).getAchievingRateAction()<95 ? 'warning-color':'none'}"
+                                           th:text="${AFSTabData.get(7).getAchievingRateAction()}+'%'"
+                                           >90%</a>
+                                        <a th:class="${AFSTabData.get(7).getAchievingRateAction()>=95 ? '':'none'}"
+                                           th:text="${AFSTabData.get(7).getAchievingRateAction()}+'%'"
+                                           >90%</a>
+                                        <a th:class="${AFSTabData.get(7).getAchievingRateAction()==0 ? 'offline-color':'none'}"
+                                           th:text="${AFSTabData.get(7).getAchievingRateAction()}+'%'"
+                                           >90%</a>
+                                    </td>
+                                    <td>5%</td>
+                                    <td class="td54">
+                                        <a th:class="${AFSTabData.get(7).getMachineRateAction()>5 ? 'unusual-color':''}"
+                                           th:text="${AFSTabData.get(7).getMachineRateAction()}+'%'">3%</a>
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="bottomContentB2">
+                        <div class="topContentB212">
+                            <div style="text-align: center;align-self: center;width: 100%;height: 100%" id="AFS">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+<script th:src="@{/js/jquery-3.5.1.min.js}" src="../static/js/jquery-3.5.1.min.js"></script>
+<script th:src="@{/layui/layui.js}" src="../static/layui/layui.js"></script>
+<script th:src="@{/js/echarts.js}" src="../static/js/echarts.js"></script>
+<script th:src="@{/js/SkasAfs2.js}" src="../static/js/SkasAfs2.js"></script>
+<script>
+
+    // window.onload = function(){
+    //     /*375代表设计师给的设计稿的宽度，你的设计稿是多少，就写多少;
+    //     100代表换算比例，这里写100是为了以后好算,
+    //     比如，你测量的一个宽度是100px,就可以写为1rem,以及1px=0.01rem等等*/
+    //     getRem(768,100)
+    // };
+    // window.onresize = function(){
+    //     getRem(768,100)
+    // };
+    // function getRem(pwidth,prem){
+    //     var html = document.getElementsByTagName("html")[0];
+    //     var oWidth = document.body.clientWidth || document.documentElement.clientWidth;
+    //     html.style.fontSize = oWidth/pwidth*prem + "px";
+    // }
+
+</script>
+
+
+
+<script th:inline="javascript">
+
+
+    //页面变化重新绘制Echars图
+    function getXinEchars (myChart,option){
+        myChart.setOption(option,true);
+        window.addEventListener("resize",function () {
+            myChart.resize();
+        });
+        myChart.clear();
+        myChart.setOption(option,true);
+    }
+    (function () {
+        rgvbarchar();
+        agvbarchar();
+        tsbarchar();
+        afsarchar();
+    })();
+    function rgvbarchar() {
+        //发料量
+        var  StoreIssueTarget =[[${RGVTabData.getStoreIssueTarget()}]];
+        var  StoreIssueAction =[[${RGVTabData.getStoreIssueAction()}]];
+        var chartDom21 = document.getElementById('faLiaoLiang');
+        var myChart21 = echarts.init(chartDom21);
+        var option21 = {
+            grid:{
+                top:'20%',//距上边距
+                left:'2%',//距离左边距
+                right:'2%',//距离右边距
+                bottom:'3%',//距离下边距
+                containLabel:true
+            },
+
+            xAxis: {
+                type: 'category',
+                data: ['投入', '产出'],
+                axisTick: {
+                    show: false
+                },
+                axisLabel:{
+                    textStylee:{
+                        fontFamily: 'PingFangSC-Regular',
+                        fontSize: 12,
+                        color: 'rgba(0,0,0,0.85)',
+                    },
+                },
+            },
+            yAxis: {
+                axisLabel:{
+                    textStylee:{
+                        fontFamily: 'PingFangSC-Regular',
+                        fontSize: 12,
+                        color: 'rgba(0,0,0,0.85)',
+                        letterSpacing: 0.06,
+                    },
+                },
+
+                type: 'value',
+                axisTick: {
+                    show: false
+                },
+                axisLine: {
+                    show: false
+                },
+            },
+
+            series: [{
+                barWidth: 30,
+                type: 'bar',
+                itemStyle: {
+                    normal: {
+                        //通过数组下标选择颜色
+                        color: function(params) {
+                            var colorList = [
+                                '#53DDC1','#77A3F9'
+                            ];
+                            return colorList[params.dataIndex]
+                        },
+                    }
+                },
+                label:{
+                    show:true,
+                    position:'top',
+                    textStyle:{
+                        fontFamily: 'PingFangSC-Regular',
+                        fontSize: 10,
+                        color: "rgba(0,0,0,0.85)",
+                        letterSpacing: 0,
+
+                    }
+                },
+                data: [StoreIssueTarget,StoreIssueAction]
+
+            }]
+        };
+        getXinEchars(myChart21,option21);
+
+        //达成率
+        var  AchievingRateAction =[[${RGVTabData.getAchievingRateAction()}]];
+        var chartDom22 = document.getElementById('daCheng');
+        var myChart22 = echarts.init(chartDom22);
+        var option22 = {
+            grid:{
+                top:'20%',//距上边距
+                left:'2%',//距离左边距
+                right:'2%',//距离右边距
+                bottom:'3%',//距离下边距
+                containLabel:true
+            },
+
+            xAxis: {
+                type: 'category',
+                data: ['目标', '实际'],
+                axisTick: {
+                    show: false
+                },
+                axisLabel:{
+                    textStylee:{
+                        fontFamily: 'PingFangSC-Regular',
+                        fontSize: 12,
+                        color: 'rgba(0,0,0,0.85)',
+                    },
+                },
+            },
+            yAxis:[
+                {
+
+
+                    type: 'value',
+                    scale:false,
+                    axisTick: {
+                        show: false
+                    },
+                    axisLine: {
+                        show: false
+                    },
+                    axisLabel: {
+
+                        show: true,
+                        interval: 'auto',
+                        formatter: '{value} %',
+                        textStyle:{
+                            fontFamily: 'PingFangSC-Regular',
+                            fontSize: 12,
+                            color: 'rgba(0,0,0,0.85)',
+                            letterSpacing: 0.06,
+                        },
+                    },
+                    show: true
+                }
+            ],
+
+            series: [{
+                barWidth: 30,
+                type: 'bar',
+                itemStyle: {
+                    normal: {
+                        //通过数组下标选择颜色
+                        color: function(params) {
+                            var colorList = [
+                                '#53DDC1','#77A3F9'
+                            ];
+                            return colorList[params.dataIndex]
+                        },
+                    }
+                },
+                label:{
+                    show:true,
+                    position:'top',
+                    textStyle:{
+                        fontFamily: 'PingFangSC-Regular',
+                        fontSize: 10,
+                        color: "rgba(0,0,0,0.85)",
+                        letterSpacing: 0,
+
+                    },
+                    formatter: '{c}%',
+
+                },
+                data: [95,AchievingRateAction]
+
+            }]
+        };
+        getXinEchars(myChart22,option22);
+
+        //机故率
+        var MachineRateAction =[[${RGVTabData.getMachineRateAction()}]]
+        var chartDom23 = document.getElementById('jiGu');
+        var myChart23 = echarts.init(chartDom23);
+        var option23 = {
+            grid:{
+                top:'20%',//距上边距
+                left:'2%',//距离左边距
+                right:'2%',//距离右边距
+                bottom:'3%',//距离下边距
+                containLabel:true
+            },
+
+            xAxis: {
+                type: 'category',
+                data: ['目标', '实际'],
+                axisTick: {
+                    show: false
+                },
+                axisLabel:{
+                    textStylee:{
+                        fontFamily: 'PingFangSC-Regular',
+                        fontSize: 12,
+                        color: 'rgba(0,0,0,0.85)',
+                    },
+                },
+            },
+            yAxis:[
+                {
+                    type: 'value',
+
+                    axisTick: {
+                        show: false
+                    },
+                    axisLine: {
+                        show: false
+                    },
+                    axisLabel: {
+                        show: true,
+                        interval: 'auto',
+                        formatter: '{value} %',
+                        textStyle:{
+                            fontFamily: 'PingFangSC-Regular',
+                            fontSize: 12,
+                            color: 'rgba(0,0,0,0.85)',
+                            letterSpacing: 0.06,
+                        },
+                    },
+                    show: true
+                }
+            ],
+
+            series: [{
+                barWidth: 30,
+                type: 'bar',
+                itemStyle: {
+                    normal: {
+                        //通过数组下标选择颜色
+                        color: function(params) {
+                            var colorList = [
+                                '#53DDC1','#77A3F9'
+                            ];
+                            return colorList[params.dataIndex]
+                        },
+                    }
+                },
+                label:{
+                    show:true,
+                    position:'top',
+                    textStyle:{
+                        fontFamily: 'PingFangSC-Regular',
+                        fontSize: 10,
+                        color: "rgba(0,0,0,0.85)",
+                        letterSpacing: 0,
+
+                    },
+                    formatter: '{c}%',
+
+                },
+                data: [5,MachineRateAction],
+
+            }]
+        };
+        getXinEchars(myChart23,option23);
+
+    }
+
+    function agvbarchar() {
+        //交换次数
+        var  StoreIssueTarget =[[${AGVTabData.getStoreIssueTarget()}]];
+        var  StoreIssueAction =[[${AGVTabData.getStoreIssueAction()}]];
+        var chartDom24 = document.getElementById('jiaoHuan');
+        var myChart24 = echarts.init(chartDom24);
+        var option24 = {
+            grid:{
+                top:'20%',//距上边距
+                left:'2%',//距离左边距
+                right:'2%',//距离右边距
+                bottom:'3%',//距离下边距
+                containLabel:true
+            },
+
+            xAxis: {
+                type: 'category',
+                data: ['目标', '实际'],
+                axisTick: {
+                    show: false
+                },
+                axisLabel:{
+                    textStylee:{
+                        fontFamily: 'PingFangSC-Regular',
+                        fontSize: 12,
+                        color: 'rgba(0,0,0,0.85)',
+                    },
+                },
+            },
+            yAxis: {
+                axisLabel:{
+                    textStylee:{
+                        fontFamily: 'PingFangSC-Regular',
+                        fontSize: 12,
+                        color: 'rgba(0,0,0,0.85)',
+                        letterSpacing: 0.06,
+                    },
+                },
+
+                type: 'value',
+                axisTick: {
+                    show: false
+                },
+                axisLine: {
+                    show: false
+                },
+            },
+
+            series: [{
+                barWidth: 30,
+                type: 'bar',
+                itemStyle: {
+                    normal: {
+                        //通过数组下标选择颜色
+                        color: function(params) {
+                            var colorList = [
+                                '#53DDC1','#77A3F9'
+                            ];
+                            return colorList[params.dataIndex]
+                        },
+                    }
+                },
+                label:{
+                    show:true,
+                    position:'top',
+                    textStyle:{
+                        fontFamily: 'PingFangSC-Regular',
+                        fontSize: 10,
+                        color: "rgba(0,0,0,0.85)",
+                        letterSpacing: 0,
+
+                    }
+                },
+                data: [StoreIssueTarget,StoreIssueAction],
+
+            }]
+        };
+        getXinEchars(myChart24,option24);
+
+        //达成率
+        var  AchievingRateAction =[[${AGVTabData.getAchievingRateAction()}]];
+        var chartDom25 = document.getElementById('daCheng2');
+        var myChart25 = echarts.init(chartDom25);
+        var option25 = {
+            grid:{
+                top:'20%',//距上边距
+                left:'2%',//距离左边距
+                right:'2%',//距离右边距
+                bottom:'3%',//距离下边距
+                containLabel:true
+            },
+
+            xAxis: {
+                type: 'category',
+                data: ['目标', '实际'],
+                axisTick: {
+                    show: false
+                },
+                axisLabel:{
+                    textStylee:{
+                        fontFamily: 'PingFangSC-Regular',
+                        fontSize: 12,
+                        color: 'rgba(0,0,0,0.85)',
+                    },
+                },
+            },
+            yAxis:[
+                {
+
+
+                    type: 'value',
+                    scale:false,
+                    axisTick: {
+                        show: false
+                    },
+                    axisLine: {
+                        show: false
+                    },
+                    axisLabel: {
+
+                        show: true,
+                        interval: 'auto',
+                        formatter: '{value} %',
+                        textStyle:{
+                            fontFamily: 'PingFangSC-Regular',
+                            fontSize: 12,
+                            color: 'rgba(0,0,0,0.85)',
+                            letterSpacing: 0.06,
+                        },
+                    },
+                    show: true
+                }
+            ],
+
+            series: [{
+                barWidth: 30,
+                type: 'bar',
+                itemStyle: {
+                    normal: {
+                        //通过数组下标选择颜色
+                        color: function(params) {
+                            var colorList = [
+                                '#53DDC1','#77A3F9'
+                            ];
+                            return colorList[params.dataIndex]
+                        },
+                    }
+                },
+                label:{
+                    show:true,
+                    position:'top',
+                    textStyle:{
+                        fontFamily: 'PingFangSC-Regular',
+                        fontSize: 10,
+                        color: "rgba(0,0,0,0.85)",
+                        letterSpacing: 0,
+
+                    },
+                    formatter: '{c}%',
+
+                },
+                data: [100,AchievingRateAction],
+
+            }]
+        };
+        getXinEchars(myChart25,option25);
+
+        //机故率
+        var MachineRateAction =[[${AGVTabData.getMachineRateAction()}]];
+        var chartDom26 = document.getElementById('jiGu2');
+        var myChart26 = echarts.init(chartDom26);
+        var option26 = {
+            grid:{
+                top:'20%',//距上边距
+                left:'2%',//距离左边距
+                right:'2%',//距离右边距
+                bottom:'3%',//距离下边距
+                containLabel:true
+            },
+
+            xAxis: {
+                type: 'category',
+                data: ['目标', '实际'],
+                axisTick: {
+                    show: false
+                },
+                axisLabel:{
+                    textStylee:{
+                        fontFamily: 'PingFangSC-Regular',
+                        fontSize: 12,
+                        color: 'rgba(0,0,0,0.85)',
+                    },
+                },
+            },
+            yAxis:[
+                {
+                    type: 'value',
+
+                    axisTick: {
+                        show: false
+                    },
+                    axisLine: {
+                        show: false
+                    },
+                    axisLabel: {
+                        show: true,
+                        interval: 'auto',
+                        formatter: '{value} %',
+                        textStyle:{
+                            fontFamily: 'PingFangSC-Regular',
+                            fontSize: 12,
+                            color: 'rgba(0,0,0,0.85)',
+                            letterSpacing: 0.06,
+                        },
+                    },
+                    show: true
+                }
+            ],
+
+            series: [{
+                barWidth: 30,
+                type: 'bar',
+                itemStyle: {
+                    normal: {
+                        //通过数组下标选择颜色
+                        color: function(params) {
+                            var colorList = [
+                                '#53DDC1','#77A3F9'
+                            ];
+                            return colorList[params.dataIndex]
+                        },
+                    }
+                },
+                label:{
+                    show:true,
+                    position:'top',
+                    textStyle:{
+                        fontFamily: 'PingFangSC-Regular',
+                        fontSize: 10,
+                        color: "rgba(0,0,0,0.85)",
+                        letterSpacing: 0,
+
+                    },
+                    formatter: '{c}%',
+
+                },
+                data: [5,MachineRateAction],
+
+            }]
+        };
+        getXinEchars(myChart26,option26);
+    }
+
+    //暂存仓
+    function tsbarchar() {
+        var BUFFERJsonData=[[${BUFFERJsonData}]];
+        var BUFFERData = JSON.parse(BUFFERJsonData);
+        var BUFFERArry = dataArry(BUFFERData);
+        var chartDom27 = document.getElementById('zanCun');
+        var myChart27 = echarts.init(chartDom27);
+        var option27 = {
+            grid:{
+                top:'30%',//距上边距
+                left:'2%',//距离左边距
+                right:'2%',//距离右边距
+                bottom:'5%',//距离下边距
+                containLabel:true
+            },
+            legend: {
+                right:'10',
+                itemWidth:20,
+                itemHeight:10,
+                itemGap:30,
+                data:['交换次数目标','交换次数实际','直通率目标','直通率实际','机故率目标','机故率实际'],
+                textStyle:{
+                    fontFamily: 'PingFangSC-Regular',
+                    fontSize: 10,
+                    color: 'rgba(0,0,0,0.85)',
+                },
+            },
+
+            xAxis: {
+                type: 'category',
+                axisTick: {
+                    show: false
+                },
+                data: BUFFERArry.xdataList,
+                axisPointer: {
+                    type: 'shadow'
+                },
+                axisLabel:{
+                    textStylee:{
+                        fontFamily: 'PingFangSC-Regular',
+                        fontSize: 12,
+                        color: 'rgba(0,0,0,0.85)',
+                        letterSpacing: 0.02,
+                    },
+                },
+
+            },
+            yAxis: [
+                {
+                    axisLabel:{
+                        textStyle:{
+                            fontFamily: 'PingFangSC-Regular',
+                            fontSize: 12,
+                            color: 'rgba(0,0,0,0.85)',
+                            letterSpacing: 0.06,
+                        },
+                    },
+
+                    type: 'value',
+                    axisTick: {
+                        show: false
+                    },
+                    axisLine: {
+                        show: false
+                    },
+
+
+
+                },
+                {
+                    type: 'value',
+                    min: 0,
+                    max: 120,
+                    interval: 20,
+                    axisLabel: {
+                        formatter: '{value} %',
+                        textStyle:{
+                            fontFamily: 'PingFangSC-Regular',
+                            fontSize: 12,
+                            color: 'rgba(0,0,0,0.85)',
+                            letterSpacing: 0.06,
+                        },
+                    },
+                    axisTick: {
+                        show: false
+                    },
+                    axisLine: {
+                        show: false
+                    },
+                },
+            ],
+
+            series: [
+                {
+                    name:'交换次数目标',
+                    type: 'bar',
+                    data: BUFFERArry.storeIssueTarget,
+                    itemStyle: {
+
+                        normal:{
+                            color: new echarts.graphic.LinearGradient(
+                                0, 0, 0, 1,
+                                [
+                                    {offset: 0, color: '#2E64A3'},
+                                    {offset: 0.5, color: '#699BCB'},
+                                    {offset: 1, color: '#CEEEF3'}
+                                ]
+                            ),
+                            label:{
+                                show:true,
+                                position: 'top',
+                                textStyle:{
+                                    fontFamily: 'PingFangSC-Regular',
+                                    fontSize: 10,
+                                    color: 'rgba(0,0,0,0.85)',
+                                    letterSpacing: 0,
+                                }
+                            }
+                        }
+
+
+                    },
+                },
+                {
+                    name:'交换次数实际',
+                    type: 'bar',
+                    data: BUFFERArry.storeIssueAction,
+                    itemStyle: {
+
+                        normal:{
+                            color: new echarts.graphic.LinearGradient(
+                                0, 0, 0, 1,
+                                [
+                                    {offset: 0, color: '#C35552'},
+                                    {offset: 0.5, color: '#D77774'},
+                                    {offset: 1, color: '#E3BAB9'}
+                                ]
+                            ),
+                            label:{
+                                show:true,
+                                position: 'top',
+                                textStyle:{
+                                    fontFamily: 'PingFangSC-Regular',
+                                    fontSize: 10,
+                                    color: 'rgba(0,0,0,0.85)',
+                                    letterSpacing: 0,
+                                }
+                            }
+                        }
+
+
+                    },
+                },
+                {
+                    name:'直通率目标',
+                    type: 'bar',
+                    data: [95, 95, 95, 95, 95, 95, 95, 95],
+                    itemStyle: {
+
+                        normal:{
+                            color: new echarts.graphic.LinearGradient(
+                                0, 0, 0, 1,
+                                [
+                                    {offset: 0, color: '#A0BE5E'},
+                                    {offset: 0.5, color: '#B3CD75'},
+                                    {offset: 1, color: '#CCDBA4'}
+                                ]
+                            ),
+
+
+
+                            label:{
+                                show:true,
+                                position: 'top',
+                                formatter: '{c}%',
+                                textStyle:{
+                                    fontFamily: 'PingFangSC-Regular',
+                                    fontSize: 10,
+                                    color: 'rgba(0,0,0,0.85)',
+                                    letterSpacing: 0,
+                                }
+                            }
+                        }
+
+
+                    },
+                },
+                {
+                    name:'直通率实际',
+                    type: 'bar',
+                    data: BUFFERArry.achievingRateAction,
+                    itemStyle: {
+
+                        normal:{
+                            color: new echarts.graphic.LinearGradient(
+                                0, 0, 0, 1,
+                                [
+                                    {offset: 0, color: '#8569A6'},
+                                    {offset: 0.5, color: '#A68CC1'},
+                                    {offset: 1, color: '#B4A6C4'}
+                                ]
+                            ),
+
+
+
+                            label:{
+                                show:true,
+                                formatter: '{c}%',
+                                position: 'top',
+                                textStyle:{
+                                    fontFamily: 'PingFangSC-Regular',
+                                    fontSize: 10,
+                                    color: 'rgba(0,0,0,0.85)',
+                                    letterSpacing: 0,
+                                }
+                            }
+                        }
+
+
+                    },
+                },
+                {
+                    name:'机故率目标',
+                    type: 'bar',
+                    data: [5, 5, 5, 5, 5, 5, 5, 5],
+                    itemStyle: {
+
+                        normal:{
+                            color: new echarts.graphic.LinearGradient(
+                                0, 0, 0, 1,
+                                [
+                                    {offset: 0, color: '#51B0C9'},
+                                    {offset: 0.5, color: '#71C9DB'},
+                                    {offset: 1, color: '#99D0DC'}
+                                ]
+                            ),
+
+
+                            label:{
+                                show:true,
+                                formatter: '{c}%',
+                                position: 'top',
+                                textStyle:{
+                                    fontFamily: 'PingFangSC-Regular',
+                                    fontSize: 10,
+                                    color: 'rgba(0,0,0,0.85)',
+                                    letterSpacing: 0,
+                                }
+                            }
+                        }
+
+
+                    },
+                },
+                {
+                    name:'机故率实际',
+                    type: 'bar',
+                    data: BUFFERArry.machineRateAction,
+                    itemStyle: {
+
+                        normal:{
+                            color: new echarts.graphic.LinearGradient(
+                                0, 0, 0, 1,
+                                [
+                                    {offset: 0, color: '#F8BA25'},
+                                    {offset: 0.5, color: '#FAC157'},
+                                    {offset: 1, color: '#F8D89F'}
+                                ]
+                            ),
+
+
+
+                            label:{
+                                show:true,
+                                formatter: '{c}%',
+                                position: 'top',
+                                textStyle:{
+                                    fontFamily: 'PingFangSC-Regular',
+                                    fontSize: 10,
+                                    color: 'rgba(0,0,0,0.85)',
+                                    letterSpacing: 0,
+                                }
+                            }
+                        }
+
+
+                    },
+                },
+
+            ]
+        };
+        getXinEchars(myChart27,option27);
+    }
+
+    //AFS
+    function afsarchar() {
+        var AFSJsonData=[[${AFSJsonData}]];
+        var AFSData = JSON.parse(AFSJsonData);
+        var AFSArry = dataArry(AFSData);
+        var chartDom28 = document.getElementById('AFS');
+        var myChart28 = echarts.init(chartDom28);
+        var option28 = {
+            grid:{
+                top:'30%',//距上边距
+                left:'2%',//距离左边距
+                right:'2%',//距离右边距
+                bottom:'5%',//距离下边距
+                containLabel:true
+            },
+            legend: {
+                right:'10',
+                itemWidth:20,
+                itemHeight:10,
+                itemGap:30,
+                data:['交换次数目标','交换次数实际','直通率目标','直通率实际','机故率目标','机故率实际'],
+                textStyle:{
+                    fontFamily: 'PingFangSC-Regular',
+                    fontSize: 10,
+                    color: 'rgba(0,0,0,0.85)',
+                },
+            },
+            xAxis: {
+                type: 'category',
+                axisTick: {
+                    show: false
+                },
+                data: AFSArry.xdataList,
+                axisPointer: {
+                    type: 'shadow'
+                },
+                axisLabel:{
+                    textStylee:{
+                        fontFamily: 'PingFangSC-Regular',
+                        fontSize: 12,
+                        color: 'rgba(0,0,0,0.85)',
+                        letterSpacing: 0.02,
+                    },
+                },
+
+            },
+            yAxis: [
+                {
+                    axisLabel:{
+                        textStyle:{
+                            fontFamily: 'PingFangSC-Regular',
+                            fontSize: 12,
+                            color: 'rgba(0,0,0,0.85)',
+                            letterSpacing: 0.06,
+                        },
+                    },
+
+                    type: 'value',
+                    axisTick: {
+                        show: false
+                    },
+                    axisLine: {
+                        show: false
+                    },
+
+
+
+                },
+                {
+                    type: 'value',
+                    min: 0,
+                    max: 120,
+                    interval: 20,
+                    axisLabel: {
+                        formatter: '{value} %',
+                        textStyle:{
+                            fontFamily: 'PingFangSC-Regular',
+                            fontSize: 12,
+                            color: 'rgba(0,0,0,0.85)',
+                            letterSpacing: 0.06,
+                        },
+                    },
+                    axisTick: {
+                        show: false
+                    },
+                    axisLine: {
+                        show: false
+                    },
+                },
+            ],
+            series: [
+                {
+                    name:'交换次数目标',
+                    type: 'bar',
+                    data: AFSArry.storeIssueTarget,
+                    itemStyle: {
+
+                        normal:{
+                            color: new echarts.graphic.LinearGradient(
+                                0, 0, 0, 1,
+                                [
+                                    {offset: 0, color: '#2E64A3'},
+                                    {offset: 0.5, color: '#699BCB'},
+                                    {offset: 1, color: '#CEEEF3'}
+                                ]
+                            ),
+                            label:{
+                                show:true,
+                                position: 'top',
+                                textStyle:{
+                                    fontFamily: 'PingFangSC-Regular',
+                                    fontSize: 10,
+                                    color: 'rgba(0,0,0,0.85)',
+                                    letterSpacing: 0,
+                                }
+                            }
+                        }
+
+
+                    },
+                },
+                {
+                    name:'交换次数实际',
+                    type: 'bar',
+                    data: AFSArry.storeIssueAction,
+                    itemStyle: {
+
+                        normal:{
+                            color: new echarts.graphic.LinearGradient(
+                                0, 0, 0, 1,
+                                [
+                                    {offset: 0, color: '#C35552'},
+                                    {offset: 0.5, color: '#D77774'},
+                                    {offset: 1, color: '#E3BAB9'}
+                                ]
+                            ),
+                            label:{
+                                show:true,
+                                position: 'top',
+                                textStyle:{
+                                    fontFamily: 'PingFangSC-Regular',
+                                    fontSize: 10,
+                                    color: 'rgba(0,0,0,0.85)',
+                                    letterSpacing: 0,
+                                }
+                            }
+                        }
+
+
+                    },
+                },
+                {
+                    name:'直通率目标',
+                    type: 'bar',
+                    data: [95, 95, 95, 95, 95, 95, 95, 95],
+                    itemStyle: {
+
+                        normal:{
+                            color: new echarts.graphic.LinearGradient(
+                                0, 0, 0, 1,
+                                [
+                                    {offset: 0, color: '#A0BE5E'},
+                                    {offset: 0.5, color: '#B3CD75'},
+                                    {offset: 1, color: '#CCDBA4'}
+                                ]
+                            ),
+
+
+
+                            label:{
+                                show:true,
+                                position: 'top',
+                                formatter: '{c}%',
+                                textStyle:{
+                                    fontFamily: 'PingFangSC-Regular',
+                                    fontSize: 10,
+                                    color: 'rgba(0,0,0,0.85)',
+                                    letterSpacing: 0,
+                                }
+                            }
+                        }
+
+
+                    },
+                },
+                {
+                    name:'直通率实际',
+                    type: 'bar',
+                    data: AFSArry.achievingRateAction,
+                    itemStyle: {
+
+                        normal:{
+                            color: new echarts.graphic.LinearGradient(
+                                0, 0, 0, 1,
+                                [
+                                    {offset: 0, color: '#8569A6'},
+                                    {offset: 0.5, color: '#A68CC1'},
+                                    {offset: 1, color: '#B4A6C4'}
+                                ]
+                            ),
+
+
+
+                            label:{
+                                show:true,
+                                formatter: '{c}%',
+                                position: 'top',
+                                textStyle:{
+                                    fontFamily: 'PingFangSC-Regular',
+                                    fontSize: 10,
+                                    color: 'rgba(0,0,0,0.85)',
+                                    letterSpacing: 0,
+                                }
+                            }
+                        }
+
+
+                    },
+                },
+                {
+                    name:'机故率目标',
+                    type: 'bar',
+                    data: [5, 5, 5, 5, 5, 5, 5, 5],
+                    itemStyle: {
+
+                        normal:{
+                            color: new echarts.graphic.LinearGradient(
+                                0, 0, 0, 1,
+                                [
+                                    {offset: 0, color: '#51B0C9'},
+                                    {offset: 0.5, color: '#71C9DB'},
+                                    {offset: 1, color: '#99D0DC'}
+                                ]
+                            ),
+
+
+                            label:{
+                                show:true,
+                                formatter: '{c}%',
+                                position: 'top',
+                                textStyle:{
+                                    fontFamily: 'PingFangSC-Regular',
+                                    fontSize: 10,
+                                    color: 'rgba(0,0,0,0.85)',
+                                    letterSpacing: 0,
+                                }
+                            }
+                        }
+
+
+                    },
+                },
+                {
+                    name:'机故率实际',
+                    type: 'bar',
+                    data: AFSArry.machineRateAction,
+                    itemStyle: {
+
+                        normal:{
+                            color: new echarts.graphic.LinearGradient(
+                                0, 0, 0, 1,
+                                [
+                                    {offset: 0, color: '#F8BA25'},
+                                    {offset: 0.5, color: '#FAC157'},
+                                    {offset: 1, color: '#F8D89F'}
+                                ]
+                            ),
+
+
+
+                            label:{
+                                show:true,
+                                formatter: '{c}%',
+                                position: 'top',
+                                textStyle:{
+                                    fontFamily: 'PingFangSC-Regular',
+                                    fontSize: 10,
+                                    color: 'rgba(0,0,0,0.85)',
+                                    letterSpacing: 0,
+                                }
+                            }
+                        }
+
+
+                    },
+                },
+
+            ]
+        };
+        getXinEchars(myChart28,option28);
+    }
+
+    function dataArry(dataList) {
+        var xdataList =[];
+        var storeIssueTarget=[];
+        var storeIssueAction=[];
+        var achievingRateAction=[];
+        var machineRateAction=[];
+        for (var i = 0; i < dataList.length; i++) {
+            var data=dataList[i];
+            xdataList.push(data.lineName);
+            storeIssueTarget.push(data.storeIssueTarget);
+            storeIssueAction.push(data.storeIssueAction);
+            achievingRateAction.push(data.achievingRateAction);
+            machineRateAction.push(data.machineRateAction);
+        }
+        return{
+            xdataList:xdataList,
+            storeIssueTarget:storeIssueTarget,
+            storeIssueAction:storeIssueAction,
+            achievingRateAction:achievingRateAction,
+            machineRateAction:machineRateAction,
+        }
+
+    }
+
+
+
+</script>
+</body>
+</html>

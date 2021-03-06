@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fox.testsys.mapper.AutoFloor_Wait_TimeMapper" >
+  <resultMap id="BaseResultMap" type="com.fox.testsys.entity.AutoFloor_Wait_Time" >
+    <result column="CELL_ID" property="cellId" jdbcType="VARCHAR" />
+    <result column="START_TIME" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="END_TIME" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="TIMES" property="times" jdbcType="DECIMAL" />
+    <result column="FLAG" property="flag" jdbcType="DECIMAL" />
+    <result column="EDIT_DATE" property="editDate" jdbcType="TIMESTAMP" />
+    <result column="STYLE" property="style" jdbcType="DECIMAL" />
+    <result column="PRODUCT" property="product" jdbcType="VARCHAR" />
+    <result column="FLOOR" property="floor" jdbcType="VARCHAR" />
+  </resultMap>
+ <!--
+  Robot偏位機故率= 偏位是時間/3600
+  待板率=(3600-偏位時間-待板時間)/3600
+  -->
+<!-- 偏位次數 偏位率 待板率-->
+  <select id="RobotAnalyzes" resultMap="BaseResultMap">
+  <![CDATA[
+  select  LINE_NAME ,sum(SLANT_TIME) as AwaitNoNormalRate,sum(SLANT_COUNT) as AwaitNoNormalSum,sum(WAIT_TIME)as AwaitPlateRate  from  AUTOFLOOR_ROBOT_EFFICIENCY
+  where UPDATE_TIME >= to_date('${start_date}','YYYY/MM/DD HH24:MI:SS')
+  and UPDATE_TIME < to_date('${end_date}','YYYY/MM/DD HH24:MI:SS')
+  and FLOOR=#{floor_name}
+  and LINE_NAME like #{line_name}||'%'
+  group by LINE_NAME
+  ]]>
+  </select>
+  <select id="RobotCellAnalyzes" resultMap="BaseResultMap">
+  <![CDATA[
+  select  LINE_NAME ,sum(SLANT_TIME) as AwaitNoNormalRate,sum(SLANT_COUNT) as AwaitNoNormalSum,sum(WAIT_TIME)as AwaitPlateRate  from  AUTOFLOOR_ROBOT_EFFICIENCY
+  where UPDATE_TIME >= to_date('${start_date}','YYYY/MM/DD HH24:MI:SS')
+  and UPDATE_TIME < to_date('${end_date}','YYYY/MM/DD HH24:MI:SS')
+  and LINE_NAME like #{line_name}||'%'
+  group by LINE_NAME
+  ]]>
+  </select>
+  <!-- 搜索偏位次數 偏位率 待板率 20-->
+  <select id="SelectRobotAnalyze" resultMap="BaseResultMap">
+  <![CDATA[
+  select  LINE_NAME ,sum(SLANT_TIME) as AwaitNoNormalRate,sum(SLANT_COUNT) as AwaitNoNormalSum,sum(WAIT_TIME)as AwaitPlateRate  from  AUTOFLOOR_ROBOT_EFFICIENCY
+  where UPDATE_TIME >= to_date('${start_Time}','YYYY/MM/DD HH24:MI:SS')
+  and UPDATE_TIME < to_date('${end_Time}','YYYY/MM/DD HH24:MI:SS')
+  and FLOOR=#{floor_name}
+  and LINE_NAME=#{line_name}
+  group by LINE_NAME
+  ]]>
+  </select>
+
+  <!-- AlarmCenterRate-->
+  <select id="AlarmCenterRobot" resultMap="BaseResultMap">
+  <![CDATA[
+   select  LINE_NAME ,PRODUCT,sum(SLANT_TIME) as AwaitNoNormalRate  from  AUTOFLOOR_ROBOT_EFFICIENCY
+  where UPDATE_TIME >= to_date('${start_Time}','YYYY/MM/DD HH24:MI:SS')
+  and UPDATE_TIME < to_date('${end_Time}','YYYY/MM/DD HH24:MI:SS')
+  and FLOOR=#{floor_name}
+  and LINE_NAME like #{line_name}||'%'
+  group by PRODUCT,LINE_NAME
+  ]]>
+  </select>
+
+  <!-- 偏位機故率高TOP5  夜班Cell 分析-->
+  <select id="RobotAnalyzeTOP5" resultMap="BaseResultMap">
+  <![CDATA[
+  select * from
+  (select  LINE_NAME,sum(SLANT_TIME) as SLANT_TIME ,sum(SLANT_TIME) as AwaitNoNormalRate,
+  sum(SLANT_COUNT) as AwaitNoNormalSum,
+  sum(WAIT_TIME)as AwaitPlateRate  from  AUTOFLOOR_ROBOT_EFFICIENCY
+  where UPDATE_TIME >= to_date('${start_Time}','YYYY/MM/DD HH24:MI:SS')
+  and UPDATE_TIME < to_date('${end_Time}','YYYY/MM/DD HH24:MI:SS')
+  and FLOOR=#{floor_name}
+  and LINE_NAME like #{line_name}||'%'
+  group by LINE_NAME order by AwaitNoNormalRate desc)T
+  where rownum<6
+  ]]>
+  </select>
+
+  <!-- 偏位機故率高TOP  5 Cell 夜班位置說明-->
+  <select id="RobotAnalyzeTOP5Site" resultMap="BaseResultMap">
+  <![CDATA[
+  SELECT * FROM
+  (select SLANT_LOCAL,COUNT(*) AS COUN from R_SLANT_INFO
+ where EDIT_DATE >= to_date('${start_Time}','YYYY/MM/DD HH24:MI:SS')
+  and EDIT_DATE < to_date('${end_Time}','YYYY/MM/DD HH24:MI:SS')
+  and CELL = #{floor_name} GROUP BY SLANT_LOCAL ORDER BY COUN DESC)
+  WHERE rownum<6
+  ]]>
+  </select>
+
+
+</mapper>

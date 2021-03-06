@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fox.alarmsys.mapper.AutoFloor_Test_ExceptionMapper" >
+  <resultMap id="BaseResultMap" type="com.fox.alarmsys.entity.AutoFloor_Test_Exception" >
+    <result column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="FLOOR" property="floor" jdbcType="VARCHAR" />
+    <result column="LINENAME" property="linename" jdbcType="VARCHAR" />
+    <result column="MACHINE" property="machine" jdbcType="VARCHAR" />
+    <result column="EXCEPTION_TYPE" property="exceptionType" jdbcType="VARCHAR" />
+    <result column="EXCEPTION_DESCRIBE" property="exceptionDescribe" jdbcType="VARCHAR" />
+    <result column="PRIORITY" property="priority" jdbcType="VARCHAR" />
+    <result column="EXCEPTION_TIME" property="exceptionTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="FLAG" property="flag" jdbcType="DECIMAL" />
+    <result column="REPAIR_PROPOSE" property="repairPropose" jdbcType="VARCHAR" />
+    <result column="REPAIR_CONTENT" property="repairContent" jdbcType="VARCHAR" />
+    <result column="EMP_NAME" property="empName" jdbcType="VARCHAR" />
+
+  </resultMap>
+    <sql id="Base_Column_List" >
+       ID,FLOOR,LINENAME,MACHINE,EXCEPTION_TYPE,EXCEPTION_DESCRIBE,EXCEPTION_TIME,PRIORITY,FLAG,UPDATE_TIME,REPAIR_PROPOSE,REPAIR_CONTENT,EMP_NAME
+    </sql>
+
+
+    <select id="selectByIdAutoFloorTestException" resultMap="BaseResultMap">
+        SELECT  <include refid="Base_Column_List" /> FROM AUTOFLOOR_TEST_EXCEPTION
+        WHERE ID=#{id}
+    </select>
+
+  <select id="selectTestExceptionList" resultMap="BaseResultMap">
+    <![CDATA[
+        SELECT ID,FLOOR,LINENAME,MACHINE,EXCEPTION_TYPE,EXCEPTION_DESCRIBE,EXCEPTION_TIME,PRIORITY,FLAG,UPDATE_TIME,REPAIR_PROPOSE,REPAIR_CONTENT FROM AUTOFLOOR_TEST_EXCEPTION
+        WHERE TYPE=#{Type}
+        AND  EXCEPTION_TIME>=TO_DATE ('${StartDate}','yyyy/MM/dd hh24:mi:ss')
+        AND  EXCEPTION_TIME<TO_DATE ('${EndDate}','yyyy/MM/dd hh24:mi:ss')
+        AND  EXCEPTION_TYPE='Fixtures ERROR'
+    ]]>
+        <if test="LineName!=null and LineName!='' and LineName!='ALL'">
+            AND LINENAME LIKE #{LineName}||'%'
+        </if>
+        <if test="FloorName!='ALL' and FloorName!=null ">
+        AND  REPLACE(FLOOR,'-','')=#{FloorName}
+        </if>
+        AND  REPAIR_PROPOSE NOT LIKE '%重新量值%'
+        AND LINENAME NOT LIKE 'D061FARF03%'
+        AND LINENAME NOT LIKE 'D061FAP03%'
+        AND LINENAME NOT LIKE 'D061FAP02%'
+        AND LINENAME NOT LIKE 'D061FRF02%'
+        AND LINENAME NOT LIKE 'D061FAAP03%'
+        AND LINENAME NOT LIKE 'D061FAAP-03A%'
+        AND EXCEPTION_DESCRIBE NOT LIKE '%最近4小時誤測率為%'
+        AND EXCEPTION_DESCRIBE NOT LIKE '%WifiAsso超半小时未抽测%'
+        AND REPAIR_PROPOSE NOT LIKE '%请排查治具%'
+        AND LINENAME NOT LIKE 'AAP-15A-CCD_Module%'
+
+      <!--
+        foreach：循环传入的集合参数
+        collection：传入的集合变量名称
+        item：每次循环将循环出的数据放入这个变量中
+        open：循环开始拼接的字符串
+        separator：循环中拼接的分隔符
+      -->
+        <foreach collection="DisableException_Type" item="EXCEPTION_TYPE" open="AND EXCEPTION_TYPE!="  separator="AND EXCEPTION_TYPE!=">
+            #{EXCEPTION_TYPE}
+        </foreach>
+        ORDER BY PRIORITY asc,EXCEPTION_TIME DESC
+  </select>
+
+  <select id="selectSkasExceptionList" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" /> FROM AUTOFLOOR_TEST_EXCEPTION
+        WHERE TYPE=#{Type}
+      <![CDATA[
+        AND  EXCEPTION_TIME>=TO_DATE ('${StartDate}','yyyy/MM/dd hh24:mi:ss')
+        AND  EXCEPTION_TIME<TO_DATE ('${EndDate}','yyyy/MM/dd hh24:mi:ss')
+        ]]>
+        <if test="LineName!=null and LineName!='' and LineName!='ALL'">
+            AND LINENAME LIKE #{LineName}||'%'
+        </if>
+        <if test="FloorName!='ALL' and FloorName!=null ">
+            AND  REPLACE(FLOOR,'-','')=#{FloorName}
+        </if>
+        <!--
+          foreach：循环传入的集合参数
+          collection：传入的集合变量名称
+          item：每次循环将循环出的数据放入这个变量中
+          open：循环开始拼接的字符串
+          separator：循环中拼接的分隔符
+        -->
+        <foreach collection="DisableException_Type" item="EXCEPTION_TYPE" open="AND EXCEPTION_TYPE!="  separator="AND EXCEPTION_TYPE!=">
+            #{EXCEPTION_TYPE}
+        </foreach>
+        ORDER BY PRIORITY asc,EXCEPTION_TIME DESC
+  </select>
+
+
+  <select id="selectRobotTestExceptionList" resultMap="BaseResultMap">
+
+        SELECT ID,FLOOR,LINENAME,MACHINE,EXCEPTION_TYPE,EXCEPTION_DESCRIBE,EXCEPTION_TIME,PRIORITY,FLAG,UPDATE_TIME,REPAIR_PROPOSE,REPAIR_CONTENT FROM AUTOFLOOR_TEST_EXCEPTION
+        WHERE TYPE=#{Type}
+
+        <if test="LineName!=null and LineName!='' and LineName!='ALL'">
+            AND LINENAME LIKE #{LineName}||'%'
+        </if>
+        AND  EXCEPTION_TYPE = 'Robot'
+        <if test="FloorName!='ALL' and FloorName!=null ">
+        AND  REPLACE(FLOOR,'-','')=#{FloorName}
+        </if>
+        AND  REPAIR_PROPOSE NOT LIKE '%重新量值%'
+        AND LINENAME NOT LIKE 'D061FAP03%'
+        AND LINENAME NOT LIKE 'D061FAP02%'
+        AND LINENAME NOT LIKE 'D061FRF02%'
+        AND LINENAME NOT LIKE 'D061FAAP03%'
+        AND LINENAME NOT LIKE 'D061FAAP-03A%'
+        AND LINENAME NOT LIKE 'AAP-15A-CCD_Module%'
+        AND LINENAME NOT LIKE '請排查治具%'
+        AND LINENAME NOT LIKE '请排查治具%'
+        AND FLAG!=1
+        OR  EXCEPTION_TYPE = '工站連接'
+        AND  TYPE=#{Type}
+        AND LINENAME LIKE #{LineName}||'%'
+        AND REPLACE(FLOOR,'-','')=#{FloorName}
+        AND REPAIR_PROPOSE NOT LIKE '%重新量值%'
+        AND LINENAME NOT LIKE 'D061FAP03%'
+        AND LINENAME NOT LIKE 'D061FAP02%'
+        AND LINENAME NOT LIKE 'D061FRF02%'
+        AND LINENAME NOT LIKE 'D061FAAP03%'
+        AND LINENAME NOT LIKE 'D061FAAP-03A%'
+        AND LINENAME NOT LIKE 'AAP-15A-CCD_Module%'
+        AND REPAIR_PROPOSE NOT LIKE '%请排查治具%'
+        AND FLAG!=1
+        OR  EXCEPTION_TYPE = '工站連接'
+      <![CDATA[
+        AND  EXCEPTION_TIME>=TO_DATE ('${StartDate}','yyyy/MM/dd hh24:mi:ss')
+        AND  EXCEPTION_TIME<TO_DATE ('${EndDate}','yyyy/MM/dd hh24:mi:ss')
+         ]]>
+        AND  TYPE=#{Type}
+        AND LINENAME LIKE #{LineName}||'%'
+        AND REPLACE(FLOOR,'-','')=#{FloorName}
+        AND REPAIR_PROPOSE NOT LIKE '%重新量值%'
+        AND LINENAME NOT LIKE 'D061FAP03%'
+        AND LINENAME NOT LIKE 'D061FAP02%'
+        AND LINENAME NOT LIKE 'D061FRF02%'
+        AND LINENAME NOT LIKE 'D061FAAP03%'
+        AND LINENAME NOT LIKE 'D061FAAP-03A%'
+        AND LINENAME NOT LIKE 'AAP-15A-CCD_Module%'
+        AND REPAIR_PROPOSE NOT LIKE '%请排查治具%'
+        OR   EXCEPTION_TYPE = 'Robot'
+      <![CDATA[
+        AND  EXCEPTION_TIME>=TO_DATE ('${StartDate}','yyyy/MM/dd hh24:mi:ss')
+        AND  EXCEPTION_TIME<TO_DATE ('${EndDate}','yyyy/MM/dd hh24:mi:ss')
+         ]]>
+        AND  TYPE=#{Type}
+        AND LINENAME LIKE #{LineName}||'%'
+        AND REPLACE(FLOOR,'-','')=#{FloorName}
+        AND REPAIR_PROPOSE NOT LIKE '%重新量值%'
+        AND LINENAME NOT LIKE 'D061FAP03%'
+        AND LINENAME NOT LIKE 'D061FAP02%'
+        AND LINENAME NOT LIKE 'D061FRF02%'
+        AND LINENAME NOT LIKE 'D061FAAP03%'
+        AND LINENAME NOT LIKE 'D061FAAP-03A%'
+        AND LINENAME NOT LIKE 'AAP-15A-CCD_Module%'
+        AND REPAIR_PROPOSE NOT LIKE '%请排查治具%'
+        <!--
+          foreach：循环传入的集合参数
+          collection：传入的集合变量名称
+          item：每次循环将循环出的数据放入这个变量中
+          open：循环开始拼接的字符串
+          separator：循环中拼接的分隔符
+        -->
+        <foreach collection="DisableException_Type" item="EXCEPTION_TYPE" open="AND EXCEPTION_TYPE!="  separator="AND EXCEPTION_TYPE!=">
+            #{EXCEPTION_TYPE}
+        </foreach>
+        ORDER BY PRIORITY asc,EXCEPTION_TIME DESC
+
+    </select>
+
+    <select id="selectFACTestExceptionList" resultMap="BaseResultMap">
+        SELECT
+        ID,FLOOR,LINENAME,MACHINE,EXCEPTION_TYPE,EXCEPTION_DESCRIBE,EXCEPTION_TIME,PRIORITY,FLAG,UPDATE_TIME,REPAIR_PROPOSE,REPAIR_CONTENT
+        FROM AUTOFLOOR_TEST_EXCEPTION
+        WHERE  TYPE='FAC'
+        <if test="FloorName!='ALL' and FloorName!=null">
+        AND REPLACE(FLOOR,'-')=#{FloorName}
+        </if>
+        <![CDATA[
+        AND ((FLAG!=1 AND LINENAME='ENVIRONMENTAL' ) OR (FLAG=1 AND UPDATE_TIME>=TO_DATE('${StartDate}','yyyy/MM/dd hh24:mi:ss')))
+            ]]>
+        ORDER BY LINENAME,PRIORITY,FLOOR,MACHINE,FLAG,EXCEPTION_TIME
+    </select>
+
+    <select id="selectFACTitleUnFloorList" resultMap="BaseResultMap">
+        SELECT  replace(FLOOR,'-','') as Floor,lineName FROM AUTOFLOOR_TEST_EXCEPTION
+        WHERE  TYPE='FAC'
+        AND ((FLAG=0 AND LINENAME='ENVIRONMENTAL'and floor is not null and exception_type!='OFFLINE' ) OR
+        (FLAG=0 AND UPDATE_TIME>=TO_DATE('${StartDate}','yyyy/MM/dd hh24:mi:ss')
+        and floor is not  null))
+        GROUP BY  replace(FLOOR,'-',''),lineName
+    </select>
+
+    <select id="selectNOTTestExceptionList" resultMap="BaseResultMap">
+        <![CDATA[
+        SELECT ID,FLOOR,LINENAME,MACHINE,EXCEPTION_TYPE,EXCEPTION_DESCRIBE,EXCEPTION_TIME,PRIORITY,FLAG,UPDATE_TIME,REPAIR_PROPOSE,REPAIR_CONTENT FROM AUTOFLOOR_TEST_EXCEPTION
+        WHERE TYPE=#{Type}
+        AND  EXCEPTION_TIME>=TO_DATE ('${StartDate}','yyyy/MM/dd hh24:mi:ss')
+        AND  EXCEPTION_TIME<TO_DATE ('${EndDate}','yyyy/MM/dd hh24:mi:ss')
+        ]]>
+        <if test="FloorName!='ALL' and FloorName!=null ">
+        AND  REPLACE(FLOOR,'-','')=#{FloorName}
+        </if>
+
+        <!--
+          foreach：循环传入的集合参数
+          collection：传入的集合变量名称
+          item：每次循环将循环出的数据放入这个变量中
+          open：循环开始拼接的字符串
+          separator：循环中拼接的分隔符
+        -->
+        <foreach collection="DisableException_Type" item="EXCEPTION_TYPE" open="AND EXCEPTION_TYPE!="  separator="AND EXCEPTION_TYPE!=">
+            #{EXCEPTION_TYPE}
+        </foreach>
+        ORDER BY PRIORITY asc,EXCEPTION_TIME DESC
+
+    </select>
+
+
+  <select id="selectQuiriesTestExceptionList" resultMap="BaseResultMap">
+    <![CDATA[
+        SELECT ID,FLOOR,LINENAME,MACHINE,EXCEPTION_TYPE,EXCEPTION_DESCRIBE,EXCEPTION_TIME,UPDATE_TIME,PRIORITY,FLAG,REPAIR_PROPOSE,REPAIR_CONTENT FROM AUTOFLOOR_TEST_EXCEPTION
+        WHERE EXCEPTION_TIME>=TO_DATE ('${StartDate}','yyyy/MM/dd hh24:mi:ss')
+        AND  EXCEPTION_TIME<TO_DATE ('${EndDate}','yyyy/MM/dd hh24:mi:ss')
+    ]]>
+      <if test="LineName!=null and LineName!='ALL' and Unit!='EE'">
+          AND  LINENAME like '${LineName}%'
+      </if>
+      <if test="Unit=='EE'">
+          AND SUBSTR(LINENAME,0,5)||SUBSTR(LINENAME,LENGTH(LINENAME)-1,2) like '${LineName}%'
+      </if>
+      <if test="FLAG!=null and FLAG!='ALL' and FLAG!='请选择'">
+          AND  FLAG ='${FLAG}'
+      </if>
+      <if test="FloorName!=null and FloorName!='ALL'">
+          AND  REPLACE(FLOOR,'-','')=#{FloorName}
+      </if>
+        ORDER BY PRIORITY asc,EXCEPTION_TIME DESC
+
+  </select>
+  
+  <update id="updateAlarmType" >
+        update AUTOFLOOR_TEST_EXCEPTION
+        <set>
+           FLAG=#{Flag},
+           UPDATE_TIME = TO_DATE('${UpDateTime}','yyyy/MM/dd hh24:mi:ss'),
+           <if test="MaintainText!=null and MaintainText!=''">
+                 REPAIR_CONTENT=#{MaintainText}
+           </if>
+        </set>
+        where  ID=#{Id}
+  </update>
+
+    <select id="DBDate" resultType="java.util.Date" >
+        SELECT SYSDATE FROM "AUTOFLOOR_TEST_EXCEPTION"
+        WHERE rownum=1
+    </select>
+
+    <select id="selectTeZTLTOP" resultMap="BaseResultMap">
+        <![CDATA[
+        SELECT FLOOR,LINENAME,MACHINE,EXCEPTION_TYPE,EXCEPTION_DESCRIBE FROM AUTOFLOOR_TEST_EXCEPTION
+        WHERE  LINENAME like #{LineName}||'%'
+        AND EXCEPTION_TIME>=TO_DATE ('${StartDate}','yyyy/MM/dd hh24:mi:ss')
+        AND EXCEPTION_TIME<TO_DATE ('${EndDate}','yyyy/MM/dd hh24:mi:ss')
+        AND TYPE='TEST'
+        AND EXCEPTION_TYPE='Fixtures ERROR'
+        ORDER BY EXCEPTION_TIME DESC
+        ]]>
+    </select>
+
+    <select id="selectModelingtoolData" resultMap="BaseResultMap">
+        <![CDATA[
+        SELECT ID,FLOOR,LINENAME,MACHINE,EXCEPTION_TYPE,EXCEPTION_DESCRIBE,EXCEPTION_TIME,PRIORITY,FLAG,UPDATE_TIME,REPAIR_PROPOSE,REPAIR_CONTENT FROM AUTOFLOOR_TEST_EXCEPTION
+        WHERE  EXCEPTION_TIME>=TO_DATE ('${StartDate}','yyyy/MM/dd hh24:mi:ss')
+        AND EXCEPTION_TIME<TO_DATE ('${EndDate}','yyyy/MM/dd hh24:mi:ss')
+        AND FLOOR LIKE #{FloorName}||'%'
+        AND  TYPE=#{Type}
+        AND EXCEPTION_DESCRIBE  LIKE '%最近4小時誤測率為%'
+        ORDER BY EXCEPTION_TIME DESC
+            ]]>
+    </select>
+
+    <select id="selectK05CCD_Data" resultMap="BaseResultMap">
+        <![CDATA[
+        SELECT ID,FLOOR,LINENAME,MACHINE,EXCEPTION_TYPE,EXCEPTION_DESCRIBE,EXCEPTION_TIME,PRIORITY,FLAG,UPDATE_TIME,REPAIR_PROPOSE,REPAIR_CONTENT FROM AUTOFLOOR_TEST_EXCEPTION
+        WHERE  EXCEPTION_TIME>=TO_DATE ('${StartDate}','yyyy/MM/dd hh24:mi:ss')
+        AND EXCEPTION_TIME<TO_DATE ('${EndDate}','yyyy/MM/dd hh24:mi:ss')
+        AND LINENAME LIKE 'K051FARF07%'
+        AND MACHINE LIKE 'CCD%'
+        ORDER BY EXCEPTION_TIME DESC
+                ]]>
+    </select>
+
+    <update id="upDateAVIAlarmType" parameterType="boolean">
+        update AUTOFLOOR_TEST_EXCEPTION
+        <set>
+            MACHINE=#{machineFaultName},
+            EXCEPTION_TYPE=#{machineFaultType},
+            EXCEPTION_DESCRIBE=#{machineFaultMessage},
+            EMP_NAME=#{empName},
+            FLAG=1,
+            UPDATE_TIME = TO_DATE('${upDateTime}','yyyy/MM/dd hh24:mi:ss'),
+            <if test="maintainval!=null and maintainval!=''">
+                REPAIR_CONTENT=#{maintainval}
+            </if>
+        </set>
+        where  ID=#{id}
+    </update>
+
+</mapper>

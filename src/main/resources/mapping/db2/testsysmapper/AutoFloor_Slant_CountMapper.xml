@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fox.testsys.mapper.AutoFloor_Slant_CountMapper" >
+  <resultMap id="BaseResultMap" type="com.fox.testsys.entity.AutoFloor_Slant_Count" >
+    <result column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="FLOOR" property="floor" jdbcType="VARCHAR" />
+    <result column="PRODUCT" property="product" jdbcType="VARCHAR" />
+    <result column="LINE_NAME" property="lineName" jdbcType="VARCHAR" />
+    <result column="SLANT_LOCAL" property="slantLocal" jdbcType="VARCHAR" />
+    <result column="PANEL_PCS" property="panelPcs" jdbcType="VARCHAR" />
+    <result column="POS" property="pos" jdbcType="VARCHAR" />
+    <result column="LEFT_RIGHT" property="leftRight" jdbcType="VARCHAR" />
+    <result column="SLANT_COUNT" property="slantCount" jdbcType="DECIMAL" />
+    <result column="SLANT_DATE" property="slantDate" jdbcType="TIMESTAMP" />
+    <result column="SHIFT" property="shift" jdbcType="VARCHAR" />
+    <result column="BEGIN_TIME" property="beginTime" jdbcType="TIMESTAMP" />
+    <result column="END_TIME" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <select id="getCellSlantCount" resultMap="BaseResultMap">
+    <![CDATA[
+     SELECT * FROM(
+        SELECT line_name,SLANT_LOCAL,PANEL_PCS,pos,LEFT_RIGHT,sum(SLANT_COUNT) as SLANT_COUNT FROM AUTOFLOOR_SLANT_COUNT
+        WHERE BEGIN_TIME>=to_date('${startdate}','YYYY/MM/DD HH24:MI:SS')
+        AND END_TIME<to_date('${enddate}','YYYY/MM/DD HH24:MI:SS')
+        AND LINE_NAME like #{linename}||'%'
+        GROUP BY LINE_NAME,SLANT_LOCAL,PANEL_PCS,pos,LEFT_RIGHT
+        ORDER BY SLANT_COUNT desc)
+     WHERE rownum<2
+        ]]>
+  </select>
+</mapper>

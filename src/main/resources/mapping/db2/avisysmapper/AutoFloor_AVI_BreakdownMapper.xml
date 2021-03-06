@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fox.avisys.mapper.AutoFloor_AVI_BreakdownMapper" >
+  <resultMap id="BaseResultMap" type="com.fox.avisys.entity.AutoFloor_AVI_Breakdown" >
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="FLOOR" property="floor" jdbcType="VARCHAR" />
+    <result column="PRODUCT" property="product" jdbcType="VARCHAR" />
+    <result column="LINENAME" property="linename" jdbcType="VARCHAR" />
+    <result column="STARTTIME" property="starttime" jdbcType="TIMESTAMP" />
+    <result column="ENDTIME" property="endtime" jdbcType="TIMESTAMP" />
+    <result column="TIMEELAPSED" property="timeelapsed" jdbcType="VARCHAR" />
+    <result column="LIGHTTYPE" property="lighttype" jdbcType="VARCHAR" />
+    <result column="TTYPE" property="ttype" jdbcType="VARCHAR" />
+    <result column="ISSUEDESC" property="issuedesc" jdbcType="VARCHAR" />
+    <result column="REPAIRACTION" property="repairaction" jdbcType="VARCHAR" />
+    <result column="P1" property="p1" jdbcType="VARCHAR" />
+    <result column="P2" property="p2" jdbcType="VARCHAR" />
+    <result column="P3" property="p3" jdbcType="VARCHAR" />
+    <result column="P4" property="p4" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, FLOOR, PRODUCT, LINENAME, STARTTIME, ENDTIME, TIMEELAPSED, LIGHTTYPE, TTYPE, 
+    ISSUEDESC, REPAIRACTION, P1, P2, P3, P4
+  </sql>
+  <select id="selectUNMessage" resultMap="BaseResultMap"  >
+      <![CDATA[
+         SELECT * FROM AUTOFLOOR_AVI_BREAKDOWN
+          WHERE FLOOR=#{floorname}
+          and STARTTIME>=TO_DATE ('${startdate}', 'yyyy/MM/dd hh24:mi:ss')
+          and ENDTIME<TO_DATE ('${enddate}', 'yyyy/MM/dd hh24:mi:ss')
+          ORDER BY TIMEELAPSED desc,ENDTIME DESC
+      ]]>
+  </select>
+</mapper>

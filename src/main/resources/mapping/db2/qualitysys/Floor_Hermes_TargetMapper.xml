@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fox.alarmsys.mapper.Floor_Hermes_TargetMapper" >
+  <resultMap id="BaseResultMap" type="com.fox.alarmsys.entity.Floor_Hermes_Target" >
+    <result column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="HERMES_FLOOR" property="hermesFloor" jdbcType="VARCHAR" />
+    <result column="HERMES_TARGET_MAX" property="hermesTargetMax" jdbcType="DECIMAL" />
+    <result column="HERMES_TARGET_MIN" property="hermesTargetMin" jdbcType="DECIMAL" />
+    <result column="HERMES_STATIO_NAME" property="hermesStatioName" jdbcType="VARCHAR" />
+    <result column="HERMES_FUNCTION_NAME" property="hermesFunctionName" jdbcType="VARCHAR" />
+    <result column="HERMES_STATIO_SN" property="hermesStatioSn" jdbcType="VARCHAR" />
+    <result column="HERMES_FLAG" property="hermesFlag" jdbcType="VARCHAR" />
+    <result column="HERMES_MAC" property="hermesMac" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="selectByFloorHermesName" resultMap="BaseResultMap">
+        select  * from  FLOOR_HERMES_TARGET
+        <if test="floor_Name!='ALL' and floor_Name!=null ">
+        where  HERMES_FLOOR=#{floor_Name}
+        </if>
+  </select>
+
+  <select id="selectHermesByFloor" resultMap="BaseResultMap">
+        select  SUBSTR(HERMES_FLOOR,0,1)AS area,HERMES_FLOOR from  FLOOR_HERMES_TARGET
+        group by SUBSTR(HERMES_FLOOR,0,1),HERMES_FLOOR
+        ORDER BY area ASC,HERMES_FLOOR asc
+  </select>
+
+</mapper>

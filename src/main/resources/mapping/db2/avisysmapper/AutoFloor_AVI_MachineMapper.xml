@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fox.avisys.mapper.AutoFloor_AVI_MachineMapper" >
+  <resultMap id="BaseResultMap" type="com.fox.avisys.entity.AutoFloor_AVI_Machine" >
+    <result column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="T_FLOOR" property="tFloor" jdbcType="VARCHAR" />
+    <result column="T_PRODUCT" property="tProduct" jdbcType="VARCHAR" />
+    <result column="T_LINE" property="tLine" jdbcType="VARCHAR" />
+    <result column="T_TIME" property="tTime" jdbcType="VARCHAR" />
+    <result column="T_AVIWARNINGSTATE" property="tAviwarningstate" jdbcType="VARCHAR" />
+    <result column="T_WARNINGSTATE" property="tWarningstate" jdbcType="VARCHAR" />
+    <result column="P1" property="p1" jdbcType="VARCHAR" />
+    <result column="P2" property="p2" jdbcType="VARCHAR" />
+    <result column="FLAG" property="flag" jdbcType="DECIMAL" />
+    <result column="TIME" property="time" jdbcType="TIMESTAMP" />
+    <result column="INPUT_TIME" property="inputTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <select id="selectMachinieType" resultMap="BaseResultMap">
+    <![CDATA[
+      select  T_LINE,T_AVIWARNINGSTATE,T_WARNINGSTATE,TIME from   AUTOFLOOR_AVI_MACHINE
+      where TIME>=to_date('${start_date}','YYYY/MM/DD HH24:MI:SS')
+      and TIME<to_date('${end_date}','YYYY/MM/DD HH24:MI:SS')
+      and T_LINE=#{linename}
+      and T_AVIWARNINGSTATE=#{warningstate}
+      and ROWNUM=1
+      group by T_LINE,T_AVIWARNINGSTATE,T_WARNINGSTATE,TIME
+      order by T_AVIWARNINGSTATE,TIME desc
+    ]]>
+  </select>
+
+
+</mapper>

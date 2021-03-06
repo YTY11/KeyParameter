@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fox.avisys.mapper.AutoFloor_AVI_Maintain_RecordMapper" >
+  <resultMap id="BaseResultMap" type="com.fox.avisys.entity.AutoFloor_AVI_Maintain_Record" >
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="FLOOR" property="floor" jdbcType="VARCHAR" />
+    <result column="LINENAME" property="linename" jdbcType="VARCHAR" />
+    <result column="MACHINE" property="machine" jdbcType="VARCHAR" />
+    <result column="EXCEPTION_TYPE" property="exceptionType" jdbcType="VARCHAR" />
+    <result column="EXCEPTION_DESCRIBE" property="exceptionDescribe" jdbcType="VARCHAR" />
+    <result column="REPAIR_PROPOSE" property="repairPropose" jdbcType="VARCHAR" />
+    <result column="PRIORITY" property="priority" jdbcType="VARCHAR" />
+    <result column="EXCEPTION_TIME" property="exceptionTime" jdbcType="VARCHAR" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="VARCHAR" />
+    <result column="ELAPSED_TIME" property="elapsedTime" jdbcType="VARCHAR" />
+    <result column="FLAG" property="flag" jdbcType="VARCHAR" />
+    <result column="TYPE" property="type" jdbcType="VARCHAR" />
+    <result column="REPAIR_CONTENT" property="repairContent" jdbcType="VARCHAR" />
+    <result column="EMPLOYEE" property="employee" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, FLOOR, LINENAME, MACHINE, EXCEPTION_TYPE, EXCEPTION_DESCRIBE, REPAIR_PROPOSE, 
+    PRIORITY, EXCEPTION_TIME, UPDATE_TIME, ELAPSED_TIME, FLAG, TYPE, REPAIR_CONTENT, 
+    EMPLOYEE
+  </sql>
+
+  <select id="selectAVIDBDate" resultType="date">
+      select  SYSDATE from AUTOFLOOR_AVI_MAINTAIN_RECORD
+        where  rownum=1
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
+    select 
+    <include refid="Base_Column_List" />
+    from AUTOFLOOR_AVI_MAINTAIN_RECORD
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from AUTOFLOOR_AVI_MAINTAIN_RECORD
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.fox.avisys.entity.AutoFloor_AVI_Maintain_Record" >
+    insert into AUTOFLOOR_AVI_MAINTAIN_RECORD (ID, FLOOR, LINENAME, 
+      MACHINE, EXCEPTION_TYPE, EXCEPTION_DESCRIBE, 
+      REPAIR_PROPOSE, PRIORITY, EXCEPTION_TIME, 
+      UPDATE_TIME, ELAPSED_TIME, FLAG, 
+      TYPE, REPAIR_CONTENT, EMPLOYEE
+      )
+    values (#{id,jdbcType=DECIMAL}, #{floor,jdbcType=VARCHAR}, #{linename,jdbcType=VARCHAR}, 
+      #{machine,jdbcType=VARCHAR}, #{exceptionType,jdbcType=VARCHAR}, #{exceptionDescribe,jdbcType=VARCHAR}, 
+      #{repairPropose,jdbcType=VARCHAR}, #{priority,jdbcType=VARCHAR}, #{exceptionTime,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=VARCHAR}, #{elapsedTime,jdbcType=VARCHAR}, #{flag,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{repairContent,jdbcType=VARCHAR}, #{employee,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.fox.avisys.entity.AutoFloor_AVI_Maintain_Record" >
+    insert into AUTOFLOOR_AVI_MAINTAIN_RECORD
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="floor != null" >
+        FLOOR,
+      </if>
+      <if test="linename != null" >
+        LINENAME,
+      </if>
+      <if test="machine != null" >
+        MACHINE,
+      </if>
+      <if test="exceptionType != null" >
+        EXCEPTION_TYPE,
+      </if>
+      <if test="exceptionDescribe != null" >
+        EXCEPTION_DESCRIBE,
+      </if>
+      <if test="repairPropose != null" >
+        REPAIR_PROPOSE,
+      </if>
+      <if test="priority != null" >
+        PRIORITY,
+      </if>
+      <if test="exceptionTime != null" >
+        EXCEPTION_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="elapsedTime != null" >
+        ELAPSED_TIME,
+      </if>
+      <if test="flag != null" >
+        FLAG,
+      </if>
+      <if test="type != null" >
+        TYPE,
+      </if>
+      <if test="repairContent != null" >
+        REPAIR_CONTENT,
+      </if>
+      <if test="employee != null" >
+        EMPLOYEE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="floor != null" >
+        #{floor,jdbcType=VARCHAR},
+      </if>
+      <if test="linename != null" >
+        #{linename,jdbcType=VARCHAR},
+      </if>
+      <if test="machine != null" >
+        #{machine,jdbcType=VARCHAR},
+      </if>
+      <if test="exceptionType != null" >
+        #{exceptionType,jdbcType=VARCHAR},
+      </if>
+      <if test="exceptionDescribe != null" >
+        #{exceptionDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="repairPropose != null" >
+        #{repairPropose,jdbcType=VARCHAR},
+      </if>
+      <if test="priority != null" >
+        #{priority,jdbcType=VARCHAR},
+      </if>
+      <if test="exceptionTime != null" >
+        #{exceptionTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="elapsedTime != null" >
+        #{elapsedTime,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="repairContent != null" >
+        #{repairContent,jdbcType=VARCHAR},
+      </if>
+      <if test="employee != null" >
+        #{employee,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fox.avisys.entity.AutoFloor_AVI_Maintain_Record" >
+    update AUTOFLOOR_AVI_MAINTAIN_RECORD
+    <set >
+      <if test="floor != null" >
+        FLOOR = #{floor,jdbcType=VARCHAR},
+      </if>
+      <if test="linename != null" >
+        LINENAME = #{linename,jdbcType=VARCHAR},
+      </if>
+      <if test="machine != null" >
+        MACHINE = #{machine,jdbcType=VARCHAR},
+      </if>
+      <if test="exceptionType != null" >
+        EXCEPTION_TYPE = #{exceptionType,jdbcType=VARCHAR},
+      </if>
+      <if test="exceptionDescribe != null" >
+        EXCEPTION_DESCRIBE = #{exceptionDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="repairPropose != null" >
+        REPAIR_PROPOSE = #{repairPropose,jdbcType=VARCHAR},
+      </if>
+      <if test="priority != null" >
+        PRIORITY = #{priority,jdbcType=VARCHAR},
+      </if>
+      <if test="exceptionTime != null" >
+        EXCEPTION_TIME = #{exceptionTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="elapsedTime != null" >
+        ELAPSED_TIME = #{elapsedTime,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null" >
+        FLAG = #{flag,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        TYPE = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="repairContent != null" >
+        REPAIR_CONTENT = #{repairContent,jdbcType=VARCHAR},
+      </if>
+      <if test="employee != null" >
+        EMPLOYEE = #{employee,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fox.avisys.entity.AutoFloor_AVI_Maintain_Record" >
+    update AUTOFLOOR_AVI_MAINTAIN_RECORD
+    set FLOOR = #{floor,jdbcType=VARCHAR},
+      LINENAME = #{linename,jdbcType=VARCHAR},
+      MACHINE = #{machine,jdbcType=VARCHAR},
+      EXCEPTION_TYPE = #{exceptionType,jdbcType=VARCHAR},
+      EXCEPTION_DESCRIBE = #{exceptionDescribe,jdbcType=VARCHAR},
+      REPAIR_PROPOSE = #{repairPropose,jdbcType=VARCHAR},
+      PRIORITY = #{priority,jdbcType=VARCHAR},
+      EXCEPTION_TIME = #{exceptionTime,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=VARCHAR},
+      ELAPSED_TIME = #{elapsedTime,jdbcType=VARCHAR},
+      FLAG = #{flag,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=VARCHAR},
+      REPAIR_CONTENT = #{repairContent,jdbcType=VARCHAR},
+      EMPLOYEE = #{employee,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

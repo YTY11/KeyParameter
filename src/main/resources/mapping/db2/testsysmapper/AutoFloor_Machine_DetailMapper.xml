@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fox.testsys.mapper.AutoFloor_Machine_DetailMapper" >
+  <resultMap id="BaseResultMap" type="com.fox.testsys.entity.AutoFloor_Machine_Detail" >
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="T_AREA" property="tArea" jdbcType="VARCHAR" />
+    <result column="T_FLOOR" property="tFloor" jdbcType="VARCHAR" />
+    <result column="T_PRODUCT" property="tProduct" jdbcType="VARCHAR" />
+    <result column="LINE_NAME" property="lineName" jdbcType="VARCHAR" />
+    <result column="STATION_NAME" property="stationName" jdbcType="VARCHAR" />
+    <result column="MACHINE_NO" property="machineNo" jdbcType="VARCHAR" />
+    <result column="INPUT_TIME" property="inputTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="P2" property="p2" jdbcType="VARCHAR" />
+    <result column="P3" property="p3" jdbcType="VARCHAR" />
+    <result column="P4" property="p4" jdbcType="VARCHAR" />
+    <result column="P5" property="p5" jdbcType="VARCHAR" />
+    <result column="P6" property="p6" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, T_AREA, T_FLOOR, T_PRODUCT, LINE_NAME, STATION_NAME, MACHINE_NO, INPUT_TIME, 
+    UPDATE_TIME, P2, P3, P4, P5, P6
+  </sql>
+  <select id="selectFloor_Product" resultMap="BaseResultMap" >
+    <![CDATA[
+     select T_FLOOR ,T_PRODUCT,COUNT(*)  from AUTOFLOOR_MACHINE_DETAIL
+     where T_FLOOR=#{floor_name}
+      GROUP BY T_PRODUCT,T_FLOOR
+    ]]>
+  </select>
+
+  <select id="MachineCellList" resultMap="BaseResultMap" >
+    select SUBSTR(LINE_NAME,0,12)as LINE_NAME FROM AUTOFLOOR_MACHINE_DETAIL
+      WHERE LINE_NAME like #{linename}||'%'
+      and LENGTH(SUBSTR(LINE_NAME,0,12))>=10
+      GROUP BY LINE_NAME
+      order by LINE_NAME asc
+  </select>
+</mapper>

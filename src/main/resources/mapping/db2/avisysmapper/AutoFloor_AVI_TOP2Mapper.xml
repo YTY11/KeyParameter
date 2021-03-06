@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fox.avisys.mapper.AutoFloor_AVI_TOP2Mapper" >
+  <resultMap id="BaseResultMap" type="com.fox.avisys.entity.AutoFloor_AVI_TOP2" >
+    <result column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="PRODUCT" property="product" jdbcType="VARCHAR" />
+    <result column="FLOOR" property="floor" jdbcType="VARCHAR" />
+    <result column="LINE_NAME" property="lineName" jdbcType="VARCHAR" />
+    <result column="SN" property="sn" jdbcType="VARCHAR" />
+    <result column="POS" property="pos" jdbcType="VARCHAR" />
+    <result column="TIME_TOP" property="timeTop" jdbcType="VARCHAR" />
+    <result column="P1" property="p1" jdbcType="VARCHAR" />
+    <result column="P2" property="p2" jdbcType="VARCHAR" />
+    <result column="P3" property="p3" jdbcType="VARCHAR" />
+    <result column="P4" property="p4" jdbcType="VARCHAR" />
+    <result column="P5" property="p5" jdbcType="VARCHAR" />
+    <result column="P6" property="p6" jdbcType="VARCHAR" />
+    <result column="P7" property="p7" jdbcType="VARCHAR" />
+    <result column="P8" property="p8" jdbcType="VARCHAR" />
+    <result column="P9" property="p9" jdbcType="VARCHAR" />
+    <result column="P10" property="p10" jdbcType="VARCHAR" />
+    <result column="P11" property="p11" jdbcType="VARCHAR" />
+    <result column="P12" property="p12" jdbcType="VARCHAR" />
+    <result column="P13" property="p13" jdbcType="VARCHAR" />
+    <result column="P14" property="p14" jdbcType="VARCHAR" />
+    <result column="P15" property="p15" jdbcType="VARCHAR" />
+    <result column="P16" property="p16" jdbcType="VARCHAR" />
+    <result column="P17" property="p17" jdbcType="VARCHAR" />
+    <result column="P18" property="p18" jdbcType="VARCHAR" />
+    <result column="P19" property="p19" jdbcType="VARCHAR" />
+    <result column="P20" property="p20" jdbcType="VARCHAR" />
+    <result column="P21" property="p21" jdbcType="VARCHAR" />
+    <result column="P22" property="p22" jdbcType="VARCHAR" />
+    <result column="P23" property="p23" jdbcType="VARCHAR" />
+    <result column="P24" property="p24" jdbcType="VARCHAR" />
+    <result column="P25" property="p25" jdbcType="VARCHAR" />
+    <result column="INPUT_TIME" property="inputTime" jdbcType="TIMESTAMP" />
+    <result column="P26" property="p26" jdbcType="VARCHAR" />
+    <result column="P27" property="p27" jdbcType="VARCHAR" />
+    <result column="P28" property="p28" jdbcType="VARCHAR" />
+    <result column="P29" property="p29" jdbcType="VARCHAR" />
+    <result column="P30" property="p30" jdbcType="VARCHAR" />
+    <result column="P31" property="p31" jdbcType="VARCHAR" />
+    <result column="P32" property="p32" jdbcType="VARCHAR" />
+    <result column="P33" property="p33" jdbcType="VARCHAR" />
+    <result column="P34" property="p34" jdbcType="VARCHAR" />
+    <result column="P35" property="p35" jdbcType="VARCHAR" />
+    <result column="P36" property="p36" jdbcType="VARCHAR" />
+    <result column="P37" property="p37" jdbcType="VARCHAR" />
+    <result column="P38" property="p38" jdbcType="VARCHAR" />
+    <result column="P39" property="p39" jdbcType="VARCHAR" />
+    <result column="P40" property="p40" jdbcType="VARCHAR" />
+    <result column="P41" property="p41" jdbcType="VARCHAR" />
+    <result column="P42" property="p42" jdbcType="VARCHAR" />
+    <result column="P43" property="p43" jdbcType="VARCHAR" />
+    <result column="P44" property="p44" jdbcType="VARCHAR" />
+    <result column="P45" property="p45" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="selectByLineTop2Data" resultMap="BaseResultMap">
+
+    SELECT * FROM "AUTOFLOOR_AVI_TOP2"
+    <![CDATA[
+    WHERE TO_DATE (time_top,'yyyyMMddhh24miss')>= TO_DATE ('${startDate}','yyyy/MM/dd hh24:mi:ss')
+    and TO_DATE (time_top,'yyyyMMddhh24miss')< TO_DATE ('${endDate}','yyyy/MM/dd hh24:mi:ss')
+    ]]>
+    and floor=#{floorName}
+
+  </select>
+</mapper>

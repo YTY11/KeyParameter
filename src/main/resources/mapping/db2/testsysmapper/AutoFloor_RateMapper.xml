@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fox.testsys.mapper.AutoFloor_RateMapper" >
+  <resultMap id="BaseResultMap" type="com.fox.testsys.entity.AutoFloor_Rate" >
+    <result column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="FLOOR" property="floor" jdbcType="VARCHAR" />
+    <result column="LINE_NAME" property="lineName" jdbcType="VARCHAR" />
+    <result column="PRODUCT" property="product" jdbcType="VARCHAR" />
+    <result column="STATION_NAME" property="stationName" jdbcType="VARCHAR" />
+    <result column="INPUT" property="input" jdbcType="DECIMAL" />
+    <result column="PASS" property="pass" jdbcType="DECIMAL" />
+    <result column="FAIL" property="fail" jdbcType="DECIMAL" />
+    <result column="RETEST" property="retest" jdbcType="DECIMAL" />
+    <result column="UNKNOWN" property="unknown" jdbcType="DECIMAL" />
+    <result column="FIRST_PASS" property="firstPass" jdbcType="DECIMAL" />
+    <result column="START_TIME" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="END_TIME" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="TIME_SLOT" property="timeSlot" jdbcType="VARCHAR" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <select id="AutoFloorALLRate_Yield" resultMap="BaseResultMap">
+  <![CDATA[
+  select * from
+  (select STATION_NAME,
+  (case(sum(input)) when 0 then 0.00 else round(sum(pass)/sum(input),4)end) -
+  (case(sum(input)) when 0 then 0.00 else round(sum(retest)/sum(input),4)end) as FPY,
+  case(sum(input)) when 0 then 0.00 else round(sum(pass)/sum(input),4) end as Yield,
+  case(sum(input)) when 0 then 0.00 else round(sum(Retest)/sum(input),4) end as Misdetet,
+  case(sum(unknown)+ sum(input)) when 0 then 0.00 else round(sum(unknown)/(sum(unknown)+ sum(input)),4) end as unknownRate
+  from autofloor_rate
+  where   start_time >= to_date('${start_Time}','YYYY/MM/DD HH24:MI:SS')
+  and END_time < to_date('${end_Time}','YYYY/MM/DD HH24:MI:SS')
+  and floor=#{floor_name}
+  and line_name like #{line_name}||'%'
+  and STATION_NAME!=' '
+  group by STATION_NAME ) t
+  ]]>
+</select>
+
+  <select id="AutoFloorALLStationRate" resultMap="BaseResultMap">
+  <![CDATA[
+  select  station_name,sum(input) as input,sum(pass) as pass,
+  (case(sum(input)) when 0 then 0.00 else round(sum(pass)/sum(input),4)end) -
+  (case(sum(input)) when 0 then 0.00 else round(sum(retest)/sum(input),4)end) as FPY,
+  case(sum(input)) when 0 then 0.00 else round(sum(pass)/sum(input),4) end as Yield,
+  case(sum(input)) when 0 then 0.00 else round(sum(Retest)/sum(input),4) end as Misdetet,
+  case(sum(unknown)+ sum(input)) when 0 then 0.00 else round(sum(unknown)/(sum(unknown)+ sum(input)),4) end as unknownRate
+  from autofloor_rate where
+  START_TIME >= to_date('${start_Time}','YYYY/MM/DD HH24:MI:SS')
+  and START_TIME < to_date('${end_Time}','YYYY/MM/DD HH24:MI:SS')
+  and floor=#{floor_name}
+  and line_name like #{line_name}||'%'
+  and STATION_NAME!=' '
+  group by station_name
+  ]]>
+</select>
+
+
+
+
+</mapper>

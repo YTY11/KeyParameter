@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fox.skasafs_sys.mapper.AGV_AFS_RGVReCodeMapper" >
+  <resultMap id="BaseResultMap" type="com.fox.skasafs_sys.entity.AGV_AFS_RGVReCode" >
+    <result column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="FLOOR" property="floor" jdbcType="VARCHAR" />
+    <result column="WORKSTATION" property="workstation" jdbcType="VARCHAR" />
+    <result column="LINENAME" property="linename" jdbcType="VARCHAR" />
+    <result column="TARGET" property="target" jdbcType="VARCHAR" />
+    <result column="ACTUAL" property="actual" jdbcType="VARCHAR" />
+    <result column="STARTTIME" property="starttime" jdbcType="TIMESTAMP" />
+    <result column="ENDTIME" property="endtime" jdbcType="TIMESTAMP" />
+    <result column="COST" property="cost" jdbcType="VARCHAR" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="TIME_SLOT" property="timeSlot" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="selectStoreIssueQuantity" resultMap="BaseResultMap">
+
+      SELECT * FROM AGV_AFS_RGVRECODE
+      WHERE FLOOR=#{FloorName}
+    <if test="LineName!=null and LineName!=''" >
+      AND LINENAME=#{LineName}
+    </if>
+    <if test="Workstation!=null and Workstation!=''" >
+      AND WORKSTATION=#{Workstation}
+    </if>
+   <![CDATA[
+      AND STARTTIME>=to_date('${StartDate}','YYYY-MM-DD HH24:MI:SS')
+      AND ENDTIME < to_date('${EndDate}','YYYY-MM-DD HH24:MI:SS')
+    ]]>
+  </select>
+</mapper>

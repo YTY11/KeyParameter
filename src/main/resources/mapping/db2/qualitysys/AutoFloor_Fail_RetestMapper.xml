@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fox.qualitysys.mapper.AutoFloor_Fail_RetestMapper">
+  <resultMap id="BaseResultMap" type="com.fox.qualitysys.entity.AutoFloor_Fail_Retest">
+    <result column="ID" jdbcType="DECIMAL" property="id" />
+    <result column="FLOOR" jdbcType="VARCHAR" property="floor" />
+    <result column="PRODUCT" jdbcType="VARCHAR" property="product" />
+    <result column="LINE_NAME" jdbcType="VARCHAR" property="lineName" />
+    <result column="SN" jdbcType="VARCHAR" property="sn" />
+    <result column="STATION_NAME" jdbcType="VARCHAR" property="stationName" />
+    <result column="FIRST_FAIL_TIME" jdbcType="TIMESTAMP" property="firstFailTime" />
+    <result column="SECOND_TEST_TIME" jdbcType="TIMESTAMP" property="secondTestTime" />
+    <result column="SECOND_TEST_RESULT" jdbcType="DECIMAL" property="secondTestResult" />
+    <result column="THIRD_TEST_TIME" jdbcType="TIMESTAMP" property="thirdTestTime" />
+    <result column="THIRD_TEST_RESULT" jdbcType="DECIMAL" property="thirdTestResult" />
+    <result column="RETEST_FINISH" jdbcType="VARCHAR" property="retestFinish" />
+    <result column="RETEST_FINISH_TIME" jdbcType="TIMESTAMP" property="retestFinishTime" />
+    <result column="RETEST_TIME_OUT" jdbcType="VARCHAR" property="retestTimeOut" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <select id="EquipmentKeyWordList" resultMap="BaseResultMap">
+     SELECT * from AUTOFLOOR_FAIL_RETEST
+     where line_name='D061FARF01'
+  </select>
+</mapper>

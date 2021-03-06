@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fox.skasafs_sys.mapper.AGV_ExceptionMapper" >
+  <resultMap id="BaseResultMap" type="com.fox.skasafs_sys.entity.AGV_Exception" >
+    <result column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="DEVICE" property="device" jdbcType="VARCHAR" />
+    <result column="ERROR" property="error" jdbcType="VARCHAR" />
+    <result column="STARTTIME" property="starttime" jdbcType="TIMESTAMP" />
+    <result column="ENDTIME" property="endtime" jdbcType="TIMESTAMP" />
+    <result column="COST" property="cost" jdbcType="VARCHAR" />
+    <result column="WORKSTATION" property="workstation" jdbcType="VARCHAR" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="FLOOR" property="floor" jdbcType="VARCHAR" />
+    <result column="RFID" property="rfid" jdbcType="VARCHAR" />
+    <result column="TIME_SLOT" property="timeSlot" jdbcType="VARCHAR" />
+  </resultMap>
+  <select  id="selectMachineFaultTime" resultMap="BaseResultMap">
+  <![CDATA[
+    SELECT DEVICE,ERROR,STARTTIME,ENDTIME,COST,WORKSTATION,UPDATE_TIME,FLOOR,RFID,TIME_SLOT FROM AGV_EXCEPTION
+    WHERE FLOOR like #{floorname}||'%'
+    and STARTTIME >=to_date('${startdate}','YYYY-MM-DD HH24:MI:SS')
+    and ENDTIME< to_date('${enddate}','YYYY-MM-DD HH24:MI:SS')
+    ORDER BY STARTTime DESC
+    ]]>
+  </select>
+  <select  id="selectMachineMessage" resultMap="BaseResultMap">
+  <![CDATA[
+    SELECT  *  FROM (SELECT DEVICE,ERROR,STARTTIME,ENDTIME,COST,WORKSTATION,UPDATE_TIME,FLOOR,RFID,TIME_SLOT FROM AGV_EXCEPTION
+    WHERE FLOOR like #{floorname}||'%'
+    and STARTTIME >=to_date('${startdate}','YYYY-MM-DD HH24:MI:SS')
+    and ENDTIME< to_date('${enddate}','YYYY-MM-DD HH24:MI:SS')
+    and WORKSTATION='KT-AFS'
+    ORDER BY STARTTime DESC)
+    WHERE ROWNUM<=3
+    ]]>
+  </select>
+  <select  id="selectMachineTimeSlotCost" resultMap="BaseResultMap">
+  <![CDATA[
+    SELECT DEVICE,ERROR,time_slot,WORKSTATION,sum(cost)as cost FROM AGV_EXCEPTION
+      WHERE  FLOOR like #{floorname}||'%'
+      and STARTTIME >=to_date('${startdate}','YYYY-MM-DD HH24:MI:SS')
+      and ENDTIME< to_date('${enddate}','YYYY-MM-DD HH24:MI:SS')
+      group by  DEVICE,ERROR,time_slot,WORKSTATION
+      order by time_slot desc
+    ]]>
+  </select>
+
+  <select  id="selectMachineUnMessage" resultMap="BaseResultMap">
+  <![CDATA[
+    SELECT DEVICE,ERROR,time_slot,WORKSTATION,sum(cost)as cost FROM AGV_EXCEPTION
+      WHERE  FLOOR like #{floorname}||'%'
+      and STARTTIME >=to_date('${startdate}','YYYY-MM-DD HH24:MI:SS')
+      and ENDTIME< to_date('${enddate}','YYYY-MM-DD HH24:MI:SS')
+    ]]>
+    <if test="CarNum!=null and CarNum!=''">
+      and DEVICE=#{CarNum}
+    </if>
+    <if test="time_slot!=null and time_slot!=''and time_slot!='TTL'">
+      and TIME_SLOT=#{time_slot}
+    </if>
+      group by  DEVICE,ERROR,time_slot,WORKSTATION
+      order by COST DESC
+
+  </select>
+
+
+
+</mapper>

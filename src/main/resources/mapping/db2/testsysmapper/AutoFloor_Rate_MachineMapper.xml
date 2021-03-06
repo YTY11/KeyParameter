@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fox.testsys.mapper.AutoFloor_Rate_MachineMapper" >
+  <resultMap id="BaseResultMap" type="com.fox.testsys.entity.AutoFloor_Rate_Machine" >
+    <result column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="FLOOR" property="floor" jdbcType="VARCHAR" />
+    <result column="LINE_NAME" property="lineName" jdbcType="VARCHAR" />
+    <result column="PRODUCT" property="product" jdbcType="VARCHAR" />
+    <result column="STATION_NAME" property="stationName" jdbcType="VARCHAR" />
+    <result column="MACHINE_NO" property="machineNo" jdbcType="VARCHAR" />
+    <result column="INPUT" property="input" jdbcType="DECIMAL" />
+    <result column="PASS" property="pass" jdbcType="DECIMAL" />
+    <result column="FAIL" property="fail" jdbcType="DECIMAL" />
+    <result column="RETEST" property="retest" jdbcType="DECIMAL" />
+    <result column="UNKNOWN" property="unknown" jdbcType="DECIMAL" />
+    <result column="FIRST_PASS" property="firstPass" jdbcType="DECIMAL" />
+    <result column="START_TIME" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="END_TIME" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="TIME_SLOT" property="timeSlot" jdbcType="VARCHAR" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="FAIL_COUNT" property="failCount" jdbcType="DECIMAL" />
+    <result column="FAIL_RETEST" property="failRetest" jdbcType="DECIMAL" />
+  </resultMap>
+
+  <!--机台直通率top5 08使用此sql-->
+  <select id="UNFPYMidetectData" resultMap="BaseResultMap">
+    <![CDATA[
+    select * from
+    (select line_name,machine_no,sum(input) as input,sum(pass) as pass,sum(fail_count) as ttl_fail,sum(fail) as fail,sum(retest) as retest,sum(unknown) as Unknown,
+    case(sum(input)) when 0 then 0.00 else round(sum(pass)/sum(input),4) end as YieldRate,
+    case(sum(input)) when 0 then 0.00 else round(sum(Retest)/sum(input),4) end as MisdetetRate,
+    case(sum(unknown)+ sum(input)) when 0 then 0.00 else round(sum(unknown)/(sum(unknown)+ sum(input)),4) end as UnknownRate,
+    case(sum(input)) when 0 then 0.00 else round(sum(FIRST_PASS)/(sum(input)),4) end as FPYRate
+    from autofloor_rate_machine
+    where START_TIME  >= to_date('${start_Time}','YYYY/MM/DD HH24:MI:SS')
+          and START_TIME < to_date('${end_Time}','YYYY/MM/DD HH24:MI:SS')
+          and STATION_NAME=#{product_name}
+          and line_name like #{line_name}||'%'
+          and STATION_NAME!=' '
+    group by line_name,machine_no order by FPYRate ASC)T
+    where  t.ttl_fail!=0 and rownum<6
+    ]]>
+</select>
+</mapper>

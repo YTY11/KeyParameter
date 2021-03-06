@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fox.alarmsys.mapper.AUTOFLOOR_FLOOR_TARGETMapper" >
+  <resultMap id="BaseResultMap" type="com.fox.alarmsys.entity.AUTOFLOOR_FLOOR_TARGET" >
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="FLOORNAME" property="floorname" jdbcType="VARCHAR" />
+    <result column="LINENAME" property="linename" jdbcType="VARCHAR" />
+    <result column="PRODUCT" property="product" jdbcType="VARCHAR" />
+    <result column="TYPE" property="type" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, FLOORNAME, LINENAME, PRODUCT, TYPE
+  </sql>
+  <select id="selectByTypeData" resultMap="BaseResultMap"  >
+    select <include refid="Base_Column_List"/>
+    from AUTOFLOOR_FLOOR_TARGET
+    where TYPE=#{typeName}
+  </select>
+</mapper>

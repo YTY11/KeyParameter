@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fox.skasafs_sys.mapper.AGV_AFS_FeedReCodeMapper" >
+  <resultMap id="BaseResultMap" type="com.fox.skasafs_sys.entity.AGV_AFS_FeedReCode" >
+    <result column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="FLOOR" property="floor" jdbcType="VARCHAR" />
+    <result column="WORKSTATION" property="workstation" jdbcType="VARCHAR" />
+    <result column="LINENAME" property="linename" jdbcType="VARCHAR" />
+    <result column="TABLEX" property="tablex" jdbcType="VARCHAR" />
+    <result column="SLOT" property="slot" jdbcType="VARCHAR" />
+    <result column="FEEDID" property="feedid" jdbcType="VARCHAR" />
+    <result column="AUTO" property="auto" jdbcType="VARCHAR" />
+    <result column="STARTTIME" property="starttime" jdbcType="TIMESTAMP" />
+    <result column="ENDTIME" property="endtime" jdbcType="TIMESTAMP" />
+    <result column="COST" property="cost" jdbcType="VARCHAR" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="TIME_SLOT" property="timeSlot" jdbcType="VARCHAR" />
+  </resultMap>
+   <select id="selectAFSStoreIssue" resultMap="BaseResultMap">
+      <![CDATA[
+          SELECT * FROM AGV_AFS_FEEDRECODE
+          WHERE FLOOR=#{FloorName}
+          AND STARTTIME>=to_date('${StartDate}','YYYY-MM-DD HH24:MI:SS')
+          AND ENDTIME < to_date('${EndDate}','YYYY-MM-DD HH24:MI:SS')
+      ]]>
+   </select>
+
+  <select id="selectCarAFSStoreIssue" resultMap="BaseResultMap">
+      <![CDATA[
+          SELECT * FROM AGV_AFS_FEEDRECODE
+          WHERE FLOOR=#{FloorName}
+          AND LINENAME=#{CarName}
+          AND STARTTIME>=to_date('${StartDate}','YYYY-MM-DD HH24:MI:SS')
+          AND ENDTIME < to_date('${EndDate}','YYYY-MM-DD HH24:MI:SS')
+      ]]>
+   </select>
+</mapper>
