@@ -7,7 +7,8 @@ a, body, button, div, dl, dt, h1, h2, h3, h4, h5, h6, input, li, p, select, text
 
 html {
     width: 100%;
-    height: calc( 100% - 60px);
+    height: calc( 100% - 0.6rem);
+    font-size: 100px;
 }
 
 body {
@@ -37,7 +38,7 @@ body {
     /*margin: 2%;*/
     /*margin-top: 4%;*/
     width:93.8%;
-    height: calc( 100% - 60px - 6.2%);
+    height: calc( 100% - 0.6rem - 6.2%);
     border-radius: 16px;
 
 }
@@ -360,4 +361,114 @@ input::-webkit-input-placeholder{
 .layui-anim-upbit {
     -webkit-animation-name: auto;
     animation-name: auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.select[data-v-170a700c] {
+    width: 100%;
+    height: 100%;
+    color: #000;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left: .1rem;
+    box-sizing: border-box;
+    position: relative;
+}
+
+
+.select>li[data-v-170a700c] {
+    position: relative;
+
+}
+
+
+.select>li>span[data-v-170a700c] {
+    margin-right: 2.71267vw;
+    opacity: .8;
+}
+
+
+.select>li>input[data-v-170a700c] {
+    width: 17.97vw;
+    height: 3.321vh;
+    line-height: .364583rem;
+    text-indent: .104167rem;
+    border-radius: .052083rem;
+    border: 1px solid grey;
+}
+
+.select>li>i[data-v-170a700c] {
+    display: inline-block;
+    width: 0.98vh;
+    height: 0.98vh;
+    border-top: .02rem solid #000;
+    border-left: .02rem solid #000;
+    opacity: .8;
+    position: absolute;
+    margin-top: 0.9vh;
+    right: .195313rem;
+    transform: rotate(
+            -135deg
+    );
+}
+
+
+.select>li .floor-list[data-v-170a700c], .select>li .line-list[data-v-170a700c] {
+    width: 17.97vw;
+    height: 14.649vh;
+    max-height: 2rem;
+    position: absolute;
+    left: 7.3vw;
+    top: 3.9vh;
+    overflow: auto;
+    z-index: 40;
+    letter-spacing: .02rem;
+}
+
+
+.select>li .floor-list>li[data-v-170a700c], .select>li .line-list>li[data-v-170a700c] {
+    width: 100%;
+    height: .3rem;
+    line-height: .3rem;
+    box-sizing: border-box;
+    padding-left: .1rem;
+    border-top: 1px solid grey;
+    border-left: 1px solid grey;
+    border-right: 1px solid grey;
+    color: #000;
+    background: #fff;
+}
+
+
+
+.select>li[data-v-170a700c]:last-child, .select>li[data-v-170a700c]:nth-child(2) {
+    margin-left: .3rem;
+}
+
+
+
+.select>li>button[data-v-170a700c] {
+    width: 9.919vh;
+    height: 3.56vh;
+    background: #f7b500;
+    box-shadow: 0.02rem 0.02rem 0.06rem 0 rgb(0 0 0 / 50%);
+    border-radius: .08rem;
+    color: #fff;
+    border: 0px;
 }

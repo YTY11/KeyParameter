@@ -29,10 +29,10 @@
     and TO_DATE (TESTTIME, 'yyyy/MM/dd hh24:mi:ss') < TO_DATE (#{endTime}, 'yyyy/MM/dd hh24:mi:ss')
             ]]>
     and floor=#{floor}
-    <if test="lineName!='All' and lineName!=null">
+    <if test="lineName!='All' and lineName!=null and lineName !=' 请选择'">
         and LINENAME=#{lineName}
     </if>
-    <if test="flag != '' and flag!=null" >
+    <if test="flag != '' and flag!=null and flag !=' 请选择'">
       and FLAG = #{flag}
     </if>
     AND MACHINETYPE !='VISRDO'

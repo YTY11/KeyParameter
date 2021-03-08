@@ -22,7 +22,6 @@
     </div>
     <div class="content1" >
         <div style="width: 100%;height: 100%" th:fragment="tabData" id="content_demo">
-            <!--        <div class="content1">-->
             <!--    top主体内容-->
             <div class="topContent">
                 <div class="topContentL">
@@ -99,7 +98,7 @@
                             <div class="container">
                                 <div class="pictureSlider poster-main" >
                                     <ul id="zturn" class="poster-list ulData" >
-                                        <li  class="poster-item  zturn-item"  th:each="Exceptions : ${ExceptionDescribe}">
+                                        <li  class="poster-item  zturn-item"  th:each="Exceptions ,start : ${ExceptionDescribe}">
                                             <div class="liName">
                                                 <span>故障</span>
                                             </div>
@@ -110,7 +109,6 @@
                                                     <li th:text="${'异常时间:'+Exceptions.getDateTime()} "></li>
                                                 </ul>
                                             </div>
-
 
                                         </li>
 
@@ -155,7 +153,7 @@
 
                 </div>
             </div>
-            <!--        </div>-->
+
 
 
 
@@ -169,7 +167,7 @@
                 var aa = new zturn({
                     id: "zturn",
                     opacity: 0.5,
-                    width: 200,
+                    width: 80,
                     Awidth: 9,
                     scale: 0.9,
                     auto: true,//是否轮播 默认5000
@@ -178,6 +176,22 @@
 
             </script>
             <script type="text/javascript" th:inline="javascript" >
+                 newVar = [[${ExceptionDescribe}]];
+
+                leng =  newVar.length;
+              // console.log(leng);
+              if(leng == 1){
+                    $(".pictureSlider").css("transform","rotate(90deg) translateY(26%) translateX(-0.1vh)")
+                }
+                else if(leng == 2){
+                    $(".pictureSlider").css("transform","rotate(90deg) translateY(26%) translateX(3.9vh)")
+
+                }
+                else{
+                    $(".pictureSlider").css("transform","rotate(90deg) translateY(26%) translateX(7.9vh)")
+
+                }
+
                 (function () {
                     sysbar();
                     syspie();
@@ -391,7 +405,7 @@
                                 }
                             },
                             data: [ {
-                                value:(syspieData.machineWarning+syspieData.machineHealth),
+                                value:syspieData.machineRate,
                                 name:'',
                                 itemStyle: {
                                     normal: {
@@ -399,7 +413,7 @@
                                     }
                                 }
                             },{
-                                value:(syspieData.machineSum-syspieData.machineLostConnection)-(syspieData.machineWarning+syspieData.machineHealth),
+                                value:100-syspieData.machineRate,
                                 name:'',
                                 itemStyle: {
                                     normal: {
@@ -568,390 +582,9 @@
 
 
 <!--</script>-->
-<script th:src="@{/js/zturn.js}" src="../static/js/zturn.js"></script>
-
-<script th:src="@{/js/jquery-3.5.1.min.js}" src="../static/js/jquery-3.5.1.min.js"></script>
-<script th:src="@{/layui/layui.js}" src="../static/layui/layui.js"></script>
-<script th:src="@{/js/echarts.js}" src="../static/js/echarts.js"></script>
-<script th:src="@{/js/SkasAfs.js}" src="../static/js/SkasAfs.js"></script>
-<script type="text/javascript" class="ajaxJs">
-    var aa = new zturn({
-        id: "zturn",
-        opacity: 0.5,
-        width: 200,
-        Awidth: 9,
-        scale: 0.9,
-        auto: true,//是否轮播 默认5000
-        turning: 2000//轮播时长
-    })
-
-</script>
 
 </body>
 
-<!--<script type="text/javascript" th:inline="javascript" >-->
-<!--    (function () {-->
-<!--        sysbar();-->
-<!--        syspie();-->
-<!--        sysline();-->
-<!--    })();-->
-<!--    function sysbar() {-->
-<!--        var skas_afsDataJson=[[${skas_afsDataJson}]];-->
-<!--        var  sysbarData= JSON.parse(skas_afsDataJson);-->
-<!--        var sysbarxList=[];-->
-<!--        var sysbarTarList=[];-->
-<!--        var sysbarActionList=[];-->
-<!--        for (let i = 0; i < sysbarData.length; i++) {-->
-<!--            sysbarxList.push(sysbarData[i].proudct);-->
-<!--            sysbarTarList.push(sysbarData[i].storeIssueTarget);-->
-<!--            sysbarActionList.push(sysbarData[i].storeIssueAction);-->
-<!--        }-->
-<!--        var chartDom2 = document.getElementById('keyData');-->
-<!--        var myChart2 = echarts.init(chartDom2);-->
-
-<!--        var option2 = {-->
-<!--            grid:{-->
-<!--                top:'20%',//距上边距-->
-<!--                left:'2%',//距离左边距-->
-<!--                right:'2%',//距离右边距-->
-<!--                bottom:'5%',//距离下边距-->
-<!--                containLabel:true-->
-<!--            },-->
-<!--            legend: {-->
-
-
-<!--                right:'10',-->
-<!--                itemWidth:35,-->
-
-<!--                itemHeight:13,-->
-<!--                itemGap:50,-->
-<!--                textStyle:{-->
-<!--                    fontFamily: 'PingFangSC-Regular',-->
-<!--                    fontSize: 14,-->
-<!--                    color: 'rgba(0,0,0,0.85)',-->
-<!--                },-->
-<!--            },-->
-<!--            tooltip: {},-->
-<!--            // dataset: {-->
-<!--            //     dimensions: ['product', '计划', '实际'],-->
-<!--            //     source: [-->
-<!--            //         {product: 'RGV', '计划': 370, '实际': 325 },-->
-<!--            //         {product: 'AGV', '计划': 21, '实际': 20,},-->
-<!--            //         {product: '暂存仓', '计划': 20, '实际': 18},-->
-<!--            //         {product: 'FAS', '计划': 325, '实际': 258}-->
-<!--            //     ]-->
-<!--            // },-->
-<!--            xAxis: {-->
-<!--                type: 'category',-->
-<!--                data:sysbarxList,-->
-<!--                axisTick: {-->
-<!--                    show: false-->
-<!--                },-->
-<!--                axisLabel:{-->
-<!--                    textStylee:{-->
-<!--                        fontFamily: 'PingFangSC-Regular',-->
-<!--                        fontSize: 14,-->
-<!--                        color: 'rgba(0,0,0,0.85)',-->
-<!--                        letterSpacing: -0.04,-->
-<!--                    },-->
-<!--                },-->
-
-<!--            },-->
-<!--            yAxis: {-->
-<!--                axisLabel:{-->
-<!--                    textStyle:{-->
-<!--                        fontFamily: 'PingFangSC-Regular',-->
-<!--                        fontSize: 14,-->
-<!--                        color: '#000000',-->
-<!--                        letterSpacing: -1.48,-->
-<!--                        lineHeight: 20,-->
-<!--                    },-->
-<!--                    interval:0,-->
-<!--                },-->
-
-<!--                type: 'value',-->
-<!--                axisTick: {-->
-<!--                    show: false-->
-<!--                },-->
-<!--                axisLine: {-->
-<!--                    show: false-->
-<!--                },-->
-
-
-
-<!--            },-->
-
-<!--            series: [-->
-<!--                {-->
-<!--                    name:'计划',-->
-<!--                    type: 'bar',-->
-<!--                    data:sysbarTarList,-->
-<!--                    itemStyle: {-->
-
-<!--                        normal:{-->
-<!--                            color: new echarts.graphic.LinearGradient(-->
-<!--                                0, 0, 0, 1,-->
-<!--                                [-->
-<!--                                    {offset: 0, color: '#06B5FA'},-->
-<!--                                    {offset: 0.5, color: '#6DCEF4'},-->
-<!--                                    {offset: 1, color: '#CEEEF3'}-->
-<!--                                ]-->
-<!--                            ),-->
-<!--                            label:{-->
-<!--                                show:true,-->
-<!--                                position: 'top',-->
-<!--                                textStyle:{-->
-<!--                                    fontFamily: 'PingFangSC-Regular',-->
-<!--                                    fontSize: 12,-->
-<!--                                    letterSpacing: 0,-->
-<!--                                }-->
-<!--                            }-->
-<!--                        }-->
-
-
-<!--                    },-->
-<!--                },-->
-<!--                {-->
-<!--                    name:'实际',-->
-<!--                    type: 'bar',-->
-<!--                    data:sysbarActionList,-->
-<!--                    itemStyle: {-->
-
-<!--                        normal:{-->
-<!--                            color: new echarts.graphic.LinearGradient(-->
-<!--                                0, 0, 0, 1,-->
-<!--                                [-->
-<!--                                    {offset: 0, color: '#03E22C'},-->
-<!--                                    {offset: 0.5, color: '#5CE876'},-->
-<!--                                    {offset: 1, color: '#A9F2AC'}-->
-<!--                                ]-->
-<!--                            ),-->
-<!--                            label:{-->
-<!--                                show:true,-->
-<!--                                position: 'top',-->
-<!--                                textStyle:{-->
-<!--                                    fontFamily: 'PingFangSC-Regular',-->
-<!--                                    fontSize: 12,-->
-<!--                                    letterSpacing: 0,-->
-<!--                                }-->
-<!--                            }-->
-<!--                        }-->
-
-<!--                    },-->
-<!--                },-->
-
-<!--            ]-->
-<!--        };-->
-<!--        myChart2.setOption(option2,true);-->
-<!--        window.addEventListener("resize",function () {-->
-<!--            myChart2.resize();-->
-<!--        });-->
-<!--        myChart2.clear();-->
-<!--        myChart2.setOption(option2,true);-->
-
-<!--    }-->
-
-<!--    function syspie() {-->
-<!--        var aGV_AFSPieStateData=[[${aGV_AFSPieStateJson}]];-->
-<!--        var syspieData= JSON.parse(aGV_AFSPieStateData);-->
-<!--        var chartDom = document.getElementById('doughnut');-->
-<!--        var myChart = echarts.init(chartDom);-->
-<!--        var option = {-->
-<!--            title:{-->
-<!--                show:true,-->
-<!--                text:syspieData.machineRate+'%',-->
-<!--                x:'center',-->
-<!--                y:'center',-->
-<!--                textStyle: {-->
-<!--                    fontSize: '20',-->
-<!--                    fontFamily:'topContentLBottomR',-->
-<!--                    letterSpacing: '0.71',-->
-<!--                    color:'#5FB900',-->
-<!--                    fontWeight: 'normal'-->
-<!--                }-->
-<!--            },-->
-<!--            tooltip: {-->
-<!--                trigger: 'item',-->
-<!--                formatter: "{d}%",-->
-<!--                show:false-->
-<!--            },-->
-<!--            legend: {-->
-<!--                orient: 'vertical',-->
-<!--                x: 'left',-->
-<!--                show:false-->
-<!--            },-->
-<!--            series: [ {-->
-<!--                center: ['50%', '50%'],-->
-<!--                name:'',-->
-<!--                type:'pie',-->
-<!--                radius: ['70%', '85%'],-->
-<!--                avoidLabelOverlap: true,-->
-<!--                hoverAnimation:false,-->
-
-<!--                label: {-->
-<!--                    normal: {-->
-<!--                        show: false,-->
-<!--                        position: 'center'-->
-<!--                    },-->
-<!--                    emphasis: {-->
-<!--                        show: false-->
-<!--                    }-->
-<!--                },-->
-<!--                labelLine: {-->
-<!--                    normal: {-->
-<!--                        show: false-->
-<!--                    }-->
-<!--                },-->
-<!--                data: [ {-->
-<!--                    value:(syspieData.machineWarning+syspieData.machineHealth),-->
-<!--                    name:'',-->
-<!--                    itemStyle: {-->
-<!--                        normal: {-->
-<!--                            color: "#5FB900",-->
-<!--                        }-->
-<!--                    }-->
-<!--                },{-->
-<!--                    value:(syspieData.machineSum-syspieData.machineLostConnection)-(syspieData.machineWarning+syspieData.machineHealth),-->
-<!--                    name:'',-->
-<!--                    itemStyle: {-->
-<!--                        normal: {-->
-<!--                            color: "#708FBB7a",-->
-<!--                        }-->
-<!--                    }-->
-<!--                }]-->
-<!--            }]-->
-<!--        };-->
-
-<!--        myChart.setOption(option,true);-->
-<!--        window.addEventListener("resize",function () {-->
-<!--            myChart.resize();-->
-<!--        });-->
-<!--        myChart.clear();-->
-<!--        myChart.setOption(option,true);-->
-<!--    }-->
-
-<!--    function sysline() {-->
-<!--        var saksafssyslineData=[[${afsLineDataJson}]]-->
-
-<!--        var syslineData=JSON.parse(saksafssyslineData);-->
-<!--        var syslinedateTime=[];-->
-<!--        var syslinemachineRate=[];-->
-<!--        for (let i = 0; i < syslineData.length; i++) {-->
-<!--            syslinedateTime.push(syslineData[i].dateTime);-->
-<!--            syslinemachineRate.push(syslineData[i].machineRate);-->
-<!--        }-->
-
-<!--        var chartDom3 = document.getElementById('jiGu');-->
-<!--        var myChart3 = echarts.init(chartDom3);-->
-<!--        var option3 = {-->
-<!--            grid:{-->
-<!--                top:'20%',//距上边距-->
-<!--                left:'2%',//距离左边距-->
-<!--                right:'2%',//距离右边距-->
-<!--                bottom:'5%',//距离下边距-->
-<!--                containLabel:true-->
-<!--            },-->
-<!--            xAxis: {-->
-<!--                type: 'category',-->
-<!--                data: syslinedateTime,-->
-
-<!--                axisTick: {-->
-<!--                    show: false-->
-<!--                },-->
-<!--                axisLabel:{-->
-<!--                    textStyle:{-->
-<!--                        fontFamily: 'PingFangSC-Regular',-->
-<!--                        fontSize: 14,-->
-<!--                        color: 'rgba(0,0,0,0.85)',-->
-<!--                        letterSpacing: 0.08,-->
-<!--                    },-->
-<!--                },-->
-
-<!--            },-->
-<!--            yAxis: [-->
-
-
-<!--                {-->
-<!--                    type: 'value',-->
-
-<!--                    axisTick: {-->
-<!--                        show: false-->
-<!--                    },-->
-<!--                    axisLine: {-->
-<!--                        show: false-->
-<!--                    },-->
-<!--                    axisLabel: {-->
-<!--                        show: true,-->
-<!--                        interval: 'auto',-->
-<!--                        formatter: '{value} %',-->
-<!--                        textStyle:{-->
-<!--                            fontFamily: 'PingFangSC-Regular',-->
-<!--                            fontSize: 14,-->
-<!--                            color: 'rgba(0,0,0,0.85)',-->
-<!--                            letterSpacing: 0.08,-->
-<!--                        },-->
-<!--                    },-->
-<!--                    show: true-->
-<!--                }-->
-<!--            ],-->
-<!--            series: [{-->
-<!--                data: syslinemachineRate,-->
-<!--                smooth: true,-->
-
-<!--                symbol: 'circle', //折线点设置为实心点-->
-<!--                // symbolSize: 6, //折线点的大小-->
-<!--                type: 'line',-->
-
-<!--                itemStyle: {-->
-
-<!--                    normal: {-->
-<!--                        label : {-->
-<!--                            show: true,-->
-
-<!--                            formatter: '{c}%',-->
-<!--                            textStyle: {-->
-<!--                                fontFamily: 'PingFangSC-Regular',-->
-<!--                                fontSize: 12,-->
-<!--                                color: 'rgba(0,0,0,0.85)',-->
-<!--                                letterSpacing: 0.06,-->
-<!--                            }-->
-<!--                        },-->
-<!--                        color:'#0AA200',-->
-<!--                        lineStyle:{-->
-<!--                            color:'#0AA200',-->
-<!--                        },-->
-
-<!--                    },-->
-<!--                },-->
-<!--                textStyle:{-->
-<!--                    fontFamily: 'PingFangSC-Regular',-->
-<!--                    fontSize: 12,-->
-<!--                    color: 'rgba(0,0,0,0.85)',-->
-<!--                    letterSpacing: 0.06,-->
-<!--                },-->
-<!--            }]-->
-<!--        }-->
-<!--        myChart3.setOption(option3,true);-->
-<!--        window.addEventListener("resize",function () {-->
-<!--            myChart3.resize();-->
-<!--        });-->
-<!--        myChart3.clear();-->
-<!--        myChart3.setOption(option3,true);-->
-
-
-<!--    }-->
-<!--</script>-->
-
-<!--<script type="text/javascript" class="ajaxJs">-->
-<!--    var aa = new zturn({-->
-<!--        id: "zturn",-->
-<!--        opacity: 0.5,-->
-<!--        width: 200,-->
-<!--        Awidth: 9,-->
-<!--        scale: 0.9,-->
-<!--        auto: true,//是否轮播 默认5000-->
-<!--        turning: 2000//轮播时长-->
-<!--    })-->
 
 <!--</script>-->
 <script type="text/javascript" th:inline="javascript">

@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+    <meta charset="UTF-8" name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
     <title>关键参数</title>
-    <link th:href="@{/layui/css/layui.css}" href="../static/layui/css/layui.css" rel="stylesheet" />
-    <link th:href="@{/css/keyParameter.css}" href="../static/css/keyParameter.css" rel="stylesheet" />
+    <link th:href="@{/layui/css/layui.css}" href="../static/layui/css/layui.css" rel="stylesheet"/>
+    <link th:href="@{/css/keyParameter.css}" href="../static/css/keyParameter.css" rel="stylesheet"/>
 
 </head>
 <body>
@@ -15,33 +16,27 @@
 
         <!--    搜索区域-->
         <div class="contentSeek">
-            <div class="layui-form layui-form-item selectBox1">
-                <div class="layui-input-block1">
-                    <span style="display: flex"><span style="font-family: PingFangSC-Regular;align-self: center;font-size: 16px;color: #000000">楼层:</span></span>
-                    <div lay-filter="brickType" class="sanJiao1"></div>
-                    <select id="ss" lay-filter="brickType"  name="errorDispoes1" lay-verify="required" class="selectFloor">
+            <ul class="select" data-v-170a700c="" data-v-6e7c9527="">
+                <li data-v-170a700c="">
+                    <span data-v-170a700c="">楼层:</span>
+                    <input type="text" class="select-input" id="select-input1" readonly="" placeholder="请选择" data-v-170a700c="">
+                    <i id="i1" data-v-170a700c=""></i>
+                    <ul class="floor-list" id="floor-list1" data-v-170a700c="" style="display: none;">
 
+                    </ul>
+                </li>
+                <li data-v-170a700c="">
+                    <span data-v-170a700c="">线体:</span>
+                    <input type="text" class="select-input" id="select-input2" readonly="" placeholder="请选择" data-v-170a700c="">
+                    <i id="i2" data-v-170a700c=""></i>
+                    <ul class="line-list" id="floor-list2" data-v-170a700c="" style="display: none;">
 
-                        <option placeholder="请选择" value="0" class="option1"></option>
-
-                    </select>
-                </div>
-            </div>
-
-            <div class="layui-form layui-form-item selectBox2" >
-                <div class=" layui-input-block1">
-                    <span style="display: flex"><span style="font-family: PingFangSC-Regular;align-self: center;font-size: 16px;color: #000000">线体:</span></span>
-                    <div class="sanJiao2 layui-form-select"></div>
-                    <!--                <img style="position: absolute;top:3.8vh;left: 22.5vw;" th:src="@{/img/xiaLa1.png}" src="../static/img/xiaLa1.png"/>-->
-                    <select name="errorDispoes" lay-verify="required" class="selsetLine">
-                        <option placeholder="请选择" value="0"></option>
-
-                    </select>
-                </div>
-            </div>
-
-            <button type="button" class="layui-btn layui-btn-warm selectNum"><span style="font-family: PingFangSC-Regular;font-size: 16px;width: 100%;align-self: center;">查询</span></button>
-
+                    </ul>
+                </li>
+                <li data-v-170a700c="">
+                    <button class="selectNum" data-v-170a700c="">查询</button>
+                </li>
+            </ul>
 
         </div>
 
@@ -49,7 +44,8 @@
 
         <div style="height: 30%;width: 100%">
             <div style="width: 100%;height: 16%;display: flex">
-                <p style="font-family: PingFangSC-Medium;font-size: 18px;color: rgba(0,0,0,0.85);align-self: center;margin-left: 2%;">异常进度分析</p>
+                <p style="font-family: PingFangSC-Medium;font-size: 18px;color: rgba(0,0,0,0.85);align-self: center;margin-left: 2%;">
+                    异常进度分析</p>
             </div>
             <div class="contentErrorAnalyse">
                 <div class="contentErrorAnalyseNei">
@@ -59,7 +55,7 @@
                             <td rowspan="2" style="width: 12.45%;">机故类型</td>
                             <td colspan="3" style="width: 37.5%;">维修进度</td>
                             <td colspan="3" style="width: 37.55%;">优先级</td>
-                            <td rowspan="2" >ALL</td>
+                            <td rowspan="2">ALL</td>
                         </tr>
                         <tr>
                             <td>待派工
@@ -85,7 +81,8 @@
 
         <div style="height: 59%;width: 100%">
             <div style="width: 100%;height: 8%;display: flex">
-                <p style="font-family: PingFangSC-Medium;font-size: 18px;color: rgba(0,0,0,0.85);align-self: center;margin-left: 2%;">异常报警信息</p>
+                <p style="font-family: PingFangSC-Medium;font-size: 18px;color: rgba(0,0,0,0.85);align-self: center;margin-left: 2%;">
+                    异常报警信息</p>
             </div>
             <div class="contentErrorMsg">
                 <div class="contentErrorMsgNei">
@@ -110,8 +107,6 @@
                         <tbody class="errorMsg">
 
 
-
-
                         </tbody>
                     </table>
                 </div>
@@ -124,23 +119,22 @@
 </div>
 
 
-
 <script th:src="@{/js/jquery-3.5.1.min.js}" src="../static/js/jquery-3.5.1.min.js"></script>
 <script th:src="@{/layui/layui.js}" src="../static/layui/layui.js"></script>
 <script th:src="@{/js/keyParameter.js}" src="../static/js/keyParameter.js"></script>
 <script>
-    layui.use('form', function(){
-       var form = layui.form
+    layui.use('form', function () {
+        var form = layui.form
     });
 
 
-// 點擊三角形下拉框也展開
+    // 點擊三角形下拉框也展開
     $(".sanJiao1").click(function () {
 
         setTimeout(function () {
-                    $('select[name="errorDispoes1"]').next().find('.layui-select-title input').click();
+            $('select[name="errorDispoes1"]').next().find('.layui-select-title input').click();
 
-                },10);
+        }, 10);
     })
 
     $(".sanJiao2").click(function () {
@@ -148,9 +142,8 @@
         setTimeout(function () {
             $('select[name="errorDispoes"]').next().find('.layui-select-title input').click();
 
-        },10);
+        }, 10);
     })
-
 
 
 </script>
@@ -159,38 +152,79 @@
     var floor = [[${floorSet}]];
     var line = [[${lineList}]];
 
-    for(var i = 0; i < floor.length; i++){
-        $(".selectFloor").append("<option>"+ floor[i] +"</option>")
-    }
 
 
 
-    layui.use(['form'], function() {
-        var form=layui.form;
-        form.on('div(brickType)', function(data){
 
+    // 楼层选择
+    $(document).ready(function(){
+        var area;
+
+        $("#select-input1").click(function(){
+            // alert("s");
+            $("#floor-list1 li").remove();
+            for(var i = 0; i < floor.length; i++){
+                $("#floor-list1").append("<li data-v-170a700c=''>"+floor[i]+"</li>");
+            }
+
+
+
+
+                $("#floor-list1").show();
+
+
+
+
+            $("#floor-list1 li").click(function(){
+                area = $(this).text();
+
+                $("#floor-list2 li").remove();
+                $("#select-input2").val("请选择");
+                $("#floor-list2").append("<li data-v-170a700c=''>All</li>");
+                for (var i = 0; i < line.length; i++) {
+                    if (area == line[i].substr(0, 5)) {
+                        $("#floor-list2").append("<li data-v-170a700c=''>"+line[i]+"</li>");
+
+                    }
+                }
+                $("#select-input1").val(area);
+                $("#floor-list1").hide();
+            });
+        });
+        // 点击页面其他元素时ul隐藏
+        $(document).click(function (){
+            if($("#select-input1").is(":focus")){
+                $("#floor-list1").show();
+            }else{
+                $("#floor-list1").hide();
+            }
+        });
+
+
+    });
+
+    // 楼层选择后隐藏
+    $(document).ready(function(){
+        var liValue1;
+        $("#i2").click(function () {
+            $("#floor-list2").show();
         })
-        form.on('select(brickType)', function(data){
-            var val=data.value;
-            // if(val == 0){
-            //     $(".selsetLine").text("");
-            //     $(".selsetLine").append("<option placeholder='请选择' value='0'></option>");
-            //     layui.form.render("select");
-            //
-            // }
-                 if(val != "请选择" && val != "" && val != 0){
-                     $(".selsetLine").text("");
+        $("#select-input2").focus(function(){
 
-                     $(".selsetLine").append("<option>"+ 'All' +"</option>");
-                     for(var i = 0; i < line.length; i++){
-                         if(val==line[i].substr(0,5)){
-                             $(".selsetLine").append("<option>"+ line[i] +"</option>")
-
-                         }
-                     }
-                     layui.form.render("select");
-                 }
-
+            $("#floor-list2").show();
+            $("#floor-list2 li").click(function(){
+                liValue1 = $(this).text();
+                $("#select-input2").val(liValue1);
+                $("#floor-list2").hide();
+            });
+        });
+        // 点击页面其他元素时ul隐藏
+        $(document).click(function (){
+            if($("#select-input2").is(":focus")){
+                $("#floor-list2").show();
+            }else{
+                $("#floor-list2").hide();
+            }
         });
     });
 
@@ -201,7 +235,30 @@
 
 
 
+    for (var i = 0; i < floor.length; i++) {
+        $(".selectFloor").append("<option>" + floor[i] + "</option>")
+    }
+
+
+
 </script>
 </body>
+
+<script>
+    window.onload = function(){
+        /*375代表设计师给的设计稿的宽度，你的设计稿是多少，就写多少;
+        100代表换算比例，这里写100是为了以后好算,
+        比如，你测量的一个宽度是100px,就可以写为1rem,以及1px=0.01rem等等*/
+        getRem(768,100)
+    };
+    window.onresize = function(){
+        getRem(768,100)
+    };
+    function getRem(pwidth,prem){
+        var html = document.getElementsByTagName("html")[0];
+        var oWidth = document.body.clientWidth || document.documentElement.clientWidth;
+        html.style.fontSize = oWidth/pwidth*prem + "px";
+    }
+</script>
 
 </html>

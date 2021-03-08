@@ -2,22 +2,11 @@
 let allData = '';
 $(".selectNum").click(function () {
 
-    let floor = $(".selectFloor").val();
-    let lineName = $(".selsetLine").val();
-// console.log(floor)
-// console.log(lineName)
-    if(floor == 0 || lineName == 0){
-        // layui.use('layer', function(){
-        //     layer.msg('请选择楼层！！！', {
-        //         offset: '20px',
-        //         anim: 6,
-        //         area:'300px',
-        //         icon: 5,
-        //         time: '2000',
-        //     });
-        // });
-    }
-    else{
+    let floor = $("#select-input1").val();
+    let lineName = $("#select-input2").val();
+
+
+    if(floor != '请选择' && lineName != '请选择' && floor != "" && lineName != ""){
         $.ajax({
             url:'getKeyUpDate',
             dataType:'json',
@@ -81,12 +70,10 @@ $(".selectNum").click(function () {
         clearInterval(interval);
     }
     allData = setInterval(function () {
-        let floor = $(".selectFloor").val();
-        let lineName = $(".selsetLine").val();
+        let floor = $("#select-input1").val();
+        let lineName = $("#select-input2").val();
 
-        if(floor == 0 || lineName == 0){
-        }
-        else{
+        if(floor != '请选择' && lineName != '请选择' && floor != "" && lineName != ""){
             $.ajax({
                 url:'getKeyUpDate',
                 dataType:'json',
@@ -156,10 +143,10 @@ function getKeyData(msg){
     cc = msg;
     var flag = msg;
     // console.log(flag);
-    let floor = $(".selectFloor").val();
-    let lineName = $(".selsetLine").val();
+    let floor = $("#select-input1").val();
+    let lineName = $("#select-input2").val();
 
-    if(floor != 0 && lineName != 0){
+    if(floor != '请选择' && lineName != '请选择' && floor != "" && lineName != ""){
         $.ajax({
             url:'getKeyUpDate',
             dataType:'json',
@@ -227,10 +214,10 @@ function getKeyData(msg){
     }
     interval = setInterval(function () {
         // console.log(flag);
-        let floor = $(".selectFloor").val();
-        let lineName = $(".selsetLine").val();
+        let floor = $("#select-input1").val();
+        let lineName = $("#select-input2").val();
 
-        if(floor != 0 && lineName != 0){
+        if(floor != '请选择' && lineName != '请选择' && floor != "" && lineName != ""){
             $.ajax({
                 url:'getKeyUpDate',
                 dataType:'json',
@@ -377,10 +364,10 @@ function upError(data) {
 
                                         var flag = cc;
                                         // console.log(flag);
-                                        let floor = $(".selectFloor").val();
-                                        let lineName = $(".selsetLine").val();
+                                        let floor = $("#select-input1").val();
+                                        let lineName = $("#select-input2").val();
 
-                                        if(floor != 0 && lineName != 0){
+                                        if(floor != '请选择' && lineName != '请选择' && floor != "" && lineName != ""){
                                             $.ajax({
                                                 url:'getKeyUpDate',
                                                 dataType:'json',
@@ -490,3 +477,9 @@ function upError(data) {
         })
     }
 }
+
+
+
+
+
+
