@@ -16,7 +16,7 @@ $(".selectNum").click(function () {
                 "lineName":lineName,
             },
             success:function(data){
-                // console.log(data);
+                console.log(data);
                 var html1 = "";
                 var html2 = "";
 

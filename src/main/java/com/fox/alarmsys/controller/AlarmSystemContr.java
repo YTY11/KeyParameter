@@ -43,10 +43,10 @@ public class AlarmSystemContr {
 
     DateFormat Timeformat = new SimpleDateFormat("MM/dd HH:mm:ss");
 
-    @RequestMapping("alarmsystem")//主页监控 默认显示关键参数
+    @RequestMapping("getAVIERROR")//主页监控 默认显示关键参数
     public   String  AlarmSystemContr(@RequestParam(value = "FloorName",required = true,defaultValue = "D061F") String FloorName,
                                       @RequestParam(value = "LineName",required = true,defaultValue = "") String LineName,
-                                      @RequestParam(value = "Product",required = true,defaultValue = "KeyParameter")  String Product ,Map map){
+                                      @RequestParam(value = "Product",required = true,defaultValue = "Equipment_AVI")  String Product ,Map map){
 
         List<AutoFloor_Key_CheCkUp> autoFloor_key_checkNGS =new ArrayList<>();
         List<AlarmSystemTitle> alarmSystemTitles =new ArrayList<>();
@@ -122,14 +122,14 @@ public class AlarmSystemContr {
         map.put("alarmSystemTitlesMap",alarmSystemTitlesMap);
         map.put("StartDate",StartDate);
         map.put("EndDate",EndDate);
-        return "alarmsys/alarmsystem";
+        return "AVIERROR";
     }
 
 
     @RequestMapping("alarmsystemdata")//Tab 异步内容
     public   String  AlarmSystemDataContr(@RequestParam(value = "FloorName",required = true,defaultValue = "D061F") String FloorName,
                                           @RequestParam(value = "LineName",required = true,defaultValue = "") String LineName,
-                                      @RequestParam(value = "Product",required = true,defaultValue = "KeyParameter")  String Product ,
+                                      @RequestParam(value = "Product",required = true,defaultValue = "Equipment_AVI")  String Product ,
                                       @RequestParam(value = "MachineType",required = false)  String MachineType ,
                                       @RequestParam(value = "PriorityOrFlg",required = false)  String PriorityOrFlg ,Map map){
 
@@ -168,13 +168,13 @@ public class AlarmSystemContr {
         map.put("autoFloor_key_checkNGS",autoFloor_key_checkNGS);
         map.put("StartDate",StartDate);
         map.put("EndDate",EndDate);
-        return "alarmsys/alarmsystem :: alarmsystemdata";
+        return "AVIERROR :: alarmsystemdata";
     }
 
     @RequestMapping("alarmsystemtetitledata")//title 异步内容
     public   String  AlarmSystemTitleDataContr(@RequestParam(value = "FloorName",required = true,defaultValue = "D061F") String FloorName,
                                                @RequestParam(value = "LineName",required = true,defaultValue = "") String LineName,
-                                          @RequestParam(value = "Product",required = true,defaultValue = "KeyParameter")  String Product ,Map map){
+                                          @RequestParam(value = "Product",required = true,defaultValue = "Equipment_AVI")  String Product ,Map map){
 
         List<AutoFloor_Key_CheCkUp> autoFloor_key_checkNGS =new ArrayList<>();
         String StartDate="";
@@ -217,7 +217,7 @@ public class AlarmSystemContr {
         map.put("Product",Product);
         map.put("StartDate",StartDate);
         map.put("EndDate",EndDate);
-        return "alarmsys/alarmsystem :: alarmsystemtitledata";
+        return "AVIERROR :: alarmsystemtitledata";
     }
 
 

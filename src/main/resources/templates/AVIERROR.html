@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" name="viewport"
+    <meta charset="UTF-8">
+    <meta name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
-    <title>关键参数</title>
+
+    <title>AVI</title>
+
     <link th:href="@{/layui/css/layui.css}" href="../static/layui/css/layui.css" rel="stylesheet"/>
-    <link th:href="@{/css/keyParameter.css}" href="../static/css/keyParameter.css" rel="stylesheet"/>
+    <link th:href="@{/css/AVIERROR.css}" href="../static/css/AVIERROR.css" rel="stylesheet"/>
 
 </head>
 <body>
@@ -62,17 +65,17 @@
                         </tr>
                         </thead>
                         <tbody data-v-35e08537="" >
-                        <tr th:each="titles : ${alarmSystemTitles}">
-                            <td data-v-35e08537=""  th:text="${titles.getMachineExType()}"></td>
-                            <td style="color: red;" data-v-35e08537="" th:onclick="alarmsystemdataKey([[${titles.getMachineExType().replaceAll(' ','')}]],'0','')" th:text="${titles.getWaitDispatchNum()}">0</td>
-                            <td data-v-35e08537="" th:onclick="alarmsystemdataKey([[${titles.getMachineExType().replaceAll(' ','')}]],'2','')" th:text="${titles.getUnderRepairNum()}">0</td>
-                            <td data-v-35e08537="" th:onclick="alarmsystemdataKey([[${titles.getMachineExType().replaceAll(' ','')}]],'1','')" th:text="${titles.getRepairCompleteNum()}">0</td>
-                            <td data-v-35e08537="" th:onclick="alarmsystemdataKey([[${titles.getMachineExType().replaceAll(' ','')}]],'ALL','')" th:text="${titles.getMachineExALL()}">0</td>
-                            <td data-v-35e08537="" th:onclick="alarmsystemdataKey([[${titles.getMachineExType().replaceAll(' ','')}]],'9','')">0</td>
-                            <td data-v-35e08537="" th:onclick="alarmsystemdataKey([[${titles.getMachineExType().replaceAll(' ','')}]],'9','')">0</td>
-                            <td data-v-35e08537="" th:onclick="alarmsystemdataKey([[${titles.getMachineExType().replaceAll(' ','')}]],'ALL','')"  th:text="${titles.getMachineExALL()}">0</td>
+                            <tr th:each="titles : ${alarmSystemTitles}">
+                                <td data-v-35e08537=""  th:text="${titles.getMachineExType()}"></td>
+                                <td style="color: red;" data-v-35e08537="" th:onclick="alarmsystemdata([[${titles.getMachineExType().replaceAll(' ','')}]],'0','')" th:text="${titles.getWaitDispatchNum()}"></td>
+                                <td data-v-35e08537="" th:onclick="alarmsystemdata([[${titles.getMachineExType().replaceAll(' ','')}]],'2','')" th:text="${titles.getUnderRepairNum()}"></td>
+                                <td data-v-35e08537="" th:onclick="alarmsystemdata([[${titles.getMachineExType().replaceAll(' ','')}]],'1','')" th:text="${titles.getRepairCompleteNum()}"></td>
+                                <td data-v-35e08537="" th:onclick="alarmsystemdata([[${titles.getMachineExType().replaceAll(' ','')}]],'H','')" th:text="${titles.getMachineExHNum()}"></td>
+                                <td data-v-35e08537="" th:onclick="alarmsystemdata([[${titles.getMachineExType().replaceAll(' ','')}]],'M','')" th:text="${titles.getMachineExMNum()}"></td>
+                                <td data-v-35e08537="" th:onclick="alarmsystemdata([[${titles.getMachineExType().replaceAll(' ','')}]],'L','')" th:text="${titles.getMachineExLNum()}"></td>
+                                <td data-v-35e08537="" th:onclick="alarmsystemdata([[${titles.getMachineExType().replaceAll(' ','')}]],'ALL','')"  th:text="${titles.getMachineExALL()}"></td>
 
-                        </tr>
+                            </tr>
 
                         </tbody>
                     </table>
@@ -106,25 +109,25 @@
                         </tr>
                         </thead>
                         <tbody style="width: 100%;height: 100%" data-v-247e1dc0="" >
-                        <tr th:each="NG : ${autoFloor_key_checkNGS}">
-                            <td data-v-247e1dc0="" th:text="${NG.getFloor()}"></td>
-                            <td data-v-247e1dc0="" th:text="${NG.getLinename()}"></td>
-                            <td data-v-247e1dc0="" th:text="${NG.getMachinetype()}"></td>
-                            <td data-v-247e1dc0="" th:text="${NG.getExceptionType()}"></td>
-                            <td data-v-247e1dc0="" th:text="${NG.getKeyPmsCh()}"></td>
-                            <td data-v-247e1dc0="" th:text="${NG.getRepairPropose()}"></td>
-                            <td data-v-247e1dc0="" th:class="${NG.getProduct()=='H' ? 'redbackground':''}" th:text="${NG.getProduct()}"></td>
-                            <td data-v-247e1dc0="" th:text="${NG.getTesttime()}"></td>
-                            <td data-v-247e1dc0="" th:text="${NG.getStrupdateTime()}"></td>
-                            <td data-v-247e1dc0="" th:text="${NG.getDisposeTime()}"></td>
-                            <td data-v-247e1dc0="" >AVI</td>
-                            <td data-v-247e1dc0="" th:text="${NG.getRepairContent()}"></td>
-                            <td data-v-247e1dc0="" th:text="${NG.getEmpName()}"></td>
-                            <td data-v-247e1dc0="" th:if="${NG.getFlag()==0}">待派工</td>
-                            <td data-v-247e1dc0="" th:if="${NG.getFlag()==2}">维修中</td>
-                            <td data-v-247e1dc0="" th:if="${NG.getFlag()==1}">已完成</td>
+                                <tr th:each="NG : ${autoFloor_key_checkNGS}">
+                                    <td data-v-247e1dc0="" th:text="${NG.getFloor()}"></td>
+                                    <td data-v-247e1dc0="" th:text="${NG.getLinename()}"></td>
+                                    <td data-v-247e1dc0="" th:text="${NG.getMachinetype()}"></td>
+                                    <td data-v-247e1dc0="" th:text="${NG.getExceptionType()}"></td>
+                                    <td data-v-247e1dc0="" th:text="${NG.getKeyPmsCh()}"></td>
+                                    <td data-v-247e1dc0="" th:text="${NG.getRepairPropose()}"></td>
+                                    <td data-v-247e1dc0="" th:class="${NG.getProduct()=='H' ? 'redbackground':''}" th:text="${NG.getProduct()}"></td>
+                                    <td data-v-247e1dc0="" th:text="${NG.getTesttime()}"></td>
+                                    <td data-v-247e1dc0="" th:text="${NG.getStrupdateTime()}"></td>
+                                    <td data-v-247e1dc0="" th:text="${NG.getDisposeTime()}"></td>
+                                    <td data-v-247e1dc0="" >AVI</td>
+                                    <td data-v-247e1dc0="" th:text="${NG.getRepairContent()}"></td>
+                                    <td data-v-247e1dc0="" th:text="${NG.getEmpName()}"></td>
+                                    <td data-v-247e1dc0="" th:if="${NG.getFlag()==0}">待派工</td>
+                                    <td data-v-247e1dc0="" th:if="${NG.getFlag()==2}">维修中</td>
+                                    <td data-v-247e1dc0="" th:if="${NG.getFlag()==1}">已完成</td>
 
-                        </tr>
+                                </tr>
                         </tbody>
                     </table>
                 </div>
@@ -136,6 +139,7 @@
 
 <script th:src="@{/js/jquery-3.5.1.min.js}" src="../static/js/jquery-3.5.1.min.js"></script>
 <script th:src="@{/layui/layui.js}" src="../static/layui/layui.js"></script>
+<script th:src="@{/js/AVIERROR.js}" src="../static/js/AVIERROR.js"></script>
 <script th:inline="javascript">
     var floor = [[${floorSet}]];
     var line = [[${lineList}]];
@@ -224,19 +228,19 @@
         if(FloorName != '请选择' && LineName != '请选择' && FloorName != "" && LineName != ""){
             var MachineType=$('#MachineType').text();
             var PriorityOrFlg=$('#PriorityOrFlg').text();
-            alarmsystemdataKey(MachineType,PriorityOrFlg,FloorName,LineName)
-            alarmsystemtitledataKey(FloorName,LineName)
+            alarmsystemdata(MachineType,PriorityOrFlg,FloorName,LineName)
+            alarmsystemtitledata(FloorName,LineName)
 
         }
     })
     //Title 异步刷新
-    function alarmsystemtitledataKey(floorName,linename) {
+    function alarmsystemtitledata(floorName,linename) {
         // console.log("s");
         //title异步刷新function
         let FloorName = $("#select-input1").val();
         let LineName = $("#select-input2").val();
         if(FloorName != '请选择' && LineName != '请选择' && FloorName != "" && LineName != ""){
-            $('#alarmsystemtitledata').load('alarmsystemtetitledataKey?FloorName='+FloorName+'&Product=KeyParameter&LineName='+LineName);
+            $('#alarmsystemtitledata').load('alarmsystemtetitledata?FloorName='+FloorName+'&Product=Equipment_AVI&LineName='+LineName);
         }
 
 
@@ -245,7 +249,7 @@
     }
 
     //Table 异步刷新
-    function alarmsystemdataKey(machineType,priorityOrFlg,linename) {   //tab 异步刷新function
+    function alarmsystemdata(machineType,priorityOrFlg,linename) {   //tab 异步刷新function
         // console.log("a");
 
         let FloorName = $("#select-input1").val();
@@ -261,7 +265,7 @@
             var MachineType=$('#MachineType').text();
             var PriorityOrFlg=$('#PriorityOrFlg').text();
 
-            $('#alarmsystemdata').load('alarmsystemdataKey?FloorName='+FloorName+'&Product=KeyParameter&MachineType='+MachineType+'&PriorityOrFlg='+PriorityOrFlg+'&LineName='+LineName);
+            $('#alarmsystemdata').load('alarmsystemdata?FloorName='+FloorName+'&Product=Equipment_AVI&MachineType='+MachineType+'&PriorityOrFlg='+PriorityOrFlg+'&LineName='+LineName);
 
 
         }
@@ -271,10 +275,10 @@
 
     }
 
-    alarmsystemtitledataKey();
-    alarmsystemdataKey();
-    setInterval(alarmsystemdataKey,(5*1000));
-    setInterval(alarmsystemtitledataKey,(5*1000));
+    alarmsystemtitledata();
+    alarmsystemdata();
+    setInterval(alarmsystemdata,(5*1000));
+    setInterval(alarmsystemtitledata,(5*1000));
 </script>
 <script>
     window.onload = function () {
@@ -293,5 +297,4 @@
         html.style.fontSize = oWidth / pwidth * prem + "px";
     }
 </script>
-
 </html>

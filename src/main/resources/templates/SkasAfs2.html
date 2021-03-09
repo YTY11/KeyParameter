@@ -202,7 +202,7 @@
                     <div class="topContentB2">
                         <div class="topContentB21">
                             <div class="divP">
-                                <p style="text-align: center;align-self: center;width: 100%">交换次数</p>
+                                <p style="text-align: center;align-self: center;width: 100%">发料量</p>
                             </div>
                             <div style="width: 100%;height:80%;display: flex">
                                 <p style="text-align: center;align-self: center;width: 100%;height: 100%" id="jiaoHuan"></p>
@@ -599,14 +599,14 @@
                                 <tr>
                                     <td rowspan="2" style="width: 6.8%;">机种</td>
                                     <td rowspan="2" style="width: 9.6%">线别</td>
-                                    <td rowspan="2" style="width: 9.2%">仓号</td>
-                                    <td colspan="2" style="width: 23.6%">交换次数</td>
-                                    <td colspan="2" style="width: 23.6%">直通率</td>
+                                    <td rowspan="2" style="width: 9.2%">车号</td>
+                                    <td colspan="2" style="width: 23.6%">接料量（盘）</td>
+                                    <td colspan="2" style="width: 23.6%">自动接料覆盖率</td>
                                     <td colspan="2" style="width: 23.6%">机故率</td>
                                 </tr>
                                 <tr>
-                                    <td>目标</td>
-                                    <td>实际</td>
+                                    <td>投入</td>
+                                    <td>产出</td>
                                     <td>目标</td>
                                     <td>实际</td>
                                     <td>目标</td>
@@ -1000,7 +1000,7 @@
 
             xAxis: {
                 type: 'category',
-                data: ['投入', '产出'],
+                data: ['目标', '实际'],
                 axisTick: {
                     show: false
                 },
@@ -1510,7 +1510,7 @@
                 itemWidth:20,
                 itemHeight:10,
                 itemGap:30,
-                data:['交换次数目标','交换次数实际','直通率目标','直通率实际','机故率目标','机故率实际'],
+                data:['备料量目标','备料量实际','直通率目标','直通率实际','机故率目标','机故率实际'],
                 textStyle:{
                     fontFamily: 'PingFangSC-Regular',
                     fontSize: 10,
@@ -1584,7 +1584,7 @@
 
             series: [
                 {
-                    name:'交换次数目标',
+                    name:'备料量目标',
                     type: 'bar',
                     data: BUFFERArry.storeIssueTarget,
                     itemStyle: {
@@ -1593,9 +1593,9 @@
                             color: new echarts.graphic.LinearGradient(
                                 0, 0, 0, 1,
                                 [
-                                    {offset: 0, color: '#2E64A3'},
-                                    {offset: 0.5, color: '#699BCB'},
-                                    {offset: 1, color: '#CEEEF3'}
+                                    {offset: 0, color: '#6DDBB2'},
+                                    {offset: 0.5, color: '#7FDBB9'},
+                                    {offset: 1, color: '#98DAC1'}
                                 ]
                             ),
                             label:{
@@ -1614,7 +1614,7 @@
                     },
                 },
                 {
-                    name:'交换次数实际',
+                    name:'备料量实际',
                     type: 'bar',
                     data: BUFFERArry.storeIssueAction,
                     itemStyle: {
@@ -1623,9 +1623,9 @@
                             color: new echarts.graphic.LinearGradient(
                                 0, 0, 0, 1,
                                 [
-                                    {offset: 0, color: '#C35552'},
-                                    {offset: 0.5, color: '#D77774'},
-                                    {offset: 1, color: '#E3BAB9'}
+                                    {offset: 0, color: '#6F82A0'},
+                                    {offset: 0.5, color: '#8293AC'},
+                                    {offset: 1, color: '#9AA8BE'}
                                 ]
                             ),
                             label:{
@@ -1653,9 +1653,9 @@
                             color: new echarts.graphic.LinearGradient(
                                 0, 0, 0, 1,
                                 [
-                                    {offset: 0, color: '#A0BE5E'},
-                                    {offset: 0.5, color: '#B3CD75'},
-                                    {offset: 1, color: '#CCDBA4'}
+                                    {offset: 0, color: '#EDD07E'},
+                                    {offset: 0.5, color: '#EDD591'},
+                                    {offset: 1, color: '#ECDCAD'}
                                 ]
                             ),
 
@@ -1687,9 +1687,9 @@
                             color: new echarts.graphic.LinearGradient(
                                 0, 0, 0, 1,
                                 [
-                                    {offset: 0, color: '#8569A6'},
-                                    {offset: 0.5, color: '#A68CC1'},
-                                    {offset: 1, color: '#B4A6C4'}
+                                    {offset: 0, color: '#7DCDEE'},
+                                    {offset: 0.5, color: '#91D3EE'},
+                                    {offset: 1, color: '#B0DCEE'}
                                 ]
                             ),
 
@@ -1721,9 +1721,9 @@
                             color: new echarts.graphic.LinearGradient(
                                 0, 0, 0, 1,
                                 [
-                                    {offset: 0, color: '#51B0C9'},
-                                    {offset: 0.5, color: '#71C9DB'},
-                                    {offset: 1, color: '#99D0DC'}
+                                    {offset: 0, color: '#E57B64'},
+                                    {offset: 0.5, color: '#E48E7C'},
+                                    {offset: 1, color: '#E4A99C'}
                                 ]
                             ),
 
@@ -1754,9 +1754,9 @@
                             color: new echarts.graphic.LinearGradient(
                                 0, 0, 0, 1,
                                 [
-                                    {offset: 0, color: '#F8BA25'},
-                                    {offset: 0.5, color: '#FAC157'},
-                                    {offset: 1, color: '#F8D89F'}
+                                    {offset: 0, color: '#9C82D1'},
+                                    {offset: 0.5, color: '#A793D0'},
+                                    {offset: 1, color: '#B6A9D0'}
                                 ]
                             ),
 
@@ -1804,7 +1804,7 @@
                 itemWidth:20,
                 itemHeight:10,
                 itemGap:30,
-                data:['交换次数目标','交换次数实际','直通率目标','直通率实际','机故率目标','机故率实际'],
+                data:['备料量目标','备料量实际','直通率目标','直通率实际','机故率目标','机故率实际'],
                 textStyle:{
                     fontFamily: 'PingFangSC-Regular',
                     fontSize: 10,
@@ -1876,7 +1876,7 @@
             ],
             series: [
                 {
-                    name:'交换次数目标',
+                    name:'备料量目标',
                     type: 'bar',
                     data: AFSArry.storeIssueTarget,
                     itemStyle: {
@@ -1885,9 +1885,9 @@
                             color: new echarts.graphic.LinearGradient(
                                 0, 0, 0, 1,
                                 [
-                                    {offset: 0, color: '#2E64A3'},
-                                    {offset: 0.5, color: '#699BCB'},
-                                    {offset: 1, color: '#CEEEF3'}
+                                    {offset: 0, color: '#6DDBB2'},
+                                    {offset: 0.5, color: '#7FDBB9'},
+                                    {offset: 1, color: '#98DAC1'}
                                 ]
                             ),
                             label:{
@@ -1906,7 +1906,7 @@
                     },
                 },
                 {
-                    name:'交换次数实际',
+                    name:'备料量实际',
                     type: 'bar',
                     data: AFSArry.storeIssueAction,
                     itemStyle: {
@@ -1915,9 +1915,9 @@
                             color: new echarts.graphic.LinearGradient(
                                 0, 0, 0, 1,
                                 [
-                                    {offset: 0, color: '#C35552'},
-                                    {offset: 0.5, color: '#D77774'},
-                                    {offset: 1, color: '#E3BAB9'}
+                                    {offset: 0, color: '#6F82A0'},
+                                    {offset: 0.5, color: '#8293AC'},
+                                    {offset: 1, color: '#9AA8BE'}
                                 ]
                             ),
                             label:{
@@ -1945,9 +1945,9 @@
                             color: new echarts.graphic.LinearGradient(
                                 0, 0, 0, 1,
                                 [
-                                    {offset: 0, color: '#A0BE5E'},
-                                    {offset: 0.5, color: '#B3CD75'},
-                                    {offset: 1, color: '#CCDBA4'}
+                                    {offset: 0, color: '#EDD07E'},
+                                    {offset: 0.5, color: '#EDD591'},
+                                    {offset: 1, color: '#ECDCAD'}
                                 ]
                             ),
 
@@ -1979,9 +1979,9 @@
                             color: new echarts.graphic.LinearGradient(
                                 0, 0, 0, 1,
                                 [
-                                    {offset: 0, color: '#8569A6'},
-                                    {offset: 0.5, color: '#A68CC1'},
-                                    {offset: 1, color: '#B4A6C4'}
+                                    {offset: 0, color: '#7DCDEE'},
+                                    {offset: 0.5, color: '#91D3EE'},
+                                    {offset: 1, color: '#B0DCEE'}
                                 ]
                             ),
 
@@ -2013,9 +2013,9 @@
                             color: new echarts.graphic.LinearGradient(
                                 0, 0, 0, 1,
                                 [
-                                    {offset: 0, color: '#51B0C9'},
-                                    {offset: 0.5, color: '#71C9DB'},
-                                    {offset: 1, color: '#99D0DC'}
+                                    {offset: 0, color: '#E57B64'},
+                                    {offset: 0.5, color: '#E48E7C'},
+                                    {offset: 1, color: '#E4A99C'}
                                 ]
                             ),
 
@@ -2046,9 +2046,9 @@
                             color: new echarts.graphic.LinearGradient(
                                 0, 0, 0, 1,
                                 [
-                                    {offset: 0, color: '#F8BA25'},
-                                    {offset: 0.5, color: '#FAC157'},
-                                    {offset: 1, color: '#F8D89F'}
+                                    {offset: 0, color: '#9C82D1'},
+                                    {offset: 0.5, color: '#A793D0'},
+                                    {offset: 1, color: '#B6A9D0'}
                                 ]
                             ),
 

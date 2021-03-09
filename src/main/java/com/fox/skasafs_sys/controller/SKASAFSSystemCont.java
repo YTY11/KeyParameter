@@ -78,45 +78,45 @@ public class SKASAFSSystemCont {
         }
 
 
-//        刷新数据
-       @RequestMapping("getSkasData")
-       @ResponseBody
-       public  Map<String,Object>  SAKSAFSSystemContException(){
-           String FloorName = "D061F";
-           HashMap<String, Object> map = new HashMap<>();
-
-           Map<String, Object> AutoFloorDateMap = autoFloorDate.AutoFloorDate(TwoTimeType);
-           /*过24时 时间变量*/
-           String StartDateStr = (String) AutoFloorDateMap.get("StartDateStr");
-           String EndDateStr = (String) AutoFloorDateMap.get("EndDateStr");
-           /*工作时间*/
-           Integer actionMinuteD = (Integer) AutoFloorDateMap.get("actionMinuteD");
-           //当前日期
-           Date schedule = (Date) AutoFloorDateMap.get("schedule");
-           Date TomorrowDate = (Date) AutoFloorDateMap.get("TomorrowDate");
-           List<AGV_Exception> ExceptionDescribe = skasafsSystemContService.SKASAFSexceptionDescribe(FloorName, StartDateStr, EndDateStr);
-           map.put("ExceptionDescribe",ExceptionDescribe);
-
-           Map<String, Integer> SysStateMapData = skasafsSystemContService.SAKSAFSSysStateMapData(FloorName, StartDateStr, EndDateStr,actionMinuteD);
-           map.put("SysStateMapData",SysStateMapData);
-
-           AGV_AFS_State AGV_AFSState = skasafsSystemContService.SKASAFSMachineStateData(SysStateMapData);
-           map.put("AGV_AFSState",AGV_AFSState);
-
-           List<AFSLineData> afsLineData = skasafsSystemContService.SKASAFSMachineRate(FloorName,schedule ,TomorrowDate);
-           String afsLineDataJson = JSON.toJSONString(afsLineData);
-           map.put("afsLineDataJson",afsLineDataJson);
-
-           Map<String, Integer> SaksAfsSysPieMapData = skasafsSystemContService.SAKSAFSSysStateMapData(FloorName, StartDateStr, EndDateStr,actionMinuteD);
-           AGV_AFS_State SKASAFSMachineState = skasafsSystemContService.SKASAFSMachineStateData(SaksAfsSysPieMapData);
-           String AGV_AFSPieStateJson = JSON.toJSONString(SKASAFSMachineState);
-           map.put("aGV_AFSPieStateJson",AGV_AFSPieStateJson);
-
-           List<SKAS_AFSData> skas_afsData = skasafsSystemMessageAjaxService.SKAS_AFSBarData(FloorName, StartDateStr, EndDateStr);
-           String skas_afsDataJson = JSON.toJSONString(skas_afsData);
-           map.put("skas_afsDataJson",skas_afsDataJson);
-           return map;
-       }
+////        刷新数据
+//       @RequestMapping("getSkasData")
+//       @ResponseBody
+//       public  Map<String,Object>  SAKSAFSSystemContException(){
+//           String FloorName = "D061F";
+//           HashMap<String, Object> map = new HashMap<>();
+//
+//           Map<String, Object> AutoFloorDateMap = autoFloorDate.AutoFloorDate(TwoTimeType);
+//           /*过24时 时间变量*/
+//           String StartDateStr = (String) AutoFloorDateMap.get("StartDateStr");
+//           String EndDateStr = (String) AutoFloorDateMap.get("EndDateStr");
+//           /*工作时间*/
+//           Integer actionMinuteD = (Integer) AutoFloorDateMap.get("actionMinuteD");
+//           //当前日期
+//           Date schedule = (Date) AutoFloorDateMap.get("schedule");
+//           Date TomorrowDate = (Date) AutoFloorDateMap.get("TomorrowDate");
+//           List<AGV_Exception> ExceptionDescribe = skasafsSystemContService.SKASAFSexceptionDescribe(FloorName, StartDateStr, EndDateStr);
+//           map.put("ExceptionDescribe",ExceptionDescribe);
+//
+//           Map<String, Integer> SysStateMapData = skasafsSystemContService.SAKSAFSSysStateMapData(FloorName, StartDateStr, EndDateStr,actionMinuteD);
+//           map.put("SysStateMapData",SysStateMapData);
+//
+//           AGV_AFS_State AGV_AFSState = skasafsSystemContService.SKASAFSMachineStateData(SysStateMapData);
+//           map.put("AGV_AFSState",AGV_AFSState);
+//
+//           List<AFSLineData> afsLineData = skasafsSystemContService.SKASAFSMachineRate(FloorName,schedule ,TomorrowDate);
+//           String afsLineDataJson = JSON.toJSONString(afsLineData);
+//           map.put("afsLineDataJson",afsLineDataJson);
+//
+//           Map<String, Integer> SaksAfsSysPieMapData = skasafsSystemContService.SAKSAFSSysStateMapData(FloorName, StartDateStr, EndDateStr,actionMinuteD);
+//           AGV_AFS_State SKASAFSMachineState = skasafsSystemContService.SKASAFSMachineStateData(SaksAfsSysPieMapData);
+//           String AGV_AFSPieStateJson = JSON.toJSONString(SKASAFSMachineState);
+//           map.put("aGV_AFSPieStateJson",AGV_AFSPieStateJson);
+//
+//           List<SKAS_AFSData> skas_afsData = skasafsSystemMessageAjaxService.SKAS_AFSBarData(FloorName, StartDateStr, EndDateStr);
+//           String skas_afsDataJson = JSON.toJSONString(skas_afsData);
+//           map.put("skas_afsDataJson",skas_afsDataJson);
+//           return map;
+//       }
 
 
 
