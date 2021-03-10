@@ -1005,7 +1005,7 @@
                     show: false
                 },
                 axisLabel:{
-                    textStylee:{
+                    textStyle:{
                         fontFamily: 'PingFangSC-Regular',
                         fontSize: 12,
                         color: 'rgba(0,0,0,0.85)',
@@ -1013,8 +1013,16 @@
                 },
             },
             yAxis: {
+                splitLine: {
+                    show:true,
+                    lineStyle:{
+                        color: ['#CFD5EB'],
+                        width: 1,
+                        type: 'solid'
+                    }
+                },
                 axisLabel:{
-                    textStylee:{
+                    textStyle:{
                         fontFamily: 'PingFangSC-Regular',
                         fontSize: 12,
                         color: 'rgba(0,0,0,0.85)',
@@ -1082,7 +1090,7 @@
                     show: false
                 },
                 axisLabel:{
-                    textStylee:{
+                    textStyle:{
                         fontFamily: 'PingFangSC-Regular',
                         fontSize: 12,
                         color: 'rgba(0,0,0,0.85)',
@@ -1092,7 +1100,14 @@
             yAxis:[
                 {
 
-
+                    splitLine: {
+                        show:true,
+                        lineStyle:{
+                            color: ['#CFD5EB'],
+                            width: 1,
+                            type: 'solid'
+                        }
+                    },
                     type: 'value',
                     scale:false,
                     axisTick: {
@@ -1104,7 +1119,7 @@
                     axisLabel: {
 
                         show: true,
-                        interval: 'auto',
+                        interval: 0,
                         formatter: '{value} %',
                         textStyle:{
                             fontFamily: 'PingFangSC-Regular',
@@ -1170,7 +1185,7 @@
                     show: false
                 },
                 axisLabel:{
-                    textStylee:{
+                    textStyle:{
                         fontFamily: 'PingFangSC-Regular',
                         fontSize: 12,
                         color: 'rgba(0,0,0,0.85)',
@@ -1179,6 +1194,14 @@
             },
             yAxis:[
                 {
+                    splitLine: {
+                        show:true,
+                        lineStyle:{
+                            color: ['#CFD5EB'],
+                            width: 1,
+                            type: 'solid'
+                        }
+                    },
                     type: 'value',
 
                     axisTick: {
@@ -1259,7 +1282,7 @@
                     show: false
                 },
                 axisLabel:{
-                    textStylee:{
+                    textStyle:{
                         fontFamily: 'PingFangSC-Regular',
                         fontSize: 12,
                         color: 'rgba(0,0,0,0.85)',
@@ -1267,8 +1290,16 @@
                 },
             },
             yAxis: {
+                splitLine: {
+                    show:true,
+                    lineStyle:{
+                        color: ['#CFD5EB'],
+                        width: 1,
+                        type: 'solid'
+                    }
+                },
                 axisLabel:{
-                    textStylee:{
+                    textStyle:{
                         fontFamily: 'PingFangSC-Regular',
                         fontSize: 12,
                         color: 'rgba(0,0,0,0.85)',
@@ -1336,7 +1367,7 @@
                     show: false
                 },
                 axisLabel:{
-                    textStylee:{
+                    textStyle:{
                         fontFamily: 'PingFangSC-Regular',
                         fontSize: 12,
                         color: 'rgba(0,0,0,0.85)',
@@ -1346,7 +1377,14 @@
             yAxis:[
                 {
 
-
+                    splitLine: {
+                        show:true,
+                        lineStyle:{
+                            color: ['#CFD5EB'],
+                            width: 1,
+                            type: 'solid'
+                        }
+                    },
                     type: 'value',
                     scale:false,
                     axisTick: {
@@ -1424,7 +1462,7 @@
                     show: false
                 },
                 axisLabel:{
-                    textStylee:{
+                    textStyle:{
                         fontFamily: 'PingFangSC-Regular',
                         fontSize: 12,
                         color: 'rgba(0,0,0,0.85)',
@@ -1433,6 +1471,14 @@
             },
             yAxis:[
                 {
+                    splitLine: {
+                        show:true,
+                        lineStyle:{
+                            color: ['#CFD5EB'],
+                            width: 1,
+                            type: 'solid'
+                        }
+                    },
                     type: 'value',
 
                     axisTick: {
@@ -1506,7 +1552,8 @@
                 containLabel:true
             },
             legend: {
-                right:'10',
+                padding:[15,0,0,0],
+                right:'30',
                 itemWidth:20,
                 itemHeight:10,
                 itemGap:30,
@@ -1524,11 +1571,9 @@
                     show: false
                 },
                 data: BUFFERArry.xdataList,
-                axisPointer: {
-                    type: 'shadow'
-                },
+
                 axisLabel:{
-                    textStylee:{
+                    textStyle:{
                         fontFamily: 'PingFangSC-Regular',
                         fontSize: 12,
                         color: 'rgba(0,0,0,0.85)',
@@ -1539,6 +1584,7 @@
             },
             yAxis: [
                 {
+
                     axisLabel:{
                         textStyle:{
                             fontFamily: 'PingFangSC-Regular',
@@ -1560,10 +1606,15 @@
 
                 },
                 {
+                    splitLine: {
+                        show:true,
+                        lineStyle:{
+                            color: ['#CFD5EB'],
+                            width: 1,
+                            type: 'solid'
+                        }
+                    },
                     type: 'value',
-                    min: 0,
-                    max: 120,
-                    interval: 20,
                     axisLabel: {
                         formatter: '{value} %',
                         textStyle:{
@@ -1593,9 +1644,9 @@
                             color: new echarts.graphic.LinearGradient(
                                 0, 0, 0, 1,
                                 [
-                                    {offset: 0, color: '#6DDBB2'},
-                                    {offset: 0.5, color: '#7FDBB9'},
-                                    {offset: 1, color: '#98DAC1'}
+                                    {offset: 0, color: '#477BB4'},
+                                    {offset: 0.5, color: '#5D86B3'},
+                                    {offset: 1, color: '#7290B1'}
                                 ]
                             ),
                             label:{
@@ -1623,9 +1674,9 @@
                             color: new echarts.graphic.LinearGradient(
                                 0, 0, 0, 1,
                                 [
-                                    {offset: 0, color: '#6F82A0'},
-                                    {offset: 0.5, color: '#8293AC'},
-                                    {offset: 1, color: '#9AA8BE'}
+                                    {offset: 0, color: '#CC6360'},
+                                    {offset: 0.5, color: '#D97F7C'},
+                                    {offset: 1, color: '#E8A09E'}
                                 ]
                             ),
                             label:{
@@ -1647,15 +1698,16 @@
                     name:'直通率目标',
                     type: 'bar',
                     data: [95, 95, 95, 95, 95, 95, 95, 95],
+                    yAxisIndex: 1,
                     itemStyle: {
 
                         normal:{
                             color: new echarts.graphic.LinearGradient(
                                 0, 0, 0, 1,
                                 [
-                                    {offset: 0, color: '#EDD07E'},
-                                    {offset: 0.5, color: '#EDD591'},
-                                    {offset: 1, color: '#ECDCAD'}
+                                    {offset: 0, color: '#ABC76D'},
+                                    {offset: 0.5, color: '#BDD783'},
+                                    {offset: 1, color: '#CEE49D'}
                                 ]
                             ),
 
@@ -1681,15 +1733,16 @@
                     name:'直通率实际',
                     type: 'bar',
                     data: BUFFERArry.achievingRateAction,
+                    yAxisIndex: 1,
                     itemStyle: {
 
                         normal:{
                             color: new echarts.graphic.LinearGradient(
                                 0, 0, 0, 1,
                                 [
-                                    {offset: 0, color: '#7DCDEE'},
-                                    {offset: 0.5, color: '#91D3EE'},
-                                    {offset: 1, color: '#B0DCEE'}
+                                    {offset: 0, color: '#9378B2'},
+                                    {offset: 0.5, color: '#9A86B1'},
+                                    {offset: 1, color: '#A295B1'}
                                 ]
                             ),
 
@@ -1715,15 +1768,16 @@
                     name:'机故率目标',
                     type: 'bar',
                     data: [5, 5, 5, 5, 5, 5, 5, 5],
+                    yAxisIndex: 1,
                     itemStyle: {
 
                         normal:{
                             color: new echarts.graphic.LinearGradient(
                                 0, 0, 0, 1,
                                 [
-                                    {offset: 0, color: '#E57B64'},
-                                    {offset: 0.5, color: '#E48E7C'},
-                                    {offset: 1, color: '#E4A99C'}
+                                    {offset: 0, color: '#56B4CC'},
+                                    {offset: 0.5, color: '#6FBACD'},
+                                    {offset: 1, color: '#87BFCD'}
                                 ]
                             ),
 
@@ -1748,15 +1802,16 @@
                     name:'机故率实际',
                     type: 'bar',
                     data: BUFFERArry.machineRateAction,
+                    yAxisIndex: 1,
                     itemStyle: {
 
                         normal:{
                             color: new echarts.graphic.LinearGradient(
                                 0, 0, 0, 1,
                                 [
-                                    {offset: 0, color: '#9C82D1'},
-                                    {offset: 0.5, color: '#A793D0'},
-                                    {offset: 1, color: '#B6A9D0'}
+                                    {offset: 0, color: '#F8BB2C'},
+                                    {offset: 0.5, color: '#F8C752'},
+                                    {offset: 1, color: '#F8D37C'}
                                 ]
                             ),
 
@@ -1800,7 +1855,8 @@
                 containLabel:true
             },
             legend: {
-                right:'10',
+                padding:[15,0,0,0],
+                right:'30',
                 itemWidth:20,
                 itemHeight:10,
                 itemGap:30,
@@ -1821,7 +1877,7 @@
                     type: 'shadow'
                 },
                 axisLabel:{
-                    textStylee:{
+                    textStyle:{
                         fontFamily: 'PingFangSC-Regular',
                         fontSize: 12,
                         color: 'rgba(0,0,0,0.85)',
@@ -1831,7 +1887,9 @@
 
             },
             yAxis: [
+
                 {
+
                     axisLabel:{
                         textStyle:{
                             fontFamily: 'PingFangSC-Regular',
@@ -1853,10 +1911,15 @@
 
                 },
                 {
+                    splitLine: {
+                        show:true,
+                        lineStyle:{
+                            color: ['#CFD5EB'],
+                            width: 1,
+                            type: 'solid'
+                        }
+                    },
                     type: 'value',
-                    min: 0,
-                    max: 120,
-                    interval: 20,
                     axisLabel: {
                         formatter: '{value} %',
                         textStyle:{
@@ -1885,9 +1948,9 @@
                             color: new echarts.graphic.LinearGradient(
                                 0, 0, 0, 1,
                                 [
-                                    {offset: 0, color: '#6DDBB2'},
-                                    {offset: 0.5, color: '#7FDBB9'},
-                                    {offset: 1, color: '#98DAC1'}
+                                    {offset: 0, color: '#477BB4'},
+                                    {offset: 0.5, color: '#5D86B3'},
+                                    {offset: 1, color: '#7290B1'}
                                 ]
                             ),
                             label:{
@@ -1915,9 +1978,9 @@
                             color: new echarts.graphic.LinearGradient(
                                 0, 0, 0, 1,
                                 [
-                                    {offset: 0, color: '#6F82A0'},
-                                    {offset: 0.5, color: '#8293AC'},
-                                    {offset: 1, color: '#9AA8BE'}
+                                    {offset: 0, color: '#CC6360'},
+                                    {offset: 0.5, color: '#D97F7C'},
+                                    {offset: 1, color: '#E8A09E'}
                                 ]
                             ),
                             label:{
@@ -1939,15 +2002,16 @@
                     name:'直通率目标',
                     type: 'bar',
                     data: [95, 95, 95, 95, 95, 95, 95, 95],
+                    yAxisIndex: 1,
                     itemStyle: {
 
                         normal:{
                             color: new echarts.graphic.LinearGradient(
                                 0, 0, 0, 1,
                                 [
-                                    {offset: 0, color: '#EDD07E'},
-                                    {offset: 0.5, color: '#EDD591'},
-                                    {offset: 1, color: '#ECDCAD'}
+                                    {offset: 0, color: '#ABC76D'},
+                                    {offset: 0.5, color: '#BDD783'},
+                                    {offset: 1, color: '#CEE49D'}
                                 ]
                             ),
 
@@ -1973,15 +2037,16 @@
                     name:'直通率实际',
                     type: 'bar',
                     data: AFSArry.achievingRateAction,
+                    yAxisIndex: 1,
                     itemStyle: {
 
                         normal:{
                             color: new echarts.graphic.LinearGradient(
                                 0, 0, 0, 1,
                                 [
-                                    {offset: 0, color: '#7DCDEE'},
-                                    {offset: 0.5, color: '#91D3EE'},
-                                    {offset: 1, color: '#B0DCEE'}
+                                    {offset: 0, color: '#9378B2'},
+                                    {offset: 0.5, color: '#9A86B1'},
+                                    {offset: 1, color: '#A295B1'}
                                 ]
                             ),
 
@@ -2007,15 +2072,16 @@
                     name:'机故率目标',
                     type: 'bar',
                     data: [5, 5, 5, 5, 5, 5, 5, 5],
+                    yAxisIndex: 1,
                     itemStyle: {
 
                         normal:{
                             color: new echarts.graphic.LinearGradient(
                                 0, 0, 0, 1,
                                 [
-                                    {offset: 0, color: '#E57B64'},
-                                    {offset: 0.5, color: '#E48E7C'},
-                                    {offset: 1, color: '#E4A99C'}
+                                    {offset: 0, color: '#56B4CC'},
+                                    {offset: 0.5, color: '#6FBACD'},
+                                    {offset: 1, color: '#87BFCD'}
                                 ]
                             ),
 
@@ -2040,15 +2106,16 @@
                     name:'机故率实际',
                     type: 'bar',
                     data: AFSArry.machineRateAction,
+                    yAxisIndex: 1,
                     itemStyle: {
 
                         normal:{
                             color: new echarts.graphic.LinearGradient(
                                 0, 0, 0, 1,
                                 [
-                                    {offset: 0, color: '#9C82D1'},
-                                    {offset: 0.5, color: '#A793D0'},
-                                    {offset: 1, color: '#B6A9D0'}
+                                    {offset: 0, color: '#F8BB2C'},
+                                    {offset: 0.5, color: '#F8C752'},
+                                    {offset: 1, color: '#F8D37C'}
                                 ]
                             ),
 
@@ -2103,5 +2170,22 @@
 
 
 </script>
+<!--<script>-->
+<!--    window.onload = function () {-->
+<!--        /*375代表设计师给的设计稿的宽度，你的设计稿是多少，就写多少;-->
+<!--        100代表换算比例，这里写100是为了以后好算,-->
+<!--        比如，你测量的一个宽度是100px,就可以写为1rem,以及1px=0.01rem等等*/-->
+<!--        getRem(768, 100)-->
+<!--    };-->
+<!--    window.onresize = function () {-->
+<!--        getRem(768, 100)-->
+<!--    };-->
+
+<!--    function getRem(pwidth, prem) {-->
+<!--        var html = document.getElementsByTagName("html")[0];-->
+<!--        var oWidth = document.body.clientWidth || document.documentElement.clientWidth;-->
+<!--        html.style.fontSize = oWidth / pwidth * prem + "px";-->
+<!--    }-->
+<!--</script>-->
 </body>
 </html>

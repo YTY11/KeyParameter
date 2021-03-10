@@ -56,7 +56,7 @@
                             <td rowspan="2" data-v-35e08537="">ALL</td>
                         </tr>
                         <tr data-v-35e08537="">
-                            <td data-v-35e08537="">已派工</td>
+                            <td data-v-35e08537="">待派工</td>
                             <td data-v-35e08537="">维修中</td>
                             <td data-v-35e08537="">已维修</td>
                             <td data-v-35e08537="">H</td>
@@ -103,7 +103,7 @@
                             <td class="end" data-v-247e1dc0="">结束时间</td>
                             <td class="time-count" data-v-247e1dc0="">时长</td>
                             <td class="unit" data-v-247e1dc0="">责任单位</td>
-                            <td class="service-content" data-v-247e1dc0="">维修内容</td>
+                            <td class="detail" data-v-247e1dc0="">维修内容</td>
                             <td class="service-content" data-v-247e1dc0="">维修人员</td>
                             <td class="state" data-v-247e1dc0="">状态</td>
                         </tr>
@@ -141,8 +141,13 @@
 <script th:src="@{/layui/layui.js}" src="../static/layui/layui.js"></script>
 <script th:src="@{/js/AVIERROR.js}" src="../static/js/AVIERROR.js"></script>
 <script th:inline="javascript">
-    var floor = [[${floorSet}]];
+    //移动端active无反应
+    document.body.addEventListener('touchstart',function(){},false)
+    var floor = [];
+    floor = [[${floorSet}]];
     var line = [[${lineList}]];
+
+    floor = floor.sort();
 
 
 

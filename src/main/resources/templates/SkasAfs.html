@@ -12,6 +12,7 @@
 
 </head>
 <body>
+
 <div class="app">
     <!--    头部-->
     <div class="titleTop">
@@ -217,15 +218,22 @@
                             top:'20%',//距上边距
                             left:'2%',//距离左边距
                             right:'2%',//距离右边距
-                            bottom:'1%',//距离下边距
+                            bottom:'5%',//距离下边距
                             containLabel:true
                         },
+                        toolbox: {
+                            show: true,
+                            feature: {
+                                mark: {show: true},
+
+                            }
+                        },
+
                         legend: {
-
-
-                            right:'10',
+                            padding:[15,0,0,0],
+                            right:'30',
                             itemWidth:35,
-
+                            data:['计划','实际'],
                             itemHeight:13,
                             itemGap:50,
                             textStyle:{
@@ -234,24 +242,16 @@
                                 color: 'rgba(0,0,0,0.85)',
                             },
                         },
-                        tooltip: {},
-                        // dataset: {
-                        //     dimensions: ['product', '计划', '实际'],
-                        //     source: [
-                        //         {product: 'RGV', '计划': 370, '实际': 325 },
-                        //         {product: 'AGV', '计划': 21, '实际': 20,},
-                        //         {product: '暂存仓', '计划': 20, '实际': 18},
-                        //         {product: 'FAS', '计划': 325, '实际': 258}
-                        //     ]
-                        // },
+
                         xAxis: {
+
                             type: 'category',
                             data:sysbarxList,
                             axisTick: {
                                 show: false
                             },
                             axisLabel:{
-                                textStylee:{
+                                textStyle:{
                                     fontFamily: 'PingFangSC-Regular',
                                     fontSize: 14,
                                     color: 'rgba(0,0,0,0.85)',
@@ -260,13 +260,14 @@
                             },
 
                         },
+
                         yAxis: {
-                            scale:false,
+
                             axisLabel:{
 
                                 textStyle:{
                                     fontFamily: 'PingFangSC-Regular',
-                                    fontSize: 12,
+                                    fontSize: 14,
                                     color: '#000000',
                                     letterSpacing: -1.48,
                                     lineHeight: 20,
@@ -284,7 +285,14 @@
                                 show: false
                             },
 
-
+                            splitLine: {
+                                show:true,
+                                lineStyle:{
+                                    color: ['#CFD5EB'],
+                                    width: 1,
+                                    type: 'solid'
+                                }
+                            },
 
                         },
 
@@ -299,9 +307,9 @@
                                         color: new echarts.graphic.LinearGradient(
                                             0, 0, 0, 1,
                                             [
-                                                {offset: 0, color: '#06B5FA'},
-                                                {offset: 0.5, color: '#6DCEF4'},
-                                                {offset: 1, color: '#CEEEF3'}
+                                                {offset: 0, color: '#29BEF8'},
+                                                {offset: 0.5, color: '#60CFFA'},
+                                                {offset: 1, color: '#86DAFA'}
                                             ]
                                         ),
                                         label:{
@@ -311,6 +319,8 @@
                                                 fontFamily: 'PingFangSC-Regular',
                                                 fontSize: 12,
                                                 letterSpacing: 0,
+                                                color: 'rgba(0,0,0,0.85)',
+                                                // backgroundColor:'#E1E7FD',
                                             }
                                         }
                                     }
@@ -326,12 +336,14 @@
 
                                     normal:{
                                         color: new echarts.graphic.LinearGradient(
-                                            0, 0, 0, 1,
-                                            [
-                                                {offset: 0, color: '#FE4365'},
-                                                {offset: 0.5, color: '#FB647F'},
-                                                {offset: 1, color: '#FAABB9'}
-                                            ]
+                                                    0, 0, 0, 1,
+
+
+                                                    [
+                                                        {offset: 0, color: '#21E344'},
+                                                        {offset: 0.5, color: '#54E36E'},
+                                                        {offset: 1, color: '#82E494'}
+                                                    ],
                                         ),
                                         label:{
                                             show:true,
@@ -340,6 +352,8 @@
                                                 fontFamily: 'PingFangSC-Regular',
                                                 fontSize: 12,
                                                 letterSpacing: 0,
+                                                color: 'rgba(0,0,0,0.85)',
+                                                // backgroundColor:'#E1E7FD',
                                             }
                                         }
                                     }
@@ -455,7 +469,7 @@
                             top:'20%',//距上边距
                             left:'2%',//距离左边距
                             right:'2%',//距离右边距
-                            bottom:'1%',//距离下边距
+                            bottom:'5%',//距离下边距
                             containLabel:true
                         },
                         xAxis: {
@@ -475,10 +489,19 @@
                             },
 
                         },
+
                         yAxis: [
 
 
                             {
+                                splitLine: {
+                                    show:true,
+                                    lineStyle:{
+                                        color: ['#CFD5EB'],
+                                        width: 1,
+                                        type: 'solid'
+                                    }
+                                },
                                 type: 'value',
 
                                 axisTick: {
@@ -487,16 +510,19 @@
                                 axisLine: {
                                     show: false
                                 },
+
+
                                 axisLabel: {
+
                                     show: true,
-                                    interval: 'auto',
                                     formatter: '{value} %',
                                     textStyle:{
                                         fontFamily: 'PingFangSC-Regular',
-                                        fontSize: 12,
+                                        fontSize: 14,
                                         color: 'rgba(0,0,0,0.85)',
                                         letterSpacing: 0.08,
                                     },
+                                    interval: 0,
                                 },
                                 show: true
                             }
@@ -521,6 +547,7 @@
                                             fontSize: 12,
                                             color: 'rgba(0,0,0,0.85)',
                                             letterSpacing: 0.06,
+                                            // backgroundColor:'#E1E7FD',
                                         }
                                     },
                                     color:'#0AA200',
@@ -559,35 +586,7 @@
 
 
 
-<!--<script th:inline="javascript">-->
 
-<!--    //設備狀態信息-->
-<!--    var data = [[${AGV_AFSState}]];-->
-<!--    //異常信息-->
-<!--    var errorMsg = [[${ExceptionDescribe}]];-->
-<!--    //設備關鍵指標-->
-<!--    var zhiBiao = [[${skas_afsDataJson}]];-->
-<!--    //機故率-->
-<!--    var jiGu = [[${afsLineDataJson}]];-->
-
-<!--    function getMachineRate(){-->
-
-<!--        return data.machineRate;-->
-<!--    }-->
-
-<!--    function getZhiBiaoData(){-->
-
-<!--        return zhiBiao;-->
-<!--    }-->
-
-<!--    function getJiGuData(){-->
-
-<!--        return jiGu;-->
-<!--    }-->
-
-
-
-<!--</script>-->
 
 </body>
 
@@ -595,12 +594,29 @@
 <!--</script>-->
 <script type="text/javascript" th:inline="javascript">
 
-//    setInterval(function () {
-//
-//        // 装载局部刷新返回的页面
-//        $('#content_demo').load('saksafsSystabData');
-//
-//
-//    },30*1000);
+   // setInterval(function () {
+   //
+   //     // 装载局部刷新返回的页面
+   //     $('#content_demo').load('saksafsSystabData');
+   //
+   //
+   // },30*1000);
 </script>
+<!--<script>-->
+<!--    window.onload = function () {-->
+<!--        /*375代表设计师给的设计稿的宽度，你的设计稿是多少，就写多少;-->
+<!--        100代表换算比例，这里写100是为了以后好算,-->
+<!--        比如，你测量的一个宽度是100px,就可以写为1rem,以及1px=0.01rem等等*/-->
+<!--        getRem(768, 100)-->
+<!--    };-->
+<!--    window.onresize = function () {-->
+<!--        getRem(768, 100)-->
+<!--    };-->
+
+<!--    function getRem(pwidth, prem) {-->
+<!--        var html = document.getElementsByTagName("html")[0];-->
+<!--        var oWidth = document.body.clientWidth || document.documentElement.clientWidth;-->
+<!--        html.style.fontSize = oWidth / pwidth * prem + "px";-->
+<!--    }-->
+<!--</script>-->
 </html>

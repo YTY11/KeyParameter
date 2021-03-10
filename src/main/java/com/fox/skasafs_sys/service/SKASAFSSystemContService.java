@@ -205,7 +205,7 @@ public class SKASAFSSystemContService {
             String SkasStartDate = lineData.getSkASAFSStartDate();
             String SkasEndDate = lineData.getSkASAFSEndDate();
             String Time = TIME_SLOT.get(i);
-            System.out.println(Time);
+//            System.out.println(Time);
             String SKASSTARTTIME="";
             String SKASENDTIME="";
             if (timeUtility.Timequantum("20:30", "23:59")) {
@@ -302,9 +302,9 @@ public class SKASAFSSystemContService {
             afsLineData.setDateTime(Time);
            Boolean timequantum08 = timeUtility.Timequantum("08:30", "20:30");
             if (timequantum08){
-                System.out.println("08:30:00"+"-------"+ SkasStartDate);
+//                System.out.println("08:30:00"+"-------"+ SkasStartDate);
                 Boolean timequantum = timeUtility.presentTimequantum("08:30:00", SkasStartDate);
-                System.out.println(timequantum);
+//                System.out.println(timequantum);
             }else {
                 Boolean timequantum = timeUtility.presentTimequantum("20:30:00", SkasEndDate);
 

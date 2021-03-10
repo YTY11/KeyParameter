@@ -7,25 +7,33 @@ a, body, button, div, dl, dt, h1, h2, h3, h4, h5, h6, input, li, p, select, text
 
 html {
     width: 100%;
-    /*height: calc( 100% - 0.6rem);*/
-    height: 9.44rem;
+    /*height: 9.64rem;*/
     font-size: 100px;
     font-family: PingFangSC-Regular;
+
 }
 
 body {
     width: 100%;
-    height: 100%;
+    /*height: 100%;*/
+height: 9.64rem;
 
 }
 .app{
     width: 100%;
     height: 100%;
-    background-image: url("../img/backgroundImg.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: 50%
 
+}
+
+.beiJing{
+    width: 100%;
+    height: 100%;
+    background: url("../img/beiJing2.png") no-repeat;
+    background-size: cover;
+    background-position: center;
+    box-sizing: border-box;
+    font-family: PingFangSC-Regular;
+    overflow: auto;
 }
 
 /*主体内容*/
@@ -38,7 +46,7 @@ body {
     /*margin: 2%;*/
     /*margin-top: 4%;*/
     width:7.2rem;
-    height: calc( 9.44rem - .64rem);
+    height: calc( 9.64rem - .64rem);
     border-radius: 16px;
 
 }
@@ -146,6 +154,7 @@ body {
 
 
 .select>li>button[data-v-170a700c] {
+    -webkit-tap-highlight-color:transparent;
     width: 1.015625rem;
     height: .364583rem;
     background: #f7b500;
@@ -153,6 +162,12 @@ body {
     border-radius: .08rem;
     color: #fff;
     border: 0px;
+}
+
+.select>li>button[data-v-170a700c]:active{
+
+    background: #ff7a06 !important;
+
 }
 
 input::-webkit-input-placeholder{
@@ -170,7 +185,7 @@ input::-webkit-input-placeholder{
     margin-left: .04rem;
     margin-top: .03rem;
     background: #fff;
-    box-shadow: 0 2px 2px 0 rgba(0, 0 ,0, 0.5);
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.4);
     border-radius: 0 0 16px 16px;
     overflow: hidden;
 }
@@ -223,7 +238,7 @@ input::-webkit-input-placeholder{
     bottom: .12rem;
     position: absolute;
     background: #fff;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.5);
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.4);
     border-radius: 0 0 16px 16px;
     box-sizing: border-box;
     overflow: hidden;

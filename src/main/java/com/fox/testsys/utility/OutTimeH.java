@@ -150,7 +150,7 @@ public class OutTimeH {
         Date StartdBegin = calDate.getTime();
         calDate.setTime(StartdBegin);
         String format1 = format.format(calDate.getTime());
-        System.out.println(format1);
+//        System.out.println(format1);
 
 
         return format1;

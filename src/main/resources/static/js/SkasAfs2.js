@@ -1,4 +1,3 @@
-console.log($(".td1").find("a").eq(1).attr("class"));
 
 
 for (var i = 1; i < 55; i++){

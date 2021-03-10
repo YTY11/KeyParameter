@@ -86,7 +86,7 @@ public class TestEquipmentHealthService {
     DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     public List<AutoFloor_Rate> TestEquipmentHealthRateSubData(String ProductName, String StartDate, String EndDate, String FloorName, String LineName) {
-        System.out.println(ProductName+"--------------ProductName");
+//        System.out.println(ProductName+"--------------ProductName");
         List<AmountsUPH> StationNameList = MachineNoList(ProductName);
         List<AutoFloor_Rate> AutoFloor_AllRateList = autoFloor_rateMapper.AutoFloorALLStationRate(StartDate, EndDate, FloorName, LineName);
         List<AutoFloor_Fail_RETest> FailretestList = autoFloor_fail_reTestMapper.FAILRETEST(StartDate, EndDate, FloorName);
