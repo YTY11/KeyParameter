@@ -227,12 +227,7 @@ body {
     border: 1px solid #E0E8FD;
     padding: 8px;
 }
-/*.table1 tbody tr td {*/
 
-/*    border-top: 0px solid #E0E8FD;*/
-/*    border-bottom: 0px solid #E0E8FD;*/
-
-/*}*/
 .table1 thead tr {
     width: 100%;
     background: #0091FF;

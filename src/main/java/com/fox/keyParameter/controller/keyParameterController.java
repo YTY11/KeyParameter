@@ -52,7 +52,7 @@ public class keyParameterController {
     DateFormat Timeformat = new SimpleDateFormat("MM/dd HH:mm:ss");
 
     @RequestMapping("getKeyHtml")//主页监控 默认显示关键参数
-    public   String  AlarmSystemContr(@RequestParam(value = "FloorName",required = true,defaultValue = "D061F") String FloorName,
+    public   String  AlarmSystemContr(@RequestParam(value = "FloorName",required = true,defaultValue = "") String FloorName,
                                       @RequestParam(value = "LineName",required = true,defaultValue = "") String LineName,
                                       @RequestParam(value = "Product",required = true,defaultValue = "KeyParameter")  String Product ,Map map){
 
@@ -135,7 +135,7 @@ public class keyParameterController {
 
 
     @RequestMapping("alarmsystemdataKey")//Tab 异步内容
-    public   String  AlarmSystemDataContr(@RequestParam(value = "FloorName",required = true,defaultValue = "D061F") String FloorName,
+    public   String  AlarmSystemDataContr(@RequestParam(value = "FloorName",required = true,defaultValue = "") String FloorName,
                                           @RequestParam(value = "LineName",required = true,defaultValue = "") String LineName,
                                           @RequestParam(value = "Product",required = true,defaultValue = "KeyParameter")  String Product ,
                                           @RequestParam(value = "MachineType",required = false)  String MachineType ,
@@ -180,7 +180,7 @@ public class keyParameterController {
     }
 
     @RequestMapping("alarmsystemtetitledataKey")//title 异步内容
-    public   String  AlarmSystemTitleDataContr(@RequestParam(value = "FloorName",required = true,defaultValue = "D061F") String FloorName,
+    public   String  AlarmSystemTitleDataContr(@RequestParam(value = "FloorName",required = true,defaultValue = "") String FloorName,
                                                @RequestParam(value = "LineName",required = true,defaultValue = "") String LineName,
                                                @RequestParam(value = "Product",required = true,defaultValue = "KeyParameter")  String Product ,Map map){
 

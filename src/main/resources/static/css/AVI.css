@@ -1,0 +1,298 @@
+a, body, button, div, dl, dt, h1, h2, h3, h4, h5, h6, input, li, p, select, textarea, ul {
+    margin: 0;
+    padding: 0;
+    outline: none;
+}
+
+
+html {
+    width: 100%;
+    font-size: 100px;
+}
+
+body {
+    width: 100%;
+    height: 9.54rem;
+
+
+}
+
+.app {
+    width: 100%;
+    height: 100%;
+    background: url("../img/beiJing2.png") no-repeat;
+    background-size: cover;
+    background-position: center;
+    box-sizing: border-box;
+    font-family: PingFangSC-Regular;
+    overflow: auto;
+    /*background-attachment:fixed;*/
+}
+
+.content {
+    margin-left: 0.08rem;
+    height: calc(9.54rem - 0.08rem);
+    width: 7.52rem;
+    background-image: url(../img/skasB.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    background-attachment: fixed;
+    border-radius: 16px 16px 16px 16px;
+
+}
+
+
+.aDiv {
+    width: 100%;
+    height: 0.52rem;
+    display: flex;
+    color: #34A8FA;
+    text-align: right;
+}
+.seek{
+    display: flex;
+    margin-top: 0.05rem;
+    margin-left: 0.1rem;
+    width: 2.68rem;
+    height: 0.42rem;
+    background-image: url(../img/seekBei.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    border-radius: 8px 8px;
+}
+
+
+
+/*下拉框*/
+.select[data-v-170a700c] {
+    width: 2.68rem;
+    height: 0.4rem;
+    color: #000;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 0.08rem;
+    box-sizing: border-box;
+    position: relative;
+}
+
+
+
+.select>input{
+    background-color: #6E9EF7;
+    font-family: PingFangSC-Regular;
+    font-size: 0.14rem;
+    color: #F0F0F0;
+    letter-spacing: 0.005rem;
+    text-align: center;
+    width: 0.64rem;
+    height: .24rem;
+    /*line-height: .364583rem;*/
+    /*text-indent: .104167rem;*/
+    border-radius: 4px;
+    border: 1px solid #085ACD;
+}
+
+#select-input2 , #select-input3{
+    margin-left: 0.04rem;
+}
+
+a:active{
+  border: 1px solid #F0F0F0;
+    border-radius: 4px;
+}
+
+
+
+
+
+
+
+.floor-list>li[data-v-170a700c], .line-list>li[data-v-170a700c],.line-list2>li[data-v-170a700c] {
+    width: 100%;
+    height: .2rem;
+    line-height: .3rem;
+    box-sizing: border-box;
+    border-top: 1px solid #085ACD;
+    border-left: 1px solid #085ACD;
+    border-right: 1px solid #085ACD;
+    color: #F0F0F0;
+    background: #6E9EF7;
+}
+
+
+
+.select>ul:last-child, .select>ul:nth-child(2) {
+    position: absolute;
+    top: 0.35rem;
+}
+.floor-list , .line-list,.line-list2{
+    width: 0.64rem;
+    height: 1.5rem;
+    max-height: 2rem;
+    position: absolute;
+    overflow: auto;
+    z-index: 40;
+    letter-spacing: .005rem;
+    font-family: PingFangSC-Regular;
+    font-size: 0.14rem;
+    color: #F0F0F0;
+}
+ .floor-list{
+     left: 0.09rem;
+     top: .35rem;
+}
+.line-list{
+    left: 0.785rem;
+    top: .35rem;
+}
+.line-list2{
+    left: 1.485rem;
+    top: .35rem;
+}
+
+li[data-v-170a700c]{
+    display: flex;
+}
+
+
+input::-webkit-input-placeholder{
+    color: #F0F0F0;
+    letter-spacing: 0.5px;
+    font-family: PingFangSC-Regular;
+    font-size: 0.14rem;
+}
+
+
+
+
+
+
+
+
+.a1 {
+    margin-left:auto;
+    align-self: center;
+    font-family: PingFangSC-Semibold;
+    font-size: 0.14rem;
+    color: #44D7B6;
+    letter-spacing: 0.0088rem;
+    border-bottom: 1px solid #44D7B6;
+}
+
+.a2 {
+    margin: 0 0.3rem;
+    /*margin-left:auto;*/
+    align-self: center;
+    /*margin-right: 3%;*/
+    font-family: PingFangSC-Semibold;
+    font-size: 0.14rem;
+    letter-spacing: 0.0088rem;
+    color: rgba(50, 197, 255, 0.50);
+}
+
+
+/*主体内容*/
+.theme {
+    width: 100%;
+    height: calc(100% - 0.5rem);
+
+}
+.theme1{
+    width: 100%;
+    height: 2.27rem;
+    display: flex;
+}
+
+.themeL1 , .themeR1{
+    height: 100%;
+    width: 3.56rem;
+    margin: 0 0.1rem;
+    background: rgba(255,255,255,0.40);
+    border-radius: 20px;
+}
+
+.themeNeiDiv1{
+    display: flex;
+    width: 100%;
+    height: 0.47rem;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    font-size: 0.18rem;
+    color: rgba(0,0,0,0.85);
+    letter-spacing: 0.64px;
+}
+.themeNeiDiv2{
+    width: 100%;
+    height: 1.8rem;
+    background: rgba(255,255,255,0.75);
+    border-radius: 20px;
+}
+
+.themeB{
+    width: calc(100% - 0.2rem);
+    margin: 0 0.1rem;
+    height: 1.83rem;
+    background: rgba(255,255,255,0.40);
+    border-radius: 20px;
+}
+
+.table1{
+    margin-top: 0.15rem;
+    width: 100%;
+    border-style:hidden;
+    height: 1.51rem;
+
+
+}
+/*.table1 tr th  {*/
+/*    text-align: center;*/
+/*    border: 1px solid white;*/
+/*    padding: 8px;*/
+
+/*}*/
+/*.table1 tr td{*/
+/*    text-align: center;*/
+/*    border: 1px solid #E0E8FD;*/
+/*    padding: 8px;*/
+/*}*/
+
+.table1 thead tr {
+    width: 100%;
+    background: #0091FF;
+    font-size: 14px;
+    color: #F0F0F0;
+    text-align: center;
+    /*line-height: 21px;*/
+}
+
+.table1 tbody tr {
+    background-color: #EAF0FD;
+    font-size: 14px;
+    color: rgba(0,0,0,0.85);
+    text-align: center;
+    line-height: 21px;
+}
+.table2 tbody tr td{
+    padding: 4px;
+}
+.table1 thead tr:first-child td:first-child{
+    border-top-left-radius: 16px;
+}
+.table1 thead tr:first-child td:last-child{
+    border-top-right-radius: 16px;
+}
+.table1 tbody tr:last-child td:first-child {
+    border-bottom-left-radius: 16px;
+}
+.table1 tbody tr:last-child td:last-child {
+    border-bottom-right-radius: 16px;
+}
+
+.table2 tbody tr:last-child td:first-child {
+    border-bottom-left-radius: 0px;
+}

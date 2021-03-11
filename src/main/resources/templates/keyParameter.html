@@ -244,54 +244,51 @@
     $(".selectNum").click(function () {
         let FloorName = $("#select-input1").val();
         let LineName = $("#select-input2").val();
-        if(FloorName != '请选择' && LineName != '请选择' && FloorName != "" && LineName != ""){
-            var MachineType=$('#MachineType').text();
-            var PriorityOrFlg=$('#PriorityOrFlg').text();
-            alarmsystemdataKey(MachineType,PriorityOrFlg,FloorName,LineName)
-            alarmsystemtitledataKey(FloorName,LineName)
+        var MachineType="";
+        var PriorityOrFlg="";
+        alarmsystemdataKey(MachineType,PriorityOrFlg,FloorName,LineName)
+        alarmsystemtitledataKey(FloorName,LineName)
 
-        }
     })
     //Title 异步刷新
     function alarmsystemtitledataKey(floorName,linename) {
-        // console.log("s");
-        //title异步刷新function
-        let FloorName = $("#select-input1").val();
-        let LineName = $("#select-input2").val();
-        if(FloorName != '请选择' && LineName != '请选择' && FloorName != "" && LineName != ""){
-            $('#alarmsystemtitledata').load('alarmsystemtetitledataKey?FloorName='+FloorName+'&Product=KeyParameter&LineName='+LineName);
+        var LineName="";
+        LineName=$("#select-input2").val();
+        var FloorName="";
+        FloorName=$("#select-input1").val();
+        if (FloorName===undefined){
+            FloorName="";
         }
-
-
-
+        if (LineName===undefined){
+            LineName="";
+        }
+        $('#alarmsystemtitledata').load('alarmsystemtetitledataKey?FloorName='+FloorName+'&Product=KeyParameter&LineName='+LineName);
 
     }
 
     //Table 异步刷新
     function alarmsystemdataKey(machineType,priorityOrFlg,linename) {   //tab 异步刷新function
-        // console.log("a");
-
-        let FloorName = $("#select-input1").val();
-        let LineName = $("#select-input2").val();
-        if(FloorName != '请选择' && LineName != '请选择' && FloorName != "" && LineName != ""){
-            // 装载局部刷新返回的页面
-            if (machineType!==undefined){
-                $('#MachineType').text(machineType);
-            }
-            if (priorityOrFlg!==undefined){
-                $('#PriorityOrFlg').text(priorityOrFlg);
-            }
-            var MachineType=$('#MachineType').text();
-            var PriorityOrFlg=$('#PriorityOrFlg').text();
-
-            $('#alarmsystemdata').load('alarmsystemdataKey?FloorName='+FloorName+'&Product=KeyParameter&MachineType='+MachineType+'&PriorityOrFlg='+PriorityOrFlg+'&LineName='+LineName);
-
-
+        // 装载局部刷新返回的页面
+        if (machineType!==undefined){
+            $('#MachineType').text(machineType);
+        }
+        if (priorityOrFlg!==undefined){
+            $('#PriorityOrFlg').text(priorityOrFlg);
+        }
+        var MachineType=$('#MachineType').text();
+        var PriorityOrFlg=$('#PriorityOrFlg').text();
+        var LineName="";
+        LineName=$("#select-input2").val();
+        var FloorName="";
+        FloorName=$("#select-input1").val();
+        if (FloorName===undefined){
+            FloorName="";
+        }
+        if (LineName===undefined){
+            LineName="";
         }
 
-
-
-
+            $('#alarmsystemdata').load('alarmsystemdataKey?FloorName='+FloorName+'&Product=KeyParameter&MachineType='+MachineType+'&PriorityOrFlg='+PriorityOrFlg+'&LineName='+LineName);
     }
 
     alarmsystemtitledataKey();

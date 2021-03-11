@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+
+    <title>AVI电子看板</title>
+    <link th:href="@{/layui/css/layui.mobile.css}" href="../static/layui/css/layui.mobile.css" rel="stylesheet"/>
+    <link th:href="@{/css/AVI.css}" href="../static/css/AVI.css" rel="stylesheet"/>
+    <script>
+        window.onload = function () {
+            /*375代表设计师给的设计稿的宽度，你的设计稿是多少，就写多少;
+            100代表换算比例，这里写100是为了以后好算,
+            比如，你测量的一个宽度是100px,就可以写为1rem,以及1px=0.01rem等等*/
+            getRem(768, 100)
+        };
+        window.onresize = function () {
+            getRem(768, 100)
+        };
+
+        function getRem(pwidth, prem) {
+            var html = document.getElementsByTagName("html")[0];
+            var oWidth = document.body.clientWidth || document.documentElement.clientWidth;
+            html.style.fontSize = oWidth / pwidth * prem + "px";
+        }
+    </script>
+</head>
+<body>
+<div class="app">
+    <!--    内容-->
+    <div class="content">
+<!--        头部-->
+        <div class="aDiv">
+            <div class="seek">
+                <div class="select" data-v-170a700c="" data-v-6e7c9527="">
+                        <input type="text" class="select-input" id="select-input1" readonly="" placeholder="区域"
+                               data-v-170a700c="">
+                        <ul class="floor-list" id="floor-list1" data-v-170a700c="" style="display: none;">
+
+                        </ul>
+
+                        <input type="text" class="select-input" id="select-input2" readonly="" placeholder="楼层"
+                               >
+                        <ul class="line-list" id="floor-list2" data-v-170a700c="" style="display: none;">
+
+                        </ul>
+
+                        <input type="text" class="select-input" id="select-input3" readonly="" placeholder="线体"
+                               data-v-170a700c="">
+                        <ul class="line-list2" id="floor-list3" data-v-170a700c="" style="display: none;">
+
+                        </ul>
+
+                        <a style="display: flex;width: 0.2rem;height: 0.2rem;margin-left: 0.24rem;">
+                            <img style="" th:src="@{/img/chaxun.png}" src="../static/img/chaxun.png">
+                        </a>
+                </div>
+            </div>
+            <a class="a1">电子看板</a>
+            <a class="a2" th:href="@{saksafssyshomecont}" href="SkasAfs2.html">设备健康管理</a>
+        </div>
+
+<!--        主体-->
+        <div class="theme" >
+            <div class="theme1">
+                <div class="themeL1">
+                    <div class="themeNeiDiv1">
+                        <div style="width: 100%;align-self: center;text-align: center;">
+                            <img style="height: 100%;text-align: center;align-self: center" th:src="@{/img/startMsg.png}" src="../static/img/startMsg.png"/>
+                            <span style="height: 100%;text-align: center;align-self: center">设备状态信息</span>
+                        </div>
+
+                    </div>
+                    <div class="themeNeiDiv2">
+
+                    </div>
+                </div>
+                <div class="themeR1">
+                    <div class="themeNeiDiv1">
+                        <div style="width: 100%;align-self: center;text-align: center;">
+                            <img style="height: 100%;text-align: center;align-self: center" th:src="@{/img/UPH.png}" src="../static/img/UPH.png"/>
+                            <span style="height: 100%;text-align: center;align-self: center">机故率</span>
+                        </div>
+                    </div>
+                    <div class="themeNeiDiv2">
+
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top: 0.1rem;" class="theme1">
+                <div class="themeL1">
+                    <div class="themeNeiDiv1">
+                        <div style="width: 100%;align-self: center;text-align: center;">
+                            <img style="height: 100%;text-align: center;align-self: center" th:src="@{/img/UPH.png}" src="../static/img/UPH.png"/>
+                            <span style="height: 100%;text-align: center;align-self: center">直通率</span>
+                        </div>
+
+                    </div>
+                    <div class="themeNeiDiv2">
+
+                    </div>
+                </div>
+                <div class="themeR1">
+                    <div class="themeNeiDiv1">
+                        <div style="width: 100%;align-self: center;text-align: center;">
+                            <img style="height: 100%;text-align: center;align-self: center" th:src="@{/img/buLiang.png}" src="../static/img/buLiang.png"/>
+                            <span style="height: 100%;text-align: center;align-self: center">不良率分析</span>
+                        </div>
+                    </div>
+                    <div class="themeNeiDiv2">
+
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top: 0.1rem;" class="theme1">
+                <div class="themeL1">
+                    <div class="themeNeiDiv1">
+                        <div style="width: 100%;align-self: center;text-align: center;">
+                            <img style="height: 100%;text-align: center;align-self: center" th:src="@{/img/UPH.png}" src="../static/img/UPH.png"/>
+                            <span style="height: 100%;text-align: center;align-self: center">AVI直通率&不良率趋势</span>
+                        </div>
+
+                    </div>
+                    <div class="themeNeiDiv2">
+
+                    </div>
+                </div>
+                <div class="themeR1">
+                    <div class="themeNeiDiv1">
+                        <div style="width: 100%;align-self: center;text-align: center;">
+                            <img style="height: 100%;text-align: center;align-self: center" th:src="@{/img/UPH.png}" src="../static/img/UPH.png"/>
+                            <span style="height: 100%;text-align: center;align-self: center">AVI过杀率&漏检率趋势(-1 Day)</span>
+                        </div>
+                    </div>
+                    <div class="themeNeiDiv2">
+
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top: 0.1rem;" class="themeB">
+                <table class="table1" style="margin-top: 0.7vh;margin-left: 0.5%">
+                    <thead>
+                    <tr>
+                        <td>线体</td>
+                        <td>报警时间</td>
+                        <td>异常描述</td>
+                        <td>处理状态</td>
+                    </tr>
+                    </thead>
+                    <tbody >
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+
+
+</div>
+
+
+
+
+
+</body>
+<script th:src="@{/js/jquery-3.5.1.min.js}" src="../static/js/jquery-3.5.1.min.js"></script>
+<script th:src="@{/js/echarts.js}" src="../static/js/echarts.js"></script>
+<script th:src="@{/js/AVI.js}" src="../static/js/AVI.js"></script>
+
+<script>
+    //移动端active无反应
+    document.body.addEventListener('touchstart',function(){},false)
+
+    var floor = ["A","B","D"];
+
+    var line = ["A1","B1","D1"];
+    var line2 = ["A2","B2","D2"];
+
+    floor = floor.sort();
+
+    // 区域选择后隐藏
+    $(document).ready(function(){
+        var area;
+        $("#select-input1").click(function(){
+            $("#floor-list1 li").remove();
+            for(var i = 0; i < floor.length; i++){
+                $("#floor-list1").append("<li data-v-170a700c=''><span style='align-self: center;padding-left: 0.07rem;'>"+floor[i]+"</span></li>");
+            }
+            $("#floor-list1").show();
+            $("#floor-list1 li").click(function(){
+                area = $(this).text();
+
+                $("#floor-list2 li").remove();
+                $("#select-input2").val("楼层");
+                // $("#floor-list2").append("<li data-v-170a700c=''>ALL</li>");
+                for (var i = 0; i < line.length; i++) {
+                    if (area == line[i].substr(0, 1)) {
+                        $("#floor-list2").append("<li data-v-170a700c=''><span style='align-self: center;padding-left: 0.07rem;'>"+line[i]+"</span></li>");
+
+                    }
+                }
+                $("#select-input1").val(area);
+                $("#floor-list1").hide();
+            });
+        });
+        // 点击页面其他元素时ul隐藏
+        $(document).click(function (){
+            if($("#select-input1").is(":focus")){
+                $("#floor-list1").show();
+            }else{
+                $("#floor-list1").hide();
+            }
+        });
+
+
+    });
+
+    // 楼层选择后隐藏
+    $(document).ready(function(){
+        var liValue1;
+        $("#select-input2").focus(function(){
+
+            $("#floor-list2").show();
+            $("#floor-list2 li").click(function(){
+                liValue1 = $(this).text();
+                $("#floor-list3 li").remove();
+                $("#select-input3").val("线体");
+                for (var i = 0; i < line2.length; i++) {
+                    if (liValue1.substr(0, 1) == line2[i].substr(0, 1)) {
+                        $("#floor-list3").append("<li data-v-170a700c=''><span style='align-self: center;padding-left: 0.07rem;'>"+line2[i]+"</span></li>");
+
+                    }
+                }
+                $("#select-input2").val(liValue1);
+                $("#floor-list2").hide();
+            });
+        });
+        // 点击页面其他元素时ul隐藏
+        $(document).click(function (){
+            if($("#select-input2").is(":focus")){
+                $("#floor-list2").show();
+            }else{
+                $("#floor-list2").hide();
+            }
+        });
+    });
+
+    // 线体选择后隐藏
+    $(document).ready(function(){
+        var liValue1;
+        $("#select-input3").focus(function(){
+
+            $("#floor-list3").show();
+            $("#floor-list3 li").click(function(){
+                liValue1 = $(this).text();
+                $("#select-input3").val(liValue1);
+                $("#floor-list3").hide();
+            });
+        });
+        // 点击页面其他元素时ul隐藏
+        $(document).click(function (){
+            if($("#select-input3").is(":focus")){
+                $("#floor-list3").show();
+            }else{
+                $("#floor-list3").hide();
+            }
+        });
+    });
+
+
+</script>
+</html>

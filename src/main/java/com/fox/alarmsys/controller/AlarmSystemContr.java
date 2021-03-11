@@ -44,7 +44,7 @@ public class AlarmSystemContr {
     DateFormat Timeformat = new SimpleDateFormat("MM/dd HH:mm:ss");
 
     @RequestMapping("getAVIERROR")//agv
-    public   String  AlarmSystemContr(@RequestParam(value = "FloorName",required = true,defaultValue = "D061F") String FloorName,
+    public   String  AlarmSystemContr(@RequestParam(value = "FloorName",required = true,defaultValue = "") String FloorName,
                                       @RequestParam(value = "LineName",required = true,defaultValue = "") String LineName,
                                       @RequestParam(value = "Product",required = true,defaultValue = "Equipment_AVI")  String Product ,Map map){
 
@@ -127,7 +127,7 @@ public class AlarmSystemContr {
 
 
     @RequestMapping("alarmsystemdata")//Tab 异步内容
-    public   String  AlarmSystemDataContr(@RequestParam(value = "FloorName",required = true,defaultValue = "D061F") String FloorName,
+    public   String  AlarmSystemDataContr(@RequestParam(value = "FloorName",required = true,defaultValue = "") String FloorName,
                                           @RequestParam(value = "LineName",required = true,defaultValue = "") String LineName,
                                       @RequestParam(value = "Product",required = true,defaultValue = "Equipment_AVI")  String Product ,
                                       @RequestParam(value = "MachineType",required = false)  String MachineType ,
@@ -172,7 +172,7 @@ public class AlarmSystemContr {
     }
 
     @RequestMapping("alarmsystemtetitledata")//title 异步内容
-    public   String  AlarmSystemTitleDataContr(@RequestParam(value = "FloorName",required = true,defaultValue = "D061F") String FloorName,
+    public   String  AlarmSystemTitleDataContr(@RequestParam(value = "FloorName",required = true,defaultValue = "") String FloorName,
                                                @RequestParam(value = "LineName",required = true,defaultValue = "") String LineName,
                                           @RequestParam(value = "Product",required = true,defaultValue = "Equipment_AVI")  String Product ,Map map){
 
