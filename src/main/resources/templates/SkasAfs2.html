@@ -966,7 +966,8 @@
 
 
 <script th:inline="javascript">
-
+    //移动端active无反应
+    document.body.addEventListener('touchstart',function(){},false)
 
     //页面变化重新绘制Echars图
     function getXinEchars (myChart,option){
