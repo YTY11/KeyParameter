@@ -31,7 +31,7 @@ body {
 
 .content {
     margin-left: 0.08rem;
-    height: calc(9.54rem - 0.08rem);
+    height: calc(9.54rem - 0.2rem);
     width: 7.52rem;
     background-image: url(../img/skasB.png);
     background-size: cover;
