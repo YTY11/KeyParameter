@@ -133,7 +133,7 @@ body {
 .floor-list , .line-list,.line-list2{
     width: 0.64rem;
     height: 1.5rem;
-    max-height: 2rem;
+    max-height: 1rem;
     position: absolute;
     overflow: auto;
     z-index: 40;

@@ -58,7 +58,7 @@
                 </div>
             </div>
             <a class="a1">电子看板</a>
-            <a class="a2" th:href="@{}" href="">设备健康管理</a>
+            <a class="a2" th:href="@{}" href="AVI2.html">设备健康管理</a>
         </div>
 
 <!--        主体-->
@@ -128,7 +128,7 @@
                         </div>
                     </div>
                     <div class="themeNeiDiv2">
-
+                        <div style="align-self: center;text-align: center;width: 100%;height: 90%;" id="jiGu"> </div>
                     </div>
                 </div>
             </div>
@@ -142,7 +142,7 @@
 
                     </div>
                     <div class="themeNeiDiv2">
-
+                        <div style="align-self: center;text-align: center;width: 100%;height: 90%;" id="zhiTong"> </div>
                     </div>
                 </div>
                 <div class="themeR1">
@@ -153,6 +153,7 @@
                         </div>
                     </div>
                     <div class="themeNeiDiv2">
+                        <div style="align-self: center;text-align: center;width: 100%;height: 100%;" id="buLiang"> </div>
 
                     </div>
                 </div>
@@ -167,6 +168,7 @@
 
                     </div>
                     <div class="themeNeiDiv2">
+                        <div style="align-self: center;text-align: center;width: 100%;height: 100%;" id="aviZhiTong"> </div>
 
                     </div>
                 </div>
@@ -178,6 +180,7 @@
                         </div>
                     </div>
                     <div class="themeNeiDiv2">
+                        <div style="align-self: center;text-align: center;width: 100%;height: 100%;" id="aviGuoSha"> </div>
 
                     </div>
                 </div>
@@ -346,11 +349,15 @@
 </script>
 <script>
     (function () {
-        // sysbar();
-        syspie();
-        // sysline();
+
+        aviPie();
+        jiGu();
+        zhiTong();
+        buLiang();
+        aviZhiTong();
+        aviGuoSha();
     })();
-    function syspie() {
+    function aviPie() {
         // var aGV_AFSPieStateData=[[${aGV_AFSPieStateJson}]];
         // var syspieData= JSON.parse(aGV_AFSPieStateData);
         var chartDom = document.getElementById('doughnut');
@@ -419,6 +426,664 @@
                     }
                 }]
             }]
+        };
+
+        myChart.setOption(option,true);
+        window.addEventListener("resize",function () {
+            myChart.resize();
+        });
+        myChart.clear();
+        myChart.setOption(option,true);
+    }
+
+
+    function jiGu(){
+        var chartDom = document.getElementById('jiGu');
+        var myChart = echarts.init(chartDom);
+        var option = {
+            tooltip: {
+                show: true,
+                trigger: 'item',
+                formatter: "{c}%",
+                position: ['50%', '0%']
+            },
+            series: [{
+                type: "gauge",
+                radius: "120%", //仪表大小
+                roundCap:true,
+                startAngle: 200,
+                endAngle: -20,
+                min: 0,					// 最小的数据值,默认 0 。映射到 minAngle。
+                max: 18,				// 最大的数据值,默认 100 。映射到 maxAngle。
+                splitNumber: 6,
+                clockwise: true,		// 仪表盘刻度是否是顺时针增长,默认 true。
+                center: ["50%", "65%"],	// 仪表盘位置(圆心坐标)
+                itemStyle:{
+                    color:"#4CFE2D" //仪表盘指针颜色
+                },
+                axisLine: {
+                    show: true,
+                    lineStyle: {
+                        width: 15,
+
+                        color: [
+                            [
+                                0.3, new echarts.graphic.LinearGradient(
+                                0, 0, 1, 0, [{
+                                    offset: 0,
+                                    color: '#3AFF2F'
+                                },
+                                    {
+                                        offset: 1,
+                                        color: '#95FD27'
+                                    }
+                                ]
+                            )
+                            ],
+                            [
+                                0.6, new echarts.graphic.LinearGradient(
+                                0, 0, 1, 0, [{
+                                    offset: 0,
+                                    color: '#95FD27'
+                                },
+                                    {
+                                        offset: 1,
+                                        color: '#C78900'
+                                    }
+                                ]
+                            )
+                            ],
+                            [
+                                1, new echarts.graphic.LinearGradient(
+                                0, 0, 1, 0, [{
+                                    offset: 0,
+                                    color: '#C78900'
+                                },
+                                    {
+                                        offset: 1,
+                                        color: '#E02020'
+                                    }
+                                ]
+                            )
+                            ]
+                        ]
+                    },
+                },
+                axisTick: {
+                    show: false,
+
+                },
+                axisLabel: {
+                    show: true,
+                    distance:-3,
+                    color:"#000000",
+                    fontSize:12,
+                    formatter:"{value}"
+                },
+                splitLine: {			// 分隔线样式。
+                    show: false,				// 是否显示分隔线,默认 true。
+                },
+                pointer: {
+                    width: "5%",
+                    length: '60%',
+
+                        color:"#000000",
+
+                },
+                detail: {
+                    formatter : "{score|{value}%}",
+                    offsetCenter: [0, "23%"],
+                    height:20,
+                    rich : {
+                        score : {
+                            color : "#4CFE2D",
+                            fontFamily : "PingFangTC-Regular",
+                            fontSize : 20
+                        }
+                    }
+                },
+                data: [{value: 10,
+                    label: {
+                        textStyle: {
+                            fontSize: 14
+                        }
+                    }}]
+
+            }]};
+        myChart.setOption(option,true);
+        window.addEventListener("resize",function () {
+            myChart.resize();
+        });
+        myChart.clear();
+        myChart.setOption(option,true);
+    }
+
+    function zhiTong(){
+        var chartDom = document.getElementById('zhiTong');
+        var myChart = echarts.init(chartDom);
+
+        var option = {
+            tooltip: {
+                show: true,
+                trigger: 'item',
+                formatter: "{c}%",
+                position: ['50%', '0%']
+            },
+            series: [{
+                type: "gauge",
+                radius: "120%", //仪表大小
+                roundCap:true,
+                startAngle: 200,
+                endAngle: -20,
+                min: 0,					// 最小的数据值,默认 0 。映射到 minAngle。
+                max: 100,				// 最大的数据值,默认 100 。映射到 maxAngle。
+                clockwise: true,		// 仪表盘刻度是否是顺时针增长,默认 true。
+                center: ["50%", "65%"],	// 仪表盘位置(圆心坐标)
+                itemStyle:{
+                    color:"#4CFE2D" //仪表盘指针颜色
+                },
+                axisLine: {
+                    show: true,
+                    lineStyle: {
+                        width: 15,
+                        color: [
+                            [
+                                0.4, new echarts.graphic.LinearGradient(
+                                0, 0, 1, 0, [{
+                                    offset: 1,
+                                    color: '#C78900'
+                                },
+                                    {
+                                        offset: 0,
+                                        color: '#E02020'
+                                    }
+                                ]
+                            )
+                            ],
+
+                            [
+                                0.7, new echarts.graphic.LinearGradient(
+                                0, 0, 1, 0, [
+                                    {
+                                        offset: 1,
+                                        color: '#95FD27'
+                                    },
+                                    {
+                                        offset: 0,
+                                        color: '#C78900'
+                                    }
+                                ]
+                            )
+                            ],
+                            [
+                                1, new echarts.graphic.LinearGradient(
+                                0, 0, 1, 0, [{
+                                    offset: 1,
+                                    color: '#3AFF2F'
+                                },
+                                    {
+                                        offset: 0,
+                                        color: '#95FD27'
+                                    }
+                                ]
+                            )
+                            ]
+                        ]
+                    },
+                },
+                axisTick: {
+                    show: false
+                },
+                axisLabel: {
+                    show: true,
+                    distance:-1,
+                    color:"#000000",
+                    fontSize:12,
+                    formatter:"{value}"
+                },
+                splitLine: {			// 分隔线样式。
+                    show: false,				// 是否显示分隔线,默认 true。
+                },
+                pointer: {
+                    width: "5%",
+                    length: '60%',
+                },
+                detail: {
+                    formatter : "{score|{value}%}",
+                    offsetCenter: [0, "23%"],
+                    height:20,
+                    rich : {
+                        score : {
+                            color : "#4CFE2D",
+                            fontFamily : "PingFangTC-Regular",
+                            fontSize : 20
+                        }
+                    }
+                },
+                data: [{value: 80,
+                    label: {
+                        textStyle: {
+                            fontSize: 14
+                        }
+                    }}]
+
+            }]};
+        myChart.setOption(option,true);
+        window.addEventListener("resize",function () {
+            myChart.resize();
+        });
+        myChart.clear();
+        myChart.setOption(option,true);
+    }
+
+    function buLiang(){
+        var chartDom = document.getElementById('buLiang');
+        var myChart = echarts.init(chartDom);
+        var option = {
+            grid:{
+                top:'20%',//距上边距
+                left:'2%',//距离左边距
+                right:'2%',//距离右边距
+                bottom:'5%',//距离下边距
+                containLabel:true
+            },
+            xAxis: [
+                {
+                    type: 'category',
+                    data: ['残胶', '偏位', '破损', '漏贴', '残胶', '鼓包'],
+                    axisPointer: {
+                        type: 'shadow'
+                    },
+                    axisTick: {
+                        show: false
+                    },
+                    axisLabel:{
+                        textStyle:{
+                            fontFamily: 'PingFangSC-Regular',
+                            fontSize: 12,
+                            color: 'rgba(0,0,0,0.85)',
+                            // letterSpacing: 0.08,
+                        },
+                    },
+                }
+            ],
+            yAxis: [
+                {
+                    type: 'value',
+                    axisLabel: {
+                        formatter: '{value}',
+                        show: true,
+                        textStyle:{
+                            fontFamily: 'PingFangSC-Regular',
+                            fontSize: 12,
+                            color: '#000000',
+                            letterSpacing: -0.0127,
+                            lineHeight: 17,
+                        },
+                        interval: 0,
+                    },
+                },
+                {
+                    type: 'value',
+                    // min: 0,
+                    // max: 25,
+                    // interval: 5,
+                    axisLabel: {
+                        formatter: '{value} %',
+                        show: true,
+                        textStyle:{
+                            fontFamily: 'PingFangSC-Regular',
+                            fontSize: 12,
+                            color: '#000000',
+                            letterSpacing: -0.0127,
+                            lineHeight: 17,
+                        },
+                        interval: 0,
+
+                    }
+                }
+            ],
+            series: [
+                {
+                    name: '蒸发量',
+                    type: 'bar',
+                    data: [2.0, 4.9, 7.0, 23.2, 25.6, 76.7],
+                    itemStyle: {
+
+                        normal:{
+                            color:'#64DAFE',
+                            label:{
+                                show:true,
+                                position: 'top',
+                                textStyle:{
+                                    fontFamily: 'PingFangSC-Regular',
+                                    fontSize: 10,
+                                    letterSpacing: 0,
+                                    color: 'rgba(0,0,0,0.85)',
+                                    // backgroundColor:'#E1E7FD',
+                                }
+                            }
+                        }
+
+
+                    },
+                },
+                {
+                    name: '平均温度',
+                    smooth: true,
+
+                    symbol: 'circle', //折线点设置为实心点
+                    symbolSize: 1, //折线点的大小
+                    type: 'line',
+
+                    yAxisIndex: 1,
+                    data: [2.0, 2.2, 3.3, 4.5, 6.3, 10.2],
+                    itemStyle: {
+
+                        normal:{
+
+                            color:'#2391E8',
+                            label:{
+                                show:true,
+                                position: 'top',
+                                formatter: '{c}%',
+                                textStyle:{
+                                    fontFamily: 'PingFangSC-Regular',
+                                    fontSize: 10,
+                                    letterSpacing: 0,
+                                    color: 'rgba(0,0,0,0.85)',
+                                    // backgroundColor:'#E1E7FD',
+                                }
+                            },
+
+
+                        }
+
+
+                    },
+
+
+                }
+            ]
+        };
+
+        myChart.setOption(option,true);
+        window.addEventListener("resize",function () {
+            myChart.resize();
+        });
+        myChart.clear();
+        myChart.setOption(option,true);
+    }
+
+    function aviZhiTong(){
+        var chartDom = document.getElementById('aviZhiTong');
+        var myChart = echarts.init(chartDom);
+        var option = {
+            legend: {
+                padding:[15,0,0,0],
+                right:'30',
+                itemWidth:25,
+                data:['Pass','Fail'],
+                itemHeight:13,
+                itemGap:25,
+                show: true,
+                textStyle:{
+                    color:'rgba(0,0,0,0.85)',
+                    fontFamily: 'PingFangSC-Regular',
+                    fontSize: 12,
+                    letterSpacing: -0.02,
+                }
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: '{c}%',
+            },
+            grid: {
+                top:'25%',//距上边距
+                left:'2%',//距离左边距
+                right:'2%',//距离右边距
+                bottom:'5%',//距离下边距
+                containLabel:true
+            },
+            toolbox: {
+                show: true,
+                feature: {
+                    mark: {show: true},
+                }
+            },
+            xAxis: {
+                axisTick: {
+                    show: false
+                },
+                type: 'category',
+                data:[12,45,25],
+                axisLabel:{
+                    show:true,
+                    interval:0,
+                    textStyle:{
+                        color:'rgba(0,0,0,0.85)',
+                        fontFamily: 'PingFangSC-Regular',
+                        fontSize: 12,
+                        letterSpacing: 0.06,
+                    },
+                },
+
+            },
+            yAxis:  [
+                {
+                    type : 'value',
+                    splitLine:{
+                        show:false,
+                    },
+                    axisLabel:{
+                        show:true,
+                        formatter:'{value}%',
+                        textStyle:{
+                            color:'rgba(0,0,0,0.85)',
+                            fontFamily: 'PingFangSC-Regular',
+                            fontSize: 12,
+                            letterSpacing: 0.06,
+                        },
+                        fontSize:10,
+                    }
+                    /* name : '單位/台'*/
+                }
+            ],
+            color:['#60AA13','#FA6400'],
+            series:[
+                {
+                    name:'Pass',
+                    smooth:true,
+                    type: 'line',
+                    data:[12,52,2],
+                    symbol: 'circle', //折线点设置为实心点
+                    symbolSize: 5, //折线点的大小
+                    itemStyle:{
+                        normal:{
+                            label:{
+                                show: true,//开启显示
+                                formatter:'{c}%',
+                                textStyle: {
+                                    color:'rgba(0,0,0,0.85)',
+                                    fontFamily: 'PingFangSC-Regular',
+                                    fontSize: 10,
+                                }
+                            },
+                            lineStyle:{
+                                color:'#60AA13',
+                            },
+                            // color:'',
+                            // borderWidth:1,
+                            // borderColor:'#60AA13'
+                        }
+                    }
+                },
+                {
+                    name:'Fail',
+                    smooth:true,
+                    type: 'line',
+                    data:[45,20,60],
+                    symbol: 'circle', //折线点设置为实心点
+                    symbolSize: 5, //折线点的大小
+                    itemStyle:{
+                        normal:{
+                            label:{
+                                show: true,//开启显示
+                                formatter:'{c}%',
+                                textStyle: {
+                                    color:'rgba(0,0,0,0.85)',
+                                    fontFamily: 'PingFangSC-Regular',
+                                    fontSize: 10,
+                                }
+                            },
+                            lineStyle:{
+                                color:'#FA6400',
+                            },
+                            // color:'#FA6400',
+                            // borderWidth:0,
+                            // borderColor:'#FA6400'
+                        }
+                    }
+                }]
+        };
+
+        myChart.setOption(option,true);
+        window.addEventListener("resize",function () {
+            myChart.resize();
+        });
+        myChart.clear();
+        myChart.setOption(option,true);
+    }
+
+    function aviGuoSha(){
+        var chartDom = document.getElementById('aviGuoSha');
+        var myChart = echarts.init(chartDom);
+        var option = {
+            legend: {
+                padding:[15,0,0,0],
+                right:'30',
+                itemWidth:25,
+                data:['Overkill','Escap'],
+                itemHeight:13,
+                itemGap:25,
+                show: true,
+                textStyle:{
+                    color:'rgba(0,0,0,0.85)',
+                    fontFamily: 'PingFangSC-Regular',
+                    fontSize: 12,
+                    letterSpacing: -0.02,
+                }
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: '{c}%',
+            },
+            grid: {
+                top:'25%',//距上边距
+                left:'2%',//距离左边距
+                right:'2%',//距离右边距
+                bottom:'5%',//距离下边距
+                containLabel:true
+            },
+            toolbox: {
+                show: true,
+                feature: {
+                    mark: {show: true},
+                }
+            },
+            xAxis: {
+                axisTick: {
+                    show: false
+                },
+                type: 'category',
+                data:[12,45,25],
+                axisLabel:{
+                    show:true,
+                    interval:0,
+                    textStyle:{
+                        color:'rgba(0,0,0,0.85)',
+                        fontFamily: 'PingFangSC-Regular',
+                        fontSize: 10,
+                        letterSpacing: 0.05,
+                    },
+                },
+
+            },
+            yAxis:  [
+                {
+                    type : 'value',
+                    splitLine:{
+                        show:false,
+                    },
+                    axisLabel:{
+                        show:true,
+                        formatter:'{value}%',
+                        textStyle:{
+                            color:'rgba(0,0,0,0.85)',
+                            fontFamily: 'PingFangSC-Regular',
+                            fontSize: 10,
+                            letterSpacing: 0.05,
+                        },
+                    }
+                    /* name : '單位/台'*/
+                }
+            ],
+            color:['#60AA13','#FA6400'],
+            series:[
+                {
+                    name:'Overkill',
+                    smooth:true,
+                    type: 'line',
+                    data:[12,52,2],
+                    symbol: 'circle', //折线点设置为实心点
+                    symbolSize: 5, //折线点的大小
+                    itemStyle:{
+                        normal:{
+                            label:{
+                                show: true,//开启显示
+                                formatter:'{c}%',
+                                textStyle: {
+                                    color:'rgba(0,0,0,0.85)',
+                                    fontFamily: 'PingFangSC-Regular',
+                                    fontSize: 9,
+                                }
+                            },
+                            lineStyle:{
+                                color:'#60AA13',
+                            },
+                            // color:'',
+                            // borderWidth:1,
+                            // borderColor:'#60AA13'
+                        }
+                    }
+                },
+                {
+                    name:'Escap',
+                    smooth:true,
+                    type: 'line',
+                    data:[45,20,60],
+                    symbol: 'circle', //折线点设置为实心点
+                    symbolSize: 5, //折线点的大小
+                    itemStyle:{
+                        normal:{
+                            label:{
+                                show: true,//开启显示
+                                formatter:'{c}%',
+                                textStyle: {
+                                    color:'rgba(0,0,0,0.85)',
+                                    fontFamily: 'PingFangSC-Regular',
+                                    fontSize: 9,
+                                }
+                            },
+                            lineStyle:{
+                                color:'#FA6400',
+                            },
+                            // color:'#FA6400',
+                            // borderWidth:0,
+                            // borderColor:'#FA6400'
+                        }
+                    }
+                }]
         };
 
         myChart.setOption(option,true);
