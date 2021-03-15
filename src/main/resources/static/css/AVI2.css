@@ -209,6 +209,7 @@ input::-webkit-input-placeholder{
     width: 100%;
     height: calc(100% - 0.5rem);
     font-family: PingFangTC-Regular;
+    overflow: auto;
 }
 
 .theme1{
@@ -250,35 +251,26 @@ input::-webkit-input-placeholder{
 
 
 .table1{
-
     width: 100%;
     border-style:hidden;
     /*height: 1.51rem;*/
-    display: table;
 
 
 }
 
-.table1 thead tr {
-    width: 100%;
-    /*background: #0091FF;*/
+.table1>thead tr td{
     text-align: center;
-    font-family: PingFangSC-Medium;
+    
     font-size: 0.14rem;
     color: #F0F0F0;
     line-height: 0.21rem;
-
-}
-.table1>thead tr td{
-
     background: #0091ff;
-    color: #f0f0f0;
     position: sticky;
-    top: 0;
     border-bottom: 1px solid #fff;
     border-left: 1px solid #fff;
 }
 .table1 tbody tr td{
+
     font-size: 0.14rem;
     color: rgba(0,0,0,0.85);
     text-align: center;
@@ -308,24 +300,60 @@ input::-webkit-input-placeholder{
     border-bottom-right-radius: 16px;
 }
 
+.table2 > tbody tr td{
+    height: 0.37rem;
+    font-family: PingFangSC-Regular;
+    font-size: 0.14rem;
+    color: rgba(0,0,0,0.85);
+    text-align: center;
+    line-height: 0.21rem;
+    font-weight: 400;
+}
+
 .tableTime{
-    width: 0.6rem;
-    height: 0.38rem;
+    min-width: 0.6rem!important;
+    height: 0.38rem!important;
 }
 
 .louCeng{
-    width: 0.6rem;
+    min-width: 0.6rem!important;
     height: 0.38rem;
 }
 .xianTi{
-    width: 0.9rem;
-    height: 0.38rem;
+    min-width: 0.9rem!important;
+    height: 0.38rem!important;
 }
 .sheBei{
-    width: 0.69rem;
-    height: 0.38rem;
+    min-width: 0.69rem!important;
+    height: 0.38rem!important;
 }
 .xiangMu{
-    width: 1rem;
-    height: 0.38rem;
+    min-width: 1rem!important;
+    height: 0.38rem!important;
+}
+
+
+.theme2{
+    margin-top: 0.1rem;
+    margin-left: 0.1rem;
+    width: 7.32rem;
+    height: 1.68rem;
+    background: rgba(255,255,255,0.40);
+    border-radius: 0.2rem;
+}
+
+.theme2Table{
+    width: 100%;
+    height: 1.3rem;
+    background: rgba(255,255,255,0.75);
+    border-radius: 0.2rem;
+}
+
+.theme3{
+    width: 7.32rem;
+    height: 2.63rem;
+    background: rgba(255,255,255,0.40);
+    border-radius: 0.20rem;
+    margin-top: 0.1rem;
+    margin-left: 0.1rem;
 }

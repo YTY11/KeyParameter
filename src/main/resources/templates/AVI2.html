@@ -77,8 +77,8 @@
                     <p>设备机故率</p>
                 </div>
                 <div class="teme1ContentButtom">
-                    <div style="width: 100%;height: 3.43rem;padding-top: 0.08rem">
-                        <div style="width: 100%;height: 3.34rem;overflow: auto">
+                    <div class="content-container" style="width: 100%;height: 3.43rem;padding-top: 0.08rem;overflow: auto">
+
                             <table class="table1">
                                 <thead>
                                 <tr>
@@ -107,11 +107,106 @@
 
                             </table>
 
-                        </div>
-
                     </div>
                 </div>
             </div>
+            <div class="theme2">
+                <div class="teme1Top">
+                    <p>设备机故讯息</p>
+                </div>
+                <div class="theme2Table">
+                    <div class="content-container" style="width: 100%;height: 1.12rem;padding-top: 0.08rem;overflow: auto">
+
+                        <table class="table1 table2">
+                            <thead>
+                            <tr>
+                                <td style="min-width: 1.2rem!important;height: 0.38rem!important;">线体</td>
+                                <td style="min-width: 0.6rem!important;height: 0.38rem!important;">设备</td>
+                                <td style="min-width: 0.9rem!important;height: 0.38rem!important;">日期</td>
+                                <td style="min-width: 0.8rem!important;height: 0.38rem!important;">开始时间</td>
+                                <td style="min-width: 0.8rem!important;height: 0.38rem!important;">结束时间</td>
+                                <td style="min-width: 0.77rem!important;height: 0.38rem!important;">类型</td>
+                                <td style="min-width: 2.6rem!important;height: 0.38rem!important;">异常描述</td>
+                                <td style="min-width: 2.21rem!important;height: 0.38rem!important;">维修动作</td>
+                                <td style="min-width: 1.16rem!important;height: 0.38rem!important;">处理状态</td>
+
+
+                            </tr>
+                            </thead>
+                            <tbody >
+                                <tr>
+                                    <td>D061FARF04</td>
+                                    <td>荧光</td>
+                                    <td>2021-02-03</td>
+                                    <td>10:38</td>
+                                    <td>10:39</td>
+                                    <td>软体</td>
+                                    <td>Fail-panelFail->AVI弹窗报警“Warning”</td>
+                                    <td>白光起拍点异常</td>
+                                    <td>已完成</td>
+                                </tr>
+                                <tr>
+                                    <td>D061FARF04</td>
+                                    <td>荧光</td>
+                                    <td>2021-02-03</td>
+                                    <td>10:38</td>
+                                    <td>10:39</td>
+                                    <td>软体</td>
+                                    <td>Fail-panelFail->AVI弹窗报警“Warning”</td>
+                                    <td>白光起拍点异常</td>
+                                    <td>已完成</td>
+                                </tr>
+                                <tr>
+                                    <td>D061FARF04</td>
+                                    <td>荧光</td>
+                                    <td>2021-02-03</td>
+                                    <td>10:38</td>
+                                    <td>10:39</td>
+                                    <td>软体</td>
+                                    <td>Fail-panelFail->AVI弹窗报警“Warning”</td>
+                                    <td>白光起拍点异常</td>
+                                    <td>已完成</td>
+                                </tr>
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="theme3">
+                <div class="teme1Top">
+                    <p>AVI PASS Rate</p>
+                </div>
+                <div class="teme1Content">
+                    <div style="width: 100%;height: 100%;text-align: center;align-self: center" id="aviPassRate"></div>
+
+                </div>
+            </div>
+
+            <div class="theme3">
+                <div class="teme1Top">
+                    <p>Fail Rate(By元件)</p>
+                </div>
+                <div class="teme1Content" style="overflow: auto">
+                    <div style="width: 200%;height: 100%;text-align: center;align-self: center" id="Fail"></div>
+
+                </div>
+            </div>
+
+
+            <div class="theme3">
+                <div class="teme1Top">
+                    <p>W juat2 Fail Rate(By 小时)</p>
+                </div>
+                <div class="teme1Content">
+                    <div style="width: 100%;height: 100%;text-align: center;align-self: center" id="juat2"></div>
+
+                </div>
+            </div>
+
 
         </div>
 
@@ -235,7 +330,9 @@
     (function () {
 
         aviJiGu();
-
+        aviPassRate();
+        Fail();
+        juat2();
     })();
 
     function aviJiGu(){
@@ -477,6 +574,482 @@
         });
         myChart.clear();
         myChart.setOption(option,true);
+    }
+
+    function aviPassRate(){
+        var chartDom = document.getElementById('aviPassRate');
+        var myChart = echarts.init(chartDom);
+        var option = {
+            legend: {
+                data:[
+                    {
+                        name:'目标(70%)',
+                        icon:'image://../static/img/xuXian.png',
+                        itemHeight:5,
+                    },
+                    {
+                        name:'PASS_RATE',
+                        icon:'line',
+
+                    },
+                    {
+                        name:'复判PASS_RATE',
+                        icon:'line',
+
+                    },
+
+                ],
+                // icon:'line',
+                padding:[15,0,0,0],
+                right:'30',
+                // itemWidth:25,
+                // data:['目标','白光','荧光','其他'],
+                // itemHeight:13,
+                // itemGap:25,
+                show: true,
+                textStyle:{
+                    type: 'dashed',
+                    color:'rgba(0,0,0,0.85)',
+                    fontFamily: 'PingFangSC-Regular',
+                    fontSize: 12,
+                    letterSpacing: -0.02,
+                }
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: '{c}%',
+            },
+            grid: {
+                top:'25%',//距上边距
+                left:'2%',//距离左边距
+                right:'2%',//距离右边距
+                bottom:'5%',//距离下边距
+                containLabel:true
+            },
+            toolbox: {
+                show: true,
+                feature: {
+                    mark: {show: true},
+                }
+            },
+            xAxis: {
+                axisTick: {
+                    show: false
+                },
+                type: 'category',
+                data:[12,45,25],
+                axisLabel:{
+                    show:true,
+                    interval:0,
+                    textStyle:{
+                        color:'rgba(0,0,0,0.85)',
+                        fontFamily: 'PingFangSC-Regular',
+                        fontSize: 12,
+                        letterSpacing: 0.06,
+                    },
+                },
+
+            },
+            yAxis:  [
+                {
+                    type : 'value',
+                    splitLine:{
+                        show:false,
+                    },
+                    axisLabel:{
+                        show:true,
+                        formatter:'{value}%',
+                        textStyle:{
+                            color:'rgba(0,0,0,0.85)',
+                            fontFamily: 'PingFangSC-Regular',
+                            fontSize: 12,
+                            letterSpacing: 0.06,
+                        },
+                        fontSize:10,
+                    }
+
+                }
+            ],
+            color:['#60AA13','#0091FF','#FA6400'],
+            series:[
+                {
+                    name:'目标(70%)',
+                    smooth:false,
+                    type: 'line',
+                    data:[5,5,5],
+                    symbol: 'none', //折线点设置为实心点
+                    itemStyle:{
+                        normal:{
+                            lineStyle: {
+                                width: 3,
+                                type: 'dotted',  //'dotted'虚线 'solid'实线
+                                color: '#60AA13',
+
+
+                            },
+                            label:{
+                                show: false,//开启显示
+                                formatter:'{c}%',
+                                textStyle: {
+                                    color:'rgba(0,0,0,0.85)',
+                                    fontFamily: 'PingFangSC-Regular',
+                                    fontSize: 10,
+                                }
+                            },
+
+                            // color:'',
+                            // borderWidth:1,
+                            // borderColor:'#60AA13'
+                        }
+                    }
+                },
+                {
+                    name:'PASS_RATE',
+                    smooth:true,
+                    type: 'line',
+                    data:[15,8,60],
+                    symbol: 'circle', //折线点设置为实心点
+                    symbolSize: 0, //折线点的大小
+                    itemStyle:{
+                        normal:{
+
+                            label:{
+                                show: false,//开启显示
+                                formatter:'{c}%',
+                                textStyle: {
+                                    color:'rgba(0,0,0,0.85)',
+                                    fontFamily: 'PingFangSC-Regular',
+                                    fontSize: 10,
+
+                                }
+                            },
+                            lineStyle:{
+                                lineStyle: {
+                                    width: 5,
+                                    type: 'solid',  //'dotted'虚线 'solid'实线
+                                    color: '#0091FF',
+
+
+                                },
+                            },
+
+                        }
+                    }
+                },
+                {
+                    name:'复判PASS_RATE',
+                    smooth:true,
+                    type: 'line',
+                    data:[20,20,50],
+                    symbol: 'circle', //折线点设置为实心点
+                    symbolSize: 0, //折线点的大小
+                    itemStyle:{
+                        normal:{
+
+                            label:{
+                                show: false,//开启显示
+                                formatter:'{c}%',
+                                textStyle: {
+                                    color:'rgba(0,0,0,0.85)',
+                                    fontFamily: 'PingFangSC-Regular',
+                                    fontSize: 10,
+
+                                }
+                            },
+                            lineStyle:{
+                                lineStyle: {
+                                    width: 5,
+                                    type: 'solid',  //'dotted'虚线 'solid'实线
+                                    color: '#FA6400',
+
+
+                                },
+                            },
+
+                        }
+                    }
+                },
+
+            ]
+        };
+
+        myChart.setOption(option,true);
+        window.addEventListener("resize",function () {
+            myChart.resize();
+        });
+        myChart.clear();
+        myChart.setOption(option,true);
+    }
+
+    function Fail(){
+        var chartDom2 = document.getElementById('Fail');
+        var myChart2 = echarts.init(chartDom2);
+
+        var option2 = {
+            grid:{
+                top:'20%',//距上边距
+                left:'2%',//距离左边距
+                right:'2%',//距离右边距
+                bottom:'5%',//距离下边距
+                containLabel:true
+            },
+            toolbox: {
+                show: true,
+                feature: {
+                    mark: {show: true},
+
+                }
+            },
+
+            legend: {
+                padding:[15,0,0,0],
+                right:'30',
+                itemWidth:35,
+                data:['W','UV'],
+                itemHeight:13,
+                itemGap:50,
+                textStyle:{
+                    fontFamily: 'PingFangSC-Regular',
+                    fontSize: 14,
+                    color: 'rgba(0,0,0,0.85)',
+                },
+            },
+
+            xAxis: {
+
+                type: 'category',
+                data:['wf','sdf','sdd','wf','sdf','sdd','wf','sdf','sdd','wf'],
+                axisTick: {
+                    show: false
+                },
+                axisLabel:{
+                    textStyle:{
+                        fontFamily: 'PingFangSC-Regular',
+                        fontSize: 10,
+                        color: 'rgba(0,0,0,0.85)',
+                        letterSpacing: -0.04,
+                    },
+                },
+
+            },
+
+            yAxis: {
+
+                axisLabel:{
+                    formatter: '{value}.00%',
+                    textStyle:{
+                        fontFamily: 'PingFangSC-Regular',
+                        fontSize: 14,
+                        color: '#000000',
+                        letterSpacing: -1.48,
+                        lineHeight: 20,
+                    },
+                    interval:0,
+                },
+
+                type : 'value',
+
+                axisTick: {
+                    show: false
+                },
+                axisLine: {
+
+                    show: false
+                },
+
+                splitLine: {
+                    show:true,
+                    lineStyle:{
+                        color: ['#CFD5EB'],
+                        width: 1,
+                        type: 'solid'
+                    }
+                },
+
+            },
+
+            series: [
+                {
+                    name:'W',
+                    type: 'bar',
+                    data:[20,65,0,0,0,0,0,0,0,0],
+                    itemStyle: {
+
+                        normal:{
+                            color: '#FA6400',
+                            label:{
+                                show:true,
+                                position: 'top',
+                                formatter: '{c}.00%',
+                                textStyle:{
+                                    fontFamily: 'PingFangSC-Regular',
+                                    fontSize: 12,
+                                    letterSpacing: 0,
+                                    color: '#FA6400',
+                                    // backgroundColor:'#E1E7FD',
+                                }
+                            }
+                        }
+
+
+                    },
+                },
+                {
+                    name:'UV',
+                    type: 'bar',
+                    data:[0,0,0,0,0,0,0,0,0,0],
+                    itemStyle: {
+
+                        normal:{
+                            color: '#0091FF',
+                            label:{
+                                show:true,
+                                position: 'top',
+                                formatter: '{c}.00%',
+                                textStyle:{
+                                    fontFamily: 'PingFangSC-Regular',
+                                    fontSize: 12,
+                                    letterSpacing: 0,
+                                    color: '#0091FF',
+                                    // backgroundColor:'#E1E7FD',
+                                }
+                            }
+                        }
+
+                    },
+                },
+
+            ]
+        };
+        myChart2.setOption(option2,true);
+        window.addEventListener("resize",function () {
+            myChart2.resize();
+        });
+        myChart2.clear();
+        myChart2.setOption(option2,true);
+    }
+    function juat2(){
+        var chartDom2 = document.getElementById('juat2');
+        var myChart2 = echarts.init(chartDom2);
+
+        var option2 = {
+            grid:{
+                top:'20%',//距上边距
+                left:'2%',//距离左边距
+                right:'2%',//距离右边距
+                bottom:'5%',//距离下边距
+                containLabel:true
+            },
+            toolbox: {
+                show: true,
+                feature: {
+                    mark: {show: true},
+
+                }
+            },
+
+            legend: {
+                padding:[15,0,0,0],
+                right:'30',
+                itemWidth:35,
+                data:['FAIL_RATE'],
+                itemHeight:13,
+                itemGap:50,
+                textStyle:{
+                    fontFamily: 'PingFangSC-Regular',
+                    fontSize: 14,
+                    color: 'rgba(0,0,0,0.85)',
+                },
+            },
+
+            xAxis: {
+
+                type: 'category',
+                data:['wf','sdf','sdd','wf','sdf','sdd','wf','sdf','sdd','wf'],
+                axisTick: {
+                    show: false
+                },
+                axisLabel:{
+                    textStyle:{
+                        fontFamily: 'PingFangSC-Regular',
+                        fontSize: 14,
+                        color: 'rgba(0,0,0,0.85)',
+                        letterSpacing: -0.04,
+                    },
+                },
+
+            },
+
+            yAxis: {
+
+                axisLabel:{
+                    formatter: '{value}.00%',
+                    textStyle:{
+                        fontFamily: 'PingFangSC-Regular',
+                        fontSize: 14,
+                        color: '#000000',
+                        letterSpacing: -1.48,
+                        lineHeight: 20,
+                    },
+                    interval:0,
+                },
+
+                type : 'value',
+
+                axisTick: {
+                    show: false
+                },
+                axisLine: {
+
+                    show: false
+                },
+
+                splitLine: {
+                    show:true,
+                    lineStyle:{
+                        color: ['#CFD5EB'],
+                        width: 1,
+                        type: 'solid'
+                    }
+                },
+
+            },
+
+            series: [
+
+                {
+                    name:'FAIL_RATE',
+                    type: 'bar',
+                    data:[0,0,0,0,0,0,0,0,0,0],
+                    itemStyle: {
+
+                        normal:{
+                            color: '#0091FF',
+                            label:{
+                                show:true,
+                                position: 'top',
+                                formatter: '{c}.00%',
+                                textStyle:{
+                                    fontFamily: 'PingFangSC-Regular',
+                                    fontSize: 12,
+                                    letterSpacing: 0,
+                                    color: '#0091FF',
+                                    // backgroundColor:'#E1E7FD',
+                                }
+                            }
+                        }
+
+                    },
+                },
+
+            ]
+        };
+        myChart2.setOption(option2,true);
+        window.addEventListener("resize",function () {
+            myChart2.resize();
+        });
+        myChart2.clear();
+        myChart2.setOption(option2,true);
     }
 </script>
 
